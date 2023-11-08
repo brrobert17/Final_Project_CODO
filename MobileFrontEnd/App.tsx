@@ -1,11 +1,13 @@
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {useFonts} from "expo-font";
 import {Inter_400Regular, Inter_600SemiBold, Inter_700Bold} from "@expo-google-fonts/inter";
 import Home from './screens/Home';
+import Menu from "./screens/Menu";
 
 export type StackParams = {
-  Home: {}
+    Home: {},
+    Menu: {}
 }
 
 const Stack = createNativeStackNavigator<StackParams>();
@@ -22,20 +24,24 @@ export default function App() {
         return null;
     }
 
-  return (
-    <NavigationContainer>
-      <Stack.Navigator
-        screenOptions={{
-          headerShown: false
-        }}
-        initialRouteName='Home'
-      >
-        <Stack.Screen
-          name='Home'
-          component={Home}
-        />
-      </Stack.Navigator>
-    </NavigationContainer>
-  );
+    return (
+        <NavigationContainer>
+            <Stack.Navigator
+                screenOptions={{
+                    headerShown: false
+                }}
+                initialRouteName='Menu'
+            >
+                <Stack.Screen
+                    name='Home'
+                    component={Home}
+                />
+                <Stack.Screen
+                    name='Menu'
+                    component={Menu}
+                />
+            </Stack.Navigator>
+        </NavigationContainer>
+    );
 }
 

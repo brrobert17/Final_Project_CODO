@@ -7,8 +7,21 @@ export const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
-    basicText: {
+    menuContainer: {
+        flex: 1,
+        backgroundColor: backGroundColor,
+        justifyContent: 'center',
+        paddingLeft: 90
+    },
+    basic: {
         color: '#fff',
         fontFamily: 'Inter_400Regular',
+        fontSize: 16
+    },
+    h1: {
+        color: '#fff',
+        fontFamily: 'Inter_600SemiBold',
+        fontSize: 25,
+        marginBottom: 25
     }
 });
