@@ -1,9 +1,11 @@
-import { View } from "react-native";
+import { SafeAreaView, View, Text } from "react-native";
 
 
 const Home = () => {
   return (
-    <View>Home</View>
+    <SafeAreaView>
+        <Text>Home screen</Text>
+    </SafeAreaView>
   )
 }
 
