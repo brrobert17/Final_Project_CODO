@@ -1,6 +1,8 @@
 import {StyleSheet} from "react-native";
-const backGroundColor = '#000F1E'
-export const styles = StyleSheet.create({
+
+const backGroundColor = '#000F1E';
+
+export default StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: backGroundColor,

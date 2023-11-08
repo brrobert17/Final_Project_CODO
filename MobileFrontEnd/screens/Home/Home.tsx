@@ -1,13 +1,16 @@
 import { SafeAreaView, View, Text } from "react-native";
-import {styles} from "../../style";
+import gStyle from "@gStyle";
+import Header from "@components/Header";
+
 
 
 const Home = () => {
-  return (
-    <SafeAreaView style={styles.container}>
-        <Text style={styles.basicText}>Home screen</Text>
-    </SafeAreaView>
-  )
+    return (
+        <SafeAreaView style={gStyle.container}>
+            <Text style={gStyle.basicText}>Home screen</Text>
+            <Header></Header>
+        </SafeAreaView>
+    )
 }
 
 export default Home;
