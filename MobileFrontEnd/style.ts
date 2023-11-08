@@ -9,5 +9,6 @@ export const styles = StyleSheet.create({
     },
     basicText: {
         color: '#fff',
+        fontFamily: 'Inter_400Regular',
     }
 });
