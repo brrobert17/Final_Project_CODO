@@ -10,7 +10,8 @@ module.exports = function (api) {
             '@components': './components',
             '@screens': './screens',
             '@assets': './assets',
-            '@gStyle': './style.ts'
+            '@gStyle': './style.ts',
+            '@dbConn': './DatabaseConn'
           },
         },
       ],

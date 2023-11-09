@@ -1,5 +1,5 @@
 import {SafeAreaView} from "react-native";
-import MenuItem from "../../components/MenuItem";
+import MenuItem from "@components/MenuItem";
 import {TextSize} from "@components/MenuItem/MenuItem";
 import gStyle from "@gStyle";
 import {ArrowDirection} from "@components/Arrow/Arrow";

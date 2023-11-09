@@ -1,9 +1,10 @@
 import { colorInput, pageMargin } from "@gStyle";
 import { StyleSheet } from "react-native";
+import gStyle from "@gStyle";
 
-const borderRadius = 6
-const verticalMargin = 6
-export const iconSize = 15
+const borderRadius = 6;
+const verticalMargin = 6;
+export const iconSize = 15;
 
 export default StyleSheet.create({
     cont: {
@@ -11,9 +12,8 @@ export default StyleSheet.create({
         marginBottom: pageMargin,
     },
     input: {
+        ...gStyle.basic,
         backgroundColor: colorInput,
-        color: 'white',
-        fontSize: 16,
         paddingVertical: verticalMargin,
         paddingLeft: pageMargin,
         paddingRight: pageMargin * 2 + iconSize,

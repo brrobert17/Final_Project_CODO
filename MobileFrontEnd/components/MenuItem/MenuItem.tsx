@@ -1,8 +1,8 @@
 import {Text, TouchableOpacity} from "react-native";
 import {componentStyle} from "./style";
-import Arrow from "../Arrow";
+import Arrow from "@components/Arrow";
 import gStyle from "@gStyle"
-import {ArrowDirection} from "@components/Arrow/Arrow";
+import {ArrowDirection} from "@components/Arrow";
 
 export enum TextSize {
     BASIC = 1,
