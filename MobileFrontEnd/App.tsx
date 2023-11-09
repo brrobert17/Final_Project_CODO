@@ -4,10 +4,11 @@ import {useFonts} from "expo-font";
 import {Inter_400Regular, Inter_600SemiBold, Inter_700Bold} from "@expo-google-fonts/inter";
 import Home from './screens/Home';
 import Menu from "./screens/Menu";
+import {MenuProps} from "@screens/Menu/Menu";
 
 export type StackParams = {
     Home: {},
-    Menu: {}
+    Menu: MenuProps
 }
 
 const Stack = createNativeStackNavigator<StackParams>();
@@ -22,6 +23,24 @@ export default function App() {
 
     if (!fontsLoaded && !fontError) {
         return null;
+    }
+
+    const menuProps: MenuProps = {
+        menu: [
+            {name: 'All Products'},
+            {
+                name: 'Categories',
+                menu: [
+                    {name: 'Fishes'},
+                    {name: 'Corals'},
+                    {name: 'Invertebrates'},
+                    {name: 'Accessories'}
+                ]
+            },
+            {name: 'Info'},
+            {name: 'Contact'},
+            {name: 'Login'}
+        ]
     }
 
     return (
@@ -39,6 +58,7 @@ export default function App() {
                 <Stack.Screen
                     name='Menu'
                     component={Menu}
+                    initialParams={menuProps}
                 />
             </Stack.Navigator>
         </NavigationContainer>
