@@ -16,7 +16,7 @@ const Home = () => {
     return (
         <View style={gStyle.container}>
             <Header />
-            <Text style={gStyle.basicText}>Home screen</Text>
+            <Text style={gStyle.basic}>Home screen</Text>
             <Text style={gStyle.basic}>{dd}</Text>
         </View>
     )

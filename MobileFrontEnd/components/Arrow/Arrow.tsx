@@ -1,9 +1,15 @@
 import Svg, {Path} from "react-native-svg";
-import {ArrowDirection} from "../MenuItem/MenuItem";
 import {styles} from "./style";
 
 interface Props {
     arrowDirection?: ArrowDirection
+}
+
+export enum ArrowDirection {
+    UP = 1,
+    RIGHT = 2,
+    DOWN = 3,
+    LEFT = 4
 }
 const Arrow = (props:Props) => {
     let selectedArrowStyle;

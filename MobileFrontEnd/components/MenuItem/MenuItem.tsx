@@ -1,18 +1,12 @@
 import {Text, TouchableOpacity} from "react-native";
-import {styles} from "../../style";
 import {componentStyle} from "./style";
 import Arrow from "../Arrow";
+import gStyle from "@gStyle"
+import {ArrowDirection} from "@components/Arrow/Arrow";
 
 export enum TextSize {
     BASIC = 1,
     H1 = 2
-}
-
-export enum ArrowDirection {
-    UP = 1,
-    RIGHT = 2,
-    DOWN = 3,
-    LEFT = 4
 }
 
 interface Props {
@@ -28,11 +22,11 @@ const MenuItem = (props: Props) => {
 
     switch (props.textSize) {
         case TextSize.H1:
-            selectedTextStyle = styles.h1;
+            selectedTextStyle = gStyle.h1;
             break;
         case TextSize.BASIC:
         default:
-            selectedTextStyle = styles.basic;
+            selectedTextStyle = gStyle.basic;
             break;
     }
 
