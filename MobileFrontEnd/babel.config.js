@@ -9,6 +9,7 @@ module.exports = function (api) {
           alias: {
             '@components': './components',
             '@screens': './screens',
+            '@assets': './assets',
             '@gStyle': './style.ts'
           },
         },

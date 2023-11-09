@@ -9,6 +9,9 @@
       "@screens/*": [
         "./screens/*"
       ],
+      "@assets/*": [
+        "./assets/*"
+      ],
       "@gStyle": [
         "./style.ts"
       ]

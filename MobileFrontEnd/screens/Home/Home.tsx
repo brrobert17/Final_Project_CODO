@@ -6,10 +6,10 @@ import Header from "@components/Header";
 
 const Home = () => {
     return (
-        <SafeAreaView style={gStyle.container}>
+        <View style={gStyle.container}>
+            <Header />
             <Text style={gStyle.basicText}>Home screen</Text>
-            <Header></Header>
-        </SafeAreaView>
+        </View>
     )
 }
 
