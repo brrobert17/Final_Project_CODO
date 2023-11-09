@@ -25,4 +25,4 @@ app.get('/test', async (req, res) => {
 })
 
 
-server.listen(port, () => console.log(`Running on port ${port}`));
+server.listen(port, () => console.log(`CODO Backend server standby on port ${port}`));

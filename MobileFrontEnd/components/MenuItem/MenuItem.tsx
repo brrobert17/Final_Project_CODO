@@ -1,45 +1,53 @@
+import {Text, TouchableOpacity} from "react-native";
 import {styles} from "../../style";
-import {Text} from "react-native";
+import {componentStyle} from "./style";
+import Arrow from "../Arrow";
 
 export enum TextSize {
-    BASIC = "basic",
-    H1 = "h1",
-    H2 = "h2",
-    H3 = "h3"
+    BASIC = 1,
+    H1 = 2
 }
 
 export enum ArrowDirection {
-    UP = "up",
-    RIGHT = "right",
-    DOWN = "down",
-    LEFT = "left"
+    UP = 1,
+    RIGHT = 2,
+    DOWN = 3,
+    LEFT = 4
 }
 
-{
-
+interface Props {
+    name: string,
+    textSize: TextSize,
+    arrowDisplay?: boolean,
+    arrowDirection?: ArrowDirection
 }
-const MenuItem = (name: string, textSize: TextSize, arrowDisplay: boolean, arrowDirection: ArrowDirection ) => {
 
-    const StyledText = ({ textSize }) => {
-        let selectedStyle;
+const MenuItem = (props: Props) => {
 
-        switch (textSize) {
-            case TextSize.H1:
-                selectedStyle = styles.h1;
-                break;
-            case TextSize.H2:
-                selectedStyle = styles.h2;
-                break;
-            case TextSize.H3:
-                selectedStyle = styles.h3;
-                break;
-            case TextSize.BASIC:
-            default:
-                selectedStyle = styles.basic;
-                break;
-        }
+    let selectedTextStyle;
+
+    switch (props.textSize) {
+        case TextSize.H1:
+            selectedTextStyle = styles.h1;
+            break;
+        case TextSize.BASIC:
+        default:
+            selectedTextStyle = styles.basic;
+            break;
+    }
+
+    const menuItemClick = () => {
+        console.log("item clicked")
+    }
+
     return (
-        <Text style={size}>All Products</Text>
+        <TouchableOpacity style={componentStyle.menuItemContainer} onPress={menuItemClick}>
+            <Text style={selectedTextStyle}>{props.name}</Text>
+            {props.arrowDisplay && props.arrowDirection && <Arrow arrowDirection={props.arrowDirection}/>}
+            {props.arrowDisplay && !props.arrowDirection && <Arrow/>}
+        </TouchableOpacity>
+
+
     )
 
 }

@@ -1,15 +1,17 @@
 import {styles} from "../../style";
-import {SafeAreaView, Text} from "react-native";
+import {SafeAreaView} from "react-native";
+import MenuItem from "../../components/MenuItem";
+import {ArrowDirection, TextSize} from "../../components/MenuItem/MenuItem";
 
 const Menu = () => {
 
     return (
         <SafeAreaView style={styles.menuContainer}>
-            <Text style={styles.h1}>All Products</Text>
-            <Text style={styles.h1}>Categories</Text>
-            <Text style={styles.h1}>Info</Text>
-            <Text style={styles.h1}>Contact</Text>
-            <Text style={styles.h1}>Login</Text>
+            <MenuItem name="All products" textSize={TextSize.H1} arrowDisplay={true}/>
+            <MenuItem name="Categories" textSize={TextSize.H1} arrowDisplay={true}/>
+            <MenuItem name="Info" textSize={TextSize.H1} arrowDisplay={true}/>
+            <MenuItem name="Contact" textSize={TextSize.H1} arrowDisplay={true}/>
+            <MenuItem name="Login" textSize={TextSize.H1} arrowDisplay={true}/>
         </SafeAreaView>
     )
 }

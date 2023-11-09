@@ -11,7 +11,8 @@ export const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: backGroundColor,
         justifyContent: 'center',
-        paddingLeft: 90
+        paddingLeft: 90,
+        paddingRight: 90
     },
     basic: {
         color: '#fff',
@@ -21,7 +22,6 @@ export const styles = StyleSheet.create({
     h1: {
         color: '#fff',
         fontFamily: 'Inter_600SemiBold',
-        fontSize: 25,
-        marginBottom: 25
+        fontSize: 25
     }
 });
