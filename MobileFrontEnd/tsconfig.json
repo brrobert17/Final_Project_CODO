@@ -14,7 +14,10 @@
       ],
       "@gStyle": [
         "./style.ts"
-      ]
+      ],
+      "@dbConn/*": [
+        "./DatabaseConn/*"
+      ],
     }
   }
 }

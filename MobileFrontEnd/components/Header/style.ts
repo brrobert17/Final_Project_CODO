@@ -5,8 +5,8 @@ export default StyleSheet.create({
     headerCont: {
         backgroundColor: backGroundColorTwo,
         width: '100%',
-        borderBottomLeftRadius: 20,
-        borderBottomRightRadius: 20,
+        borderBottomLeftRadius: pageMargin,
+        borderBottomRightRadius: pageMargin,
     },
     safeAreaCont: {
         marginLeft: pageMargin,

@@ -1,5 +1,5 @@
 import { SafeAreaView, View, Text } from "react-native";
-import {api} from "../../DatabaseConn/axios";
+import {api} from "@dbConn/axios";
 import {useState} from "react";
 import gStyle from "@gStyle";
 import Header from "@components/Header";
