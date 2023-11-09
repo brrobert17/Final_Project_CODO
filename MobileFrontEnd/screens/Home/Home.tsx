@@ -1,7 +1,9 @@
 import { SafeAreaView, View, Text } from "react-native";
-import {styles} from "../../style";
 import {api} from "../../DatabaseConn/axios";
 import {useState} from "react";
+import gStyle from "@gStyle";
+import Header from "@components/Header";
+
 
 
 const Home = () => {
@@ -11,12 +13,13 @@ const Home = () => {
         setDd( data);
     });
 
-  return (
-    <SafeAreaView style={styles.container}>
-        <Text style={styles.basic}>Home screen</Text>
-        <Text style={styles.basic}>{dd}</Text>
-    </SafeAreaView>
-  )
+    return (
+        <View style={gStyle.container}>
+            <Header />
+            <Text style={gStyle.basicText}>Home screen</Text>
+            <Text style={gStyle.basic}>{dd}</Text>
+        </View>
+    )
 }
 
 const bf = async () => {
