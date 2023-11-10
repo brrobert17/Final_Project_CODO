@@ -5,6 +5,8 @@ export const backGroundColorTwo = '#152331';
 export const colorInput = '#47596A';
 
 export const pageMargin = 20;
+export const borderRadiusSmall = 6;
+export const borderRadiusBig = pageMargin;
 
 export default StyleSheet.create({
     container: {

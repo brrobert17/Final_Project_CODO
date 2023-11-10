@@ -3,6 +3,7 @@ import style from "./style";
 import gStyle from "@gStyle";
 import HeaderBtn from "./HeaderBtn/HeaderBtn";
 import SearchBar from "@components/SearchBar";
+import CategorySection from "@components/CategorySection";
 
 
 
@@ -17,6 +18,11 @@ const Header = () => {
                     <HeaderBtn.Burger onPress={() => console.log("action: open menu")}/>
                 </View>
                 <SearchBar />
+                <CategorySection categories={[
+                                             {name: "corals", img: {url: "https://picsum.photos/201", alt: "something something"}},
+                                             {name: "fish", img: {url: "https://picsum.photos/202", alt: "something something"}},
+                                             {name: "other", img: {url: "https://picsum.photos/203", alt: "something something"}},
+                                             ]}/>
             </SafeAreaView>
         </View>
     )

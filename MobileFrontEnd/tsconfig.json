@@ -18,6 +18,9 @@
       "@dbConn/*": [
         "./DatabaseConn/*"
       ],
+      "@utils/*": [
+        "./utils/*"
+      ],
     }
   }
 }

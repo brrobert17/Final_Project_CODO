@@ -1,8 +1,8 @@
-import { colorInput, pageMargin } from "@gStyle";
+import { borderRadiusSmall, colorInput, pageMargin } from "@gStyle";
 import { StyleSheet } from "react-native";
 import gStyle from "@gStyle";
 
-const borderRadius = 6;
+
 const verticalMargin = 6;
 export const iconSize = 15;
 
@@ -17,7 +17,7 @@ export default StyleSheet.create({
         paddingVertical: verticalMargin,
         paddingLeft: pageMargin,
         paddingRight: pageMargin * 2 + iconSize,
-        borderRadius: borderRadius,
+        borderRadius: borderRadiusSmall,
     },
     icon: {
         position: 'absolute',

@@ -11,7 +11,8 @@ module.exports = function (api) {
             '@screens': './screens',
             '@assets': './assets',
             '@gStyle': './style.ts',
-            '@dbConn': './DatabaseConn'
+            '@dbConn': './DatabaseConn',
+            '@utils': './utils'
           },
         },
       ],
