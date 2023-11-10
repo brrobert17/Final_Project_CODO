@@ -15,8 +15,7 @@ export default StyleSheet.create({
 
     },
     text: {
-        ...gStyle.basic,
-        fontSize: 20,
+        ...gStyle.basicLarge,
         zIndex: 10,
         fontFamily: 'Inter_600SemiBold',
         textTransform: 'capitalize'

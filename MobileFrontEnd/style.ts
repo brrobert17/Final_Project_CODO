@@ -27,6 +27,11 @@ export default StyleSheet.create({
         fontFamily: 'Inter_400Regular',
         fontSize: 16
     },
+    basicLarge: {
+        color: '#fff',
+        fontFamily: 'Inter_400Regular',
+        fontSize: 20,
+    },
     h1: {
         color: '#fff',
         fontFamily: 'Inter_600SemiBold',
