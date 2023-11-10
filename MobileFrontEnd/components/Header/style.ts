@@ -1,12 +1,13 @@
 import { StyleSheet } from "react-native"
-import { backGroundColorTwo, pageMargin } from "@gStyle"
+import { backGroundColorTwo, borderRadiusBig, pageMargin } from "@gStyle"
 
 export default StyleSheet.create({
     headerCont: {
         backgroundColor: backGroundColorTwo,
         width: '100%',
-        borderBottomLeftRadius: pageMargin,
-        borderBottomRightRadius: pageMargin,
+        borderBottomLeftRadius: borderRadiusBig,
+        borderBottomRightRadius: borderRadiusBig,
+        
     },
     safeAreaCont: {
         marginLeft: pageMargin,

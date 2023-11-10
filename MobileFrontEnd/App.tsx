@@ -1,7 +1,7 @@
-import {NavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {useFonts} from "expo-font";
-import {Inter_400Regular, Inter_600SemiBold, Inter_700Bold} from "@expo-google-fonts/inter";
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { useFonts } from "expo-font";
+import { Inter_400Regular, Inter_600SemiBold, Inter_700Bold } from "@expo-google-fonts/inter";
 import Home from './screens/Home';
 import Menu from "./screens/Menu";
 import {MenuProps} from "@screens/Menu/Menu";
@@ -49,12 +49,12 @@ export default function App() {
                 screenOptions={{
                     headerShown: false
                 }}
-                initialRouteName='Menu'
-            >
+                initialRouteName='Home'
+                >
                 <Stack.Screen
                     name='Home'
                     component={Home}
-                />
+                />  
                 <Stack.Screen
                     name='Menu'
                     component={Menu}
