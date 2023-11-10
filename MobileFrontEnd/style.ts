@@ -3,6 +3,7 @@ import { StyleSheet } from "react-native";
 export const backGroundColor = '#000F1E';
 export const backGroundColorTwo = '#152331';
 export const colorInput = '#47596A';
+export const colorPlaceholder = '#CCC';
 
 export const pageMargin = 20;
 export const borderRadiusSmall = 6;

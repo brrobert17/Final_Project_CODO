@@ -1,10 +1,10 @@
-import { StyleSheet } from "react-native";
+import { Dimensions, StyleSheet } from "react-native";
 import gStyle, { borderRadiusSmall, pageMargin } from "@gStyle";
+
+
 
 export default StyleSheet.create({
     card: {
-        height: 80,
-        width: 100,
         backgroundColor: 'gray',
         borderRadius: borderRadiusSmall,
         marginBottom: pageMargin,
@@ -23,6 +23,7 @@ export default StyleSheet.create({
     img: {
         width: '100%',
         height: '100%',
+        objectFit: 'cover',
         zIndex: 0,
         position: 'absolute'
     },

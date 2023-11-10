@@ -2,6 +2,7 @@ import React from 'react';
 import { TextInput, View } from 'react-native';
 import style, { iconSize } from './style';
 import SearchIcon from '@assets/icon-search.svg'
+import { colorPlaceholder } from '@gStyle';
 
 interface Props {
     onChange?: () => void,
@@ -19,7 +20,7 @@ const SearchBar = (props: Props) => {
         <TextInput 
             style={style.input} 
             placeholder='Search' 
-            placeholderTextColor={'#ccc'}
+            placeholderTextColor={colorPlaceholder}
             onChange={handleChange}></TextInput>
         <SearchIcon style={style.icon} width={iconSize} height={iconSize} />
     </View>

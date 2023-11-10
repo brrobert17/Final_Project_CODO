@@ -18,7 +18,12 @@ const Home = () => {
         <View style={gStyle.container}>
             <Header />
             <ScrollView>
-                <ProductSection products={[
+                <ProductSection sorting products={[
+                    { name: 'kdkdkd', price: '100€', img: { url: "https://picsum.photos/201", alt: "something something" } },
+                    { name: 'kdkdkd', price: '150€', img: { url: "https://picsum.photos/201", alt: "something something" } },
+                    { name: 'kdkdkd', price: 'jdjdj', img: { url: "https://picsum.photos/201", alt: "something something" } }
+                ]} />
+                <ProductSection seeMore={() => console.log('hello')} products={[
                     { name: 'kdkdkd', price: '100€', img: { url: "https://picsum.photos/201", alt: "something something" } },
                     { name: 'kdkdkd', price: '150€', img: { url: "https://picsum.photos/201", alt: "something something" } },
                     { name: 'kdkdkd', price: 'jdjdj', img: { url: "https://picsum.photos/201", alt: "something something" } }
