@@ -6,6 +6,7 @@ import { CategoryCard } from '@components/CategorySection'
 
 interface Props {
     products: IProductCard[],
+    title: string,
     sorting?: boolean,
     seeMore?: () => void
 }
@@ -17,10 +18,10 @@ const ProductSection = (props: Props) => {
                 {props.seeMore 
                 ? 
                     <TouchableOpacity onPress={props.seeMore}>
-                        <Text style={style.heading}>Products</Text>
+                        <Text style={style.heading}>{props.title}</Text>
                     </TouchableOpacity>
                 :
-                <Text style={style.heading}>Products</Text>
+                <Text style={style.heading}>{props.title}</Text>
                 }
                 
                 {props.sorting ? <Dropdown onChange={(foo) => console.log(foo)} /> : <></>}
