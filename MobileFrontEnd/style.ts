@@ -15,13 +15,6 @@ export default StyleSheet.create({
         //alignItems: 'center',
         //justifyContent: 'center',
     },
-    menuContainer: {
-        flex: 1,
-        backgroundColor: backGroundColor,
-        justifyContent: 'center',
-        paddingLeft: 90,
-        paddingRight: 90
-    },
     basic: {
         color: '#fff',
         fontFamily: 'Inter_400Regular',

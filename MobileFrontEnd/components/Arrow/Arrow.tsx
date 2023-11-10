@@ -2,7 +2,8 @@ import Svg, {Path} from "react-native-svg";
 import {styles} from "./style";
 
 interface Props {
-    arrowDirection?: ArrowDirection
+    arrowDirection?: ArrowDirection,
+    opaque?: boolean
 }
 
 export enum ArrowDirection {
@@ -31,6 +32,7 @@ const Arrow = (props:Props) => {
                 break;
         }
     }
+    if(props.opaque) {selectedArrowStyle= {...selectedArrowStyle, opacity: 0.5}};
 
     return (
         <Svg style={selectedArrowStyle} width="11" height="16" viewBox="0 0 11 16" fill="none" >

@@ -9,50 +9,53 @@ import {NativeStackNavigationProp} from "@react-navigation/native-stack";
 import {StackParams} from "../../App";
 
 
-export enum TextSize {
-    BASIC = 1,
-    H1 = 2
+export enum MenuLevel {
+    TOP = 1,
+    SECOND = 2
 }
 
 interface Props {
     name: string,
-    textSize: TextSize,
-    arrowDisplay?: boolean,
-    arrowDirection?: ArrowDirection,
+    level: MenuLevel,
     menuProps?: MenuProps[]
 }
 
-const MenuItem = (props: Props) => {
+const MenuItem = (props: MenuProps) => {
 
     const nav = useNavigation<NativeStackNavigationProp<StackParams>>();
 
-    let selectedTextStyle;
-
-    switch (props.textSize) {
-        case TextSize.H1:
-            selectedTextStyle = gStyle.h1;
-            break;
-        case TextSize.BASIC:
-        default:
-            selectedTextStyle = gStyle.basic;
-            break;
-    }
-
-
     const menuItemClick = () => {
         console.log("item clicked");
-        if (props.menuProps) {
-            nav.push('Menu', {menu: props.menuProps});
+        if (props.menu) {
+            nav.push('Menu', props);
+            console.log('props:  ' +props.menu)
         } else {
-            nav.navigate('Home', {});
+            if(!props.level) {
+                nav.goBack();
+            } else {
+                nav.navigate('Home', {});
+            }
         }
     }
+    let textStyle;
+    let arrow;
+    let opaque;
+    if(props.level === MenuLevel.TOP) {
+        textStyle = gStyle.h1;
+        arrow = ArrowDirection.RIGHT;
+    } else if(props.level === MenuLevel.SECOND) {
+        textStyle = gStyle.basic;
+    } else {
+        textStyle = {...gStyle.h1, opacity: 0.5};
+        arrow = ArrowDirection.DOWN
+        opaque = true;
+    }
+
 
     return (
         <TouchableOpacity style={componentStyle.menuItemContainer} onPress={()=>menuItemClick()}>
-            <Text style={selectedTextStyle}>{props.name}</Text>
-            {props.arrowDisplay && props.arrowDirection && <Arrow arrowDirection={props.arrowDirection}/>}
-            {props.arrowDisplay && !props.arrowDirection && <Arrow/>}
+            <Text style={textStyle}>{props.name}</Text>
+            {arrow && <Arrow arrowDirection={arrow} opaque={opaque}/>}
         </TouchableOpacity>
 
 

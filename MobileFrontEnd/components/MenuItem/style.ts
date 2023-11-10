@@ -5,6 +5,7 @@ export const componentStyle = StyleSheet.create({
         flexDirection: "row",
         justifyContent: "space-between",
         alignItems: "center",
-        marginBottom: 25
+        paddingBottom: 15,
+        paddingTop: 15
     }
 });

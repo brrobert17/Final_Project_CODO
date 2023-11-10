@@ -1,10 +1,13 @@
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { useFonts } from "expo-font";
-import { Inter_400Regular, Inter_600SemiBold, Inter_700Bold } from "@expo-google-fonts/inter";
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {useFonts} from "expo-font";
+import {Inter_400Regular, Inter_600SemiBold, Inter_700Bold} from "@expo-google-fonts/inter";
 import Home from './screens/Home';
 import Menu from "./screens/Menu";
 import {MenuProps} from "@screens/Menu/Menu";
+import {MenuLevel} from "@components/MenuItem/MenuItem";
+import {SafeAreaProvider} from "react-native-safe-area-context";
+import {StatusBar} from "react-native";
 
 export type StackParams = {
     Home: {},
@@ -27,41 +30,48 @@ export default function App() {
 
     const menuProps: MenuProps = {
         menu: [
-            {name: 'All Products'},
+            {name: 'All Products', level: MenuLevel.TOP},
             {
                 name: 'Categories',
+                level: MenuLevel.TOP,
                 menu: [
-                    {name: 'Fishes'},
-                    {name: 'Corals'},
-                    {name: 'Invertebrates'},
-                    {name: 'Accessories'}
+                    {name: 'Fishes', level: MenuLevel.SECOND},
+                    {name: 'Corals', level: MenuLevel.SECOND},
+                    {name: 'Invertebrates', level: MenuLevel.SECOND},
+                    {name: 'Accessories', level: MenuLevel.SECOND}
                 ]
             },
-            {name: 'Info'},
-            {name: 'Contact'},
-            {name: 'Login'}
+            {name: 'Info', level: MenuLevel.TOP},
+            {name: 'Contact', level: MenuLevel.TOP},
+            {name: 'Login', level: MenuLevel.TOP}
         ]
     }
 
     return (
-        <NavigationContainer>
-            <Stack.Navigator
-                screenOptions={{
-                    headerShown: false
-                }}
-                initialRouteName='Home'
+        <SafeAreaProvider>
+            <StatusBar barStyle={"light-content"} backgroundColor={"#152331"}/>
+            <NavigationContainer>
+                <Stack.Navigator
+                    screenOptions={{
+                        headerShown: false,
+                        animation: "fade"
+
+                    }}
+                    initialRouteName='Home'
                 >
-                <Stack.Screen
-                    name='Home'
-                    component={Home}
-                />  
-                <Stack.Screen
-                    name='Menu'
-                    component={Menu}
-                    initialParams={menuProps}
-                />
-            </Stack.Navigator>
-        </NavigationContainer>
+                    <Stack.Screen
+                        name='Home'
+                        component={Home}
+                    />
+                    <Stack.Screen
+                        name='Menu'
+                        component={Menu}
+                        initialParams={menuProps}
+                    />
+                </Stack.Navigator>
+            </NavigationContainer>
+        </SafeAreaProvider>
+
     );
 }
 
