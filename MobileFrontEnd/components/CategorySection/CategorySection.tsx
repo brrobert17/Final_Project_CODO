@@ -14,7 +14,7 @@ const CategorySection = (props: Props) => {
         <View style={style.cont} >
             <Text style={gStyle.h1}>Categories</Text>
             <View style={style.list}>
-                {props.categories.map((category) => <CategoryCard name={category.name} img={category.img}/>)}
+                {props.categories.map((category, index) => <CategoryCard key={index} name={category.name} img={category.img}/>)}
             </View>
         </View>
     );

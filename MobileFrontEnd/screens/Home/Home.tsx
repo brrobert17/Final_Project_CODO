@@ -23,30 +23,30 @@ const Home = () => {
                     { name: 'kdkdkd', price: '150€', img: { url: "https://picsum.photos/201", alt: "something something" } },
                     { name: 'kdkdkd', price: 'jdjdj', img: { url: "https://picsum.photos/201", alt: "something something" } }
                 ]} /> */}
-                <ProductSection 
-                title="Corals"
-                seeMore={() => console.log('hello')} 
-                products={[
-                    { name: 'kdkdkd', price: '100€', img: { url: "https://picsum.photos/201", alt: "something something" } },
-                    { name: 'kdkdkd', price: '150€', img: { url: "https://picsum.photos/201", alt: "something something" } },
-                    { name: 'kdkdkd', price: 'jdjdj', img: { url: "https://picsum.photos/201", alt: "something something" } }
-                ]} />
-                <ProductSection 
-                title="Fish"
-                seeMore={() => console.log('hello')} 
-                products={[
-                    { name: 'kdkdkd', price: '100€', img: { url: "https://picsum.photos/201", alt: "something something" } },
-                    { name: 'kdkdkd', price: '150€', img: { url: "https://picsum.photos/201", alt: "something something" } },
-                    { name: 'kdkdkd', price: 'jdjdj', img: { url: "https://picsum.photos/201", alt: "something something" } }
-                ]} />
-                <ProductSection 
-                title="Invertibrates"
-                seeMore={() => console.log('hello')} 
-                products={[
-                    { name: 'kdkdkd', price: '100€', img: { url: "https://picsum.photos/201", alt: "something something" } },
-                    { name: 'kdkdkd', price: '150€', img: { url: "https://picsum.photos/201", alt: "something something" } },
-                    { name: 'kdkdkd', price: 'jdjdj', img: { url: "https://picsum.photos/201", alt: "something something" } }
-                ]} />
+                <ProductSection
+                    title="Corals"
+                    seeMore={{ func: () => console.log('hello'), img: { url: "https://picsum.photos/210", alt: "something something" } }}
+                    products={[
+                        { name: 'kdkdkd', price: '100€', img: { url: "https://picsum.photos/201", alt: "something something" } },
+                        { name: 'kdkdkd', price: '150€', img: { url: "https://picsum.photos/202", alt: "something something" } },
+                        { name: 'kdkdkd', price: 'jdjdj', img: { url: "https://picsum.photos/203", alt: "something something" } }
+                    ]} />
+                <ProductSection
+                    title="Fish"
+                    seeMore={{ func: () => console.log('hello'), img: { url: "https://picsum.photos/203", alt: "something something" } }}
+                    products={[
+                        { name: 'kdkdkd', price: '100€', img: { url: "https://picsum.photos/206", alt: "something something" } },
+                        { name: 'kdkdkd', price: '150€', img: { url: "https://picsum.photos/204", alt: "something something" } },
+                        { name: 'kdkdkd', price: 'jdjdj', img: { url: "https://picsum.photos/205", alt: "something something" } }
+                    ]} />
+                <ProductSection
+                    title="Invertibrates"
+                    seeMore={{ func: () => console.log('hello'), img: { url: "https://picsum.photos/202", alt: "something something" } }}
+                    products={[
+                        { name: 'kdkdkd', price: '100€', img: { url: "https://picsum.photos/207", alt: "something something" } },
+                        { name: 'kdkdkd', price: '150€', img: { url: "https://picsum.photos/208", alt: "something something" } },
+                        { name: 'kdkdkd', price: 'jdjdj', img: { url: "https://picsum.photos/209", alt: "something something" } }
+                    ]} />
             </ScrollView>
         </View>
     )
