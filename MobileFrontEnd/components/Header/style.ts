@@ -7,7 +7,7 @@ export default StyleSheet.create({
         width: '100%',
         borderBottomLeftRadius: borderRadiusBig,
         borderBottomRightRadius: borderRadiusBig,
-        
+        marginBottom: pageMargin * 2
     },
     safeAreaCont: {
         marginLeft: pageMargin,
