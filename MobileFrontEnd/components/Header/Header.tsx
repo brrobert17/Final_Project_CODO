@@ -2,10 +2,10 @@ import { View, Text, Image, TouchableOpacity, SafeAreaView } from "react-native"
 import style from "./style";
 import HeaderBtn from "./HeaderBtn/HeaderBtn";
 import SearchBar from "@components/SearchBar";
-import CategorySection from "@components/CategorySection";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { StackParams } from "../../App";
+import ItemSection from "@components/ItemSection";
 
 
 
@@ -21,7 +21,7 @@ const Header = () => {
                     <HeaderBtn.Burger onPress={() => nav.navigate('Menu', {})} />
                 </View>
                 <SearchBar />
-                <CategorySection categories={[
+                <ItemSection heading='Categories' items={[
                     { name: "corals", img: { url: "https://picsum.photos/201", alt: "something something" } },
                     { name: "fish", img: { url: "https://picsum.photos/202", alt: "something something" } },
                     { name: "other", img: { url: "https://picsum.photos/203", alt: "something something" } },
