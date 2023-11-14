@@ -4,15 +4,21 @@ import { useState } from "react";
 import gStyle from "@gStyle";
 import Header from "@components/Header";
 import ItemSection from "@components/ItemSection";
+import {useItems} from "@dbConn/hooks/UseItems";
 
 
 
 const Home = () => {
-    const [dd, setDd] = useState('');
 
-    bf().then(data => {
-        setDd(data);
-    });
+    //test react-query: fetch and log all items
+    const { data, error, isLoading } = useItems();
+    if (isLoading) {
+        console.log('Loading...');
+    } else if (error) {
+        console.error('Error:', error);
+    } else {
+        console.log('Data:', data);
+    }
 
     return (
         <View style={gStyle.container}>
@@ -45,15 +51,6 @@ const Home = () => {
             </ScrollView>
         </View>
     )
-}
-
-const bf = async () => {
-    try {
-        const res = await api.get('/test');
-        return res.data.name;
-    } catch (e) {
-        console.log("error fetch front: " + e)
-    }
 }
 
 export default Home;

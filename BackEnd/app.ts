@@ -3,8 +3,8 @@ import cors from "cors";
 import "dotenv/config"
 import * as http from "http";
 import 'firebase/firestore';
-import {doc, getDoc, setDoc} from 'firebase/firestore';
-import {db, itemsCollection, storage} from "./firebaseConfig";
+import {doc, getDoc, setDoc, getDocs, query, orderBy} from 'firebase/firestore';
+import {converterItemsCollection, db, itemsCollection, storage} from "./firebaseConfig";
 import {createUniqueDocument, giveCurrentDateTime} from "./utils";
 import {getDownloadURL, ref, uploadBytes} from "firebase/storage";
 import multer from "multer";
@@ -21,17 +21,28 @@ app.use(cors({
 }));
 const upload = multer({limits: { fieldSize: 25 * 1024 * 1024 }}).single('image');
 
-app.get('/test', async (req, res) => {
-    const ref = await doc(db, 'items', '00000');
-    const documentSnapshot = await getDoc(ref);
-    const data = documentSnapshot.data();
-    res.send(data);
-})
+app.get('/items', async (req, res) => {
+    try {
+        const ref = query(converterItemsCollection, orderBy('added', 'asc'));
+        const collectionSnapshot = await getDocs(ref);
+        const items = collectionSnapshot.docs.map(doc => doc.data());
+        res.send(items);
+    } catch (e) {
+        console.error("Error fetching documents: ", e);
+        res.status(500).send(e);
+    }
+});
+
 
 app.post('/items', async (req, res)=> {
     const docRef = doc(itemsCollection, await createUniqueDocument('items'));
-    await setDoc(docRef, req.body.item);
-    console.log(`new item added with id: ${docRef.id}`);
+    try {
+        await setDoc(docRef, {...req.body.item, added: new Date()});
+        //console.log(`new item added with id: ${docRef.id}`);
+        res.send({message:`new item added with id: ${docRef.id}`})
+    } catch (e) {
+        res.send(e).status(500);
+    }
 })
 app.post('/images', upload, async (req, res) => {
     if (!req.file) {

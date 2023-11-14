@@ -7,6 +7,7 @@ import Menu from "./screens/Menu";
 import {MenuProps} from "@screens/Menu/Menu";
 import {MenuLevel} from "@components/MenuItem/MenuItem";
 import {StatusBar} from "react-native";
+import {QueryClient, QueryClientProvider} from "react-query";
 
 export type StackParams = {
     Home: {},
@@ -14,6 +15,7 @@ export type StackParams = {
 }
 
 const Stack = createNativeStackNavigator<StackParams>();
+const queryClient = new QueryClient();
 
 export default function App() {
 
@@ -47,7 +49,7 @@ export default function App() {
     }
 
     return (
-        <>
+        <QueryClientProvider client={queryClient}>
             <StatusBar barStyle={"light-content"} backgroundColor={"#152331"}/>
             <NavigationContainer>
                 <Stack.Navigator
@@ -69,7 +71,7 @@ export default function App() {
                     />
                 </Stack.Navigator>
             </NavigationContainer>
-        </>
+        </QueryClientProvider>
 
     );
 }

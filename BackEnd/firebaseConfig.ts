@@ -1,7 +1,8 @@
 import { initializeApp } from "firebase/app";
-import {collection, getFirestore} from "@firebase/firestore";
+import {collection, getFirestore, FirestoreDataConverter, QueryDocumentSnapshot, SnapshotOptions, DocumentData} from "@firebase/firestore";
 import {getStorage} from "firebase/storage";
 import {getAuth} from "firebase/auth"
+import {Item} from "./interfaces";
 
 const firebaseConfig = {
     apiKey: process.env.FIREBASE_API_KEY,
@@ -12,8 +13,29 @@ const firebaseConfig = {
     appId: process.env.FIREBASE_APP_ID
 };
 
+const itemsConverter: FirestoreDataConverter<Item> = {
+    fromFirestore(snapshot: QueryDocumentSnapshot, options?: SnapshotOptions): Item {
+        const data = snapshot.data(options);
+        return {
+            id: snapshot.id,
+            name: data.name,
+            added: data.added.toDate(), // Make sure 'added' is a Firebase Timestamp
+            images: data.images
+        };
+    },
+    toFirestore(item: Item): DocumentData {
+        return {
+            name: item.name,
+            added: item.added,
+            images: item.images
+        };
+    }
+};
+
+
 export const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);
+export const converterItemsCollection = collection(db, 'items').withConverter(itemsConverter);
 export const itemsCollection = collection(db, 'items');
 export const storage = getStorage(app);
 export const auth = getAuth();

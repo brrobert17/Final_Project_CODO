@@ -1,0 +1,14 @@
+{
+    "name": "Fish1",
+	"price": 100,
+	"images": [
+        {
+            "url": "https://picsum.photos/201",
+            "alt": "fish1 image1"
+        },
+        {
+            "url": "https://picsum.photos/202",
+            "alt": "fish1 image2"
+        }
+        ]
+}
