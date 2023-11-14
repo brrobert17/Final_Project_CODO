@@ -17,6 +17,7 @@ export default StyleSheet.create({
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'space-between',
+        alignItems: "flex-end",
         marginVertical: pageMargin,
         marginHorizontal: -pageMargin / 2
     },

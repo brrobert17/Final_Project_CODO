@@ -1,7 +1,6 @@
 import { View, Text, Image, TouchableOpacity } from "react-native";
-import {SafeAreaView} from "react-native-safe-area-context";
+import {SafeAreaView} from "react-native";
 import style from "./style";
-import gStyle from "@gStyle";
 import HeaderBtn from "./HeaderBtn/HeaderBtn";
 import SearchBar from "@components/SearchBar";
 import CategorySection from "@components/CategorySection";
@@ -14,7 +13,7 @@ import {StackParams} from "../../App";
 const Header = () => {
     const nav = useNavigation<NativeStackNavigationProp<StackParams>>();
     return (
-        <SafeAreaView style={style.headerCont}>
+        <View style={style.headerCont}>
             <SafeAreaView style={style.safeAreaCont}>
 
                 <Image style={style.logo} source={require("@assets/logo-schulz.png")}></Image>
@@ -29,7 +28,7 @@ const Header = () => {
                                              {name: "other", img: {url: "https://picsum.photos/203", alt: "something something"}},
                                              ]}/>
             </SafeAreaView>
-        </SafeAreaView>
+        </View>
     )
 }
 

@@ -6,7 +6,6 @@ import Home from './screens/Home';
 import Menu from "./screens/Menu";
 import {MenuProps} from "@screens/Menu/Menu";
 import {MenuLevel} from "@components/MenuItem/MenuItem";
-import {SafeAreaProvider} from "react-native-safe-area-context";
 import {StatusBar} from "react-native";
 
 export type StackParams = {
@@ -48,7 +47,7 @@ export default function App() {
     }
 
     return (
-        <SafeAreaProvider>
+        <>
             <StatusBar barStyle={"light-content"} backgroundColor={"#152331"}/>
             <NavigationContainer>
                 <Stack.Navigator
@@ -70,7 +69,7 @@ export default function App() {
                     />
                 </Stack.Navigator>
             </NavigationContainer>
-        </SafeAreaProvider>
+        </>
 
     );
 }
