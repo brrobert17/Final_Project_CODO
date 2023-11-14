@@ -2,7 +2,7 @@ import { initializeApp } from "firebase/app";
 import {collection, getFirestore, FirestoreDataConverter, QueryDocumentSnapshot, SnapshotOptions, DocumentData} from "@firebase/firestore";
 import {getStorage} from "firebase/storage";
 import {getAuth} from "firebase/auth"
-import {Item} from "./interfaces";
+import {Item} from "../MobileFrontEnd/utils/interfaces";
 
 const firebaseConfig = {
     apiKey: process.env.FIREBASE_API_KEY,
@@ -37,6 +37,7 @@ export const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);
 export const converterItemsCollection = collection(db, 'items').withConverter(itemsConverter);
 export const itemsCollection = collection(db, 'items');
+export const tagsCollection = collection(db, 'tags');
 export const storage = getStorage(app);
 export const auth = getAuth();
 

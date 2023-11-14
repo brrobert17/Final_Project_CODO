@@ -1,6 +1,7 @@
 {
     "name": "Fish1",
 	"price": 100,
+	"category": "fish"
 	"images": [
         {
             "url": "https://picsum.photos/201",

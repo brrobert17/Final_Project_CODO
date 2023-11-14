@@ -9,3 +9,8 @@ export interface Image {
     url: string,
     alt: string,
 }
+
+export interface Tagging {
+    item: string,
+    tags: string[]
+}
