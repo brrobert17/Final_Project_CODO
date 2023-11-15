@@ -6,7 +6,9 @@ import style from './style'
 export interface Props {
     name: string,
     price: string,
-    img: IImage
+    img: IImage,
+    added?: Date,
+    id?: string
 }
 
 const ProductCard = (props: Props) => {
