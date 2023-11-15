@@ -15,7 +15,6 @@ export default StyleSheet.create({
         flexDirection: "row",
         justifyContent: 'space-between',
         flexWrap: "wrap",
-        marginTop: pageMargin,
     },
     header: {
         display: 'flex',

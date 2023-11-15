@@ -15,6 +15,7 @@ export type StackParams = {
 
 const Stack = createNativeStackNavigator<StackParams>();
 
+
 export default function App() {
 
     let [fontsLoaded, fontError] = useFonts({
