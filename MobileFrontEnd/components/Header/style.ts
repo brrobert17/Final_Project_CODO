@@ -2,30 +2,58 @@ import { StyleSheet } from "react-native"
 import { backGroundColorTwo, borderRadiusBig, pageMargin } from "@gStyle"
 
 export default StyleSheet.create({
+    largeCont: {
+        position: 'absolute',
+        zIndex: 100,
+        width: '100%',
+    },
     headerCont: {
+        backgroundColor: backGroundColorTwo,
+        width: '100%',
+        zIndex: 1000,
+    },
+    smallHeaderCont: {
         backgroundColor: backGroundColorTwo,
         width: '100%',
         borderBottomLeftRadius: borderRadiusBig,
         borderBottomRightRadius: borderRadiusBig,
-        marginBottom: pageMargin * 2
+        paddingBottom: pageMargin,
     },
     safeAreaCont: {
-        marginLeft: pageMargin,
-        marginRight: pageMargin
+        marginHorizontal: pageMargin,
+        overflow: 'hidden'
+    },
+    safeAreaContSmall: {
+        marginHorizontal: pageMargin,
+        display: "flex",
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        paddingBottom: pageMargin,
+        overflow: 'hidden'
     },
     btnCont: {
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'space-between',
-        alignItems: "flex-end",
-        marginVertical: pageMargin,
+        marginTop: pageMargin,
         marginHorizontal: -pageMargin / 2
     },
-    logo: {
+    btnContSmall: {
+        justifyContent: 'flex-end',
+        display: 'flex',
+        flexDirection: 'row',
+        marginRight: -pageMargin / 2
+    },
+    logoSmall: {
+        marginLeft: '-46.1%'
+    },
+    addOnHeaderCont: {
+        backgroundColor: backGroundColorTwo,
         width: '100%',
-        height: 'auto',
-        aspectRatio: 8 / 1,
-        objectFit: 'fill'
-
+        marginBottom: pageMargin * 2,
+        borderBottomLeftRadius: borderRadiusBig,
+        borderBottomRightRadius: borderRadiusBig,
+        zIndex: 150,
     }
 })

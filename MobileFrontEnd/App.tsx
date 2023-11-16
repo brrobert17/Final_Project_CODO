@@ -17,6 +17,7 @@ export type StackParams = {
 const Stack = createNativeStackNavigator<StackParams>();
 const queryClient = new QueryClient();
 
+
 export default function App() {
 
     let [fontsLoaded, fontError] = useFonts({
