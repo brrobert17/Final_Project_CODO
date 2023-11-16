@@ -31,7 +31,7 @@ const ItemSection = (props: Props) => {
                         <Text style={style.heading}>{props.heading}</Text>
                     </TouchableOpacity>
                 :
-                <Text style={isProduct ? style.heading : gStyle.h1}>{props.heading}</Text>
+                <Text style={style.heading}>{props.heading}</Text>
                 }
                 
                 {props.sorting ? <Dropdown onChange={(foo) => console.log(foo)} /> : <></>}
