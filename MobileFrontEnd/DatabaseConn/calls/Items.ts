@@ -1,4 +1,4 @@
-import {Item, ItemCore, QueryParam, QueryResult} from "@utils/interfaces";
+import {Item, ItemCore, QueryParam, ItemCoreQueryResult} from "@utils/interfaces";
 import {api} from "@dbConn/axios";
 
 export const get = async (limit?: number, category?: string): Promise<Item[]> => {
@@ -11,10 +11,12 @@ export const get = async (limit?: number, category?: string): Promise<Item[]> =>
         throw err
     })
 }
-export const getCore = async (params?:QueryParam[]): Promise<QueryResult[]> => {
-    return api.get("/items/cores", {
-        params: params
-    }).then(res => res.data).catch(err => {
+export const getCore = async (params?:QueryParam[]): Promise<ItemCoreQueryResult[]> => {
+    const queryString = `?params=${encodeURIComponent(JSON.stringify(params))}`;
+    let url = "/items/cores";
+    if(params) url += queryString;
+
+    return api.get(url).then(res => res.data).catch(err => {
         throw err
     })
 }

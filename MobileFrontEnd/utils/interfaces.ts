@@ -18,9 +18,15 @@ export interface ItemCore {
     price: string;
 }
 
-export interface QueryResult {
+export interface ItemCoreQueryResult {
     queryKey: string,
-    result: ItemCore[] | Item[]
+    result: ItemCore[]
+}
+
+
+export interface ItemQueryResult {
+    queryKey: string,
+    result: Item[]
 }
 
 

@@ -1,40 +1,37 @@
-import {SafeAreaView, View, Text, ScrollView} from "react-native";
+import {View, ScrollView} from "react-native";
 import gStyle from "@gStyle";
 import Header from "@components/Header";
 import ItemSection from "@components/ItemSection";
 import {useItemsCore} from "@dbConn/hooks/UseItems";
 import {QueryParam} from "@utils/interfaces";
-
+import {useMemo} from "react";
 
 const Home = () => {
 
     const params: QueryParam[] = [
+        {queryKey: 'allProducts', limit:3},
         {queryKey: 'fish', category: 'fish', limit: 3},
-        {queryKey: 'coral', category: 'coral', limit: 3}];
+        {queryKey: 'coral', category: 'coral', limit: 3},
+        {queryKey: 'invertebrate', category: 'invertebrate', limit: 3},
+        ];
+
     const {
         data,
         error,
-        isLoading,
-        isSuccess
+        isLoading
     } = useItemsCore(params);
 
+    const memoizedData = useMemo(() => {
+        if(!data) return;
 
-    // const { data: fishData,
-    //     error: fishError,
-    //     isLoading:fishIsLoading,
-    //     isSuccess: fishIsSuccess } = useItemsCore(3, 'fish', isSuccess);
-    // const { data: coralData,
-    //     error: coralError,
-    //     isLoading:coralIsLoading,
-    //     isSuccess: coralIsSuccess} = useItemsCore(3, 'coral', fishIsSuccess);
-    // const { data: invertebrateData,
-    //     error: invertebrateError,
-    //     isLoading:invertebrateIsLoading,
-    //     isSuccess: invertebrateIsSuccess} = useItemsCore(3, 'invertebrate', coralIsSuccess);
-    // if (isLoading || fishIsLoading || coralIsLoading ||invertebrateIsLoading) {
-    //     console.log('Loading...');
-    // } else if (error || fishError || coralError || invertebrateError) {
-    //     console.error('AllProductsError:', error, 'FishError: ', fishError, 'CoralError: ', coralError, 'InvertebrateError: ', invertebrateError);
+        const allProductsData = data.find(d => d.queryKey === 'allProducts')?.result;
+        const fishData = data.find(d => d.queryKey === 'fish')?.result;
+        const coralData = data.find(d => d.queryKey === 'coral')?.result;
+        const invertebrateData = data.find(d => d.queryKey === 'invertebrate')?.result;
+
+        return { allProductsData, fishData, coralData, invertebrateData };
+    }, [data]);
+
     if (isLoading) {
         console.log('loading');
     } else if (error) {
@@ -47,35 +44,37 @@ const Home = () => {
         <View style={gStyle.container}>
             <Header/>
             <ScrollView>
-                {data && <ItemSection
+                {memoizedData?.allProductsData && memoizedData.fishData && memoizedData.coralData && memoizedData.invertebrateData &&
+                <>
+                <ItemSection
                     heading="All products"
                     seeMore={{
                         func: () => console.log('hello'),
                         img: {url: "https://picsum.photos/210", alt: "something something"}
                     }}
-                    items={data}/>}
-
-                {fishData && <ItemSection
+                    items={memoizedData.allProductsData}/>
+                <ItemSection
                     heading="Fish"
                     seeMore={{
                         func: () => console.log('hello'),
                         img: {url: "https://picsum.photos/203", alt: "something something"}
                     }}
-                    items={fishData}/>}
-                {coralData && <ItemSection
+                    items={memoizedData.fishData}/>
+                <ItemSection
                     heading="Corals"
                     seeMore={{
                         func: () => console.log('hello'),
                         img: {url: "https://picsum.photos/203", alt: "something something"}
                     }}
-                    items={coralData}/>}
-                {invertebrateData && <ItemSection
+                    items={memoizedData.coralData}/>
+                <ItemSection
                     heading="Invertebrates"
                     seeMore={{
                         func: () => console.log('hello'),
                         img: {url: "https://picsum.photos/203", alt: "something something"}
                     }}
-                    items={invertebrateData}/>}
+                    items={memoizedData.invertebrateData}/>
+                    </>}
             </ScrollView>
         </View>
     )
