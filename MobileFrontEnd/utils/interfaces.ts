@@ -18,6 +18,11 @@ export interface ItemCore {
     price: string;
 }
 
+export interface QueryResult {
+    queryKey: string,
+    result: ItemCore[] | Item[]
+}
+
 
 export interface Image {
     url: string,
@@ -27,4 +32,10 @@ export interface Image {
 export interface TagOut {
     id: string,
     items: string[]
+}
+
+export interface QueryParam {
+    queryKey: string
+    limit?: number,
+    category?: string,
 }

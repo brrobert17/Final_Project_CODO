@@ -6,7 +6,7 @@ import {
     itemsCollection,
     tagsCollection
 } from "../firebaseConfig";
-import {doc, getDoc, getDocs, query, setDoc, updateDoc, where, deleteDoc} from "firebase/firestore";
+import {doc, getDoc, getDocs, query, setDoc, updateDoc, where, deleteDoc, orderBy, limit} from "firebase/firestore";
 import {collection} from "@firebase/firestore";
 import {generateRandomId} from "../utils";
 
@@ -15,6 +15,22 @@ export const itemsRouter = express.Router();
 itemsRouter.get('/items', fetchCollection(converterItemsCollection));
 
 itemsRouter.get('/items/cores', fetchCollection(converterItemsCoreCollection));
+
+// itemsRouter.get('/items1', async(req, res)=> {
+//     const ref = query(itemsCollection, orderBy('added', 'asc'), limit(3));
+//     const ref2 = query(itemsCollection, orderBy('added', 'asc'), where('category', '==', 'fish'), limit(3));
+//     const ref3 = query(itemsCollection, orderBy('added', 'asc'), where('category', '==', 'coral'), limit(3));
+//
+//     const s = await getDocs(ref);
+//     const s2 = await getDocs(ref2);
+//     const s3 = await getDocs(ref3);
+//
+//     const items = s.docs.map(doc => doc.data());
+//     const items2 = s2.docs.map(doc => doc.data());
+//     const items3 = s3.docs.map(doc => doc.data());
+//
+//     res.send({items, items2, items3});
+// })
 
 itemsRouter.post('/items', async (req, res) => {
     try {
