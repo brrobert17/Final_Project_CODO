@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+*,
+:root {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+
+    /* Font */
+    font-family: "Inter";
+    --fontSize-regular: 16px;
+    --fontSize-medium: 20px;
+    --fontSize-large: 25px;
+
+    /* Variables */
+    --backGroundColor: #000F1E;
+    --backGroundColorTwo: #152331;
+    --colorInput: #47596A;
+    --colorPlaceholder: #CCC;
+    --colorPrimary: #017AFE;
+
+    --pageMargin: 40px;
+    --borderRadiusSmall: 6px;
+    --borderRadiusBig: var(--pageMargin);
+}

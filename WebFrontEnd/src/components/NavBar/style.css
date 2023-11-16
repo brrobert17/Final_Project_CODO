@@ -1,0 +1,84 @@
+.nav {
+
+    --height: 5em;
+
+    background-color: var(--backGroundColorTwo);
+    width: 100%;
+    height: var(--height);
+    position: 'relative';
+    display: grid;
+    grid-template-columns: 1fr 5fr 1fr;
+    align-content: center;
+    justify-items: center;
+    padding: calc(var(--pageMargin) / 2) var(--pageMargin);
+}
+
+.nav__logo-cont {
+    justify-self: flex-start;
+    align-self: center;
+    height: 2em;
+    position: 'relative';
+}
+
+.nav__logo {
+    height: 100%;
+}
+
+.nav__menu {
+    list-style: none;
+    display: flex;
+    gap: calc(var(--pageMargin)*2);
+    align-items: center;
+
+    font-size: var(--fontSize-regular);
+    font-weight: 600;
+}
+
+.nav__menu__sub-menu {
+    display: none;
+    position: absolute;
+    background-color: rgb(18, 18, 59);
+    top: calc(100% + (var(--pageMargin) / 2));
+    left: 50%;
+    transform: translateX(-50%);
+    padding: calc(var(--pageMargin)) var(--pageMargin);
+}
+
+.nav__menu li {
+    position: relative;
+
+}
+
+.nav__menu__sub-menu a {
+    display: block;
+    margin: var(--pageMargin);
+}
+
+.nav__menu a {
+    color: white;
+    text-decoration: none;
+}
+
+.nav__menu li:hover .nav__menu__sub-menu {
+    display: block;
+}
+
+.nav__menu li,
+.nav__icon img,
+.nav__logo-cont img {
+    transition: 0.2s ease;
+}
+
+.nav__menu li:hover,
+.nav__icon:hover img,
+.nav__logo-cont:hover img {
+    transform: scale(1.1);
+
+}
+
+.nav__icon-cont {
+    justify-self: flex-end;
+    align-self: center;
+    display: flex;
+    gap: var(--pageMargin);
+}
