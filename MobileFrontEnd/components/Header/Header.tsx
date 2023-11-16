@@ -6,21 +6,20 @@ import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { StackParams } from "../../App";
 import ItemSection from "@components/ItemSection";
-import Animated, { Extrapolate, SharedValue, interpolate, useAnimatedStyle, useSharedValue, withTiming } from "react-native-reanimated";
 import BigLogo from '@assets/logo-schulz.svg';
 import { borderRadiusBig, pageMargin } from "@gStyle";
-import _ from 'lodash';
-import { useContext, useEffect, useState } from "react";
-import { HomeContext } from "@screens/Home/Home";
+
 
 export const LARGE_LOGO_ASPECT_RATIO = 8; // 8 to 1 ratio
 export const SMALL_LOGO_ASPECT_RATIO = 4.36; // 4.36 to 1 ratio
 export const HEADER_SCROLL_THRESHOLD = 10;
+ interface Props {
+     scrollY: number
+ }
 
+export const HeaderSmall = (props: Props) => {
 
-export const HeaderSmall = () => {
-    const scrollY = useContext(HomeContext)?.scrollOffset;
-    const small = scrollY ? scrollY > HEADER_SCROLL_THRESHOLD : false;
+    const small = props.scrollY ? props.scrollY > HEADER_SCROLL_THRESHOLD : false;
     const nav = useNavigation<NativeStackNavigationProp<StackParams>>();
     const smallBtnContStyle = small ? style.btnContSmall : {}
 

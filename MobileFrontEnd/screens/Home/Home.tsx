@@ -1,10 +1,10 @@
 import {View, ScrollView} from "react-native";
 import gStyle from "@gStyle";
-import Header from "@components/Header";
+import {HeaderAddOn, HeaderSmall} from "@components/Header";
 import ItemSection from "@components/ItemSection";
 import {useItemsCore} from "@dbConn/hooks/UseItems";
 import {QueryParam} from "@utils/interfaces";
-import {useMemo} from "react";
+import {useMemo, useState} from "react";
 
 const Home = () => {
 
@@ -40,10 +40,15 @@ const Home = () => {
         console.log('success');
     }
 
+    const [scrollOffset, setScrollOffset] = useState<number>(0);
+
     return (
         <View style={gStyle.container}>
-            <Header/>
-            <ScrollView>
+            <HeaderSmall scrollY={scrollOffset}/>
+            <ScrollView bounces={false}
+                        onScroll={(e)=>setScrollOffset(e.nativeEvent.contentOffset.y)}
+                        scrollEventThrottle={5}>
+                <HeaderAddOn/>
                 {memoizedData?.allProductsData && memoizedData.fishData && memoizedData.coralData && memoizedData.invertebrateData &&
                 <>
                 <ItemSection
