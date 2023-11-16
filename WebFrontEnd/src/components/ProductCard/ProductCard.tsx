@@ -1,4 +1,4 @@
-import { Image as IImage } from '@interfaces'
+import { Image as IImage } from '@interfaces';
 import './style.css'
 
 

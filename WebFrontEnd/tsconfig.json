@@ -18,29 +18,30 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "baseUrl": "src",
+    "paths": {
+      "@components/*": [
+        "src/components/*"
+      ],
+      "@assets/*": [
+        "./src/assets/*"
+      ],
+      "@gStyle": [
+        "./src/style.css"
+      ],
+      "@dbConn/*": [
+        "./DatabaseConn/*"
+      ],
+      "@utils/*": [
+        "./utils/*"
+      ],
+      "@interfaces": [
+        "../../MobileFrontEnd/utils/interfaces"
+      ]
+    }
   },
-  "include": [
+    "include": [
     "src"
-  ],
-  "paths": {
-    "@components/*": [
-      "./src/components/*"
-    ],
-    "@assets/*": [
-      "./src/assets/*"
-    ],
-    "@gStyle": [
-      "./src/style.css"
-    ],
-    "@dbConn/*": [
-      "./DatabaseConn/*"
-    ],
-    "@utils/*": [
-      "./utils/*"
-    ],
-    "@interfaces": [
-      "../../../../MobileFrontEnd/utils/interfaces"
-    ]
-  }
+  ]
 }
