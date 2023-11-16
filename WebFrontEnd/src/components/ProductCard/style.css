@@ -1,0 +1,29 @@
+/*.card {*/
+/*    width: calc(50% - <PAGE_MARGIN_CALCULATION>); !* Replace <PAGE_MARGIN_CALCULATION> with the actual calculated value *!*/
+/*    margin-bottom: var(--page-margin); !* Assuming pageMargin is defined as a CSS variable *!*/
+/*}*/
+
+/*.img-cont {*/
+/*    border-radius: var(--border-radius-small); !* Assuming borderRadiusSmall is defined as a CSS variable *!*/
+/*    overflow: hidden;*/
+/*}*/
+
+/*.img {*/
+/*    width: 100%;*/
+/*    aspect-ratio: 1 / 1; !* Aspect ratio is a newer property and may not be supported in all browsers *!*/
+/*}*/
+
+/*.text-cont {*/
+/*    !* No styles defined *!*/
+/*}*/
+
+/*.name {*/
+/*    !* Apply the styles from gStyle.basicLarge here *!*/
+/*    text-transform: capitalize;*/
+/*    margin-top: calc(var(--page-margin) / 2); !* Assuming pageMargin is defined as a CSS variable *!*/
+/*}*/
+
+/*.price {*/
+/*    !* Apply the styles from gStyle.basic here *!*/
+/*    color: #FFDF01;*/
+/*}*/

@@ -1,4 +1,6 @@
 import NavBar from "../../components/NavBar/NavBar"
+import ItemsGrid from "../../components/ItemSection";
+import './style.css'
 
 const navigationPages = [
   {
@@ -47,10 +49,12 @@ interface Props {
 
 const Home = () => {
   return (
-    <div>
+    <>
       <NavBar pages={navigationPages} loginUrl={"/login"} shoppingCartUrl={"/cart"}/>
-      home
-    </div>
+      <div className={'pageContainer'}>
+        <ItemsGrid/>
+      </div>
+    </>
   )
 }
 

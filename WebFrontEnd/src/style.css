@@ -23,3 +23,8 @@
     --borderRadiusSmall: 6px;
     --borderRadiusBig: var(--pageMargin);
 }
+
+body {
+    background-color: var(--backGroundColor);
+    color: white;
+}

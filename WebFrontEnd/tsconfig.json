@@ -22,5 +22,25 @@
   },
   "include": [
     "src"
-  ]
+  ],
+  "paths": {
+    "@components/*": [
+      "./src/components/*"
+    ],
+    "@assets/*": [
+      "./src/assets/*"
+    ],
+    "@gStyle": [
+      "./src/style.css"
+    ],
+    "@dbConn/*": [
+      "./DatabaseConn/*"
+    ],
+    "@utils/*": [
+      "./utils/*"
+    ],
+    "@interfaces": [
+      "../../../../MobileFrontEnd/utils/interfaces"
+    ]
+  }
 }
