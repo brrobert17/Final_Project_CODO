@@ -1,10 +1,11 @@
 import NavBar from "../../components/NavBar/NavBar"
+import SlideShow from "../../components/SlideShow"
 
 const navigationPages = [
   {
     name: "Home",
     path: "/",
-    
+
   },
   {
     name: "All Products",
@@ -31,24 +32,43 @@ const navigationPages = [
   {
     name: "Info",
     path: "/",
-    
+
   },
   {
     name: "Contact",
     path: "/",
-    
+
   }
 ]
-
+const slideShowImages = [
+  {
+    url: "https://picsum.photos/1000/500",
+    alt: "random image"
+  },
+  {
+    url: "https://picsum.photos/1001/500",
+    alt: "random image"
+  },
+  {
+    url: "https://picsum.photos/1000/501",
+    alt: "random image"
+  },
+  {
+    url: "https://picsum.photos/1001/501",
+    alt: "random image"
+  }
+]
 
 interface Props {
 
 }
 
 const Home = () => {
+
   return (
     <div>
-      <NavBar pages={navigationPages} loginUrl={"/login"} shoppingCartUrl={"/cart"}/>
+      <NavBar pages={navigationPages} loginUrl={"/login"} shoppingCartUrl={"/cart"} />
+      <SlideShow images={slideShowImages} />
       home
     </div>
   )
