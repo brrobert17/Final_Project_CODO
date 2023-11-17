@@ -1,29 +1,20 @@
-/*.card {*/
-/*    width: calc(50% - <PAGE_MARGIN_CALCULATION>); !* Replace <PAGE_MARGIN_CALCULATION> with the actual calculated value *!*/
-/*    margin-bottom: var(--page-margin); !* Assuming pageMargin is defined as a CSS variable *!*/
-/*}*/
+.productCardContainer {
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--defaultMargin)/3);
+}
 
-/*.img-cont {*/
-/*    border-radius: var(--border-radius-small); !* Assuming borderRadiusSmall is defined as a CSS variable *!*/
-/*    overflow: hidden;*/
-/*}*/
+.productCardContainer img {
+    max-width: 13em;
+}
 
-/*.img {*/
-/*    width: 100%;*/
-/*    aspect-ratio: 1 / 1; !* Aspect ratio is a newer property and may not be supported in all browsers *!*/
-/*}*/
+.productCardContainer h2{
+    transition: 0.2s ease;
+}
 
-/*.text-cont {*/
-/*    !* No styles defined *!*/
-/*}*/
-
-/*.name {*/
-/*    !* Apply the styles from gStyle.basicLarge here *!*/
-/*    text-transform: capitalize;*/
-/*    margin-top: calc(var(--page-margin) / 2); !* Assuming pageMargin is defined as a CSS variable *!*/
-/*}*/
-
-/*.price {*/
-/*    !* Apply the styles from gStyle.basic here *!*/
-/*    color: #FFDF01;*/
-/*}*/
+.productCardContainer h3:hover {
+    transform: scale(1.1);
+}
+.productCardContainer p{
+    color: var(--colorSecondary);
+}

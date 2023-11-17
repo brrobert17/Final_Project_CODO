@@ -1,4 +1,4 @@
-import { Image as IImage } from '@interfaces';
+import {Image as IImage} from '@interfaces';
 import './style.css'
 
 
@@ -11,17 +11,13 @@ export interface Props {
 }
 
 const ProductCard = (props: Props) => {
-    // return (
-    //     <View style={style.card}>
-    //         <TouchableOpacity style={style.imgCont}>
-    //             <Image style={style.img} source={{ uri: props.img.url }} />
-    //         </TouchableOpacity>
-    //         <TouchableOpacity style={style.textCont}>
-    //             <Text style={style.name}>{props.name}</Text>
-    //             <Text style={style.price}>{props.price}</Text>
-    //         </TouchableOpacity>
-    //     </View>
-    // )
+    return (
+        <div className={"productCardContainer"}>
+            <img src={props.img.url} alt={props.img.alt}/>
+            <h3>{props.name}</h3>
+            <p>{props.price}</p>
+        </div>
+    )
 }
 
 export default ProductCard

@@ -8,9 +8,10 @@
 
     /* Font */
     font-family: "Inter";
-    --fontSize-regular: 16px;
-    --fontSize-medium: 20px;
-    --fontSize-large: 25px;
+    --fontSize-regular: 1rem;
+    --fontSize-medium: 1.25rem;
+    --fontSize-large: 1.563rem;
+    --fontSize-extralarge: 1.953rem;
 
     /* Variables */
     --backGroundColor: #000F1E;
@@ -18,13 +19,28 @@
     --colorInput: #47596A;
     --colorPlaceholder: #CCC;
     --colorPrimary: #017AFE;
+    --colorSecondary: #FFDF01;
 
-    --pageMargin: 40px;
+    --defaultMargin: 40px;
+    --pageMargin: 15em;
     --borderRadiusSmall: 6px;
-    --borderRadiusBig: var(--pageMargin);
+    --borderRadiusBig: var(--defaultMargin);
 }
 
 body {
     background-color: var(--backGroundColor);
     color: white;
+}
+
+h1{
+    font-size: var(--fontSize-extralarge);
+}
+h2{
+    font-size: var(--fontSize-large);
+}
+h3{
+    font-size: var(--fontSize-medium);
+}
+p{
+    font-size: var(--fontSize-regular);
 }

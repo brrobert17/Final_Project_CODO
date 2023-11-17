@@ -1,6 +1,6 @@
 import NavBar from "../../components/NavBar/NavBar"
-import ItemsGrid from "../../components/ItemSection";
 import './style.css'
+import ItemSection from "../../components/ItemSection";
 
 const navigationPages = [
   {
@@ -52,7 +52,7 @@ const Home = () => {
     <>
       <NavBar pages={navigationPages} loginUrl={"/login"} shoppingCartUrl={"/cart"}/>
       <div className={'pageContainer'}>
-        <ItemsGrid/>
+        <ItemSection/>
       </div>
     </>
   )
