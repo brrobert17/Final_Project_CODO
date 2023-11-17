@@ -35,7 +35,7 @@ HeaderBtn.Exit = (props: Props) => {
 
     return (
         <TouchableOpacity onPress={props.onPress} style={style.iconCont}>
-            <ExitIcon width={20} height={20} fill={'white'}/>
+            <ExitIcon width={18} height={18} fill={'white'}/>
         </TouchableOpacity>
 
     );

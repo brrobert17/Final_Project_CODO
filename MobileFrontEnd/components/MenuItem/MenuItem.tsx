@@ -44,7 +44,7 @@ const MenuItem = (props: MenuProps) => {
         textStyle = gStyle.h1;
         arrow = ArrowDirection.RIGHT;
     } else if(props.level === MenuLevel.SECOND) {
-        textStyle = gStyle.basic;
+        textStyle = gStyle.basicLarge;
     } else {
         textStyle = {...gStyle.h1, opacity: 0.5};
         arrow = ArrowDirection.DOWN

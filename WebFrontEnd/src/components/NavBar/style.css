@@ -10,7 +10,7 @@
     grid-template-columns: 1fr 5fr 1fr;
     align-content: center;
     justify-items: center;
-    padding: calc(var(--pageMargin) / 2) var(--pageMargin);
+    padding: calc(var(--defaultMargin) / 2) var(--defaultMargin);
 }
 
 .nav__logo-cont {
@@ -27,7 +27,7 @@
 .nav__menu {
     list-style: none;
     display: flex;
-    gap: calc(var(--pageMargin)*2);
+    gap: calc(var(--defaultMargin)*2);
     align-items: center;
 
     font-size: var(--fontSize-regular);
@@ -38,10 +38,10 @@
     display: none;
     position: absolute;
     background-color: rgb(18, 18, 59);
-    top: calc(100% + (var(--pageMargin) / 2));
+    top: calc(100% + (var(--defaultMargin) / 2));
     left: 50%;
     transform: translateX(-50%);
-    padding: calc(var(--pageMargin)) var(--pageMargin);
+    padding: calc(var(--defaultMargin)) var(--defaultMargin);
 }
 
 .nav__menu li {
@@ -51,7 +51,7 @@
 
 .nav__menu__sub-menu a {
     display: block;
-    margin: var(--pageMargin);
+    margin: var(--defaultMargin);
 }
 
 .nav__menu a {
@@ -80,5 +80,5 @@
     justify-self: flex-end;
     align-self: center;
     display: flex;
-    gap: var(--pageMargin);
+    gap: var(--defaultMargin);
 }

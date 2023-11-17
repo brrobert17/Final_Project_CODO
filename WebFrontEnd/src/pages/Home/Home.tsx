@@ -1,4 +1,6 @@
 import NavBar from "../../components/NavBar/NavBar"
+import './style.css'
+import ItemSection from "../../components/ItemSection";
 import SlideShow from "../../components/SlideShow"
 
 const navigationPages = [
@@ -42,19 +44,19 @@ const navigationPages = [
 ]
 const slideShowImages = [
   {
-    url: "https://picsum.photos/1000/500",
+    url: "https://picsum.photos/1440/420",
     alt: "random image"
   },
   {
-    url: "https://picsum.photos/1001/500",
+    url: "https://picsum.photos/1441/420",
     alt: "random image"
   },
   {
-    url: "https://picsum.photos/1000/501",
+    url: "https://picsum.photos/1440/421",
     alt: "random image"
   },
   {
-    url: "https://picsum.photos/1001/501",
+    url: "https://picsum.photos/1441/421",
     alt: "random image"
   }
 ]
@@ -66,11 +68,13 @@ interface Props {
 const Home = () => {
 
   return (
-    <div>
+    <>
       <NavBar pages={navigationPages} loginUrl={"/login"} shoppingCartUrl={"/cart"} />
       <SlideShow images={slideShowImages} />
-      home
-    </div>
+      <div className={'pageContainer'}>
+        <ItemSection />
+      </div>
+    </>
   )
 }
 

@@ -1,19 +1,17 @@
 import {StyleSheet} from "react-native";
-import {backGroundColor} from "@gStyle";
+import {backGroundColorTwo, pageMargin} from "@gStyle";
 export const componentStyle = StyleSheet.create({
     menuContainer: {
         flex: 1,
-        backgroundColor: backGroundColor,
-        paddingTop: 40,
-        paddingLeft: 65,
-        paddingRight: 65
+        backgroundColor: backGroundColorTwo,
+        paddingTop: pageMargin,
+        paddingHorizontal: 70
     },
     menuScreenContainer: {
         flex: 1,
-        backgroundColor: backGroundColor,
-        paddingRight: 25,
-        paddingLeft: 25,
-        paddingTop: 100
+        backgroundColor: backGroundColorTwo,
+        paddingHorizontal: pageMargin/2,
+        paddingTop: 45
     },
     menuHeader: {
         display: "flex",
@@ -23,6 +21,7 @@ export const componentStyle = StyleSheet.create({
     menuHeaderBox: {
         display: "flex",
         flexDirection: "row-reverse",
-        alignItems: "flex-end"
+        alignItems: "flex-end",
+        gap: pageMargin
     }
 });

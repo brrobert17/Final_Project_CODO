@@ -1,6 +1,6 @@
-import logo from "../../assets/logo-schulz-waveless.svg";
-import iconCart from "../../assets/icon-shopping-cart.svg";
-import iconUsers from "../../assets/icon-users.svg";
+import logo from "@assets/logo-schulz-waveless.svg";
+import iconCart from "@assets/icon-shopping-cart.svg";
+import iconUsers from "@assets/icon-users.svg";
 import "./style.css"
 
 interface Page {

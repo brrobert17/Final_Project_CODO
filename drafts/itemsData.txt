@@ -1,0 +1,199 @@
+{
+  "items": [
+    {
+      "name": "Fish1",
+      "price": 100,
+      "category": "fish",
+      "img": [
+        {"url": "https://picsum.photos/201", "alt": "fish1 image1"},
+        {"url": "https://picsum.photos/202", "alt": "fish1 image2"}
+      ],
+      "tags": ["fish", "tropical", "peaceful"],
+      "stock": 1,
+      "description": "A peaceful tropical fish",
+      "wysiwyg": true
+    },
+    {
+      "name": "Fish2",
+      "price": 120,
+      "category": "fish",
+      "img": [
+        {"url": "https://picsum.photos/203", "alt": "fish2 image1"},
+        {"url": "https://picsum.photos/204", "alt": "fish2 image2"}
+      ],
+      "tags": ["fish", "saltwater", "colorful"],
+      "stock": 15,
+      "description": "A colorful saltwater fish",
+      "wysiwyg": false
+    },
+    {
+      "name": "Fish3",
+      "price": 110,
+      "category": "fish",
+      "img": [
+        {"url": "https://picsum.photos/205", "alt": "fish3 image1"},
+        {"url": "https://picsum.photos/206", "alt": "fish3 image2"}
+      ],
+      "tags": ["fish", "freshwater", "small"],
+      "stock": 20,
+      "description": "A small freshwater fish",
+      "wysiwyg": false
+    },
+    {
+      "name": "Fish4",
+      "price": 130,
+      "category": "fish",
+      "img": [
+        {"url": "https://picsum.photos/207", "alt": "fish4 image1"},
+        {"url": "https://picsum.photos/208", "alt": "fish4 image2"}
+      ],
+      "tags": ["fish", "reef-safe", "bright"],
+      "stock": 1,
+      "description": "A bright, reef-safe fish",
+      "wysiwyg": true
+    },
+    {
+      "name": "Fish5",
+      "price": 115,
+      "category": "fish",
+      "img": [
+        {"url": "https://picsum.photos/209", "alt": "fish5 image1"},
+        {"url": "https://picsum.photos/210", "alt": "fish5 image2"}
+      ],
+      "tags": ["fish", "coldwater", "large"],
+      "stock": 12,
+      "description": "A large coldwater fish",
+      "wysiwyg": false
+    },
+    {
+      "name": "Coral1",
+      "price": 50,
+      "category": "coral",
+      "img": [
+        {"url": "https://picsum.photos/211", "alt": "coral1 image1"},
+        {"url": "https://picsum.photos/212", "alt": "coral1 image2"}
+      ],
+      "tags": ["coral", "colorful", "reef-safe"],
+      "stock": 1,
+      "description": "A colorful reef-safe coral",
+      "wysiwyg": true
+    },
+    {
+      "name": "Coral2",
+      "price": 60,
+      "category": "coral",
+      "img": [
+        {"url": "https://picsum.photos/213", "alt": "coral2 image1"},
+        {"url": "https://picsum.photos/214", "alt": "coral2 image2"}
+      ],
+      "tags": ["coral", "stony", "hardy"],
+      "stock": 1,
+      "description": "A hardy stony coral",
+      "wysiwyg": true
+    },
+    {
+      "name": "Coral3",
+      "price": 55,
+      "category": "coral",
+      "img": [
+        {"url": "https://picsum.photos/215", "alt": "coral3 image1"},
+        {"url": "https://picsum.photos/216", "alt": "coral3 image2"}
+      ],
+      "tags": ["coral", "soft", "fringed"],
+      "stock": 1,
+      "description": "A fringed soft coral",
+      "wysiwyg": true
+    },
+    {
+      "name": "Coral4",
+      "price": 70,
+      "category": "coral",
+      "img": [
+        {"url": "https://picsum.photos/217", "alt": "coral4 image1"},
+        {"url": "https://picsum.photos/218", "alt": "coral4 image2"}
+      ],
+      "tags": ["coral", "bubble-tip", "anemone"],
+      "stock": 1,
+      "description": "A bubble-tip anemone coral",
+      "wysiwyg": true
+    },
+    {
+      "name": "Coral5",
+      "price": 45,
+      "category": "coral",
+      "img": [
+        {"url": "https://picsum.photos/219", "alt": "coral5 image1"},
+        {"url": "https://picsum.photos/220", "alt": "coral5 image2"}
+      ],
+      "tags": ["coral", "branching", "vibrant"],
+      "stock": 1,
+      "description": "A vibrant branching coral",
+      "wysiwyg": true
+    },
+    {
+      "name": "Invertebrate1",
+      "price": 40,
+      "category": "invertebrate",
+      "img": [
+        {"url": "https://picsum.photos/221", "alt": "invertebrate1 image1"},
+        {"url": "https://picsum.photos/222", "alt": "invertebrate1 image2"}
+      ],
+      "tags": ["invertebrate", "crustacean", "colorful"],
+      "stock": 1,
+      "description": "A colorful crustacean invertebrate",
+      "wysiwyg": true
+    },
+    {
+      "name": "Invertebrate2",
+      "price": 35,
+      "category": "invertebrate",
+      "img": [
+        {"url": "https://picsum.photos/223", "alt": "invertebrate2 image1"},
+        {"url": "https://picsum.photos/224", "alt": "invertebrate2 image2"}
+      ],
+      "tags": ["invertebrate", "anemone", "marine"],
+      "stock": 1,
+      "description": "A marine anemone invertebrate",
+      "wysiwyg": false
+    },
+    {
+      "name": "Invertebrate3",
+      "price": 48,
+      "category": "invertebrate",
+      "img": [
+        {"url": "https://picsum.photos/225", "alt": "invertebrate3 image1"},
+        {"url": "https://picsum.photos/226", "alt": "invertebrate3 image2"}
+      ],
+      "tags": ["invertebrate", "jellyfish", "transparent"],
+      "stock": 1,
+      "description": "A transparent jellyfish invertebrate",
+      "wysiwyg": false
+    },
+    {
+      "name": "Invertebrate4",
+      "price": 55,
+      "category": "invertebrate",
+      "img": [
+        {"url": "https://picsum.photos/227", "alt": "invertebrate4 image1"},
+        {"url": "https://picsum.photos/228", "alt": "invertebrate4 image2"}
+      ],
+      "tags": ["invertebrate", "starfish", "regenerating"],
+      "stock": 1,
+      "description": "A regenerating starfish invertebrate",
+      "wysiwyg": true
+    },
+    {
+      "name": "Invertebrate5",
+      "price": 42,
+      "category": "invertebrate",
+      "img": [
+        {"url": "https://picsum.photos/229", "alt": "invertebrate5 image1"},
+        {"url": "https://picsum.photos/230", "alt": "invertebrate5 image2"}
+      ],
+      "tags": ["invertebrate", "slug", "colorful"],
+      "stock": 1,
+      "description": "A colorful slug invertebrate",
+      "wysiwyg": false
+    }
+  ]
+}

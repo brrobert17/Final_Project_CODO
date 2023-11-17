@@ -1,0 +1,20 @@
+.productCardContainer {
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--defaultMargin)/3);
+}
+
+.productCardContainer img {
+    max-width: 13em;
+}
+
+.productCardContainer h2{
+    transition: 0.2s ease;
+}
+
+.productCardContainer h3:hover {
+    transform: scale(1.1);
+}
+.productCardContainer p{
+    color: var(--colorSecondary);
+}

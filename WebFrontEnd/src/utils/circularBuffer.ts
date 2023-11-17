@@ -33,6 +33,15 @@ export class CircularBuffer<T> {
         return this.buffer[realIndex];
     }
 
+    indexOf(item: T): number {
+        for (let i = 0; i < this.capacity; i++) {
+            if (this.buffer[(this.head + i) % this.capacity] === item) {
+                return i;
+            }
+        }
+        return -1; // Return -1 if the item is not found
+    }
+
     rotate(steps: number): CircularBuffer<T> {
         const newBuffer = new CircularBuffer<T>(this.capacity);
         newBuffer.buffer = [...this.buffer];

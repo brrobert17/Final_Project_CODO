@@ -9,7 +9,7 @@ export const iconSize = 15;
 export default StyleSheet.create({
     cont: {
         width: '100%',
-        marginBottom: pageMargin,
+        marginVertical: pageMargin,
     },
     input: {
         ...gStyle.basic,
