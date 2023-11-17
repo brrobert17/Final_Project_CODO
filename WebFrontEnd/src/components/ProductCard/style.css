@@ -1,14 +1,12 @@
-.productCardContainer {
-    display: flex;
-    flex-direction: column;
-    gap: calc(var(--defaultMargin)/3);
+.productCardContainer * {
+    margin-bottom: calc(var(--defaultMargin)/5);
 }
 
 .productCardContainer img {
     max-width: 13em;
 }
 
-.productCardContainer h2{
+.productCardContainer h3{
     transition: 0.2s ease;
 }
 
