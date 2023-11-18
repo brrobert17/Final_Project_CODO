@@ -15,6 +15,17 @@
 .itemSectionTitle h2 {
     margin-bottom: 0.2em;
 }
+
+.clickableTitle{
+    transition: 0.2s ease;
+    display: block;
+    width: fit-content;
+    cursor: pointer;
+}
+
+.clickableTitle:hover {
+    transform: scale(1.1);
+}
 .itemSectionTitle img{
     height: 1em;
     margin-left: calc(var(--defaultMargin)/-2);

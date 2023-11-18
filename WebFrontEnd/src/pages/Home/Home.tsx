@@ -7,108 +7,110 @@ import {useMemo} from "react";
 import SlideShow from "../../components/SlideShow"
 
 const navigationPages = [
-  {
-    name: "Home",
-    path: "/",
-    
-  },
-  {
-    name: "All Products",
-    path: "/",
-    subMenu: [
-      {
-        name: "Corals",
-        path: "/corals",
-      },
-      {
-        name: "Fish",
-        path: "/fish",
-      },
-      {
-        name: "Invertibrates",
-        path: "/invertibrates",
-      },
-      {
-        name: "Other",
-        path: "/other",
-      }
-    ]
-  },
-  {
-    name: "Info",
-    path: "/",
-    
-  },
-  {
-    name: "Contact",
-    path: "/",
-    
-  }
+    {
+        name: "Home",
+        path: "/",
+
+    },
+    {
+        name: "All Products",
+        path: "/",
+        subMenu: [
+            {
+                name: "Corals",
+                path: "/corals",
+            },
+            {
+                name: "Fish",
+                path: "/fish",
+            },
+            {
+                name: "Invertibrates",
+                path: "/invertibrates",
+            },
+            {
+                name: "Other",
+                path: "/other",
+            }
+        ]
+    },
+    {
+        name: "Info",
+        path: "/",
+
+    },
+    {
+        name: "Contact",
+        path: "/",
+
+    }
 ]
 const slideShowImages = [
-  {
-    url: "https://picsum.photos/1440/420",
-    alt: "random image"
-  },
-  {
-    url: "https://picsum.photos/1441/420",
-    alt: "random image"
-  },
-  {
-    url: "https://picsum.photos/1440/421",
-    alt: "random image"
-  },
-  {
-    url: "https://picsum.photos/1441/421",
-    alt: "random image"
-  }
+    {
+        url: "https://picsum.photos/1440/420",
+        alt: "random image"
+    },
+    {
+        url: "https://picsum.photos/1441/420",
+        alt: "random image"
+    },
+    {
+        url: "https://picsum.photos/1440/421",
+        alt: "random image"
+    },
+    {
+        url: "https://picsum.photos/1441/421",
+        alt: "random image"
+    }
 ]
 
 interface Props {
 
 }
 
-const Home = () => {
-  const params: QueryParam[] = [
-    {queryKey: 'allProducts', limit:3},
+const params: QueryParam[] = [
+    {queryKey: 'allProducts', limit: 7},
     {queryKey: 'fish', category: 'fish', limit: 3},
     {queryKey: 'coral', category: 'coral', limit: 3},
     {queryKey: 'invertebrate', category: 'invertebrate', limit: 3},
-  ];
+];
 
-  const {
-    data,
-    error,
-    isLoading
-  } = useItemsCore(params);
+const Home = () => {
 
-  const memoizedData = useMemo(() => {
-    if(!data) return;
+    const {data, error, isLoading} = useItemsCore(params);
 
-    const allProductsData = data.find(d => d.queryKey === 'allProducts')?.result;
-    const fishData = data.find(d => d.queryKey === 'fish')?.result;
-    const coralData = data.find(d => d.queryKey === 'coral')?.result;
-    const invertebrateData = data.find(d => d.queryKey === 'invertebrate')?.result;
+    const memoizedData = useMemo(() => {
+        if (!data) return;
 
-    return { allProductsData, fishData, coralData, invertebrateData };
-  }, [data]);
+        const allProductsData = data.find(d => d.queryKey === 'allProducts')?.result;
+        const fishData = data.find(d => d.queryKey === 'fish')?.result;
+        const coralData = data.find(d => d.queryKey === 'coral')?.result;
+        const invertebrateData = data.find(d => d.queryKey === 'invertebrate')?.result;
 
-  if (isLoading) {
-    console.log('loading');
-  } else if (error) {
-    console.error('error: ', error);
-  } else {
-    console.log('success', memoizedData?.fishData);
-  }
-  return (
-    <>
-      <NavBar pages={navigationPages} loginUrl={"/login"} shoppingCartUrl={"/cart"} />
-      <SlideShow images={slideShowImages} />
-      <div className={'pageContainer'}>
-        <ItemSection/>
-      </div>
-    </>
-  )
+        return {allProductsData, fishData, coralData, invertebrateData};
+    }, [data]);
+
+    if (isLoading) {
+        console.log('loading');
+    } else if (error) {
+        console.error('error: ', error);
+    } else {
+        console.log('success', memoizedData?.fishData);
+    }
+
+    return (
+        <>
+            <NavBar pages={navigationPages} loginUrl={"/login"} shoppingCartUrl={"/cart"}/>
+            <SlideShow images={slideShowImages}/>
+            <div className={'pageContainer'}>
+                {memoizedData?.allProductsData &&
+                    <ItemSection heading={'All Products'} items={memoizedData.allProductsData} seeMore={{
+                        func: () => console.log('hello'),
+                        img: {url: "https://picsum.photos/300/500", alt: "something something"}
+                    }}/>}
+            </div>
+        </>
+    )
 }
 
 export default Home
