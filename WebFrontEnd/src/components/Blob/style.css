@@ -1,0 +1,22 @@
+.blob {
+    /* background-color: pink; */
+    min-height: 25em;
+    position: relative;
+    margin: 0 var(--pageMargin);
+}
+
+.blob__background {
+    width: 120%;
+    position: absolute;
+    top: -3em;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    /* height: 100%; */
+}
+
+.blob__children-cont {
+    padding: 1em 0;
+    position: relative;
+    z-index: 20;
+}

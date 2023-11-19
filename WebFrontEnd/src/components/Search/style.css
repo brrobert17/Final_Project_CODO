@@ -1,0 +1,58 @@
+.search {
+
+    --iconSize: 15px;
+    --verticalMargin: 6px;
+
+    width: 100%;
+    margin-top: var(--defaultMargin);
+    margin-bottom: var(--defaultMargin);
+
+}
+
+.search__box {
+    position: relative;
+    width: 80%;
+}
+
+.search input {
+    font-size: var(--fontSize-regular);
+    color: white;
+    width: 100%;
+    background-color: var(--colorInput);
+    padding-top: var(--verticalMargin);
+    padding-bottom: var(--verticalMargin);
+    padding-left: var(--defaultMargin);
+    padding-right: calc(var(--defaultMargin) * 2 + var(--iconSize));
+    border-radius: var(--borderRadiusSmall);
+    outline: none;
+    border: none;
+}
+
+.search input::placeholder {
+    color: var(--colorPlaceholder);
+}
+
+.search__icon {
+    position: absolute;
+    right: var(--defaultMargin);
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+.search__icon.fish {
+    right: 0;
+    transform: translate(50%, -50%);
+}
+
+.search__icon img {
+    transition: 0.2s ease;
+}
+
+.search__icon.fish img {
+    width: 70px;
+}
+
+.search__icon:hover img {
+    transform: scale(1.1);
+}

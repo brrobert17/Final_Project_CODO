@@ -12,10 +12,3 @@
     flex-direction: row;
     justify-content: space-between;
 }
-.itemSectionTitle h2 {
-    margin-bottom: 0.2em;
-}
-.itemSectionTitle img{
-    height: 1em;
-    margin-left: calc(var(--defaultMargin)/-2);
-}

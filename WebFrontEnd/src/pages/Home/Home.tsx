@@ -1,16 +1,19 @@
 import NavBar from "../../components/NavBar/NavBar"
 import './style.css'
 import ItemSection from "../../components/ItemSection";
-import {QueryParam} from "@interfaces";
-import {useItemsCore} from "@dbConn/hooks/UseItems";
-import {useMemo} from "react";
+import { QueryParam } from "@interfaces";
+import { useItemsCore } from "@dbConn/hooks/UseItems";
+import { useMemo } from "react";
 import SlideShow from "../../components/SlideShow"
+import Blob from "components/Blob";
+import Search from "components/Search";
+import Heading from "components/Heading";
 
 const navigationPages = [
   {
     name: "Home",
     path: "/",
-    
+
   },
   {
     name: "All Products",
@@ -37,12 +40,12 @@ const navigationPages = [
   {
     name: "Info",
     path: "/",
-    
+
   },
   {
     name: "Contact",
     path: "/",
-    
+
   }
 ]
 const slideShowImages = [
@@ -70,10 +73,10 @@ interface Props {
 
 const Home = () => {
   const params: QueryParam[] = [
-    {queryKey: 'allProducts', limit:3},
-    {queryKey: 'fish', category: 'fish', limit: 3},
-    {queryKey: 'coral', category: 'coral', limit: 3},
-    {queryKey: 'invertebrate', category: 'invertebrate', limit: 3},
+    { queryKey: 'allProducts', limit: 3 },
+    { queryKey: 'fish', category: 'fish', limit: 3 },
+    { queryKey: 'coral', category: 'coral', limit: 3 },
+    { queryKey: 'invertebrate', category: 'invertebrate', limit: 3 },
   ];
 
   const {
@@ -83,7 +86,7 @@ const Home = () => {
   } = useItemsCore(params);
 
   const memoizedData = useMemo(() => {
-    if(!data) return;
+    if (!data) return;
 
     const allProductsData = data.find(d => d.queryKey === 'allProducts')?.result;
     const fishData = data.find(d => d.queryKey === 'fish')?.result;
@@ -104,8 +107,22 @@ const Home = () => {
     <>
       <NavBar pages={navigationPages} loginUrl={"/login"} shoppingCartUrl={"/cart"} />
       <SlideShow images={slideShowImages} />
+      <Blob>
+        <div className="info__grid">
+          <div>
+            <Heading text="Know what you looking for?" />
+            <Search fishIcon />
+          </div>
+          <div>
+
+          </div>
+          <div style={{ gridRow: '1/3', gridColumn: '2/3', backgroundColor: "blue" }}>
+
+          </div>
+        </div>
+      </Blob>
       <div className={'pageContainer'}>
-        <ItemSection/>
+        <ItemSection />
       </div>
     </>
   )
