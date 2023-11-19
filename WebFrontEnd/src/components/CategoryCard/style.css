@@ -1,15 +1,33 @@
-.categoryCardContainer img{
-    position: absolute;
-    object-fit: cover;
+.categoryCardContainer {
+    position: relative;
+    /* Add any other styles needed for flex items */
 }
-.categoryCardImageContainer{
+
+.categoryCardImageContainer {
     height: 13em;
     width: 13em;
     overflow: hidden;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-.categoryCardContainer h3{
+
+.categoryCardContainer img {
     position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
 }
+
+.categoryCardContainer h3 {
+    position: absolute;
+    /* Add padding, background, color, etc., as needed for visibility */
+}
+
 
 
 /*card: {*/

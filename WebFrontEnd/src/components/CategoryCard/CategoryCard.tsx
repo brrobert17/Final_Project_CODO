@@ -21,13 +21,14 @@ const CategoryCard = (props: Props) => {
     //   </TouchableOpacity>
     // )
     return (
-        <div className={'categoryCardContainer'}>
-          <div className={'categoryCardImageContainer'}>
-            <img src={props.img.url} alt={props.img.alt}/>
-          </div>
-            <h3>{props.name}</h3>
+        <div className="categoryCardContainer">
+            <div className="categoryCardImageContainer">
+                <img src="https://picsum.photos/300/500" alt="something something"/>
+                <h3>See More</h3>
+            </div>
+        </div>
 
-        </div>)
+)
 }
 
 export default CategoryCard
