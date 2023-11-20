@@ -21,9 +21,11 @@ const CategoryCard = (props: Props) => {
     //   </TouchableOpacity>
     // )
     return (
-        <div className="categoryCardContainer">
-            <div className="categoryCardImageContainer">
-                <img src="https://picsum.photos/300/500" alt="something something"/>
+        <div className="category-card">
+            <div className="category-card__inner">
+                <div className="category-card__image-cont image-cont--hover">
+                    <img src="https://picsum.photos/300/500" alt="something something"/>
+                </div>
                 <h3>See More</h3>
             </div>
         </div>

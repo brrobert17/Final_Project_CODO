@@ -6,6 +6,7 @@ import type {ProductProps} from '@components/ProductCard'
 import type {CategoryProps} from '@components/CategoryCard'
 import CategoryCard from "@components/CategoryCard";
 import itemSection from "@components/ItemSection/index";
+import DropDown from "@components/DropDown";
 
 interface Props {
     heading: string,
@@ -17,26 +18,6 @@ interface Props {
     }
 }
 
-// const ItemSection = (props: Props) => {
-//
-//     const isProduct = 'price' in props.items[0]
-//
-//     return (
-//             <View style={style.list}>
-//                 {props.items.map((item, index) => {
-//                     if(!('price' in item)) {
-//                         return <CategoryCard key={index} name={item.name} img={item.img}/>
-//                     } else {
-//                         return <ProductCard key={index} name={item.name} price={item.price} img={item.img} />
-//                     }
-//
-//                 })}
-//                 {isProduct && props.seeMore ? <CategoryCard bigVariant name='See More' img={{url: props.seeMore.img.url, alt: props.seeMore.img.alt}}></CategoryCard> : <></>}
-//             </View>
-//         </View>
-//     );
-// };
-
 export const ItemSection = (props: Props) => {
 
     const isProduct = 'price' in props.items[0];
@@ -45,10 +26,10 @@ export const ItemSection = (props: Props) => {
         <>
             <div className={'itemSectionHeader'}>
                 <div className={'itemSectionTitle'}>
-                    <h2 className={'clickableTitle'}>{props.heading}</h2>
+                    <h2 className={'title--hover'}>{props.heading}</h2>
                     <img src={waves} alt={'waves decoration'}></img>
                 </div>
-                <button>Sort</button>
+                {props.sorting ? <DropDown onChange={(foo) => console.log(foo)} /> : <></>}
             </div>
             <div className={'itemSectionContainer'}>
                 {props.items.map((item, index) => {

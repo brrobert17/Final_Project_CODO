@@ -1,23 +1,16 @@
-.clickableImage{
+.product-card__image-cont{
     overflow: hidden;
     width: 13em;
     height: 13em;
+    border-radius: var(--borderRadiusSmall);
 }
-.productCardContainer {
+.product-card {
 cursor: pointer;
 }
-.productCardContainer > *{
+.product-card > *{
     margin-bottom: calc(var(--defaultMargin)/5);
 }
 
-.productCardContainer img {
-    object-fit: cover;
-    transition: 0.3s ease;
-}
-.productCardContainer img:hover{
-    transform: scale(1.1);
-}
-
-.productCardContainer p{
+.product-card p{
     color: var(--colorSecondary);
 }

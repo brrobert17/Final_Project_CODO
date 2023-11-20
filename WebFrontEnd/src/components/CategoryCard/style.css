@@ -1,9 +1,9 @@
-.categoryCardContainer {
+.category-card {
     position: relative;
-    /* Add any other styles needed for flex items */
+    cursor: pointer;
 }
 
-.categoryCardImageContainer {
+.category-card__inner {
     height: 13em;
     width: 13em;
     overflow: hidden;
@@ -11,21 +11,37 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    border-radius: var(--borderRadiusSmall);
 }
 
-.categoryCardContainer img {
+.category-card img {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
-
 }
 
-.categoryCardContainer h3 {
+.category-card__image-cont::after{
+    content: '';
+    display: block;
     position: absolute;
-    /* Add padding, background, color, etc., as needed for visibility */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    pointer-events: none;
+    transition: 0.2s ease;
+}
+.category-card__image-cont:hover.category-card__image-cont::after{
+    background-color: rgba(0,0,0,0.75);
+}
+
+.category-card h3 {
+    position: absolute;
+    pointer-events: none;
 }
 
 

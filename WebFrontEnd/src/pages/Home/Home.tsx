@@ -104,7 +104,9 @@ const Home = () => {
             <SlideShow images={slideShowImages}/>
             <div className={'pageContainer'}>
                 {memoizedData?.allProductsData &&
-                    <ItemSection heading={'All Products'} items={memoizedData.allProductsData} seeMore={{
+                    <ItemSection heading={'All Products'}
+                                 sorting={true}
+                                 items={memoizedData.allProductsData} seeMore={{
                         func: () => console.log('hello'),
                         img: {url: "https://picsum.photos/300/500", alt: "something something"}
                     }}/>}
