@@ -1,26 +1,2 @@
 
-.dropdown-container {
-    position: relative;
-    display: inline-block;
-}
-
-.dropdown-select {
-    appearance: none; /* Removes default styling of select */
-    background-color: var(--backGroundColorTwo);
-    color: #fff;
-    border: none;
-    padding: 10px 30px 10px 10px; /* Extra right padding for arrow */
-    border-radius: 4px;
-    font-size: 16px;
-    cursor: pointer;
-}
-
-.dropdown-container::after {
-    content: '▼'; /* Custom arrow */
-    position: absolute;
-    top: 50%;
-    right: 10px;
-    transform: translateY(-50%);
-    pointer-events: none; /* Makes the arrow non-interactive */
-}
 

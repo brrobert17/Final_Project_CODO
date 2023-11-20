@@ -5,7 +5,6 @@ import {Image as IImage} from "@interfaces";
 import type {ProductProps} from '@components/ProductCard'
 import type {CategoryProps} from '@components/CategoryCard'
 import CategoryCard from "@components/CategoryCard";
-import itemSection from "@components/ItemSection/index";
 import DropDown from "@components/DropDown";
 
 interface Props {
