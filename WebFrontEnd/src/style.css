@@ -22,7 +22,7 @@
     --colorSecondary: #FFDF01;
 
     --defaultMargin: 40px;
-    --pageMargin: 15em;
+    --pageMargin: 15vw;
     --borderRadiusSmall: 6px;
     --borderRadiusBig: var(--defaultMargin);
 }
@@ -32,24 +32,34 @@ body {
     color: white;
 }
 
-h1{
+h1 {
     font-size: var(--fontSize-extralarge);
 }
-h2{
+
+h2 {
     font-size: var(--fontSize-large);
 }
-h3{
+
+h3 {
     font-size: var(--fontSize-medium);
 }
-p{
+
+p {
     font-size: var(--fontSize-regular);
 }
+
+.image-cont--hover {
+    aspect-ratio: 1/1;
+    /* a make-shift solution */
+}
+
 .image-cont--hover img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     transition: 0.3s ease;
 }
-.image-cont--hover img:hover{
+
+.image-cont--hover img:hover {
     transform: scale(1.1);
 }

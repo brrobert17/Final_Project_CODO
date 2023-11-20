@@ -1,9 +1,13 @@
 .itemSectionContainer {
-    display: flex;
+    /* display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-between;
-    row-gap: calc(var(--defaultMargin)*2);
+    row-gap: calc(var(--defaultMargin)*2); */
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(17em, 1fr));
+    gap: 1em;
+    row-gap: 2em;
 }
 
 .itemSectionHeader {
@@ -13,11 +17,12 @@
     align-items: center;
     justify-content: space-between;
 }
+
 .itemSectionTitle h2 {
     margin-bottom: 0.2em;
 }
 
-.title--hover{
+.title--hover {
     transition: 0.2s ease;
     display: block;
     width: fit-content;
@@ -27,7 +32,8 @@
 .title--hover:hover {
     transform: scale(1.1);
 }
-.itemSectionTitle img{
+
+.itemSectionTitle img {
     height: 1em;
     margin-left: calc(var(--defaultMargin)/-2);
 }
