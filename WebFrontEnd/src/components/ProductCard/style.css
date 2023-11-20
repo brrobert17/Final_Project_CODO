@@ -1,18 +1,16 @@
-.productCardContainer * {
+.product-card__image-cont{
+    overflow: hidden;
+    width: 13em;
+    height: 13em;
+    border-radius: var(--borderRadiusSmall);
+}
+.product-card {
+cursor: pointer;
+}
+.product-card > *{
     margin-bottom: calc(var(--defaultMargin)/5);
 }
 
-.productCardContainer img {
-    max-width: 13em;
-}
-
-.productCardContainer h3{
-    transition: 0.2s ease;
-}
-
-.productCardContainer h3:hover {
-    transform: scale(1.1);
-}
-.productCardContainer p{
+.product-card p{
     color: var(--colorSecondary);
 }

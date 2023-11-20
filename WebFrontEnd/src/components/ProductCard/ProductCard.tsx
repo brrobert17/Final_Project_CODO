@@ -12,9 +12,11 @@ export interface Props {
 
 const ProductCard = (props: Props) => {
     return (
-        <div className={"productCardContainer"}>
-            <img src={props.img.url} alt={props.img.alt}/>
-            <h3>{props.name}</h3>
+        <div className={"product-card"}>
+            <div className={'product-card__image-cont image-cont--hover'}>
+                <img src={props.img.url} alt={props.img.alt}/>
+            </div>
+            <h3 className={'product-card__title title--hover'}>{props.name}</h3>
             <p>{props.price}</p>
         </div>
     )
