@@ -1,4 +1,4 @@
-import {Image as IImage} from '@interfaces';
+import { Image as IImage } from '@interfaces';
 import "./style.css";
 
 export interface Props {
@@ -9,7 +9,6 @@ export interface Props {
 
 
 const CategoryCard = (props: Props) => {
-    const maxItemsPerRow = props.bigVariant ? 2 : 3;
     // const itemWidth = (Dimensions.get('window').width / maxItemsPerRow) - (pageMargin * (1 + (1 / maxItemsPerRow)));
     //
     // return (
@@ -22,15 +21,15 @@ const CategoryCard = (props: Props) => {
     // )
     return (
         <div className="category-card">
-            <div className="category-card__inner">
+            <div className={`category-card__inner ${props.bigVariant && 'square'}`}>
                 <div className="category-card__image-cont image-cont--hover">
-                    <img src="https://picsum.photos/300/500" alt="something something"/>
+                    <img src={props.img.url} alt={props.img.alt} />
                 </div>
-                <h3>See More</h3>
+                <h3>{props.name}</h3>
             </div>
         </div>
 
-)
+    )
 }
 
 export default CategoryCard

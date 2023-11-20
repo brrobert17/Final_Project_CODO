@@ -5,13 +5,18 @@
 
 .category-card__inner {
     width: 100%;
-    aspect-ratio: 1/1;
+    height: 100%;
     overflow: hidden;
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: var(--borderRadiusSmall);
+}
+
+.category-card__inner.square {
+    height: auto;
+    aspect-ratio: 1/1;
 }
 
 .category-card img {

@@ -4,10 +4,11 @@
     position: relative;
     margin: 0 calc(var(--pageMargin) * 0.5);
     background-color: var(--backGroundColorTwo);
-    padding: 0 5em;
+    padding: 0 calc(var(--pageMargin) * 0.5);
     margin-top: 4rem;
     border-bottom-left-radius: var(--borderRadiusBig);
     border-bottom-right-radius: var(--borderRadiusBig);
+    margin-bottom: calc(var(--defaultMargin) * 3)
 }
 
 .blob__background {

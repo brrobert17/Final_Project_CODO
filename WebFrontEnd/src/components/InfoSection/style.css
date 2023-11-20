@@ -1,0 +1,12 @@
+.info__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--defaultMargin);
+}
+
+.info__categories-cont {
+    grid-area: 1 / 2 / 4 / 4;
+    margin-top: calc(var(--defaultMargin) * -1);
+    /*margin-bottom: calc(var(--defaultMargin) * -1);*/
+
+}

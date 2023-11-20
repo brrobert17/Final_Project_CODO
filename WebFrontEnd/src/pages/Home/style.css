@@ -1,9 +1,3 @@
 .pageContainer {
     margin: 0 var(--pageMargin);
 }
-
-.info__grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--defaultMargin);
-}

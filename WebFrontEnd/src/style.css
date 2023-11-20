@@ -63,3 +63,14 @@ p {
 .image-cont--hover img:hover {
     transform: scale(1.1);
 }
+
+.title--hover {
+    transition: 0.2s ease;
+    display: block;
+    width: fit-content;
+    cursor: pointer;
+}
+
+.title--hover:hover {
+    transform: scale(1.1);
+}
