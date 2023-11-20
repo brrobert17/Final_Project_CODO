@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 import './style.css';
-import backgroundSvg from "@assets/blob-section-background.svg";
+import backgroundSvg from "@assets/blob-wave-top-2.svg";
 
 interface Props {
     children: ReactNode
@@ -11,7 +11,7 @@ const Blob = (props: Props) => {
         <div className='blob'>
             <img className='blob__background' src={backgroundSvg} alt={backgroundSvg} />
             <div className='blob__children-cont'>
-            {props.children}
+                {props.children}
             </div>
         </div>
     )

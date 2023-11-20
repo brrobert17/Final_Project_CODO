@@ -5,9 +5,7 @@ import { QueryParam } from "@interfaces";
 import { useItemsCore } from "@dbConn/hooks/UseItems";
 import { useMemo } from "react";
 import SlideShow from "../../components/SlideShow"
-import Blob from "components/Blob";
-import Search from "components/Search";
-import Heading from "components/Heading";
+import InfoSection from "components/InfoSection";
 
 const navigationPages = [
   {
@@ -107,20 +105,7 @@ const Home = () => {
     <>
       <NavBar pages={navigationPages} loginUrl={"/login"} shoppingCartUrl={"/cart"} />
       <SlideShow images={slideShowImages} />
-      <Blob>
-        <div className="info__grid">
-          <div>
-            <Heading text="Know what you looking for?" />
-            <Search fishIcon />
-          </div>
-          <div>
-
-          </div>
-          <div style={{ gridRow: '1/3', gridColumn: '2/3', backgroundColor: "blue" }}>
-
-          </div>
-        </div>
-      </Blob>
+      <InfoSection />
       <div className={'pageContainer'}>
         <ItemSection />
       </div>
