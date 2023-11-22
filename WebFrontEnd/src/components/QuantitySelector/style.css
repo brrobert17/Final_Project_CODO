@@ -1,0 +1,53 @@
+.quantity-selector {
+    width: 11.5em;
+    height: 3em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 6px;
+    background-color: var(--backGroundColorTwo);
+}
+.quantity-selector--number-input{
+    display: flex;
+}
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+.quantity-selector input{
+    text-align: right;
+    color: white;
+    background: none;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    padding-right: 0.2em;
+}
+.quantity-selector p, input{
+    width: 3em;
+}
+.quantity-selector--button, .quantity-selector--number-input {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.quantity-selector--number-input{
+
+}
+
+.quantity-selector--separator img {
+    height: 2em;
+    width: 2px;
+}
+.quantity-selector--button{
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+.quantity-selector--button:hover rect{
+    fill: var(--colorPrimary);
+}
