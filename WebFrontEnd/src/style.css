@@ -44,3 +44,20 @@ h3{
 p{
     font-size: var(--fontSize-regular);
 }
+
+.slide__arrow {
+    fill: white;
+}
+
+.slide__arrow {
+    cursor: pointer;
+    transition: 200ms ease-out;
+}
+
+.slide__arrow:hover {
+    transform: scale(1.2);
+}
+
+.slide__arrow.disabled {
+    opacity: 0.1;
+}
