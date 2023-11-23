@@ -3,6 +3,7 @@ import Home from './pages/Home';
 import "./style.css";
 import { QueryClient, QueryClientProvider } from "react-query";
 import ImageSlider from 'components/ImageSlider';
+import ScrollTopBtn from 'components/ScrollTopBtn';
 
 const queryClient = new QueryClient();
 
@@ -14,7 +15,7 @@ function App() {
                 <Routes>
                     <Route path='/' element={<Home />} />
                     <Route path='/home' element={<Home />} />
-                    <Route path='/image-slider' element={<div style={{ width: '40vw', height: '10vw' }}><ImageSlider onClick={(img) => console.log(img)}/></div>} />
+                    <Route path='/image-slider' element={<><div style={{ width: '40vw', height: '10vw' }}><ImageSlider onClick={(img) => console.log(img)} /></div><ScrollTopBtn /></>} />
                 </Routes>
             </Router>
         </QueryClientProvider>
