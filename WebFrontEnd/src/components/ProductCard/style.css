@@ -1,7 +1,5 @@
 .product-card__image-cont{
     overflow: hidden;
-    width: 13em;
-    height: 13em;
     border-radius: var(--borderRadiusSmall);
 }
 .product-card {

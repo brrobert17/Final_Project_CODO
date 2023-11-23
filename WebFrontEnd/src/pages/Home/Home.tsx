@@ -39,30 +39,30 @@ export const navigationPages = [
         name: "Info",
         path: "/",
 
-    },
-    {
-        name: "Contact",
-        path: "/",
+  },
+  {
+    name: "Contact",
+    path: "/",
 
-    }
+  }
 ]
 const slideShowImages = [
-    {
-        url: "https://picsum.photos/1440/420",
-        alt: "random image"
-    },
-    {
-        url: "https://picsum.photos/1441/420",
-        alt: "random image"
-    },
-    {
-        url: "https://picsum.photos/1440/421",
-        alt: "random image"
-    },
-    {
-        url: "https://picsum.photos/1441/421",
-        alt: "random image"
-    }
+  {
+    url: "https://picsum.photos/1440/420",
+    alt: "random image"
+  },
+  {
+    url: "https://picsum.photos/1441/420",
+    alt: "random image"
+  },
+  {
+    url: "https://picsum.photos/1440/421",
+    alt: "random image"
+  },
+  {
+    url: "https://picsum.photos/1441/421",
+    alt: "random image"
+  }
 ]
 
 interface Props {
@@ -70,26 +70,26 @@ interface Props {
 }
 
 const params: QueryParam[] = [
-    {queryKey: 'allProducts', limit: 7},
-    {queryKey: 'fish', category: 'fish', limit: 3},
-    {queryKey: 'coral', category: 'coral', limit: 3},
-    {queryKey: 'invertebrate', category: 'invertebrate', limit: 3},
+  { queryKey: 'allProducts', limit: 7 },
+  { queryKey: 'fish', category: 'fish', limit: 3 },
+  { queryKey: 'coral', category: 'coral', limit: 3 },
+  { queryKey: 'invertebrate', category: 'invertebrate', limit: 3 },
 ];
 
 const Home = () => {
 
-    const {data, error, isLoading} = useItemsCore(params);
+  const { data, error, isLoading } = useItemsCore(params);
 
-    const memoizedData = useMemo(() => {
-        if (!data) return;
+  const memoizedData = useMemo(() => {
+    if (!data) return;
 
-        const allProductsData = data.find(d => d.queryKey === 'allProducts')?.result;
-        const fishData = data.find(d => d.queryKey === 'fish')?.result;
-        const coralData = data.find(d => d.queryKey === 'coral')?.result;
-        const invertebrateData = data.find(d => d.queryKey === 'invertebrate')?.result;
+    const allProductsData = data.find(d => d.queryKey === 'allProducts')?.result;
+    const fishData = data.find(d => d.queryKey === 'fish')?.result;
+    const coralData = data.find(d => d.queryKey === 'coral')?.result;
+    const invertebrateData = data.find(d => d.queryKey === 'invertebrate')?.result;
 
-        return {allProductsData, fishData, coralData, invertebrateData};
-    }, [data]);
+    return { allProductsData, fishData, coralData, invertebrateData };
+  }, [data]);
 
     if (isLoading) {
         console.log('loading');
