@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import Product from "./pages/Product";
 import Products from "./pages/Products";
 import ImageSlider from 'components/ImageSlider';
+import ScrollTopBtn from 'components/ScrollTopBtn';
 
 const queryClient = new QueryClient();
 
