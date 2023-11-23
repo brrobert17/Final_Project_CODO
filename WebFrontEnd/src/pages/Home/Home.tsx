@@ -7,7 +7,7 @@ import {useMemo, useState} from "react";
 import SlideShow from "../../components/SlideShow"
 import QuantitySelector from "@components/QuantitySelector";
 
-const navigationPages = [
+export const navigationPages = [
     {
         name: "Home",
         path: "/",
@@ -15,7 +15,7 @@ const navigationPages = [
     },
     {
         name: "All Products",
-        path: "/",
+        path: "/products",
         subMenu: [
             {
                 name: "Corals",

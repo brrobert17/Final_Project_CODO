@@ -41,8 +41,10 @@ itemsRouter.post('/items', async (req, res) => {
             items.push(req.body.items);
             items = items.flat();
         }
+
         const responseMessages: string[] = [];
         const updatedTagsRefs = [];
+
         for (const item of items) {
             //creating document
             const uniqueId = await createUniqueDocument('items');

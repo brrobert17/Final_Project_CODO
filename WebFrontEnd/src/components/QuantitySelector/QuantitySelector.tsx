@@ -38,7 +38,7 @@ export const QuantitySelector = (props: Props) => {
             <div className="quantity-selector--button" onClick={() => {
                 props.quantity + 1 < 10000 && props.setQuantity(props.quantity + 1)
             }}>
-                <svg width="10" height="11" viewBox="0 0 10 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <svg width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <rect y="4" width="10" height="2" rx="1" fill="#fff"/>
                     <rect x="4" y="10" width="10" height="2" rx="1" transform="rotate(-90 4 10)" fill="#fff"/>
                 </svg>

@@ -1,5 +1,6 @@
-import { doc, getDoc } from "firebase/firestore";
+import {collection} from "@firebase/firestore";
 import {db} from "./firebaseConfig";
+import {getDocs} from "firebase/firestore";
 
 export const generateRandomId = (): string => {
     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -16,5 +17,21 @@ export const giveCurrentDateTime = () => {
     const time = today.toLocaleTimeString();
     return date + '-' + time;
 };
+
+// for (let i = 0; i < 20; i++) {
+//     console.log(generateRandomId());
+// }
+
+export const allCategoriesIds = async ()=> {
+    const ref = collection(db, 'categories');
+    const s= await getDocs(ref);
+    const categories = s.docs.map(doc=> {
+        return {
+            id: doc.id,
+            data: doc.data()
+        }
+    })
+    console.log(categories);
+}
 
 
