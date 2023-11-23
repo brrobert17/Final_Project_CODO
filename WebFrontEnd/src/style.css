@@ -74,3 +74,20 @@ p {
 .title--hover:hover {
     transform: scale(1.1);
 }
+
+.slide__arrow {
+    fill: white;
+}
+
+.slide__arrow {
+    cursor: pointer;
+    transition: 200ms ease-out;
+}
+
+.slide__arrow:hover {
+    transform: scale(1.2);
+}
+
+.slide__arrow.disabled {
+    opacity: 0.1;
+}

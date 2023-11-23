@@ -1,9 +1,10 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './pages/Home';
 import "./style.css";
-import {QueryClient, QueryClientProvider} from "react-query";
+import { QueryClient, QueryClientProvider } from "react-query";
 import Product from "./pages/Product";
 import Products from "./pages/Products";
+import ImageSlider from 'components/ImageSlider';
 
 const queryClient = new QueryClient();
 

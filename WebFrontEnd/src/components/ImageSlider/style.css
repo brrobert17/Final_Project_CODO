@@ -1,0 +1,34 @@
+.slider {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+}
+
+.slider__item {
+    min-width: 10rem;
+    min-height: 10rem;
+    padding: calc(var(--defaultMargin) / 2);
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.slider__item:hover {
+    transform: scale(1.1);
+}
+
+.slider__item img {
+    width: 100%;
+    height: 100%;
+    border-radius: var(--borderRadiusSmall);
+    pointer-events: none;
+}
+
+.slider__inner {
+    display: flex;
+}
+
+.slider__carousel {
+    cursor: grab;
+    overflow: hidden;
+}
