@@ -18,20 +18,5 @@ export const giveCurrentDateTime = () => {
     return date + '-' + time;
 };
 
-// for (let i = 0; i < 20; i++) {
-//     console.log(generateRandomId());
-// }
-
-export const allCategoriesIds = async ()=> {
-    const ref = collection(db, 'categories');
-    const s= await getDocs(ref);
-    const categories = s.docs.map(doc=> {
-        return {
-            id: doc.id,
-            data: doc.data()
-        }
-    })
-    console.log(categories);
-}
 
 
