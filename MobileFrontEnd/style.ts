@@ -32,5 +32,11 @@ export default StyleSheet.create({
         color: '#fff',
         fontFamily: 'Inter_600SemiBold',
         fontSize: 25
-    }
+    },
+    h1Xl: {
+        color: '#fff',
+        fontFamily: 'Inter_600SemiBold',
+        fontSize: 39
+    },
+
 });
