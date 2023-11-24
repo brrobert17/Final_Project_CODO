@@ -1,3 +1,4 @@
+import BtnIsland from '@components/BtnIsland';
 import ImageSlider from '@components/ImageSlider/ImageSlider';
 import { SafeAreaView, View } from 'react-native';
 
@@ -34,9 +35,12 @@ const sliderImages = [
 
 const ProductDetail = () => {
     return (
-        <SafeAreaView>
-            <ImageSlider images={sliderImages} />
-        </SafeAreaView>
+        <>
+            <SafeAreaView>
+                <ImageSlider images={sliderImages} />
+            </SafeAreaView>
+            <BtnIsland price='500' />
+        </>
     )
 }
 
