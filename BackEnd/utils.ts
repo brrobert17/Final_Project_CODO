@@ -1,6 +1,6 @@
 import {collection} from "@firebase/firestore";
 import {db} from "./firebaseConfig";
-import {getDocs} from "firebase/firestore";
+import {doc, getDoc, getDocs} from "firebase/firestore";
 
 export const generateRandomId = (): string => {
     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -16,6 +16,18 @@ export const giveCurrentDateTime = () => {
     const date = today.toLocaleDateString("se");
     const time = today.toLocaleTimeString();
     return date + '-' + time;
+};
+export const createUniqueDocument = async (collectionPath: string): Promise<string> => {
+    let uniqueId = generateRandomId();
+    let docRef = doc(db, collectionPath, uniqueId);
+    let docSnap = await getDoc(docRef);
+
+    while (docSnap.exists()) {
+        uniqueId = generateRandomId();
+        docRef = doc(db, collectionPath, uniqueId);
+        docSnap = await getDoc(docRef);
+    }
+    return uniqueId;
 };
 
 

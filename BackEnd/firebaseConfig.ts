@@ -2,7 +2,7 @@ import { initializeApp } from "firebase/app";
 import {collection, getFirestore, FirestoreDataConverter, QueryDocumentSnapshot, SnapshotOptions, DocumentData} from "@firebase/firestore";
 import {getStorage} from "firebase/storage";
 import {getAuth} from "firebase/auth"
-import {Item, ItemCore, TagOut} from "../MobileFrontEnd/utils/interfaces";
+import {Category, Item, ItemCore, Tag} from "../MobileFrontEnd/utils/interfaces";
 import {it} from "node:test";
 
 const firebaseConfig = {
@@ -61,17 +61,34 @@ const itemsCoreConverter: FirestoreDataConverter<ItemCore> = {
     }
 };
 
-const tagsConverter: FirestoreDataConverter<TagOut> = {
-    fromFirestore(snapshot: QueryDocumentSnapshot, options?: SnapshotOptions): TagOut {
+const tagsConverter: FirestoreDataConverter<Tag> = {
+    fromFirestore(snapshot: QueryDocumentSnapshot, options?: SnapshotOptions): Tag {
         const data = snapshot.data(options);
         return {
             id: snapshot.id,
             items: data.items
         };
     },
-    toFirestore(tagging: TagOut): DocumentData {
+    toFirestore(tagging: Tag): DocumentData {
         return {
             items: tagging.items
+        };
+    }
+};
+
+const categoriesConverter: FirestoreDataConverter<Category> = {
+    fromFirestore(snapshot: QueryDocumentSnapshot, options?: SnapshotOptions): Category {
+        const data = snapshot.data(options);
+        return {
+            id: snapshot.id,
+            name: data.name,
+            path: data.path
+        };
+    },
+    toFirestore(category: Category): DocumentData {
+        return {
+            name: category.name,
+            path: category.path
         };
     }
 };
@@ -85,6 +102,7 @@ export const itemsCollection = collection(db, 'items');
 export const converterTagsCollection = collection(db, 'tags').withConverter(tagsConverter);
 export const tagsCollection = collection(db, 'tags');
 export const categoriesCollection = collection(db, 'categories');
+export const converterCategoriesCollection = collection(db, 'categories').withConverter(categoriesConverter);
 export const storage = getStorage(app);
 export const auth = getAuth();
 
