@@ -84,6 +84,7 @@ export const converterItemsCoreCollection = collection(db, 'items').withConverte
 export const itemsCollection = collection(db, 'items');
 export const converterTagsCollection = collection(db, 'tags').withConverter(tagsConverter);
 export const tagsCollection = collection(db, 'tags');
+export const categoriesCollection = collection(db, 'categories');
 export const storage = getStorage(app);
 export const auth = getAuth();
 

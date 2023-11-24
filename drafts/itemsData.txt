@@ -3,12 +3,12 @@
     {
       "name": "Fish1",
       "price": 100,
-      "category": "fish",
+      "category": "xfUmfF",
       "img": [
         {"url": "https://picsum.photos/250", "alt": "fish1 image1"},
         {"url": "https://picsum.photos/251", "alt": "fish1 image2"}
       ],
-      "tags": ["fish", "tropical", "peaceful"],
+      "tags": ["tropical", "peaceful"],
       "stock": 1,
       "description": "A peaceful tropical fish",
       "wysiwyg": true
@@ -16,12 +16,12 @@
     {
       "name": "Fish2",
       "price": 120,
-      "category": "fish",
+      "category": "tSYIu8",
       "img": [
         {"url": "https://picsum.photos/252", "alt": "fish2 image1"},
         {"url": "https://picsum.photos/253", "alt": "fish2 image2"}
       ],
-      "tags": ["fish", "saltwater", "colorful"],
+      "tags": ["saltwater", "colorful"],
       "stock": 15,
       "description": "A colorful saltwater fish",
       "wysiwyg": false
@@ -29,12 +29,12 @@
     {
       "name": "Fish3",
       "price": 110,
-      "category": "fish",
+      "category": "SV5Ha0",
       "img": [
         {"url": "https://picsum.photos/254", "alt": "fish3 image1"},
         {"url": "https://picsum.photos/255", "alt": "fish3 image2"}
       ],
-      "tags": ["fish", "freshwater", "small"],
+      "tags": ["freshwater", "small"],
       "stock": 20,
       "description": "A small freshwater fish",
       "wysiwyg": false
@@ -42,12 +42,12 @@
     {
       "name": "Fish4",
       "price": 130,
-      "category": "fish",
+      "category": "OaZfMH",
       "img": [
         {"url": "https://picsum.photos/256", "alt": "fish4 image1"},
         {"url": "https://picsum.photos/257", "alt": "fish4 image2"}
       ],
-      "tags": ["fish", "reef-safe", "bright"],
+      "tags": ["reef-safe", "bright"],
       "stock": 1,
       "description": "A bright, reef-safe fish",
       "wysiwyg": true
@@ -55,12 +55,12 @@
     {
       "name": "Fish5",
       "price": 115,
-      "category": "fish",
+      "category": "OaZfMH",
       "img": [
         {"url": "https://picsum.photos/258", "alt": "fish5 image1"},
         {"url": "https://picsum.photos/259", "alt": "fish5 image2"}
       ],
-      "tags": ["fish", "coldwater", "large"],
+      "tags": ["coldwater", "large"],
       "stock": 12,
       "description": "A large coldwater fish",
       "wysiwyg": false
@@ -68,12 +68,12 @@
     {
       "name": "Coral1",
       "price": 50,
-      "category": "coral",
+      "category": "ED0C28",
       "img": [
         {"url": "https://picsum.photos/260", "alt": "coral1 image1"},
         {"url": "https://picsum.photos/261", "alt": "coral1 image2"}
       ],
-      "tags": ["coral", "colorful", "reef-safe"],
+      "tags": ["colorful", "reef-safe"],
       "stock": 1,
       "description": "A colorful reef-safe coral",
       "wysiwyg": true
@@ -81,12 +81,12 @@
     {
       "name": "Coral2",
       "price": 60,
-      "category": "coral",
+      "category": "ED0C28",
       "img": [
         {"url": "https://picsum.photos/262", "alt": "coral2 image1"},
         {"url": "https://picsum.photos/263", "alt": "coral2 image2"}
       ],
-      "tags": ["coral", "stony", "hardy"],
+      "tags": ["stony", "hardy"],
       "stock": 1,
       "description": "A hardy stony coral",
       "wysiwyg": true
@@ -94,12 +94,12 @@
     {
       "name": "Coral3",
       "price": 55,
-      "category": "coral",
+      "category": "SE4bVC",
       "img": [
         {"url": "https://picsum.photos/264", "alt": "coral3 image1"},
         {"url": "https://picsum.photos/265", "alt": "coral3 image2"}
       ],
-      "tags": ["coral", "soft", "fringed"],
+      "tags": ["soft", "fringed"],
       "stock": 1,
       "description": "A fringed soft coral",
       "wysiwyg": true
@@ -107,12 +107,12 @@
     {
       "name": "Coral4",
       "price": 70,
-      "category": "coral",
+      "category": "mQFgQO",
       "img": [
         {"url": "https://picsum.photos/266", "alt": "coral4 image1"},
         {"url": "https://picsum.photos/267", "alt": "coral4 image2"}
       ],
-      "tags": ["coral", "bubble-tip", "anemone"],
+      "tags": ["bubble-tip", "anemone"],
       "stock": 1,
       "description": "A bubble-tip anemone coral",
       "wysiwyg": true
@@ -120,12 +120,12 @@
     {
       "name": "Coral5",
       "price": 45,
-      "category": "coral",
+      "category": "mQFgQO",
       "img": [
         {"url": "https://picsum.photos/268", "alt": "coral5 image1"},
         {"url": "https://picsum.photos/269", "alt": "coral5 image2"}
       ],
-      "tags": ["coral", "branching", "vibrant"],
+      "tags": ["branching", "vibrant"],
       "stock": 1,
       "description": "A vibrant branching coral",
       "wysiwyg": true
@@ -133,12 +133,12 @@
     {
       "name": "Invertebrate1",
       "price": 40,
-      "category": "invertebrate",
+      "category": "aRu8ro",
       "img": [
         {"url": "https://picsum.photos/270", "alt": "invertebrate1 image1"},
         {"url": "https://picsum.photos/271", "alt": "invertebrate1 image2"}
       ],
-      "tags": ["invertebrate", "crustacean", "colorful"],
+      "tags": ["crustacean", "colorful"],
       "stock": 1,
       "description": "A colorful crustacean invertebrate",
       "wysiwyg": true
@@ -146,12 +146,12 @@
     {
       "name": "Invertebrate2",
       "price": 35,
-      "category": "invertebrate",
+      "category": "aRu8ro",
       "img": [
         {"url": "https://picsum.photos/272", "alt": "invertebrate2 image1"},
         {"url": "https://picsum.photos/273", "alt": "invertebrate2 image2"}
       ],
-      "tags": ["invertebrate", "anemone", "marine"],
+      "tags": ["anemone", "marine"],
       "stock": 1,
       "description": "A marine anemone invertebrate",
       "wysiwyg": false
@@ -159,12 +159,12 @@
     {
       "name": "Invertebrate3",
       "price": 48,
-      "category": "invertebrate",
+      "category": "aRu8ro",
       "img": [
         {"url": "https://picsum.photos/274", "alt": "invertebrate3 image1"},
         {"url": "https://picsum.photos/275", "alt": "invertebrate3 image2"}
       ],
-      "tags": ["invertebrate", "jellyfish", "transparent"],
+      "tags": ["jellyfish", "transparent"],
       "stock": 1,
       "description": "A transparent jellyfish invertebrate",
       "wysiwyg": false
@@ -172,12 +172,12 @@
     {
       "name": "Invertebrate4",
       "price": 55,
-      "category": "invertebrate",
+      "category": "aRu8ro",
       "img": [
         {"url": "https://picsum.photos/276", "alt": "invertebrate4 image1"},
         {"url": "https://picsum.photos/277", "alt": "invertebrate4 image2"}
       ],
-      "tags": ["invertebrate", "starfish", "regenerating"],
+      "tags": ["starfish", "regenerating"],
       "stock": 1,
       "description": "A regenerating starfish invertebrate",
       "wysiwyg": true
@@ -185,12 +185,12 @@
     {
       "name": "Invertebrate5",
       "price": 42,
-      "category": "invertebrate",
+      "category": "aRu8ro",
       "img": [
         {"url": "https://picsum.photos/278", "alt": "invertebrate5 image1"},
         {"url": "https://picsum.photos/279", "alt": "invertebrate5 image2"}
       ],
-      "tags": ["invertebrate", "slug", "colorful"],
+      "tags": ["slug", "colorful"],
       "stock": 1,
       "description": "A colorful slug invertebrate",
       "wysiwyg": false
@@ -198,4 +198,3 @@
   ]
 }
 
-{
