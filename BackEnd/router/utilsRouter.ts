@@ -6,9 +6,9 @@ import express from "express";
 export const utilsRouter = express.Router();
 //getting an item's path
 //getting a category's path is basically the same
-utilsRouter.get("/catsids", async(req,res)=>{
+utilsRouter.get("/catsids", async (req, res) => {
     const snap = await getDocs(categoriesCollection);
-    const data = snap.docs.map(doc=> {
+    const data = snap.docs.map(doc => {
         return {
             id: doc.id,
             name: doc.data().name,
@@ -16,7 +16,7 @@ utilsRouter.get("/catsids", async(req,res)=>{
     })
     res.send(data);
 });
-utilsRouter.get("/path2", async(req,res)=>{
+utilsRouter.get("/path2", async (req, res) => {
 
     const itemS = await getDoc(doc(itemsCollection, '3i8Zb2'));
     const category = itemS.data()?.category;
@@ -27,9 +27,9 @@ utilsRouter.get("/path2", async(req,res)=>{
     const pathData = s.data()?.path;
     const pathMap = new Map(Object.entries(pathData));
     console.log(pathMap);
-    const pathNames:string[] = [];
+    const pathNames: string[] = [];
 
-    for (const [key,value] of pathMap) {
+    for (const [key, value] of pathMap) {
         console.log(value);
         const pDocRef = doc(catRef, value as string);
         const pSnap = await getDoc(pDocRef);
@@ -39,21 +39,21 @@ utilsRouter.get("/path2", async(req,res)=>{
 });
 
 //getting a category's direct descendants
-utilsRouter.get("/path/cat", async(req,res)=>{
-    const categoryId= 'Q0i1y5';
+utilsRouter.get("/path/cat", async (req, res) => {
+    const categoryId = 'Q0i1y5';
     const catRef = collection(db, 'cat');
     const docRef = doc(catRef, categoryId);
     const s = await getDoc(docRef);
     const pathData = s.data()?.path;
     const pathMap = new Map(Object.entries(pathData));
     const level = pathMap.size;
-    console.log('level: ',level);
-    const subCats:string[] = [];
+    console.log('level: ', level);
+    const subCats: string[] = [];
 
     const querySnapshot = await getDocs(query(catRef, where(`path.${level}`, "==", categoryId)));
-    querySnapshot.docs.map((doc)=>{
+    querySnapshot.docs.map((doc) => {
         const pathMap2 = new Map(Object.entries(doc.data()?.path));
-        pathMap2.size === level+1 && subCats.push(doc.data().name);
+        pathMap2.size === level + 1 && subCats.push(doc.data().name);
     });
     console.log(subCats);
     res.send(subCats);
@@ -62,30 +62,14 @@ utilsRouter.get("/path/cat", async(req,res)=>{
 //Q0i1y5 fishes
 // 1. get all subcategories 2. query all items where category in gathered subcategory array
 
-utilsRouter.get("/allincat", async(req,res)=>{
-    const categoryId= 'Q0i1y5';
-    const catRef = collection(db, 'cat');
-    const docRef = doc(catRef, categoryId);
-    const s = await getDoc(docRef);
-    const pathData = s.data()?.path;
-    const pathMap = new Map(Object.entries(pathData));
-    const level = pathMap.size;
-    console.log('level: ',level);
-    const subCatsIds:string[] = [categoryId];
-
-    const querySnapshot = await getDocs(query(catRef, where(`path.${level}`, "==", categoryId)));
-    querySnapshot.docs.map((doc)=>{
-        const pathMap2 = new Map(Object.entries(doc.data()?.path));
-        subCatsIds.push(doc.id);
-    });
-
-    console.log(subCatsIds);
+utilsRouter.get("/allincat", async (req, res) => {
+    const subCatsIds = getAllSubCategories('Q0i1y5');
     const qSItems = await getDocs(query(itemsCollection, where('category', 'in', subCatsIds)));
     const items = qSItems.docs.map(doc => doc.data());
     res.send(items);
 })
 
-utilsRouter.get("/tags", async(req,res)=>{
+utilsRouter.get("/tags", async (req, res) => {
     const qs = await getDoc(doc(tagsCollection, 'fish'));
     const itemIds = qs.data()?.items;
     const items = [];
@@ -93,7 +77,7 @@ utilsRouter.get("/tags", async(req,res)=>{
 
     for (let i = 0; i < itemIds.length; i += batchSize) {
         const batch = itemIds.slice(i, i + batchSize);
-        const promises = batch.map((id:string) => getDoc(doc(itemsCollection, id)));
+        const promises = batch.map((id: string) => getDoc(doc(itemsCollection, id)));
         const snapshots = await Promise.all(promises);
         for (const snap of snapshots) {
             if (snap.exists()) {
@@ -137,7 +121,7 @@ utilsRouter.get("/cat", async (req, res) => {
         const docData = doc.data();
 
         const ancestorsMap =
-            docData.ancestors && new Map(docData.ancestors.map((ancestor:string, index:number) => [index, ancestor]));
+            docData.ancestors && new Map(docData.ancestors.map((ancestor: string, index: number) => [index, ancestor]));
         const ancestorsObject = ancestorsMap && Object.fromEntries(ancestorsMap);
 
         return {
@@ -162,3 +146,22 @@ utilsRouter.get("/cat", async (req, res) => {
         res.status(500).send(error);
     }
 });
+
+export const getAllSubCategories = async (categoryId: string) => {
+    const docRef = doc(categoriesCollection, categoryId);
+    const s = await getDoc(docRef);
+    const pathData = s.data()?.path;
+    const pathMap = new Map(Object.entries(pathData));
+    const level = pathMap.size;
+    console.log('level: ', level);
+    const subCatsIds: string[] = [categoryId];
+
+    const querySnapshot = await getDocs(query(categoriesCollection, where(`path.${level}`, "==", categoryId)));
+    querySnapshot.docs.map((doc) => {
+        const pathMap2 = new Map(Object.entries(doc.data()?.path));
+        subCatsIds.push(doc.id);
+    });
+
+    console.log(subCatsIds);
+    return(subCatsIds);
+}

@@ -71,9 +71,9 @@ interface Props {
 
 const params: QueryParam[] = [
     {queryKey: 'allProducts', limit: 7},
-    {queryKey: 'fish', category: 'fish', limit: 3},
-    {queryKey: 'coral', category: 'coral', limit: 3},
-    {queryKey: 'invertebrate', category: 'invertebrate', limit: 3},
+    {queryKey: 'fish', category: 'fishes', limit: 3},
+    {queryKey: 'coral', category: 'corals', limit: 3},
+    {queryKey: 'invertebrate', category: 'invertebrates', limit: 3},
 ];
 
 const Home = () => {
@@ -82,13 +82,12 @@ const Home = () => {
 
     const memoizedData = useMemo(() => {
         if (!data) return;
-
         const allProductsData = data.find(d => d.queryKey === 'allProducts')?.result;
         const fishData = data.find(d => d.queryKey === 'fish')?.result;
-        const coralData = data.find(d => d.queryKey === 'coral')?.result;
-        const invertebrateData = data.find(d => d.queryKey === 'invertebrate')?.result;
+        // const coralData = data.find(d => d.queryKey === 'coral')?.result;
+        // const invertebrateData = data.find(d => d.queryKey === 'invertebrate')?.result;
 
-        return {allProductsData, fishData, coralData, invertebrateData};
+        return {allProductsData, fishData};
     }, [data]);
 
     if (isLoading) {
@@ -110,6 +109,13 @@ const Home = () => {
                     <ItemSection heading={'All Products'}
                                  sorting={true}
                                  items={memoizedData.allProductsData} seeMore={{
+                        func: () => console.log('hello'),
+                        img: {url: "https://picsum.photos/300/500", alt: "something something"}
+                    }}/>}
+                {memoizedData?.fishData &&
+                    <ItemSection heading={'Fish'}
+                                 sorting={true}
+                                 items={memoizedData.fishData} seeMore={{
                         func: () => console.log('hello'),
                         img: {url: "https://picsum.photos/300/500", alt: "something something"}
                     }}/>}
