@@ -5,7 +5,6 @@ import {QueryParam} from "@interfaces";
 import {useItemsCore} from "@dbConn/hooks/UseItems";
 import {useMemo, useState} from "react";
 import SlideShow from "../../components/SlideShow"
-import QuantitySelector from "@components/QuantitySelector";
 
 export const navigationPages = [
     {
@@ -97,12 +96,10 @@ const Home = () => {
     } else {
         console.log('success', memoizedData?.fishData);
     }
-    const [quantity, setQuantity] = useState(1);
-    console.log('Quantity: ', quantity);
+
     return (
         <>
             <NavBar pages={navigationPages} loginUrl={"/login"} shoppingCartUrl={"/cart"}/>
-            <QuantitySelector setQuantity={setQuantity} quantity={quantity}/>
             <SlideShow images={slideShowImages}/>
             <div className={'pageContainer'}>
                 {memoizedData?.allProductsData &&
