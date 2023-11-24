@@ -1,14 +1,14 @@
 import express from "express";
-import {fetchCollection} from "../middleware";
+import { fetchCollection } from "../middleware";
 import {
     converterItemsCollection,
     converterItemsCoreCollection, converterTagsCollection, db,
     itemsCollection,
     tagsCollection
 } from "../firebaseConfig";
-import {doc, getDoc, getDocs, query, setDoc, updateDoc, where, deleteDoc, orderBy, limit} from "firebase/firestore";
-import {collection} from "@firebase/firestore";
-import {generateRandomId} from "../utils";
+import { doc, getDoc, getDocs, query, setDoc, updateDoc, where, deleteDoc, orderBy, limit } from "firebase/firestore";
+import { collection } from "@firebase/firestore";
+import { generateRandomId } from "../utils";
 
 export const itemsRouter = express.Router();
 
@@ -16,7 +16,7 @@ itemsRouter.get('/items', fetchCollection(converterItemsCollection));
 
 itemsRouter.get('/items/cores', fetchCollection(converterItemsCoreCollection));
 
-itemsRouter.get('/items1', async(req, res)=> {
+itemsRouter.get('/items1', async (req, res) => {
     const ref = query(itemsCollection, orderBy('added', 'asc'), limit(3));
     const ref2 = query(itemsCollection, orderBy('added', 'asc'), where('category', '==', 'fish'), limit(3));
     const ref3 = query(itemsCollection, orderBy('added', 'asc'), where('category', '==', 'coral'), limit(3));
@@ -29,7 +29,25 @@ itemsRouter.get('/items1', async(req, res)=> {
     const items2 = s2.docs.map(doc => doc.data());
     const items3 = s3.docs.map(doc => doc.data());
 
-    res.send({items, items2, items3});
+    res.send({ items, items2, items3 });
+})
+
+itemsRouter.get('/items/:id', async (req, res) => {
+    const productId = req.params.id;
+
+    try {
+        const docRef = doc(itemsCollection, productId);
+        const docSnap = await getDoc(docRef);
+
+        if (!docSnap.exists()) {
+            res.status(404).json({ message: 'Product not found' });
+        } else {
+            res.status(200).json(docSnap.data());
+        }
+    } catch (error) {
+        res.status(500).json({ error: error });
+    }
+
 })
 
 itemsRouter.post('/items', async (req, res) => {
@@ -49,7 +67,7 @@ itemsRouter.post('/items', async (req, res) => {
             //creating document
             const uniqueId = await createUniqueDocument('items');
             const itemRef = doc(converterItemsCollection, uniqueId);
-            const newDoc = await setDoc(itemRef, {...item, added: new Date()});
+            const newDoc = await setDoc(itemRef, { ...item, added: new Date() });
             //tag-indexing
             for (const tagName of item.tags) {
                 const tagRef = doc(converterTagsCollection, tagName);
@@ -57,7 +75,7 @@ itemsRouter.post('/items', async (req, res) => {
                 if (!querySnapshot.exists()) {
                     console.log("creating new tag")
                     const newTagDocRef = doc(tagsCollection, tagName);
-                    await setDoc(newTagDocRef, {items: [uniqueId]});
+                    await setDoc(newTagDocRef, { items: [uniqueId] });
                     responseMessages.push(`new tag: ${tagName}`);
                 } else {
                     console.log("existing tag")
@@ -73,13 +91,13 @@ itemsRouter.post('/items', async (req, res) => {
         }
         for (const tagRef of updatedTagsRefs) {
             const tagDoc = await getDoc(tagRef);
-            if(tagDoc.exists()) {
+            if (tagDoc.exists()) {
                 let itemsArray = tagDoc.data().items;
                 itemsArray = Array.from(new Set(itemsArray));
-                await updateDoc(tagRef, {items: itemsArray});
+                await updateDoc(tagRef, { items: itemsArray });
             }
         }
-        res.send({messages: responseMessages});
+        res.send({ messages: responseMessages });
     } catch (e) {
         console.error("Error: ", e);
         res.status(500).send(e);
