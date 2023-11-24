@@ -1,6 +1,8 @@
 import {collection} from "@firebase/firestore";
-import {db} from "./firebaseConfig";
-import {doc, getDoc, getDocs} from "firebase/firestore";
+import {categoriesCollection, db} from "./firebaseConfig";
+import {doc, getDoc, getDocs, query, where} from "firebase/firestore";
+import {myCache} from "./app";
+import {Category} from "../MobileFrontEnd/utils/interfaces";
 
 export const generateRandomId = (): string => {
     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -29,6 +31,29 @@ export const createUniqueDocument = async (collectionPath: string): Promise<stri
     }
     return uniqueId;
 };
+
+//get all subCategories
+export const getAllSubcategoriesCache = (categoryId: string) => {
+    const categories = myCache.get('categories') as Category[];
+    if (categories) {
+        const category = categories.find(c => c.id === categoryId);
+        const pathData = category?.path;
+        const pathMap = pathData && new Map(Object.entries(pathData));
+        const level = pathMap?.size || 0;
+        console.log('level: ', level);
+        const subCatsIds: string[] = [];
+        const subCategories = categories.filter(category => category.path[level] === categoryId)
+            .map(category => {
+                subCatsIds.push(category.id);
+                return category.name;
+            });
+
+        console.log(subCategories);
+        console.log(subCatsIds);
+    }
+
+}
+//get path(supraCategories)
 
 
 
