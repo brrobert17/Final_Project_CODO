@@ -1,10 +1,23 @@
 .itemSectionContainer {
-    display: flex;
+    /* display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-between;
-    row-gap: calc(var(--defaultMargin)*2);
+    row-gap: calc(var(--defaultMargin)*2); */
+    height: 85%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(17em, 1fr));
+    gap: 1em;
+    row-gap: 2em;
 }
+
+.itemSectionContainer.small {
+    grid-template-columns: repeat(2, minmax(4em, 1fr));
+    grid-template-rows: repeat(2, 1fr);
+    gap: 2em;
+}
+
+
 
 .itemSectionHeader {
     margin: var(--defaultMargin) 0;
@@ -13,21 +26,12 @@
     align-items: center;
     justify-content: space-between;
 }
+
 .itemSectionTitle h2 {
     margin-bottom: 0.2em;
 }
 
-.title--hover{
-    transition: 0.2s ease;
-    display: block;
-    width: fit-content;
-    cursor: pointer;
-}
-
-.title--hover:hover {
-    transform: scale(1.1);
-}
-.itemSectionTitle img{
+.itemSectionTitle img {
     height: 1em;
     margin-left: calc(var(--defaultMargin)/-2);
 }

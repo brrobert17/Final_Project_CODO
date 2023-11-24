@@ -2,17 +2,26 @@
     padding: 0.8em 2em;
     border-radius: 5em;
     color: white;
-    border: 2px solid blue;
+    font-size: var(--fontSize-regular);
+    border: 2px solid var(--colorPrimary);
     outline: none;
     background-color: transparent;
     font-weight: bold;
 
-    background-image: url('https://web.archive.org/web/20160312084140im_/http://splatoon.nintendo.com/assets/img/nav-bg-fill-blue.png?1443460871');
+    background-image: url('');
     background-repeat: repeat-x;
     background-position: -50% -50%;
-    transition: 2s ease ;
+    transition: 0.8s ease;
 }
 
 .btn:hover {
     background-position: center;
+}
+
+.btn.secondary {
+    border-color: var(--colorSecondary);
+}
+
+.btn.secondary:hover {
+    color: black;
 }

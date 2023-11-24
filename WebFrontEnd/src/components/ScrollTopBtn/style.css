@@ -1,0 +1,13 @@
+.scroll-to-top {
+    position: fixed;
+    bottom: 3rem;
+    right: 1rem;
+    cursor: pointer;
+    transition: 0.2s ease;
+    user-select: none;
+}
+
+.scroll-to-top:hover {
+    transform: scale(1.1);
+
+}

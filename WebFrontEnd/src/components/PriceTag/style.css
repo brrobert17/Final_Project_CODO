@@ -1,0 +1,21 @@
+.price-tag {
+    position: relative;
+    width: fit-content;
+
+}
+
+.price-tag__img {
+    user-select: none;
+}
+
+.price-tag__text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: black;
+}
+
+.price-tag__text::after {
+    content: "€";
+}

@@ -39,30 +39,30 @@ export const navigationPages = [
         name: "Info",
         path: "/",
 
-    },
-    {
-        name: "Contact",
-        path: "/",
+  },
+  {
+    name: "Contact",
+    path: "/",
 
-    }
+  }
 ]
 const slideShowImages = [
-    {
-        url: "https://picsum.photos/1440/420",
-        alt: "random image"
-    },
-    {
-        url: "https://picsum.photos/1441/420",
-        alt: "random image"
-    },
-    {
-        url: "https://picsum.photos/1440/421",
-        alt: "random image"
-    },
-    {
-        url: "https://picsum.photos/1441/421",
-        alt: "random image"
-    }
+  {
+    url: "https://picsum.photos/1440/420",
+    alt: "random image"
+  },
+  {
+    url: "https://picsum.photos/1441/420",
+    alt: "random image"
+  },
+  {
+    url: "https://picsum.photos/1440/421",
+    alt: "random image"
+  },
+  {
+    url: "https://picsum.photos/1441/421",
+    alt: "random image"
+  }
 ]
 
 interface Props {
