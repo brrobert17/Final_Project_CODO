@@ -93,7 +93,6 @@ async function createQueryForParam(collectionRef: CollectionReference, param:Que
     if (param.limit && !isNaN(param.limit) && param.limit > 0) {
         itemsRef = query(itemsRef, limit(param.limit));
     }
-
     return getDocs(itemsRef);
 }
 

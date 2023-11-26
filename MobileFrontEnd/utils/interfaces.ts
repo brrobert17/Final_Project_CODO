@@ -53,3 +53,8 @@ export interface Category {
         [key: number]: string;
     }
 }
+
+export interface CategoryCore{
+    id: string,
+    name: string
+}
