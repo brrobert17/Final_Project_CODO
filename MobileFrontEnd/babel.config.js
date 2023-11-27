@@ -8,6 +8,7 @@ module.exports = function (api) {
         {
           alias: {
             '@components': './components',
+            '@interfaces': './utils/interfaces.ts',
             '@screens': './screens',
             '@assets': './assets',
             '@gStyle': './style.ts',

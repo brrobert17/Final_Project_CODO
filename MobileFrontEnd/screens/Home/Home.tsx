@@ -10,9 +10,9 @@ const Home = () => {
 
     const params: QueryParam[] = [
         {queryKey: 'allProducts', limit:3},
-        {queryKey: 'fish', category: 'fish', limit: 3},
-        {queryKey: 'coral', category: 'coral', limit: 3},
-        {queryKey: 'invertebrate', category: 'invertebrate', limit: 3},
+        {queryKey: 'fishes', category: 'fishes', limit: 3},
+        {queryKey: 'corals', category: 'corals', limit: 3},
+        {queryKey: 'invertebrates', category: 'invertebrates', limit: 3},
         ];
 
     const {
@@ -25,9 +25,9 @@ const Home = () => {
         if(!data) return;
 
         const allProductsData = data.find(d => d.queryKey === 'allProducts')?.result;
-        const fishData = data.find(d => d.queryKey === 'fish')?.result;
-        const coralData = data.find(d => d.queryKey === 'coral')?.result;
-        const invertebrateData = data.find(d => d.queryKey === 'invertebrate')?.result;
+        const fishData = data.find(d => d.queryKey === 'fishes')?.result;
+        const coralData = data.find(d => d.queryKey === 'corals')?.result;
+        const invertebrateData = data.find(d => d.queryKey === 'invertebrates')?.result;
 
         return { allProductsData, fishData, coralData, invertebrateData };
     }, [data]);

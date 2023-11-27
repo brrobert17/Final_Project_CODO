@@ -35,14 +35,19 @@ export const createUniqueDocument = async (collectionPath: string): Promise<stri
 export const getAllSubcategoriesCache = (categoryId: string) => {
     const categories = myCache.get('categories') as Category[];
     if (categories) {
-        const category = categories.find(c => c.id === categoryId);
-        const pathData = category?.path;
-        const pathMap = pathData && new Map(Object.entries(pathData));
-        const level = pathMap?.size || 0;
-        console.log('level: ', level);
+        let subCategories = [];
         const subCatCores: CategoryCore[] = [];
-        const subCategories = categories.filter(category => category.path[level] === categoryId);
+        if (categoryId === 'root') {
+            console.log('hhh')
+            subCategories = categories.filter(category => !category.path[0]);
+        } else {
+            const category = categories.find(c => c.id === categoryId);
+            const pathData = category?.path;
+            const pathMap = pathData && new Map(Object.entries(pathData));
+            const level = pathMap?.size || 0;
+            subCategories = categories.filter(category => category.path[level] === categoryId);
 
+        }
         subCategories.forEach(c => {
             subCatCores.push({
                 id: c.id,
@@ -51,13 +56,12 @@ export const getAllSubcategoriesCache = (categoryId: string) => {
         })
         // console.log(subCategories);
         // console.log(subCatCores);
-        return(subCatCores);
+        return (subCatCores);
     }
 }
 //get path(supraCategories)
 export const getAllSupraCategoriesCache = (categoryId: string) => {
     const categories = myCache.get('categories') as Category[];
-    console.log("gggg", categories)
     if (categories) {
         const category = categories.find(c => c.id === categoryId);
         const pathData = category?.path;
@@ -70,9 +74,9 @@ export const getAllSupraCategoriesCache = (categoryId: string) => {
                 name: pathName.name
             });
         })
-        console.log("gg",supraCategories);
+        //console.log("gg", supraCategories);
         // console.log(subCatsIds);
-        return(supraCategories)
+        return (supraCategories)
     }
 }
 

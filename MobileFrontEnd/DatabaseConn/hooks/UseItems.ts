@@ -1,5 +1,5 @@
 import {useQuery} from "react-query";
-import {get, getCore} from '@dbConn/calls/Items'
+import {get, getCore, getItem} from '@dbConn/calls/Items'
 import {Item, ItemCore, QueryParam, ItemCoreQueryResult} from "@utils/interfaces";
 
 export const useItems = (limit?:number, category?: string) => {
@@ -22,4 +22,9 @@ export const useItemsCore = (params?: QueryParam[], enabled?: boolean) => {
         ()=>getCore(params),
         options
     )
+}
+export const useItem = (id: string) => {
+    return useQuery<Item, Error>(
+        ['item',id], () => getItem(id),
+        {enabled: !!id, refetchOnWindowFocus: false})
 }

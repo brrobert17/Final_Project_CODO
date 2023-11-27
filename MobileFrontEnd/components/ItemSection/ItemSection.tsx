@@ -41,7 +41,7 @@ const ItemSection = (props: Props) => {
                     if(!('price' in item)) {
                         return <CategoryCard key={index} name={item.name} img={item.img}/>
                     } else {
-                        return <ProductCard key={index} name={item.name} price={item.price} img={item.img} />
+                        return <ProductCard key={index} name={item.name} price={item.price} img={item.img} id={item.id} />
                     }
                     
                 })}
