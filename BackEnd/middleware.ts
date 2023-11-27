@@ -1,9 +1,9 @@
-import {CollectionReference, getDocs, orderBy, query, limit, where, getDoc, doc} from "firebase/firestore";
+import {CollectionReference, getDocs, orderBy, query, limit, where} from "firebase/firestore";
 import { Request, Response } from 'express';
-import {ItemCoreQueryResult, ItemQueryResult, QueryParam} from "../MobileFrontEnd/utils/interfaces";
+import {QueryParam} from "../MobileFrontEnd/utils/interfaces";
 import {categoriesCollection} from "./firebaseConfig";
 import {getAllSubCategories} from "./router/utilsRouter";
-import {DocumentData} from "@firebase/firestore";
+import {getAllSubcategoriesCache} from "./utils";
 
 type CollectionMiddleware = (collectionRef: CollectionReference) => (req: Request, res: Response) => Promise<void>;
 
@@ -56,19 +56,16 @@ export const fetchCollection: CollectionMiddleware = (collectionRef) => {
             // Shortcut in case of no params
             if (!params || !Array.isArray(params)) {
                 const allItemsRef = query(collectionRef, orderBy('added', 'asc'));
-                console.log("no params");
                 const collectionSnapshot = await getDocs(allItemsRef);
                 const items = collectionSnapshot.docs.map(doc => doc.data());
                 res.send([{ queryKey: 'allProducts', result: items }]);
             } else {
                 const queries = params.map(param => createQueryForParam(collectionRef, param));
                 const resultsArray = await Promise.all(queries);
-
                 const results = resultsArray.map((collectionSnapshot, index) => {
                     const items = collectionSnapshot.docs.map(doc => doc.data());
                     return { queryKey: params[index].queryKey, result: items };
                 });
-
                 res.send(results);
             }
         } catch (e) {
@@ -85,9 +82,9 @@ async function createQueryForParam(collectionRef: CollectionReference, param:Que
     if (param.category) {
         const categorySnap = await getDocs(query(categoriesCollection, where('name', '==', param.category)));
         const categoryId = categorySnap.docs[0].id;
-        console.log(categoryId);
-        const subCatsIds = await getAllSubCategories(categoryId);
-        itemsRef = query(itemsRef, where('category', 'in', subCatsIds));
+        const subCatsIds =  getAllSubcategoriesCache(categoryId)?.map(c=> c.id);
+        console.log('scI:  ',subCatsIds)
+        subCatsIds && subCatsIds.length!=0 && (itemsRef = query(itemsRef, where('category', 'in', subCatsIds)));
     }
     // Apply limit if specified
     if (param.limit && !isNaN(param.limit) && param.limit > 0) {

@@ -20,7 +20,7 @@ itemsRouter.get('/items/:id', async (req, res) => {
     const productId = req.params.id;
 
     try {
-        const docRef = doc(itemsCollection, productId);
+        const docRef = doc(converterItemsCollection, productId);
         const docSnap = await getDoc(docRef);
 
         if (!docSnap.exists()) {

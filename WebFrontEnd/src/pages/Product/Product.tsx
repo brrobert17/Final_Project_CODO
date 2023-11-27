@@ -8,21 +8,27 @@ import {useEffect, useState} from "react";
 import QuantitySelector from "@components/QuantitySelector";
 import {useLocation} from "react-router-dom";
 import {useItem} from "@dbConn/hooks/UseItems";
+import {useCategories} from "@dbConn/hooks/UseCategories";
+import Breadcrumbs from "@components/Breadcrumbs";
 
 export const Product = () => {
     const location = useLocation();
     const itemId = location.pathname.split('/').pop();
     const [quantity, setQuantity] = useState(1);
     const {isLoading, isError, data} = useItem(itemId as string);
+    const {isLoading:isCategoryLoading, isError:isErrorCategory, data:dataCategory } = useCategories(data?.category as string);
+
     useEffect(() => {
-        if (data) {
+        if (data && dataCategory) {
             console.log('Item: ', data);
+            console.log('Category: ', dataCategory);
         }
-    }, [data]);
+    }, [data, dataCategory]);
 
     return (
         <>
             <NavBar pages={navigationPages} loginUrl={'/login'} shoppingCartUrl={'/cart'} />
+            {dataCategory && <Breadcrumbs categories={dataCategory}/>}
             <ImageSlider />
             <PriceTag text='500' />
             <QuantitySelector quantity={quantity} setQuantity={setQuantity}/>

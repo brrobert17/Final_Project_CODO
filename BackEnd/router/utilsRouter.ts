@@ -2,6 +2,7 @@ import {collection} from "@firebase/firestore";
 import {categoriesCollection, db, itemsCollection, tagsCollection} from "../firebaseConfig";
 import {getDocs, addDoc, setDoc, doc, getDoc, query, where, writeBatch} from "firebase/firestore";
 import express from "express";
+import {getAllSubcategoriesCache, getAllSupraCategoriesCache} from "../utils";
 
 export const utilsRouter = express.Router();
 //getting an item's path
@@ -146,6 +147,13 @@ utilsRouter.get("/cat", async (req, res) => {
         res.status(500).send(error);
     }
 });
+
+utilsRouter.get('/cat22', async (req, res)=> {
+    //const dd = await getAllSubCategories('Q0i1y5');
+    getAllSubcategoriesCache('Q0i1y5');
+    getAllSupraCategoriesCache('xfUmfF');
+    res.send();
+})
 
 export const getAllSubCategories = async (categoryId: string) => {
     const docRef = doc(categoriesCollection, categoryId);

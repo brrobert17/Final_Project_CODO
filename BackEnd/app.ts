@@ -10,6 +10,7 @@ import {getAllSubCategories, utilsRouter} from "./router/utilsRouter";
 import {getDocs} from "firebase/firestore";
 import {categoriesCollection, converterCategoriesCollection} from "./firebaseConfig";
 import {getAllSubcategoriesCache, getAllSupraCategoriesCache} from "./utils";
+import {categoriesRouter} from "./router/categoriesRouter";
 
 
 const app = express();
@@ -25,25 +26,19 @@ app.use(cors({
 app.use(itemsRouter);
 app.use(imagesRouter);
 app.use(utilsRouter);
+app.use(categoriesRouter);
 
 export const myCache = new NodeCache({ stdTTL: 0, checkperiod: 0 });
 async function initializeCache() {
     try {
         const categoriesSnapshot = await getDocs(converterCategoriesCollection);
         const categories = categoriesSnapshot.docs.map(doc => doc.data());
-        //myCache.set('categories', categories);
-        console.log('Categories cache set.')
+        myCache.set('categories', categories);
+        console.log('Categories cache set.');
     } catch (error) {
         console.error('Failed to initialize cache:', error);
     }
 }
-
-app.get('/cat22', async (req, res)=> {
-    //const dd = await getAllSubCategories('Q0i1y5');
-    getAllSubcategoriesCache('Q0i1y5');
-    getAllSupraCategoriesCache('xfUmfF');
-    res.send();
-})
 
 server.listen(port, () => {
     console.log(`CODO Backend server standby on port ${port}`);

@@ -1,6 +1,5 @@
-import {collection} from "@firebase/firestore";
-import {categoriesCollection, db} from "./firebaseConfig";
-import {doc, getDoc, getDocs, query, where} from "firebase/firestore";
+import {db} from "./firebaseConfig";
+import {doc, getDoc} from "firebase/firestore";
 import {myCache} from "./app";
 import {Category, CategoryCore} from "../MobileFrontEnd/utils/interfaces";
 
@@ -43,37 +42,37 @@ export const getAllSubcategoriesCache = (categoryId: string) => {
         console.log('level: ', level);
         const subCatCores: CategoryCore[] = [];
         const subCategories = categories.filter(category => category.path[level] === categoryId);
-        // .map(category => {
-        //     subCatsIds.push(category.id);
-        //     return category.name;
-        // });
+
         subCategories.forEach(c => {
             subCatCores.push({
                 id: c.id,
                 name: c.name
             })
         })
-        console.log(subCategories);
-        console.log(subCatCores);
+        // console.log(subCategories);
+        // console.log(subCatCores);
+        return(subCatCores);
     }
 }
 //get path(supraCategories)
 export const getAllSupraCategoriesCache = (categoryId: string) => {
     const categories = myCache.get('categories') as Category[];
+    console.log("gggg", categories)
     if (categories) {
         const category = categories.find(c => c.id === categoryId);
         const pathData = category?.path;
         const pathMap = pathData && new Map(Object.entries(pathData));
-        const supraCatIds: CategoryCore[] = [];
+        const supraCategories: CategoryCore[] = [];
         pathMap?.forEach((value, key) => {
             const pathName = categories.find(c => c.id === value);
-            pathName && supraCatIds.push({
+            pathName && supraCategories.push({
                 id: value,
                 name: pathName.name
             });
         })
-        console.log(supraCatIds);
+        console.log("gg",supraCategories);
         // console.log(subCatsIds);
+        return(supraCategories)
     }
 }
 

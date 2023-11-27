@@ -26,6 +26,6 @@ export const useItemsCore = (params?: QueryParam[], enabled?: boolean) => {
 
 export const useItem = (id: string) => {
     return useQuery<Item, Error>(
-        id, () => getItem(id),
+        ['item',id], () => getItem(id),
         {enabled: !!id, refetchOnWindowFocus: false})
 }

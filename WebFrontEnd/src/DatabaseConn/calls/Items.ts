@@ -21,7 +21,7 @@ export const getCore = async (params?:QueryParam[]): Promise<ItemCoreQueryResult
     })
 }
 export const getItem = async (id:string):Promise<Item> => {
-    let url = `/items/${id}`;
+    const url = `/items/${id}`;
 
     return api.get(url).then(res => res.data).catch(err => {
         throw err
