@@ -1,6 +1,7 @@
 import BtnIsland from '@components/BtnIsland';
 import ImageSlider from '@components/ImageSlider/ImageSlider';
 import PriceTag from '@components/PriceTag';
+import QuantitySelector from '@components/QuantitySelector';
 import { SafeAreaView, View } from 'react-native';
 
 const sliderImages = [
@@ -40,6 +41,7 @@ const ProductDetail = () => {
             <SafeAreaView>
                 <ImageSlider images={sliderImages} />
                 <PriceTag price='500' />
+                <QuantitySelector wisiwyg onChange={(text) => console.log("count: ", text)} />
             </SafeAreaView>
             <BtnIsland price='500' />
         </>
