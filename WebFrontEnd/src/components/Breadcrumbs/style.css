@@ -1,0 +1,19 @@
+.breadcrumbs {
+    display: inline-block;
+    color: var(--colorInput);
+    font-size: var(--fontSize-small);
+}
+.breadcrumbs a {
+    color: inherit;
+    text-decoration: none;
+    font-size: inherit;
+    font-family: inherit;
+    font-weight: inherit;
+    background-color: transparent;
+    -webkit-text-decoration-skip: objects;
+}
+
+.breadcrumbs a:hover, a:active, a:focus {
+    color: var(--colorPrimary);
+    text-decoration: none;
+}

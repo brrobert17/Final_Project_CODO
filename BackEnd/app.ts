@@ -1,11 +1,17 @@
 import express from 'express';
+import NodeCache from 'node-cache';
 import cors from "cors";
 import "dotenv/config"
 import * as http from "http";
 import 'firebase/firestore';
 import {itemsRouter} from "./router/itemsRouter";
 import {imagesRouter} from "./router/imagesRouter";
-import {allCategoriesIds} from "./utils";
+import {getAllSubCategories, utilsRouter} from "./router/utilsRouter";
+import {getDocs} from "firebase/firestore";
+import {categoriesCollection, converterCategoriesCollection} from "./firebaseConfig";
+import {getAllSubcategoriesCache, getAllSupraCategoriesCache} from "./utils";
+import {categoriesRouter} from "./router/categoriesRouter";
+
 
 const app = express();
 const port = process.env.PORT;
@@ -19,6 +25,22 @@ app.use(cors({
 
 app.use(itemsRouter);
 app.use(imagesRouter);
+app.use(utilsRouter);
+app.use(categoriesRouter);
 
-allCategoriesIds();
-server.listen(port, () => console.log(`CODO Backend server standby on port ${port}`));
+export const myCache = new NodeCache({ stdTTL: 0, checkperiod: 0 });
+async function initializeCache() {
+    try {
+        const categoriesSnapshot = await getDocs(converterCategoriesCollection);
+        const categories = categoriesSnapshot.docs.map(doc => doc.data());
+        myCache.set('categories', categories);
+        console.log('Categories cache set.');
+    } catch (error) {
+        console.error('Failed to initialize cache:', error);
+    }
+}
+
+server.listen(port, () => {
+    console.log(`CODO Backend server standby on port ${port}`);
+    initializeCache();
+});

@@ -5,7 +5,6 @@ import {QueryParam} from "@interfaces";
 import {useItemsCore} from "@dbConn/hooks/UseItems";
 import {useMemo, useState} from "react";
 import SlideShow from "../../components/SlideShow"
-import QuantitySelector from "@components/QuantitySelector";
 
 export const navigationPages = [
     {
@@ -70,26 +69,25 @@ interface Props {
 }
 
 const params: QueryParam[] = [
-  { queryKey: 'allProducts', limit: 7 },
-  { queryKey: 'fish', category: 'fish', limit: 3 },
-  { queryKey: 'coral', category: 'coral', limit: 3 },
-  { queryKey: 'invertebrate', category: 'invertebrate', limit: 3 },
+    {queryKey: 'allProducts', limit: 7},
+    {queryKey: 'fish', category: 'fishes', limit: 3},
+    {queryKey: 'coral', category: 'corals', limit: 3},
+    {queryKey: 'invertebrate', category: 'invertebrates', limit: 3},
 ];
 
 const Home = () => {
 
-  const { data, error, isLoading } = useItemsCore(params);
+    const {data, error, isLoading} = useItemsCore(params);
 
-  const memoizedData = useMemo(() => {
-    if (!data) return;
+    const memoizedData = useMemo(() => {
+        if (!data) return;
+        const allProductsData = data.find(d => d.queryKey === 'allProducts')?.result;
+        const fishData = data.find(d => d.queryKey === 'fish')?.result;
+        // const coralData = data.find(d => d.queryKey === 'coral')?.result;
+        // const invertebrateData = data.find(d => d.queryKey === 'invertebrate')?.result;
 
-    const allProductsData = data.find(d => d.queryKey === 'allProducts')?.result;
-    const fishData = data.find(d => d.queryKey === 'fish')?.result;
-    const coralData = data.find(d => d.queryKey === 'coral')?.result;
-    const invertebrateData = data.find(d => d.queryKey === 'invertebrate')?.result;
-
-    return { allProductsData, fishData, coralData, invertebrateData };
-  }, [data]);
+        return {allProductsData, fishData};
+    }, [data]);
 
     if (isLoading) {
         console.log('loading');
@@ -98,18 +96,23 @@ const Home = () => {
     } else {
         console.log('success', memoizedData?.fishData);
     }
-    const [quantity, setQuantity] = useState(1);
-    console.log('Quantity: ', quantity);
+
     return (
         <>
             <NavBar pages={navigationPages} loginUrl={"/login"} shoppingCartUrl={"/cart"}/>
-            <QuantitySelector setQuantity={setQuantity} quantity={quantity}/>
             <SlideShow images={slideShowImages}/>
             <div className={'pageContainer'}>
                 {memoizedData?.allProductsData &&
                     <ItemSection heading={'All Products'}
                                  sorting={true}
                                  items={memoizedData.allProductsData} seeMore={{
+                        func: () => console.log('hello'),
+                        img: {url: "https://picsum.photos/300/500", alt: "something something"}
+                    }}/>}
+                {memoizedData?.fishData &&
+                    <ItemSection heading={'Fish'}
+                                 sorting={true}
+                                 items={memoizedData.fishData} seeMore={{
                         func: () => console.log('hello'),
                         img: {url: "https://picsum.photos/300/500", alt: "something something"}
                     }}/>}

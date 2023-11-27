@@ -8,6 +8,7 @@
 
     /* Font */
     font-family: "Inter";
+    --fontSize-small: 0.833rem ;
     --fontSize-regular: 1rem;
     --fontSize-medium: 1.25rem;
     --fontSize-large: 1.563rem;

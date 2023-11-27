@@ -35,7 +35,7 @@ export interface Image {
     alt: string,
 }
 
-export interface TagOut {
+export interface Tag {
     id: string,
     items: string[]
 }
@@ -44,4 +44,17 @@ export interface QueryParam {
     queryKey: string
     limit?: number,
     category?: string,
+}
+
+export interface Category {
+    id: string,
+    name: string,
+    path: {
+        [key: number]: string;
+    }
+}
+
+export interface CategoryCore{
+    id: string,
+    name: string
 }

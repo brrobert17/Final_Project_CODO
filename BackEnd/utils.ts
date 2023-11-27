@@ -1,6 +1,7 @@
-import {collection} from "@firebase/firestore";
 import {db} from "./firebaseConfig";
-import {getDocs} from "firebase/firestore";
+import {doc, getDoc} from "firebase/firestore";
+import {myCache} from "./app";
+import {Category, CategoryCore} from "../MobileFrontEnd/utils/interfaces";
 
 export const generateRandomId = (): string => {
     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -17,21 +18,62 @@ export const giveCurrentDateTime = () => {
     const time = today.toLocaleTimeString();
     return date + '-' + time;
 };
+export const createUniqueDocument = async (collectionPath: string): Promise<string> => {
+    let uniqueId = generateRandomId();
+    let docRef = doc(db, collectionPath, uniqueId);
+    let docSnap = await getDoc(docRef);
 
-// for (let i = 0; i < 20; i++) {
-//     console.log(generateRandomId());
-// }
+    while (docSnap.exists()) {
+        uniqueId = generateRandomId();
+        docRef = doc(db, collectionPath, uniqueId);
+        docSnap = await getDoc(docRef);
+    }
+    return uniqueId;
+};
 
-export const allCategoriesIds = async ()=> {
-    const ref = collection(db, 'categories');
-    const s= await getDocs(ref);
-    const categories = s.docs.map(doc=> {
-        return {
-            id: doc.id,
-            data: doc.data()
-        }
-    })
-    console.log(categories);
+//get all subCategories
+export const getAllSubcategoriesCache = (categoryId: string) => {
+    const categories = myCache.get('categories') as Category[];
+    if (categories) {
+        const category = categories.find(c => c.id === categoryId);
+        const pathData = category?.path;
+        const pathMap = pathData && new Map(Object.entries(pathData));
+        const level = pathMap?.size || 0;
+        console.log('level: ', level);
+        const subCatCores: CategoryCore[] = [];
+        const subCategories = categories.filter(category => category.path[level] === categoryId);
+
+        subCategories.forEach(c => {
+            subCatCores.push({
+                id: c.id,
+                name: c.name
+            })
+        })
+        // console.log(subCategories);
+        // console.log(subCatCores);
+        return(subCatCores);
+    }
+}
+//get path(supraCategories)
+export const getAllSupraCategoriesCache = (categoryId: string) => {
+    const categories = myCache.get('categories') as Category[];
+    console.log("gggg", categories)
+    if (categories) {
+        const category = categories.find(c => c.id === categoryId);
+        const pathData = category?.path;
+        const pathMap = pathData && new Map(Object.entries(pathData));
+        const supraCategories: CategoryCore[] = [];
+        pathMap?.forEach((value, key) => {
+            const pathName = categories.find(c => c.id === value);
+            pathName && supraCategories.push({
+                id: value,
+                name: pathName.name
+            });
+        })
+        console.log("gg",supraCategories);
+        // console.log(subCatsIds);
+        return(supraCategories)
+    }
 }
 
 

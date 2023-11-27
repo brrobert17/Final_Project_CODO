@@ -23,8 +23,6 @@ export const ItemSection = (props: Props) => {
 
     const isProduct = 'price' in props.items[0];
 
-
-
     return (
         <>
             <div className={'itemSectionHeader'}>
@@ -39,7 +37,7 @@ export const ItemSection = (props: Props) => {
                     if (!('price' in item)) {
                         return <CategoryCard key={index} name={item.name} img={item.img} />
                     } else {
-                        return <ProductCard key={index} name={item.name} price={item.price} img={item.img} />
+                        return <ProductCard key={index} name={item.name} price={item.price} img={item.img} id={item.id}/>
                     }
                 })}
                 {isProduct && props.seeMore ? <CategoryCard bigVariant name='See More' img={{
