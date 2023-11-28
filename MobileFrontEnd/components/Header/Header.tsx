@@ -54,8 +54,11 @@ export const HeaderSmall = (props: Props) => {
         </View>
     )
 }
+export interface HeaderAddOnProps {
+    heading: string,
 
-export const HeaderAddOn = () => {
+}
+export const HeaderAddOn = (props:HeaderAddOnProps) => {
     return (
         <View style={ style.addOnHeaderCont} >
                 <View style={{ ...style.safeAreaCont, overflow: "visible" }}>
