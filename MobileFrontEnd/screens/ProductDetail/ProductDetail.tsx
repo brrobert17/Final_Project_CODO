@@ -1,6 +1,7 @@
 import BtnIsland from '@components/BtnIsland';
 import ImageSlider from '@components/ImageSlider/ImageSlider';
 import PriceTag from '@components/PriceTag';
+import QuantitySelector from '@components/QuantitySelector';
 import { SafeAreaView, View } from 'react-native';
 import Breadcrumbs from "@components/Breadcrumbs";
 import React, {useEffect} from "react";
@@ -62,6 +63,7 @@ const ProductDetail: React.FC<DetailPropsWithRoute> = ({route}) => {
                 {data?.category && <Breadcrumbs categoryId={data.category}/>}
                 <ImageSlider images={sliderImages} />
                 <PriceTag price='500' />
+                <QuantitySelector wisiwyg onChange={(text) => console.log("count: ", text)} />
             </SafeAreaView>
             <BtnIsland price='500' />
         </>

@@ -6,6 +6,8 @@ export const colorInput = '#47596A';
 export const colorPlaceholder = '#CCC';
 export const colorPrimary = '#007BFF';
 export const colorSecondary = '#FFDF01';
+export const colorSelector = '#1F2B37';
+export const colorSeparator = '#35404B';
 
 export const pageMargin = 20;
 export const borderRadiusSmall = 6;
