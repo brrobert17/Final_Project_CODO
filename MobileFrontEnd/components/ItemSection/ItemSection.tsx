@@ -39,13 +39,13 @@ const ItemSection = (props: Props) => {
             <View style={style.list}>
                 {props.items.map((item, index) => {
                     if(!('price' in item)) {
-                        return <CategoryCard key={index} name={item.name} img={item.img}/>
+                        return <CategoryCard key={index} name={item.name} img={item.img} id={item.id}/>
                     } else {
-                        return <ProductCard key={index} name={item.name} price={item.price} img={item.img} />
+                        return <ProductCard key={index} name={item.name} price={item.price} img={item.img} id={item.id} />
                     }
                     
                 })}
-                {isProduct && props.seeMore ? <CategoryCard bigVariant name='See More' img={{url: props.seeMore.img.url, alt: props.seeMore.img.alt}}></CategoryCard> : <></>}
+                {isProduct && props.seeMore ? <CategoryCard bigVariant id={''} name='See More' img={{url: props.seeMore.img.url, alt: props.seeMore.img.alt}}></CategoryCard> : <></>}
             </View>
         </View>
     );

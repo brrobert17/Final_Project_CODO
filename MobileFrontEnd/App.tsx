@@ -8,12 +8,14 @@ import { MenuProps } from "@screens/Menu/Menu";
 import { MenuLevel } from "@components/MenuItem/MenuItem";
 import { StatusBar } from "react-native";
 import { QueryClient, QueryClientProvider } from "react-query";
-import ProductDetail from '@screens/ProductDetail/ProductDetail';
+import ProductDetail, {DetailProps} from '@screens/ProductDetail/ProductDetail';
+import Products, {ProductsProps} from "@screens/Products/Products";
 
 export type StackParams = {
     Home: {},
     Menu: MenuProps,
-    Detail: {}
+    Detail: DetailProps,
+    Products: ProductsProps
 }
 
 const Stack = createNativeStackNavigator<StackParams>();
@@ -61,7 +63,7 @@ export default function App() {
                         animation: "fade"
 
                     }}
-                    initialRouteName='Detail'
+                    initialRouteName='Home'
                 >
                     <Stack.Screen
                         name='Home'
@@ -75,6 +77,12 @@ export default function App() {
                     <Stack.Screen
                         name='Detail'
                         component={ProductDetail}
+                        initialParams={{itemId: ''}}
+                    />
+                    <Stack.Screen
+                        name='Products'
+                        component={Products}
+                        initialParams={{categoryId: 'root'}}
                     />
                 </Stack.Navigator>
             </NavigationContainer>

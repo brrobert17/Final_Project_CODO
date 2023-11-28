@@ -20,6 +20,11 @@ export default StyleSheet.create({
         //alignItems: 'center',
         //justifyContent: 'center',
     },
+    small:{
+        color: '#fff',
+        fontFamily: 'Inter_400Regular',
+        fontSize: 13
+    },
     basic: {
         color: '#fff',
         fontFamily: 'Inter_400Regular',

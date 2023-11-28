@@ -54,16 +54,19 @@ export const HeaderSmall = (props: Props) => {
         </View>
     )
 }
+export interface HeaderAddOnProps {
+    heading: string,
 
-export const HeaderAddOn = () => {
+}
+export const HeaderAddOn = (props:HeaderAddOnProps) => {
     return (
         <View style={ style.addOnHeaderCont} >
                 <View style={{ ...style.safeAreaCont, overflow: "visible" }}>
                     <SearchBar />
                     <ItemSection heading='Categories' items={[
-                        { name: "corals", img: { url: "https://picsum.photos/201", alt: "something something" } },
-                        { name: "fish", img: { url: "https://picsum.photos/202", alt: "something something" } },
-                        { name: "other", img: { url: "https://picsum.photos/203", alt: "something something" } },
+                        { name: "fishes",id: "Q0i1y5", img: { url: "https://picsum.photos/201", alt: "something something" } },
+                        { name: "corals",id: 'rUm6nc', img: { url: "https://picsum.photos/202", alt: "something something" } },
+                        { name: "invertebrates", id: 'aRu8ro', img: { url: "https://picsum.photos/203", alt: "something something" } },
                     ]} />
                 </View>
         </View>

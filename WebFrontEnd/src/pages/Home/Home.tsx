@@ -2,7 +2,7 @@ import NavBar from "../../components/NavBar/NavBar"
 import './style.css'
 import ItemSection from "../../components/ItemSection";
 import {QueryParam} from "@interfaces";
-import {useItemsCore} from "@dbConn/hooks/UseItems";
+import {useItemsCoreMulti} from "@dbConn/hooks/UseItems";
 import {useMemo, useState} from "react";
 import SlideShow from "../../components/SlideShow"
 
@@ -77,7 +77,7 @@ const params: QueryParam[] = [
 
 const Home = () => {
 
-    const {data, error, isLoading} = useItemsCore(params);
+    const {data, error, isLoading} = useItemsCoreMulti(params);
 
     const memoizedData = useMemo(() => {
         if (!data) return;

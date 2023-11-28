@@ -1,12 +1,14 @@
 import './style.css'
-import {CategoryCore} from "@interfaces";
+import {useBreadcrumbs} from "@dbConn/hooks/UseCategories";
 interface Props {
-  categories: CategoryCore[]
+  categoryId: string
 }
 export const Breadcrumbs = (props: Props) => {
+    const {isLoading, isError, data } = useBreadcrumbs(props.categoryId as string);
+    console.log(data)
   return(
       <div className="breadcrumbs">
-        {props.categories.map(c=> {
+        {data?.map(c=> {
           return (<a href={`/products/${c.id}`}>/ {c.name} </a>)
         })}
       </div>

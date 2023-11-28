@@ -8,7 +8,6 @@ import {useEffect, useState} from "react";
 import QuantitySelector from "@components/QuantitySelector";
 import {useLocation} from "react-router-dom";
 import {useItem} from "@dbConn/hooks/UseItems";
-import {useCategories} from "@dbConn/hooks/UseCategories";
 import Breadcrumbs from "@components/Breadcrumbs";
 
 export const Product = () => {
@@ -16,19 +15,17 @@ export const Product = () => {
     const itemId = location.pathname.split('/').pop();
     const [quantity, setQuantity] = useState(1);
     const {isLoading, isError, data} = useItem(itemId as string);
-    const {isLoading:isCategoryLoading, isError:isErrorCategory, data:dataCategory } = useCategories(data?.category as string);
 
     useEffect(() => {
-        if (data && dataCategory) {
+        if (data) {
             console.log('Item: ', data);
-            console.log('Category: ', dataCategory);
         }
-    }, [data, dataCategory]);
+    }, [data]);
 
     return (
         <>
             <NavBar pages={navigationPages} loginUrl={'/login'} shoppingCartUrl={'/cart'} />
-            {dataCategory && <Breadcrumbs categories={dataCategory}/>}
+            {data?.category && <Breadcrumbs categoryId={data.category}/>}
             <ImageSlider />
             <PriceTag text='500' />
             <QuantitySelector quantity={quantity} setQuantity={setQuantity}/>
