@@ -2,29 +2,39 @@ import {useQuery} from "react-query";
 import {get, getCore, getItem} from '@dbConn/calls/Items'
 import {Item, ItemCore, QueryParam, ItemCoreQueryResult} from "@utils/interfaces";
 
-export const useItems = (limit?:number, category?: string) => {
-    return useQuery<Item[],Error>(
+export const useItems = (limit?: number, category?: string) => {
+    return useQuery<Item[], Error>(
         "items",
-        ()=>get(limit, category),
+        () => get(limit, category),
         {
             refetchOnWindowFocus: false,
         }
     )
 }
-export const useItemsCore = (params?: QueryParam[], enabled?: boolean) => {
+export const useItemsCoreMulti = (params?: QueryParam[], enabled?: boolean) => {
 
-    let queryKey = 'itemsCore'
-    let options:{refetchOnWindowFocus: boolean, enabled?: boolean} = { refetchOnWindowFocus: false };
-    if(enabled) options = {...options, enabled: enabled};
+    let queryKey = ['itemsCoreMulti',params]
+    let options: { refetchOnWindowFocus: boolean, enabled?: boolean } = {refetchOnWindowFocus: false};
+    if (enabled) options = {...options, enabled: enabled};
 
-    return useQuery<ItemCoreQueryResult[],Error>(
+    return useQuery<ItemCoreQueryResult[], Error>(
         queryKey,
-        ()=>getCore(params),
+        () => getCore(params),
         options
+    )
+}
+
+export const useItemsCoreSingle = (params?: QueryParam) => {
+
+    const queryKey = ['itemsCoreSingle', params ? params.category : 'root']
+    return useQuery<ItemCoreQueryResult[], Error>(
+        queryKey,
+        () => getCore(params ? [params] : undefined),
+        {refetchOnWindowFocus: false}
     )
 }
 export const useItem = (id: string) => {
     return useQuery<Item, Error>(
-        ['item',id], () => getItem(id),
+        ['item', id], () => getItem(id),
         {enabled: !!id, refetchOnWindowFocus: false})
 }

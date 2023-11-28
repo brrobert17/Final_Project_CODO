@@ -2,7 +2,7 @@ import {View, ScrollView} from "react-native";
 import gStyle from "@gStyle";
 import {HeaderAddOn, HeaderSmall} from "@components/Header";
 import ItemSection from "@components/ItemSection";
-import {useItemsCore} from "@dbConn/hooks/UseItems";
+import {useItemsCoreMulti} from "@dbConn/hooks/UseItems";
 import {QueryParam} from "@utils/interfaces";
 import {useMemo, useState} from "react";
 
@@ -19,7 +19,7 @@ const Home = () => {
         data,
         error,
         isLoading
-    } = useItemsCore(params);
+    } = useItemsCoreMulti(params);
 
     const memoizedData = useMemo(() => {
         if(!data) return;

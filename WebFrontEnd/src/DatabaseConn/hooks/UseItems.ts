@@ -11,9 +11,9 @@ export const useItems = (limit?: number, category?: string) => {
         }
     )
 }
-export const useItemsCore = (params?: QueryParam[], enabled?: boolean) => {
+export const useItemsCoreMulti = (params?: QueryParam[], enabled?: boolean) => {
 
-    let queryKey = 'itemsCore'
+    let queryKey = ['itemsCoreMulti',params]
     let options: { refetchOnWindowFocus: boolean, enabled?: boolean } = {refetchOnWindowFocus: false};
     if (enabled) options = {...options, enabled: enabled};
 
@@ -21,6 +21,16 @@ export const useItemsCore = (params?: QueryParam[], enabled?: boolean) => {
         queryKey,
         () => getCore(params),
         options
+    )
+}
+
+export const useItemsCoreSingle = (params?: QueryParam) => {
+
+    const queryKey = ['itemsCoreSingle', params ? params.category : 'root']
+    return useQuery<ItemCoreQueryResult[], Error>(
+        queryKey,
+        () => getCore(params ? [params] : undefined),
+        {refetchOnWindowFocus: false}
     )
 }
 
