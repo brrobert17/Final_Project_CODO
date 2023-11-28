@@ -8,7 +8,6 @@ import {useEffect, useState} from "react";
 import QuantitySelector from "@components/QuantitySelector";
 import {useLocation} from "react-router-dom";
 import {useItem} from "@dbConn/hooks/UseItems";
-import {useCategories} from "@dbConn/hooks/UseCategories";
 import Breadcrumbs from "@components/Breadcrumbs";
 
 export const Product = () => {

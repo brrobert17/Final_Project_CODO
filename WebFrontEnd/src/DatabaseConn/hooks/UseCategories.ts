@@ -1,9 +1,15 @@
 import {useQuery} from "react-query";
-import {CategoryCore, Item} from "@interfaces";
-import {getCategories} from "@dbConn/calls/Categories";
+import {CategoryCore} from "@interfaces";
+import {getBreadcrumbs, getSubcategories} from "@dbConn/calls/Categories";
 
-export const useCategories = (id: string) => {
+export const useBreadcrumbs = (id: string) => {
     return useQuery<CategoryCore[], Error>(
-        ['categories', id], () => getCategories(id),
+        ['breadcrumbs', id], () => getBreadcrumbs(id),
+        {enabled: !!id, refetchOnWindowFocus: false})
+}
+
+export const useSubcategories = (id: string) => {
+    return useQuery<CategoryCore[], Error>(
+        ['subcategories', id], () => getSubcategories(id),
         {enabled: !!id, refetchOnWindowFocus: false})
 }

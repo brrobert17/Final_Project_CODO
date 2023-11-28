@@ -3,7 +3,7 @@ import {getAllSubcategoriesCache, getAllSupraCategoriesCache} from "../utils";
 
 export const categoriesRouter = express.Router();
 
-categoriesRouter.get("/breadcrumbs/:id", (req, res)=> {
+categoriesRouter.get("/categories/:id/breadcrumbs", (req, res)=> {
     const categoryId = req.params.id;
     try {
         const path = getAllSupraCategoriesCache(categoryId);

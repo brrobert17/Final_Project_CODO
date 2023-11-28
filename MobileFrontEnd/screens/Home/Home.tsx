@@ -3,6 +3,7 @@ import gStyle from "@gStyle";
 import {HeaderAddOn, HeaderSmall} from "@components/Header";
 import ItemSection from "@components/ItemSection";
 import {useItemsCoreMulti} from "@dbConn/hooks/UseItems";
+import {useSubcategories} from "@dbConn/hooks/UseCategories";
 import {QueryParam} from "@utils/interfaces";
 import {useMemo, useState} from "react";
 
@@ -21,6 +22,12 @@ const Home = () => {
         isLoading
     } = useItemsCoreMulti(params);
 
+    const {
+        data:cData,
+        error:cError,
+        isLoading:cIsLoading
+    } = useSubcategories('root');
+
     const memoizedData = useMemo(() => {
         if(!data) return;
 
@@ -32,12 +39,13 @@ const Home = () => {
         return { allProductsData, fishData, coralData, invertebrateData };
     }, [data]);
 
-    if (isLoading) {
+    if (isLoading || cIsLoading) {
         console.log('loading');
-    } else if (error) {
+    } else if (error || cError) {
         console.error('error: ', error);
     } else {
         console.log('success');
+        console.log('success', cData);
     }
 
     const [scrollOffset, setScrollOffset] = useState<number>(0);
