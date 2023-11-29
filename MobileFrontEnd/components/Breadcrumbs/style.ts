@@ -4,7 +4,6 @@ import styles from "@gStyle";
 
 export default StyleSheet.create({
     breadcrumbs: {
-        marginLeft: pageMargin,
         backgroundColor: backGroundColor,
         display: "flex",
         flexDirection: "row"

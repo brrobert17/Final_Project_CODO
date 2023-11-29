@@ -25,7 +25,7 @@ export default StyleSheet.create({
         marginVertical: pageMargin * 2
     },
     avoidKeyboard: {
-        paddingBottom: pageMargin * 6,
+        //paddingBottom: pageMargin * 6,
         flex: 1,
     },
     sliderCont: {
