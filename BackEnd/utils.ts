@@ -31,6 +31,15 @@ export const createUniqueDocument = async (collectionPath: string): Promise<stri
     return uniqueId;
 };
 
+//get a single category by id (I don't know if cache is necessary)
+export const getCategoryCache = (categoryId: string) => {
+    const categories = myCache.get('categories') as Category[];
+
+    if (categories) {
+        return categories.find(c => c.id === categoryId);
+    }
+}
+
 //get all subCategories
 export const getAllSubcategoriesCache = (categoryId: string) => {
     const categories = myCache.get('categories') as Category[];

@@ -1,0 +1,17 @@
+.large-heading {
+    position: relative;
+}
+
+.large-heading__heading {
+    margin-top: var(--defaultMargin);
+}
+
+.large-heading__watermark {
+    position: absolute;
+    font-size: 150px;
+    opacity: 0.04;
+    top: 0;
+    left: 0;
+    transform: translate(5%, -50%);
+    text-transform: uppercase;
+}

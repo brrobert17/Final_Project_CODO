@@ -1,21 +1,24 @@
 .quantity-selector {
-    width: 11.5em;
-    height: 3em;
+    width: 13rem;
+    height: 3rem;
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 6px;
     background-color: var(--backGroundColorTwo);
 }
-.quantity-selector--number-input{
+
+.quantity-selector--number-input {
     display: flex;
 }
+
 input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
-.quantity-selector input{
+
+.quantity-selector input {
     text-align: right;
     color: white;
     background: none;
@@ -25,10 +28,14 @@ input[type=number]::-webkit-outer-spin-button {
     padding-right: 0.2em;
     font-size: 1em;
 }
-.quantity-selector p, input{
+
+.quantity-selector p,
+input {
     width: 3em;
 }
-.quantity-selector--button, .quantity-selector--number-input {
+
+.quantity-selector--button,
+.quantity-selector--number-input {
     height: 100%;
     width: 100%;
     display: flex;
@@ -36,7 +43,7 @@ input[type=number]::-webkit-outer-spin-button {
     justify-content: center;
 }
 
-.quantity-selector p{
+.quantity-selector p {
     cursor: default;
 }
 
@@ -46,11 +53,13 @@ input[type=number]::-webkit-outer-spin-button {
     user-select: none;
 
 }
-.quantity-selector--button{
+
+.quantity-selector--button {
     display: flex;
     align-items: center;
     cursor: pointer;
 }
-.quantity-selector--button:hover rect{
+
+.quantity-selector--button:hover rect {
     fill: var(--colorPrimary);
 }

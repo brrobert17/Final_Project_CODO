@@ -11,6 +11,7 @@
     background-image: url('');
     background-repeat: repeat-x;
     background-position: -50% -50%;
+    cursor: pointer;
     transition: 0.8s ease;
 }
 
@@ -18,10 +19,13 @@
     background-position: center;
 }
 
-.btn.secondary {
-    border-color: var(--colorSecondary);
+.btn.secondary:hover {
+    background-position: -50% -50%;
+    color: white;
 }
 
-.btn.secondary:hover {
+.btn.secondary {
+    border-color: var(--colorSecondary);
+    background-position: center;
     color: black;
 }

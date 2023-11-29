@@ -1,5 +1,5 @@
 import express from "express";
-import {getAllSubcategoriesCache, getAllSupraCategoriesCache} from "../utils";
+import {getAllSubcategoriesCache, getAllSupraCategoriesCache, getCategoryCache} from "../utils";
 
 export const categoriesRouter = express.Router();
 
@@ -13,11 +13,23 @@ categoriesRouter.get("/categories/:id/breadcrumbs", (req, res)=> {
         res.status(404).send(e);
     }
 });
+
 categoriesRouter.get("/categories/:id/subcategories", (req, res)=> {
     const categoryId = req.params.id;
     try {
         const subcategories = getAllSubcategoriesCache(categoryId as string);
         res.send(subcategories);
+    } catch (e) {
+        console.error("Error: ", e);
+        res.status(404).send(e);
+    }
+});
+
+categoriesRouter.get("/categories/:id", (req, res)=> {
+    const categoryId = req.params.id;
+    try {
+        const category = getCategoryCache(categoryId as string);
+        res.send(category);
     } catch (e) {
         console.error("Error: ", e);
         res.status(404).send(e);
