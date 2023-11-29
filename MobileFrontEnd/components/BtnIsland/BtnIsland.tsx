@@ -3,7 +3,7 @@ import style from './style';
 import Button from '@components/Button';
 
 interface Props {
-    price: string
+    price: number
 }
 
 const BtnIsland = (props: Props) => {

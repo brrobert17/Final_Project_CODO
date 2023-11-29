@@ -3,7 +3,7 @@ import PriceTagIcon from '@assets/price-tag.svg';
 import style from './style';
 
 interface Props {
-    price: string
+    price: number
 }
 
 const PriceTag = (props: Props) => {

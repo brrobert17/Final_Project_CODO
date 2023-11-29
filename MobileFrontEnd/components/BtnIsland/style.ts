@@ -1,13 +1,15 @@
 import gStyle, { backGroundColorTwo, pageMargin } from "@gStyle";
 import { StyleSheet } from "react-native";
 
+export const HEIGHT = 90;
+
 export default StyleSheet.create({
     cont: {
         position: 'absolute',
         bottom: 0,
         width: '100%',
         backgroundColor: backGroundColorTwo,
-        height: 90,
+        height: HEIGHT,
         display: 'flex',
         flexDirection: 'row',
         padding: pageMargin,

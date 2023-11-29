@@ -7,7 +7,8 @@ export default StyleSheet.create({
         display: 'flex',
         justifyContent: "center",
         alignItems: "center",
-        width: 220
+        width: 220,
+        marginVertical: pageMargin,
     },
     icon: {
         

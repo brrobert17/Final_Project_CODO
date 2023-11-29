@@ -1,22 +1,25 @@
 import { View, Text, FlatList, Image, TouchableOpacity, GestureResponderEvent } from 'react-native';
 import { Image as IImage } from '@utils/interfaces';
 import style from "./style";
+import { useState } from 'react';
 
 interface Props {
     images: IImage[],
-    onClick?: (img: IImage) => void
 }
 
 const ImageSlider = (props: Props) => {
 
+    const [selectedImage, setSelectedImage] = useState<IImage>(props.images[0]);
+
     const clickHandler = (img: IImage) => {
-        console.log(img)
-        if (props.onClick)
-            props.onClick(img)
+        setSelectedImage(img)
     }
 
     return (
         <View>
+            <View>
+                <Image style={style.bigImg} source={{uri: selectedImage.url}} />
+            </View>
             <FlatList
                 data={props.images}
                 showsHorizontalScrollIndicator={false}

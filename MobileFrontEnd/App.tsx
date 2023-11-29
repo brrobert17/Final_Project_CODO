@@ -6,7 +6,7 @@ import Home from './screens/Home';
 import Menu from "./screens/Menu";
 import { MenuProps } from "@screens/Menu/Menu";
 import { MenuLevel } from "@components/MenuItem/MenuItem";
-import { StatusBar } from "react-native";
+import { StatusBar, View } from "react-native";
 import { QueryClient, QueryClientProvider } from "react-query";
 import ProductDetail, {DetailProps} from '@screens/ProductDetail/ProductDetail';
 import Products, {ProductsProps} from "@screens/Products/Products";
