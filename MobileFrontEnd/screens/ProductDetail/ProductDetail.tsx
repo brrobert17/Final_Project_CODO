@@ -67,7 +67,8 @@ const ProductDetail: React.FC<DetailPropsWithRoute> = ({ route }) => {
             <HeaderSmall small />
             <KeyboardAvoidingView
             style={style.avoidKeyboard}
-            behavior={Platform.OS === "ios" ? "padding" : "height"}>
+            behavior={Platform.OS === "ios" ? "padding" : "height"}
+            keyboardVerticalOffset={Platform.OS == "ios" ? 0 : 15}>
             {data &&
                 <ScrollView
                     showsVerticalScrollIndicator={false}

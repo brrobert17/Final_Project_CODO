@@ -50,6 +50,7 @@ const QuantitySelector = (props: Props) => {
                         returnKeyType="done"
                         keyboardType="number-pad"
                         style={style.text}
+                        
                         defaultValue={props.wysiwyg ? "WYSIWYG" : count.toString()}
                         onChangeText={(text) => dispatch({ type: "custom", payload: Number(text) })}
                         selectTextOnFocus
