@@ -7,9 +7,11 @@ import {ScrollView, View} from "react-native";
 import gStyle from "@gStyle";
 import {HeaderAddOn, HeaderSmall} from "@components/Header";
 import ItemSection from "@components/ItemSection";
+import Breadcrumbs from "@components/Breadcrumbs";
 
 export interface ProductsProps {
-    categoryId?: string
+    categoryId?: string,
+    categoryName?: string
 }
 
 type ProductsScreenRouteProp = RouteProp<StackParams, 'Products'>;
@@ -40,17 +42,17 @@ const Products: React.FC<ProductsPropsWithRoute> = ({route}) => {
                 <ScrollView bounces={false}
                             onScroll={(e)=>setScrollOffset(e.nativeEvent.contentOffset.y)}
                             scrollEventThrottle={5}>
-                    <HeaderAddOn heading={"Categories"} categoryId={'root'}/>
-                    {data &&
-                        <>
-                            {/*<ItemSection*/}
-                            {/*    heading="All products"*/}
-                            {/*    seeMore={{*/}
-                            {/*        func: () => console.log('hello'),*/}
-                            {/*        img: {url: "https://picsum.photos/210", alt: "something something"}*/}
-                            {/*    }}*/}
-                            {/*    items={data}/>*/}
-                        </>}
+                    <HeaderAddOn heading={"Categories"} categoryId={route.params.categoryId || 'root'}/>
+                    {route.params.categoryId && <Breadcrumbs categoryId={route.params.categoryId}/>}
+                    {data && data[0].result.length>0 &&
+                            <ItemSection
+                                heading={route.params.categoryName || "All products"}
+                                seeMore={{
+                                    func: () => console.log('hello'),
+                                    img: {url: "https://picsum.photos/210", alt: "something something"}
+                                }}
+                                items={data[0].result}/>
+                        }
                 </ScrollView>
             </View>
             {/*<SafeAreaView>*/}

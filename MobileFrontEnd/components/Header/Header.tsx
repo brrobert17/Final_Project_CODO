@@ -65,7 +65,7 @@ export const HeaderAddOn = (props:HeaderAddOnProps) => {
         <View style={ style.addOnHeaderCont} >
                 <View style={{ ...style.safeAreaCont, overflow: "visible" }}>
                     <SearchBar />
-                    {data &&
+                    {data && data.length>0 &&
                         <ItemSection heading={props.heading} items={data}/>}
                 </View>
         </View>

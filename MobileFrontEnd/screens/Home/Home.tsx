@@ -10,9 +10,9 @@ const Home = () => {
 
     const params: QueryParam[] = [
         {queryKey: 'allProducts', limit:3},
-        {queryKey: 'fishes', category: 'fishes', limit: 3},
-        {queryKey: 'corals', category: 'corals', limit: 3},
-        {queryKey: 'invertebrates', category: 'invertebrates', limit: 3},
+        {queryKey: 'fishes', category: 'Q0i1y5', limit: 3},
+        {queryKey: 'corals', category: 'rUm6nc', limit: 3},
+        {queryKey: 'invertebrates', category: 'aRu8ro', limit: 3},
         ];
 
     const {
