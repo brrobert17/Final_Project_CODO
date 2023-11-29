@@ -2,7 +2,7 @@ import priceTagIcon from "@assets/price-tag.svg";
 import "./style.css";
 
 interface Props {
-    text: string
+    text: number
 }
 
 const PriceTag = (props: Props) => {

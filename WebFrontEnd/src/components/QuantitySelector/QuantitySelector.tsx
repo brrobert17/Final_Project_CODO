@@ -3,14 +3,14 @@ import separator from '@assets/separator.svg';
 
 interface Props {
     quantity: number,
-    setQuantity: (newQuantity: number) => void;
+    onChange: (newQuantity: number) => void;
 }
 
 export const QuantitySelector = (props: Props) => {
     return (
         <div className="quantity-selector">
             <div className="quantity-selector--button" onClick={() => {
-                props.quantity - 1 > 0 && props.setQuantity(props.quantity - 1)
+                props.quantity - 1 > 0 && props.onChange(props.quantity - 1);
             }}>
                 <svg width="10" height="3" viewBox="0 0 10 3" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <rect width="10" height="2" rx="1" fill="#fff"/>
@@ -24,9 +24,9 @@ export const QuantitySelector = (props: Props) => {
                        onChange={(e) => {
                            const newValue = parseInt(e.target.value, 10);
                            if (!isNaN(newValue) && newValue >= 1 && newValue <= 10000) {
-                               props.setQuantity(newValue);
+                               props.onChange(newValue);
                            } else {
-                               props.setQuantity(1);
+                               props.onChange(1);
                            }
                        }
                        }/>
@@ -36,7 +36,7 @@ export const QuantitySelector = (props: Props) => {
                 <img src={separator}/>
             </div>
             <div className="quantity-selector--button" onClick={() => {
-                props.quantity + 1 < 10000 && props.setQuantity(props.quantity + 1)
+                props.quantity + 1 < 10000 && props.onChange(props.quantity + 1)
             }}>
                 <svg width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <rect y="4" width="10" height="2" rx="1" fill="#fff"/>

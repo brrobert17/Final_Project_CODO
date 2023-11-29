@@ -1,6 +1,7 @@
-import {useQuery} from "react-query";
-import {get, getCore, getItem} from '@dbConn/calls/Items'
-import {Item, ItemCore, QueryParam, ItemCoreQueryResult, ItemQueryResult} from "@interfaces";
+import { useQuery } from "react-query";
+import { get, getCoreMulti, getCoreSingle, getItem } from '@dbConn/calls/Items'
+import { Item, ItemCore, QueryParam, ItemCoreQueryResult, ItemQueryResult } from "@interfaces";
+import { isArray } from "util";
 
 export const useItems = (limit?: number, category?: string) => {
     return useQuery<Item[], Error>(
@@ -13,13 +14,13 @@ export const useItems = (limit?: number, category?: string) => {
 }
 export const useItemsCoreMulti = (params?: QueryParam[], enabled?: boolean) => {
 
-    let queryKey = ['itemsCoreMulti',params]
-    let options: { refetchOnWindowFocus: boolean, enabled?: boolean } = {refetchOnWindowFocus: false};
-    if (enabled) options = {...options, enabled: enabled};
+    let queryKey = ['itemsCoreMulti', params]
+    let options: { refetchOnWindowFocus: boolean, enabled?: boolean } = { refetchOnWindowFocus: false };
+    if (enabled) options = { ...options, enabled: enabled };
 
     return useQuery<ItemCoreQueryResult[], Error>(
         queryKey,
-        () => getCore(params),
+        () => getCoreMulti(params),
         options
     )
 }
@@ -27,15 +28,15 @@ export const useItemsCoreMulti = (params?: QueryParam[], enabled?: boolean) => {
 export const useItemsCoreSingle = (params?: QueryParam) => {
 
     const queryKey = ['itemsCoreSingle', params ? params.category : 'root']
-    return useQuery<ItemCoreQueryResult[], Error>(
+    return useQuery<ItemCoreQueryResult, Error>(
         queryKey,
-        () => getCore(params ? [params] : undefined),
-        {refetchOnWindowFocus: false}
+        () => getCoreSingle(params),
+        { enabled: params ? params.queryKey != "" : false, refetchOnWindowFocus: false }
     )
 }
 
 export const useItem = (id: string) => {
     return useQuery<Item, Error>(
-        ['item',id], () => getItem(id),
-        {enabled: !!id, refetchOnWindowFocus: false})
+        ['item', id], () => getItem(id),
+        { enabled: !!id, refetchOnWindowFocus: false })
 }
