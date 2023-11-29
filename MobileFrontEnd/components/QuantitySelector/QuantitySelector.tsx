@@ -52,6 +52,7 @@ const QuantitySelector = (props: Props) => {
                         style={style.text}
                         defaultValue={props.wysiwyg ? "WYSIWYG" : count.toString()}
                         onChangeText={(text) => dispatch({ type: "custom", payload: Number(text) })}
+                        selectTextOnFocus
                     />
                     {!(props.wysiwyg) &&
                         <Text style={style.text}>pcs</Text>

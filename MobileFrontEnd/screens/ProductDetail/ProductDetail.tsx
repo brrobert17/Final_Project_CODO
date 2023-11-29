@@ -63,9 +63,8 @@ const ProductDetail: React.FC<DetailPropsWithRoute> = ({ route }) => {
         }
     }, [data]);
     return (
-        <View style={gStyle.container}>
+        <View style={[gStyle.container, style.page]}>
             <HeaderSmall small />
-
             <KeyboardAvoidingView
             style={style.avoidKeyboard}
             behavior={Platform.OS === "ios" ? "padding" : "height"}>

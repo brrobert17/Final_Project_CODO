@@ -3,11 +3,15 @@ import { StyleSheet } from "react-native";
 import { HEIGHT } from "@components/BtnIsland/style";
 
 export default StyleSheet.create({
+    page: {
+        display: 'flex',
+
+    },
     scroll: {
 
         paddingTop: pageMargin,
         marginHorizontal: pageMargin,
-        paddingBottom: HEIGHT * 3
+        paddingBottom: pageMargin
     },
     wysiwyg: {
         ...gStyle.basicLarge,
@@ -21,7 +25,8 @@ export default StyleSheet.create({
         marginVertical: pageMargin * 2
     },
     avoidKeyboard: {
-        paddingBottom: pageMargin * 6
+        paddingBottom: pageMargin * 6,
+        flex: 1,
     },
     sliderCont: {
         marginTop: pageMargin,
