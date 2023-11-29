@@ -88,13 +88,13 @@ utilsRouter.get("/tags", async (req, res) => {
     }
     res.send(items);
 })
-
+//duplicate categories collection
 utilsRouter.get('/dup', async (req, res) => {
 
     try {
         // Reference to the source and destination collections
-        const sourceCollection = collection(db, 'categories');
-        const destinationCollection = collection(db, 'cat');
+        const sourceCollection = collection(db, 'cat');
+        const destinationCollection = collection(db, 'categories');
 
         // Get all documents from the source collection
         const querySnapshot = await getDocs(sourceCollection);
@@ -103,15 +103,15 @@ utilsRouter.get('/dup', async (req, res) => {
         const batch = writeBatch(db);
         // ...
 
-        for (let i = 0; i < querySnapshot.docs.length; i++) {
-            const doc1 = querySnapshot.docs[i];
-            const modifiedData = {
-                ...doc1.data(),
-                img: { url: `https://picsum.photos/25${i}`, alt: doc1.data().name } // Add the new field with its value here
-            };
-            const docRef = doc(destinationCollection, doc1.id); // Reference to the destination document
-            batch.set(docRef, modifiedData); // Add modified data to batch
-        }
+        // for (let i = 0; i < querySnapshot.docs.length; i++) {
+        //     const doc1 = querySnapshot.docs[i];
+        //     const modifiedData = {
+        //         ...doc1.data(),
+        //         img: { url: `https://picsum.photos/25${i}`, alt: doc1.data().name } // Add the new field with its value here
+        //     };
+        //     const docRef = doc(destinationCollection, doc1.id); // Reference to the destination document
+        //     batch.set(docRef, modifiedData); // Add modified data to batch
+        // }
 
 // ...
 
@@ -124,10 +124,10 @@ utilsRouter.get('/dup', async (req, res) => {
         //     batch.set(docRef, modifiedData); // Add modified data to batch
         // });
 
-        // querySnapshot.forEach((doc1) => {
-        //     const docRef = doc(destinationCollection, doc1.id); // Reference to the destination document
-        //     batch.set(docRef, doc1.data()); // Add to batch
-        // });
+        querySnapshot.forEach((doc1) => {
+            const docRef = doc(destinationCollection, doc1.id); // Reference to the destination document
+            batch.set(docRef, doc1.data()); // Add to batch
+        });
 
         // Commit the batch
         await batch.commit();

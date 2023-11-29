@@ -82,13 +82,15 @@ const categoriesConverter: FirestoreDataConverter<Category> = {
         return {
             id: snapshot.id,
             name: data.name,
-            path: data.path
+            path: data.path,
+            img: data.img
         };
     },
     toFirestore(category: Category): DocumentData {
         return {
             name: category.name,
-            path: category.path
+            path: category.path,
+            img: category.img
         };
     }
 };

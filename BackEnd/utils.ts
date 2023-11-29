@@ -38,7 +38,6 @@ export const getAllSubcategoriesCache = (categoryId: string) => {
         let subCategories = [];
         const subCatCores: CategoryCore[] = [];
         if (categoryId === 'root') {
-            console.log('hhh')
             subCategories = categories.filter(category => !category.path[0]);
         } else {
             const category = categories.find(c => c.id === categoryId);
@@ -46,17 +45,16 @@ export const getAllSubcategoriesCache = (categoryId: string) => {
             const pathMap = pathData && new Map(Object.entries(pathData));
             const level = pathMap?.size || 0;
             subCategories = categories.filter(category => category.path[level] === categoryId);
-
         }
-        subCategories.forEach(c => {
-            subCatCores.push({
-                id: c.id,
-                name: c.name
-            })
-        })
+        // subCategories.forEach(c => {
+        //     subCatCores.push({
+        //         id: c.id,
+        //         name: c.name
+        //     })
+        // })
         // console.log(subCategories);
         // console.log(subCatCores);
-        return (subCatCores);
+        return (subCategories);
     }
 }
 //get path(supraCategories)

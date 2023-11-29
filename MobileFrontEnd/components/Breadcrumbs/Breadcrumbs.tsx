@@ -1,4 +1,4 @@
-import {useCategories} from "@dbConn/hooks/UseCategories";
+import {useBreadcrumbs} from "@dbConn/hooks/UseCategories";
 import style from './style';
 import {Text, TouchableOpacity, View} from "react-native";
 import {useNavigation} from "@react-navigation/native";
@@ -10,7 +10,7 @@ interface Props {
 }
 
 export const Breadcrumbs = (props: Props) => {
-    const {isLoading, isError, data} = useCategories(props.categoryId as string);
+    const {isLoading, isError, data} = useBreadcrumbs(props.categoryId as string);
     const nav = useNavigation<NativeStackNavigationProp<StackParams>>();
     const handlePress = () => {
         console.log('BREAD: ', props.categoryId)

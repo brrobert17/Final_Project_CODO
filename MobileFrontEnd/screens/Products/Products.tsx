@@ -1,8 +1,12 @@
 import {RouteProp} from "@react-navigation/native";
 import {StackParams} from "../../App";
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import {useItemsCoreSingle} from "@dbConn/hooks/UseItems";
 import {QueryParam} from "@interfaces";
+import {ScrollView, View} from "react-native";
+import gStyle from "@gStyle";
+import {HeaderAddOn, HeaderSmall} from "@components/Header";
+import ItemSection from "@components/ItemSection";
 
 export interface ProductsProps {
     categoryId?: string
@@ -28,8 +32,27 @@ const Products: React.FC<ProductsPropsWithRoute> = ({route}) => {
             console.log('Item: ', data);
         }
     }, [data]);
+    const [scrollOffset, setScrollOffset] = useState<number>(0);
     return (
         <>
+            <View style={gStyle.container}>
+                <HeaderSmall scrollY={scrollOffset}/>
+                <ScrollView bounces={false}
+                            onScroll={(e)=>setScrollOffset(e.nativeEvent.contentOffset.y)}
+                            scrollEventThrottle={5}>
+                    <HeaderAddOn heading={"Categories"} categoryId={'root'}/>
+                    {data &&
+                        <>
+                            {/*<ItemSection*/}
+                            {/*    heading="All products"*/}
+                            {/*    seeMore={{*/}
+                            {/*        func: () => console.log('hello'),*/}
+                            {/*        img: {url: "https://picsum.photos/210", alt: "something something"}*/}
+                            {/*    }}*/}
+                            {/*    items={data}/>*/}
+                        </>}
+                </ScrollView>
+            </View>
             {/*<SafeAreaView>*/}
             {/*    {data?.category && <Breadcrumbs categoryId={data.category}/>}*/}
             {/*    <ImageSlider images={sliderImages} />*/}

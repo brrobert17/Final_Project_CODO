@@ -3,7 +3,6 @@ import gStyle from "@gStyle";
 import {HeaderAddOn, HeaderSmall} from "@components/Header";
 import ItemSection from "@components/ItemSection";
 import {useItemsCoreMulti} from "@dbConn/hooks/UseItems";
-import {useSubcategories} from "@dbConn/hooks/UseCategories";
 import {QueryParam} from "@utils/interfaces";
 import {useMemo, useState} from "react";
 
@@ -22,11 +21,11 @@ const Home = () => {
         isLoading
     } = useItemsCoreMulti(params);
 
-    const {
-        data:cData,
-        error:cError,
-        isLoading:cIsLoading
-    } = useSubcategories('root');
+    // const {
+    //     data:cData,
+    //     error:cError,
+    //     isLoading:cIsLoading
+    // } = useSubcategories('root');
 
     const memoizedData = useMemo(() => {
         if(!data) return;
@@ -39,13 +38,12 @@ const Home = () => {
         return { allProductsData, fishData, coralData, invertebrateData };
     }, [data]);
 
-    if (isLoading || cIsLoading) {
+    if (isLoading) {
         console.log('loading');
-    } else if (error || cError) {
+    } else if (error) {
         console.error('error: ', error);
     } else {
         console.log('success');
-        console.log('success', cData);
     }
 
     const [scrollOffset, setScrollOffset] = useState<number>(0);
@@ -56,7 +54,7 @@ const Home = () => {
             <ScrollView bounces={false}
                         onScroll={(e)=>setScrollOffset(e.nativeEvent.contentOffset.y)}
                         scrollEventThrottle={5}>
-                <HeaderAddOn/>
+                <HeaderAddOn heading={"Categories"} categoryId={'root'}/>
                 {memoizedData?.allProductsData && memoizedData.fishData && memoizedData.coralData && memoizedData.invertebrateData &&
                 <>
                 <ItemSection
