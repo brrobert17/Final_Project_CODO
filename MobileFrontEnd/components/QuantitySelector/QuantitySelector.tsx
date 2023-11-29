@@ -23,7 +23,7 @@ function reducer(state: number, action: ActionType) {
 }
 
 interface Props {
-    wisiwyg?: boolean,
+    wysiwyg?: boolean,
     onChange: (quantity: number) => void
 }
 
@@ -39,8 +39,8 @@ const QuantitySelector = (props: Props) => {
 
     return (
         <View style={style.cont}>
-            <TouchableOpacity disabled={props.wisiwyg ? true : false} style={style.symbolCont} onPress={() => dispatch({ type: "minus" })}>
-                <Text style={[style.symbol, props.wisiwyg && style.symbolDisabled]}>-</Text>
+            <TouchableOpacity disabled={props.wysiwyg ? true : false} style={style.symbolCont} onPress={() => dispatch({ type: "minus" })}>
+                <Text style={[style.symbol, props.wysiwyg && style.symbolDisabled]}>-</Text>
             </TouchableOpacity>
             <View style={style.separator}></View>
             <TouchableWithoutFeedback onPress={() => inputRef.current && inputRef.current.focus()} >
@@ -50,17 +50,19 @@ const QuantitySelector = (props: Props) => {
                         returnKeyType="done"
                         keyboardType="number-pad"
                         style={style.text}
-                        defaultValue={props.wisiwyg ? "WISIWIG" : count.toString()}
+                        
+                        defaultValue={props.wysiwyg ? "WYSIWYG" : count.toString()}
                         onChangeText={(text) => dispatch({ type: "custom", payload: Number(text) })}
+                        selectTextOnFocus
                     />
-                    {!(props.wisiwyg) &&
+                    {!(props.wysiwyg) &&
                         <Text style={style.text}>pcs</Text>
                     }
                 </View>
             </TouchableWithoutFeedback>
             <View style={style.separator}></View>
-            <TouchableOpacity disabled={props.wisiwyg ? true : false} style={style.symbolCont} onPress={() => dispatch({ type: 'plus' })}>
-                <Text style={[style.symbol, props.wisiwyg && style.symbolDisabled]}>+</Text>
+            <TouchableOpacity disabled={props.wysiwyg ? true : false} style={style.symbolCont} onPress={() => dispatch({ type: 'plus' })}>
+                <Text style={[style.symbol, props.wysiwyg && style.symbolDisabled]}>+</Text>
             </TouchableOpacity>
         </View>
     )

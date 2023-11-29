@@ -5,6 +5,7 @@ import {QueryParam} from "@interfaces";
 import {useItemsCoreMulti} from "@dbConn/hooks/UseItems";
 import {useMemo, useState} from "react";
 import SlideShow from "../../components/SlideShow"
+import InfoSection from "@components/InfoSection";
 
 export const navigationPages = [
     {
@@ -100,7 +101,8 @@ const Home = () => {
     return (
         <>
             <NavBar pages={navigationPages} loginUrl={"/login"} shoppingCartUrl={"/cart"}/>
-            <SlideShow images={slideShowImages}/>
+            <SlideShow images={slideShowImages} />
+            <InfoSection />
             <div className={'pageContainer'}>
                 {memoizedData?.allProductsData &&
                     <ItemSection heading={'All Products'}

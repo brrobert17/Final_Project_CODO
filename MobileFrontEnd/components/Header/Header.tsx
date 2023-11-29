@@ -15,12 +15,13 @@ export const LARGE_LOGO_ASPECT_RATIO = 8; // 8 to 1 ratio
 export const SMALL_LOGO_ASPECT_RATIO = 4.36; // 4.36 to 1 ratio
 export const HEADER_SCROLL_THRESHOLD = 10;
  interface Props {
-     scrollY: number
+     scrollY?: number,
+     small?: boolean
  }
 
 export const HeaderSmall = (props: Props) => {
 
-    const small = props.scrollY ? props.scrollY > HEADER_SCROLL_THRESHOLD : false;
+    const small = props.small ? true : props.scrollY ? props.scrollY > HEADER_SCROLL_THRESHOLD : false;
     const nav = useNavigation<NativeStackNavigationProp<StackParams>>();
     const smallBtnContStyle = small ? style.btnContSmall : {}
 

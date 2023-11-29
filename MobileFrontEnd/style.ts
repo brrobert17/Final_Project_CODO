@@ -20,7 +20,7 @@ export default StyleSheet.create({
         //alignItems: 'center',
         //justifyContent: 'center',
     },
-    small:{
+    small: {
         color: '#fff',
         fontFamily: 'Inter_400Regular',
         fontSize: 13

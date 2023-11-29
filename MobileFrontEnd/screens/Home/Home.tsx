@@ -50,10 +50,12 @@ const Home = () => {
 
     return (
         <View style={gStyle.container}>
-            <HeaderSmall scrollY={scrollOffset}/>
-            <ScrollView bounces={false}
-                        onScroll={(e)=>setScrollOffset(e.nativeEvent.contentOffset.y)}
-                        scrollEventThrottle={5}>
+            <HeaderSmall scrollY={scrollOffset} />
+            <ScrollView
+                showsVerticalScrollIndicator={false}
+                bounces={false}
+                onScroll={(e) => setScrollOffset(e.nativeEvent.contentOffset.y)}
+                scrollEventThrottle={5}>
                 <HeaderAddOn heading={"Categories"} categoryId={'root'}/>
                 {memoizedData?.allProductsData && memoizedData.fishData && memoizedData.coralData && memoizedData.invertebrateData &&
                 <>
