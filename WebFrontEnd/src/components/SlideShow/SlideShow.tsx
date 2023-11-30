@@ -1,8 +1,6 @@
 import { useEffect, useReducer, useState } from "react";
-import { CircularBuffer } from "../../utils/circularBuffer";
-import { Image as IImage } from "../../utils/interfaces";
-import IconArrowLeft from "../../assets/icon-arrow-left.svg";
-import IconArrowRight from "../../assets/icon-arrow-right.svg";
+import { CircularBuffer } from "@utils/circularBuffer";
+import { Image as IImage } from "@utils/interfaces";
 import "./style.css"
 
 export const SLIDESHOW_SLIDE_ANIMATION_DURATION = 1000 // in miliseconds
@@ -39,7 +37,6 @@ const SlideShow = (props: Props) => {
     const [animationDirection, setAnimationDirection] = useState<Direction | null>(null)
 
     useEffect(() => {
-        console.log("bum bum")
         setTimeout(() => setAnimationDirection("forwards"), 8000);
     }, [images])
 

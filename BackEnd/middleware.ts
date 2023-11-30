@@ -65,8 +65,12 @@ export const fetchCollection: CollectionMiddleware = (collectionRef) => {
                 const queries = params.map(param => createQueryForParam(collectionRef, param));
                 const resultsArray = await Promise.all(queries);
                 const results = resultsArray.map((collectionSnapshot, index) => {
-                    const items = collectionSnapshot.docs.map(doc => doc.data());
-                    return { queryKey: params[index].queryKey, result: items };
+                    const currentParam = params[index];
+                    const filteredDocs = currentParam.exclude 
+                        ? collectionSnapshot.docs.filter(doc => doc.id !== currentParam.exclude)
+                        : collectionSnapshot.docs;
+                    const items = filteredDocs.map(doc => doc.data());
+                    return { queryKey: currentParam.queryKey, result: items };
                 });
                 console.log("results", resultsArray.map(res => { return res.docs.map((r) => r.data()) }))
                 res.send(results);
@@ -88,13 +92,13 @@ async function createQueryForParam(collectionRef: CollectionReference, param: Qu
         // categorySnap && console.log('cc',categorySnap.docs);
         // const categoryId = categorySnap?.docs[0].id;
         const subCatsIds = getAllSubcategoriesCache(param.category)?.map(c => c.id);
-        //console.log('scI:  ', subCatsIds)
         subCatsIds && [...subCatsIds, param.category].length != 0 && (itemsRef = query(itemsRef, where('category', 'in', [...subCatsIds, param.category])));
     }
     // Apply limit if specified
     if (param.limit && !isNaN(param.limit) && param.limit > 0) {
         itemsRef = query(itemsRef, limit(param.limit));
     }
+
     return getDocs(itemsRef);
 }
 

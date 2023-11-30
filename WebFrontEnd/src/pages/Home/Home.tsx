@@ -1,9 +1,9 @@
 import NavBar from "../../components/NavBar/NavBar"
 import './style.css'
 import ItemSection from "../../components/ItemSection";
-import {QueryParam} from "@interfaces";
-import {useItemsCoreMulti} from "@dbConn/hooks/UseItems";
-import {useMemo, useState} from "react";
+import { QueryParam } from "@interfaces";
+import { useItemsCoreMulti } from "@dbConn/hooks/UseItems";
+import { useMemo, useState } from "react";
 import SlideShow from "../../components/SlideShow"
 import InfoSection from "@components/InfoSection";
 
@@ -39,30 +39,30 @@ export const navigationPages = [
         name: "Info",
         path: "/",
 
-  },
-  {
-    name: "Contact",
-    path: "/",
+    },
+    {
+        name: "Contact",
+        path: "/",
 
-  }
+    }
 ]
 const slideShowImages = [
-  {
-    url: "https://picsum.photos/1440/420",
-    alt: "random image"
-  },
-  {
-    url: "https://picsum.photos/1441/420",
-    alt: "random image"
-  },
-  {
-    url: "https://picsum.photos/1440/421",
-    alt: "random image"
-  },
-  {
-    url: "https://picsum.photos/1441/421",
-    alt: "random image"
-  }
+    {
+        url: "https://picsum.photos/1440/420",
+        alt: "random image"
+    },
+    {
+        url: "https://picsum.photos/1441/420",
+        alt: "random image"
+    },
+    {
+        url: "https://picsum.photos/1440/421",
+        alt: "random image"
+    },
+    {
+        url: "https://picsum.photos/1441/421",
+        alt: "random image"
+    }
 ]
 
 interface Props {
@@ -70,24 +70,24 @@ interface Props {
 }
 
 const params: QueryParam[] = [
-    {queryKey: 'allProducts', limit: 7},
-    {queryKey: 'fish', category: 'fishes', limit: 3},
-    {queryKey: 'coral', category: 'corals', limit: 3},
-    {queryKey: 'invertebrate', category: 'invertebrates', limit: 3},
+    { queryKey: 'allProducts', limit: 7 },
+    { queryKey: 'fishes', category: 'Q0i1y5', limit: 5 },
+    { queryKey: 'corals', category: 'rUm6nc', limit: 5 },
+    { queryKey: 'invertebrates', category: 'aRu8ro', limit: 5 },
 ];
 
 const Home = () => {
 
-    const {data, error, isLoading} = useItemsCoreMulti(params);
+    const { data, error, isLoading } = useItemsCoreMulti(params);
 
     const memoizedData = useMemo(() => {
         if (!data) return;
         const allProductsData = data.find(d => d.queryKey === 'allProducts')?.result;
-        const fishData = data.find(d => d.queryKey === 'fish')?.result;
+        const fishData = data.find(d => d.queryKey === 'fishes')?.result;
         // const coralData = data.find(d => d.queryKey === 'coral')?.result;
         // const invertebrateData = data.find(d => d.queryKey === 'invertebrate')?.result;
 
-        return {allProductsData, fishData};
+        return { allProductsData, fishData };
     }, [data]);
 
     if (isLoading) {
@@ -100,24 +100,24 @@ const Home = () => {
 
     return (
         <>
-            <NavBar pages={navigationPages} loginUrl={"/login"} shoppingCartUrl={"/cart"}/>
+            <NavBar pages={navigationPages} loginUrl={"/login"} shoppingCartUrl={"/cart"} />
             <SlideShow images={slideShowImages} />
             <InfoSection />
             <div className={'pageContainer'}>
                 {memoizedData?.allProductsData &&
                     <ItemSection heading={'All Products'}
-                                 sorting={true}
-                                 items={memoizedData.allProductsData} seeMore={{
-                        func: () => console.log('hello'),
-                        img: {url: "https://picsum.photos/300/500", alt: "something something"}
-                    }}/>}
+                        sorting={true}
+                        items={memoizedData.allProductsData} seeMore={{
+                            func: () => console.log('hello'),
+                            img: { url: "https://picsum.photos/300/500", alt: "something something" }
+                        }} />}
                 {memoizedData?.fishData &&
                     <ItemSection heading={'Fish'}
-                                 sorting={true}
-                                 items={memoizedData.fishData} seeMore={{
-                        func: () => console.log('hello'),
-                        img: {url: "https://picsum.photos/300/500", alt: "something something"}
-                    }}/>}
+                        sorting={true}
+                        items={memoizedData.fishData} seeMore={{
+                            func: () => console.log('hello'),
+                            img: { url: "https://picsum.photos/300/500", alt: "something something" }
+                        }} />}
             </div>
         </>
     )

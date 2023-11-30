@@ -21,7 +21,7 @@ interface Props {
 
 export const ItemSection = (props: Props) => {
 
-    const isProduct = 'price' in props.items[0];
+    const isProduct = props.items[0] ? 'price' in props.items[0] : false;
 
     return (
         <>

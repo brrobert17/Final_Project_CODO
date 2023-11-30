@@ -44,6 +44,7 @@ export interface QueryParam {
     queryKey: string
     limit?: number,
     category?: string,
+    exclude?: string
 }
 
 export interface Category {
@@ -55,7 +56,7 @@ export interface Category {
     }
 }
 
-export interface CategoryCore{
+export interface CategoryCore {
     id: string,
     name: string,
 }

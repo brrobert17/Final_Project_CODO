@@ -12,10 +12,7 @@ import Breadcrumbs from "@components/Breadcrumbs";
 import blob from "@assets/Blob.svg";
 import LargeHeading from '@components/LargeHeading';
 import ItemSection from '@components/ItemSection';
-import { QueryParam } from '@interfaces';
 import { useCategory } from '@dbConn/hooks/UseCategories';
-
-const params: QueryParam = { queryKey: 'allProducts', limit: 7 };
 
 
 export const Product = () => {
@@ -25,16 +22,10 @@ export const Product = () => {
     const [quantity, setQuantity] = useState(1);
     const { isLoading: dataLoading, isError: dataError, data } = useItem(itemId as string);
     const { isLoading: categoryLoading, isError: categoryError, data: categoryData } = useCategory(data?.category ? data.category : "")
-    const { data: relatedData, error: relatedError, isLoading: relatedLoading } = useItemsCoreSingle({ queryKey: categoryData ? categoryData.name : '', category: categoryData ? categoryData.name : '', limit: 5 });
+    const { data: relatedData, error: relatedError, isLoading: relatedLoading } = useItemsCoreSingle({ queryKey: categoryData ? categoryData.name : '', category: categoryData ? categoryData.id : '', exclude: data?.id, limit: 5});
 
     useEffect(() => {
-        if (data) {
-            console.log('Item: ', data);
-        }
-    }, [data]);
-
-    useEffect(() => {
-        window.scrollTo(0,0);
+        window.scrollTo(0, 0);
     }, [location]);
 
     return (

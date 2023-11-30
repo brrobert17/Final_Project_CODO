@@ -5,7 +5,8 @@ module.exports = {
             '@': path.resolve(__dirname, 'src'),
             '@components': path.resolve(__dirname, 'src/components'),
             '@assets': path.resolve(__dirname, 'src/assets'),
-            '@dbConn': path.resolve(__dirname, 'src/DatabaseConn')
+            '@dbConn': path.resolve(__dirname, 'src/DatabaseConn'),
+            '@utils': path.resolve(__dirname, 'src/utils')
         },
     },
 };
