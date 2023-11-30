@@ -7,6 +7,7 @@
     outline: none;
     background-color: transparent;
     font-weight: bold;
+    user-select: none;
 
     background-image: url('');
     background-repeat: repeat-x;
