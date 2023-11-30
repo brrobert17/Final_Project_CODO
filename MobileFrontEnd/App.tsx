@@ -1,19 +1,18 @@
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { useFonts } from "expo-font";
-import { Inter_400Regular, Inter_600SemiBold, Inter_700Bold } from "@expo-google-fonts/inter";
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {useFonts} from "expo-font";
+import {Inter_400Regular, Inter_600SemiBold, Inter_700Bold} from "@expo-google-fonts/inter";
 import Home from './screens/Home';
 import Menu from "./screens/Menu";
-import { MenuProps } from "@screens/Menu/Menu";
-import { MenuLevel } from "@components/MenuItem/MenuItem";
-import { StatusBar, View } from "react-native";
-import { QueryClient, QueryClientProvider } from "react-query";
+import {StatusBar, View} from "react-native";
+import {QueryClient, QueryClientProvider} from "react-query";
 import ProductDetail, {DetailProps} from '@screens/ProductDetail/ProductDetail';
 import Products, {ProductsProps} from "@screens/Products/Products";
+import {MenuCategory} from "@interfaces";
 
 export type StackParams = {
     Home: {},
-    Menu: MenuProps,
+    Menu: MenuCategory,
     Detail: DetailProps,
     Products: ProductsProps
 }
@@ -34,28 +33,28 @@ export default function App() {
         return null;
     }
 
-    const menuProps: MenuProps = {
-        menu: [
-            { name: 'All Products', level: MenuLevel.TOP },
+    const menuProps: MenuCategory = {
+        children: [
+            {name: 'All Products', level: 0},
             {
                 name: 'Categories',
-                level: MenuLevel.TOP,
-                menu: [
-                    { name: 'Fishes', level: MenuLevel.SECOND },
-                    { name: 'Corals', level: MenuLevel.SECOND },
-                    { name: 'Invertebrates', level: MenuLevel.SECOND },
-                    { name: 'Accessories', level: MenuLevel.SECOND }
+                level: 0,
+                children: [
+                    {name: 'Fishes', level: 1},
+                    {name: 'Corals', level: 1},
+                    {name: 'Invertebrates', level: 1},
+                    {name: 'Accessories', level: 1}
                 ]
             },
-            { name: 'Info', level: MenuLevel.TOP },
-            { name: 'Contact', level: MenuLevel.TOP },
-            { name: 'Login', level: MenuLevel.TOP }
+            {name: 'Info', level: 0},
+            {name: 'Contact', level: 0},
+            {name: 'Login', level: 0}
         ]
     }
 
     return (
         <QueryClientProvider client={queryClient}>
-            <StatusBar barStyle={"light-content"} backgroundColor={"#152331"} />
+            <StatusBar barStyle={"light-content"} backgroundColor={"#152331"}/>
             <NavigationContainer>
                 <Stack.Navigator
                     screenOptions={{

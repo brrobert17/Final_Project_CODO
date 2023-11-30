@@ -9,8 +9,9 @@ import {imagesRouter} from "./router/imagesRouter";
 import {getAllSubCategories, utilsRouter} from "./router/utilsRouter";
 import {getDocs} from "firebase/firestore";
 import {categoriesCollection, converterCategoriesCollection} from "./firebaseConfig";
-import {getAllSubcategoriesCache, getAllSupraCategoriesCache} from "./utils";
+import {getAllSubcategoriesCache, getAllSupraCategoriesCache, nestCategories} from "./utils";
 import {categoriesRouter} from "./router/categoriesRouter";
+import {Category, MenuCategory} from "../MobileFrontEnd/utils/interfaces";
 
 
 const app = express();
@@ -33,7 +34,9 @@ async function initializeCache() {
     try {
         const categoriesSnapshot = await getDocs(converterCategoriesCollection);
         const categories = categoriesSnapshot.docs.map(doc => doc.data());
+        const menuCategories = nestCategories(categories);
         myCache.set('categories', categories);
+        myCache.set('menuCategories', menuCategories);
         console.log('Categories cache set.');
     } catch (error) {
         console.error('Failed to initialize cache:', error);

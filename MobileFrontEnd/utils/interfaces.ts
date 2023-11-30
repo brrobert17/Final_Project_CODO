@@ -60,3 +60,10 @@ export interface CategoryCore {
     id: string,
     name: string,
 }
+
+export interface MenuCategory {
+    id?: string;
+    name?: string;
+    level?: number;
+    children?: MenuCategory[];
+}

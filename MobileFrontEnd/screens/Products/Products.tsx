@@ -29,11 +29,11 @@ const Products: React.FC<ProductsPropsWithRoute> = ({route}) => {
     const {isLoading, isError, data} = useItemsCoreSingle(queryParam);
     //console.log('Products: ',route.params.itemId)
 
-    useEffect(() => {
-        if (data) {
-            console.log('Item: ', data);
-        }
-    }, [data]);
+    // useEffect(() => {
+    //     if (data) {
+    //         console.log('Item: ', data);
+    //     }
+    // }, [data]);
     const [scrollOffset, setScrollOffset] = useState<number>(0);
     return (
         <>

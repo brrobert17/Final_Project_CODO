@@ -15,7 +15,6 @@ export const Breadcrumbs = (props: Props) => {
     const {isLoading, isError, data} = useBreadcrumbs(props.categoryId as string);
     const nav = useNavigation<NativeStackNavigationProp<StackParams>>();
     const handlePress = (productsProps: ProductsProps) => {
-        console.log('BREAD: ', props.categoryId)
         nav.navigate('Products', productsProps);
     }
     return (

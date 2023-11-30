@@ -19,7 +19,6 @@ interface Props {
 }
 
 const ItemSection = (props: Props) => {
-    console.log('IS',props);
 
     const isProduct = 'price' in props.items[0]
 

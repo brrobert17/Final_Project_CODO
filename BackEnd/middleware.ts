@@ -51,17 +51,17 @@ export const fetchCollection: CollectionMiddleware = (collectionRef) => {
     return async (req, res) => {
         try {
             const params = JSON.parse(req.query.params as string) as QueryParam[];
-            console.log("fetching: ", req.query);
+            //console.log("fetching: ", req.query);
 
             // Shortcut in case of no params
             if (!params || !Array.isArray(params)) {
-                console.log("fetching all products")
+                //console.log("fetching all products")
                 const allItemsRef = query(collectionRef, orderBy('added', 'asc'));
                 const collectionSnapshot = await getDocs(allItemsRef);
                 const items = collectionSnapshot.docs.map(doc => doc.data());
                 res.send([{ queryKey: 'allProducts', result: items }]);
             } else {
-                console.log("fetching specific categories")
+                //console.log("fetching specific categories")
                 const queries = params.map(param => createQueryForParam(collectionRef, param));
                 const resultsArray = await Promise.all(queries);
                 const results = resultsArray.map((collectionSnapshot, index) => {
@@ -72,7 +72,7 @@ export const fetchCollection: CollectionMiddleware = (collectionRef) => {
                     const items = filteredDocs.map(doc => doc.data());
                     return { queryKey: currentParam.queryKey, result: items };
                 });
-                console.log("results", resultsArray.map(res => { return res.docs.map((r) => r.data()) }))
+                //console.log("results", resultsArray.map(res => { return res.docs.map((r) => r.data()) }))
                 res.send(results);
             }
         } catch (e) {

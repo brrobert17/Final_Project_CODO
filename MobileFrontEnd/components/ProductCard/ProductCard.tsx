@@ -17,7 +17,6 @@ export interface Props {
 const ProductCard = (props: Props) => {
     const nav = useNavigation<NativeStackNavigationProp<StackParams>>();
     const handlePress = ()=>{
-        console.log('letsGOO',props)
         nav.push('Detail', {itemId: props.id});
     }
     return (

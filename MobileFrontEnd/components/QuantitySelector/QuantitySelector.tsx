@@ -39,7 +39,7 @@ const QuantitySelector = (props: Props) => {
 
     return (
         <View style={style.cont}>
-            <TouchableOpacity disabled={props.wysiwyg ? true : false} style={style.symbolCont} onPress={() => dispatch({ type: "minus" })}>
+            <TouchableOpacity disabled={!!props.wysiwyg} style={style.symbolCont} onPress={() => dispatch({ type: "minus" })}>
                 <Text style={[style.symbol, props.wysiwyg && style.symbolDisabled]}>-</Text>
             </TouchableOpacity>
             <View style={style.separator}></View>
@@ -61,7 +61,7 @@ const QuantitySelector = (props: Props) => {
                 </View>
             </TouchableWithoutFeedback>
             <View style={style.separator}></View>
-            <TouchableOpacity disabled={props.wysiwyg ? true : false} style={style.symbolCont} onPress={() => dispatch({ type: 'plus' })}>
+            <TouchableOpacity disabled={!!props.wysiwyg} style={style.symbolCont} onPress={() => dispatch({ type: 'plus' })}>
                 <Text style={[style.symbol, props.wysiwyg && style.symbolDisabled]}>+</Text>
             </TouchableOpacity>
         </View>

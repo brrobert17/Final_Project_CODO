@@ -1,7 +1,7 @@
 import {db} from "./firebaseConfig";
 import {doc, getDoc} from "firebase/firestore";
 import {myCache} from "./app";
-import {Category, CategoryCore} from "../MobileFrontEnd/utils/interfaces";
+import {Category, CategoryCore, MenuCategory} from "../MobileFrontEnd/utils/interfaces";
 
 export const generateRandomId = (): string => {
     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -105,4 +105,24 @@ export const getAllSupraCategoriesCache = (categoryId: string) => {
     }
 }
 
+export const nestCategories = (categories: Category[], parentId: string | null = null, level: number = 0): MenuCategory[] => {
+    const currentLevelCategories = categories.filter(c => parentId ? Object.keys(c.path).length === level && c.path[level - 1] === parentId : Object.keys(c.path).length === level);
+    let currentLevelMenuCategories: MenuCategory[] = [];
+    if (currentLevelCategories.length === 0) {
+        return currentLevelMenuCategories;
+    } else {
+        currentLevelMenuCategories = currentLevelCategories.map(c => {
+            const newCategory: MenuCategory = {
+                id: c.id,
+                name: c.name,
+                level: level,
+            };
+            const children = nestCategories(categories, c.id, level + 1)
+            children.length > 0 && (newCategory.children = children);
+
+            return newCategory;
+        })
+    }
+    return currentLevelMenuCategories;
+}
 

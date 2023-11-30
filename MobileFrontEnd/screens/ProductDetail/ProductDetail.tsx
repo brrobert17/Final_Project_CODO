@@ -55,14 +55,7 @@ type DetailPropsWithRoute = {
 const ProductDetail: React.FC<DetailPropsWithRoute> = ({ route }) => {
     const { isLoading, isError, data } = useItem(route.params.itemId as string);
     const props = route.params
-    console.log('DETAIL: ', props.itemId)
 
-    useEffect(() => {
-        if (data) {
-            console.log('Item: ', data);
-        }
-    }, [data]);
-    //TODO try npm install react-native-keyboard-aware-scroll-view --save
     return (
         <SafeAreaView style={[gStyle.container, style.page]}>
             <HeaderSmall small />
