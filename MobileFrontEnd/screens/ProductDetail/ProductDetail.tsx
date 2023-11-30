@@ -62,13 +62,15 @@ const ProductDetail: React.FC<DetailPropsWithRoute> = ({ route }) => {
             console.log('Item: ', data);
         }
     }, [data]);
+    //TODO try npm install react-native-keyboard-aware-scroll-view --save
     return (
-        <View style={[gStyle.container, style.page]}>
+        <SafeAreaView style={[gStyle.container, style.page]}>
             <HeaderSmall small />
             <KeyboardAvoidingView
             style={style.avoidKeyboard}
             behavior={Platform.OS === "ios" ? "padding" : "height"}
-            keyboardVerticalOffset={Platform.OS == "ios" ? 0 : 15}>
+            keyboardVerticalOffset={Platform.OS == "ios" ? 0 : 40}
+            >
             {data &&
                 <ScrollView
                     showsVerticalScrollIndicator={false}
@@ -88,7 +90,7 @@ const ProductDetail: React.FC<DetailPropsWithRoute> = ({ route }) => {
             }
             </KeyboardAvoidingView>
             <BtnIsland price={data?.price ? Number(data.price) : 0} />
-        </View>
+        </SafeAreaView>
     )
 }
 

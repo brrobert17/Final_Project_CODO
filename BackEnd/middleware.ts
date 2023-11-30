@@ -83,11 +83,13 @@ async function createQueryForParam(collectionRef: CollectionReference, param: Qu
 
     // Apply category filter if specified
     if (param.category) {
-        const categorySnap = await getDocs(query(categoriesCollection, where('name', '==', param.category)));
-        const categoryId = categorySnap.docs[0].id;
-        const subCatsIds = getAllSubcategoriesCache(categoryId)?.map(c => c.id);
-        console.log('scI:  ', subCatsIds)
-        subCatsIds && [...subCatsIds, categoryId].length != 0 && (itemsRef = query(itemsRef, where('category', 'in', [...subCatsIds, categoryId])));
+        // console.log('categpry', param)
+        // let categorySnap = await getDocs(query(categoriesCollection, where('name', '==', param.category)));
+        // categorySnap && console.log('cc',categorySnap.docs);
+        // const categoryId = categorySnap?.docs[0].id;
+        const subCatsIds = getAllSubcategoriesCache(param.category)?.map(c => c.id);
+        //console.log('scI:  ', subCatsIds)
+        subCatsIds && [...subCatsIds, param.category].length != 0 && (itemsRef = query(itemsRef, where('category', 'in', [...subCatsIds, param.category])));
     }
     // Apply limit if specified
     if (param.limit && !isNaN(param.limit) && param.limit > 0) {

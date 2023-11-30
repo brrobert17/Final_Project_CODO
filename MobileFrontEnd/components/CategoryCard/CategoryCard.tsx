@@ -21,7 +21,7 @@ const CategoryCard = (props: Props) => {
     const maxItemsPerRow = props.bigVariant ? 2 : 3;
     const itemWidth = (Dimensions.get('window').width / maxItemsPerRow) - (pageMargin * (1 + (1 / maxItemsPerRow)));
     const handlePress = () => {
-        props.id && nav.push('Products', {categoryId: props.id})
+        props.id && nav.push('Products', {categoryId: props.id, categoryName: props.name})
     }
     return (
 

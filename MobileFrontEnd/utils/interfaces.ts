@@ -49,6 +49,7 @@ export interface QueryParam {
 export interface Category {
     id: string,
     name: string,
+    img: Image,
     path: {
         [key: number]: string;
     }
@@ -56,5 +57,5 @@ export interface Category {
 
 export interface CategoryCore{
     id: string,
-    name: string
+    name: string,
 }

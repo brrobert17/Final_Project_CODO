@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {backGroundColor, colorPlaceholder} from "@gStyle";
+import {backGroundColor, colorPlaceholder, pageMargin} from "@gStyle";
 import styles from "@gStyle";
 
 export default StyleSheet.create({

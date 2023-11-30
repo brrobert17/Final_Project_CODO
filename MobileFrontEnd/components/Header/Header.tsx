@@ -8,6 +8,7 @@ import { StackParams } from "../../App";
 import ItemSection from "@components/ItemSection";
 import BigLogo from '@assets/logo-schulz.svg';
 import { borderRadiusBig, pageMargin } from "@gStyle";
+import {useSubcategories} from "@dbConn/hooks/UseCategories";
 
 
 export const LARGE_LOGO_ASPECT_RATIO = 8; // 8 to 1 ratio
@@ -56,18 +57,17 @@ export const HeaderSmall = (props: Props) => {
     )
 }
 export interface HeaderAddOnProps {
-
+    heading: string,
+    categoryId: string
 }
 export const HeaderAddOn = (props:HeaderAddOnProps) => {
+     const {isLoading, isError, data} = useSubcategories(props.categoryId);
     return (
         <View style={ style.addOnHeaderCont} >
                 <View style={{ ...style.safeAreaCont, overflow: "visible" }}>
                     <SearchBar />
-                    <ItemSection heading='Categories' items={[
-                        { name: "fishes",id: "Q0i1y5", img: { url: "https://picsum.photos/201", alt: "something something" } },
-                        { name: "corals",id: 'rUm6nc', img: { url: "https://picsum.photos/202", alt: "something something" } },
-                        { name: "invertebrates", id: 'aRu8ro', img: { url: "https://picsum.photos/203", alt: "something something" } },
-                    ]} />
+                    {data && data.length>0 &&
+                        <ItemSection heading={props.heading} items={data}/>}
                 </View>
         </View>
     )
