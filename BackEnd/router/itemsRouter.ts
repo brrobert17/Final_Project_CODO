@@ -1,5 +1,5 @@
 import express from "express";
-import { fetchCollection } from "../middleware";
+import { fetchCollection, fetchRelated } from "../middleware";
 import {
     converterItemsCollection,
     converterItemsCoreCollection, converterTagsCollection, db,
@@ -8,13 +8,17 @@ import {
 } from "../firebaseConfig";
 import { doc, getDoc, getDocs, query, setDoc, updateDoc, where, deleteDoc, orderBy, limit } from "firebase/firestore";
 import { collection } from "@firebase/firestore";
-import {createUniqueDocument} from "../utils";
+import { createUniqueDocument } from "../utils";
 
 export const itemsRouter = express.Router();
 
 itemsRouter.get('/items', fetchCollection(converterItemsCollection));
 
 itemsRouter.get('/items/cores', fetchCollection(converterItemsCoreCollection));
+
+itemsRouter.get('/items/:id/related', fetchRelated(converterItemsCollection));
+
+itemsRouter.get('/items/:id/related/cores', fetchRelated(converterItemsCoreCollection));
 
 itemsRouter.get('/items/:id', async (req, res) => {
     const productId = req.params.id;

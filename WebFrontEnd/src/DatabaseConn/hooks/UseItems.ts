@@ -1,5 +1,5 @@
 import { useQuery } from "react-query";
-import { get, getCoreMulti, getCoreSingle, getItem } from '@dbConn/calls/Items'
+import { get, getCoreMulti, getCoreSingle, getItem, getRelatedCores, getRelatedItems } from '@dbConn/calls/Items'
 import { Item, ItemCore, QueryParam, ItemCoreQueryResult, ItemQueryResult } from "@interfaces";
 import { isArray } from "util";
 
@@ -39,4 +39,18 @@ export const useItem = (id: string) => {
     return useQuery<Item, Error>(
         ['item', id], () => getItem(id),
         { enabled: !!id, refetchOnWindowFocus: false })
+}
+
+export const useRelatedItems = (id: string, limit: number) => {
+    return useQuery<Item[], Error>(
+        ["related items", id, limit], () => getRelatedItems(id, limit),
+        {enabled: !!id, refetchOnWindowFocus: false}
+    );
+}
+
+export const useRelatedItemsCores = (id: string, limit: number) => {
+    return useQuery<ItemCore[], Error>(
+        ["related items cores", id, limit], () => getRelatedCores(id, limit),
+        {enabled: id ? id != '' : false, refetchOnWindowFocus: false}
+    );
 }

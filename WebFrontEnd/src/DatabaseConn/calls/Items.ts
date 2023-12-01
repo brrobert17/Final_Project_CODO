@@ -36,6 +36,22 @@ export const getItem = async (id: string): Promise<Item> => {
     const url = `/items/${id}`;
 
     return api.get(url).then(res => res.data).catch(err => {
-        throw err
+        throw err;
     })
 }
+
+export const getRelatedItems = async (id: string, limit: number): Promise<Item[]> => {
+    const url = `/items/${id}/related?limit=${limit}`;
+
+    return api.get(url).then(res => res.data).catch(err => {
+        throw err;
+    })
+}
+export const getRelatedCores = async (id: string, limit: number): Promise<ItemCore[]> => {
+    const url = `/items/${id}/related/cores?limit=${limit}`;
+
+    return api.get(url).then(res => res.data).catch(err => {
+        throw err;
+    })
+}
+

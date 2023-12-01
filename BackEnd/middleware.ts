@@ -1,9 +1,10 @@
-import { CollectionReference, getDocs, orderBy, query, limit, where } from "firebase/firestore";
+import { CollectionReference, getDocs, orderBy, query, limit, where, doc, getDoc, DocumentSnapshot, DocumentData, QueryDocumentSnapshot } from "firebase/firestore";
 import { Request, Response } from 'express';
-import { QueryParam } from "../MobileFrontEnd/utils/interfaces";
-import { categoriesCollection } from "./firebaseConfig";
+import { Item, QueryParam } from "../MobileFrontEnd/utils/interfaces";
+import { categoriesCollection, converterItemsCollection } from "./firebaseConfig";
 import { getAllSubCategories } from "./router/utilsRouter";
-import { getAllSubcategoriesCache } from "./utils";
+import { getAllSubcategoriesCache, getCategoryCache } from "./utils";
+import { myCache } from "./app";
 
 type CollectionMiddleware = (collectionRef: CollectionReference) => (req: Request, res: Response) => Promise<void>;
 
@@ -47,6 +48,9 @@ type CollectionMiddleware = (collectionRef: CollectionReference) => (req: Reques
 //         }
 //     };
 // };
+
+
+
 export const fetchCollection: CollectionMiddleware = (collectionRef) => {
     return async (req, res) => {
         try {
@@ -66,7 +70,7 @@ export const fetchCollection: CollectionMiddleware = (collectionRef) => {
                 const resultsArray = await Promise.all(queries);
                 const results = resultsArray.map((collectionSnapshot, index) => {
                     const currentParam = params[index];
-                    const filteredDocs = currentParam.exclude 
+                    const filteredDocs = currentParam.exclude
                         ? collectionSnapshot.docs.filter(doc => doc.id !== currentParam.exclude)
                         : collectionSnapshot.docs;
                     const items = filteredDocs.map(doc => doc.data());
@@ -81,6 +85,95 @@ export const fetchCollection: CollectionMiddleware = (collectionRef) => {
         }
     };
 };
+
+export const fetchRelated: CollectionMiddleware = (collectionRef) => {
+    return async (req, res) => {
+        const productId = req.params.id;
+        const limit = Number(req.query.limit);
+        let itemSnap: DocumentSnapshot<Item, DocumentData> | null = null;
+
+        try {
+            console.log("categories", myCache.get('menuCategories'), null, 2);
+            const docRef = doc(converterItemsCollection, productId);
+            itemSnap = await getDoc(docRef);
+
+            if (!itemSnap.exists() || itemSnap === null) {
+                res.status(404).json({ message: 'Product not found' });
+            }
+
+            if (!limit) {
+                res.status(400).json({ error: "Bad request", message: "Missing required query parameter: limit" });
+            }
+
+            if (itemSnap && itemSnap.data()) {
+                const categoryId = itemSnap.data()?.category
+                if (categoryId) {
+                    const related = await getRelatedItemsWithLimit(collectionRef, limit + 1, categoryId, [])
+                    const filteredRelated = related.filter(r => r.id != productId);
+                    res.status(200).json(filteredRelated.map(d => d.data()));
+                }
+            }
+            res.status(400);
+        } catch (error) {
+            res.status(500).json({ error: error });
+        }
+    }
+}
+
+async function getRelatedItemsWithLimit(collectionRef: CollectionReference, limit: number, categoryId: string, previousDocs: QueryDocumentSnapshot<DocumentData>[]): Promise<QueryDocumentSnapshot<DocumentData>[]> {
+    let itemsRef = query(collectionRef, orderBy('added', 'asc'));
+
+    // Get sub-categories
+    const subCatsIds = getAllSubcategoriesCache(categoryId)?.map(c => c.id);
+    if (subCatsIds && subCatsIds.length >= 0) {
+        itemsRef = query(itemsRef, where('category', 'in', [...subCatsIds, categoryId]));
+    }
+
+    // Get category parent
+    const currentCat = getCategoryCache(categoryId);
+    let parentCatId;
+    if (currentCat && currentCat.path) {
+        const keys = Object.keys(currentCat.path).map(Number).sort((a, b) => a - b);
+        if (keys.length > 0) {
+            const lastIndex = keys[keys.length - 1];
+            parentCatId = currentCat.path[lastIndex];
+        }
+    }
+
+
+
+    // Get sub-categories items
+    try {
+        const snapDocs = (await getDocs(itemsRef)).docs;
+        const docs = [...snapDocs, ...previousDocs];
+
+        const docSet = Array.from(new Set(docs.map(doc => doc.id)))
+            .map(id => {
+                return docs.find(doc => doc.id === id);
+            });
+        const filteredDocs = docSet.filter((item): item is QueryDocumentSnapshot<DocumentData, DocumentData> => item !== undefined);
+
+
+        if (filteredDocs.length < limit && parentCatId) {
+            const remainingLimit = limit - filteredDocs.length;
+            const recursiveResult = await getRelatedItemsWithLimit(collectionRef, remainingLimit, parentCatId, docs);
+            if (recursiveResult) {
+                return [...filteredDocs, ...recursiveResult];
+            }
+        }
+        if (docs.length > limit) {
+            console.log("limit", limit);
+            console.log("slice", filteredDocs.slice(0, limit).length);
+            const slicedDocs = filteredDocs.slice(0, limit);
+            return slicedDocs;
+        }
+
+        return filteredDocs;
+    } catch (err) {
+        console.error('Error fetching related items:', err);
+        throw err;
+    }
+}
 
 async function createQueryForParam(collectionRef: CollectionReference, param: QueryParam) {
     let itemsRef = query(collectionRef, orderBy('added', 'asc'));

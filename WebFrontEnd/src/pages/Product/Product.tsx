@@ -7,7 +7,7 @@ import Button from '@components/Button';
 import { useEffect, useState } from "react";
 import QuantitySelector from "@components/QuantitySelector";
 import { useLocation } from "react-router-dom";
-import { useItem, useItemsCoreSingle } from "@dbConn/hooks/UseItems";
+import { useItem, useItemsCoreSingle, useRelatedItems, useRelatedItemsCores } from "@dbConn/hooks/UseItems";
 import Breadcrumbs from "@components/Breadcrumbs";
 import blob from "@assets/Blob.svg";
 import LargeHeading from '@components/LargeHeading';
@@ -22,7 +22,7 @@ export const Product = () => {
     const [quantity, setQuantity] = useState(1);
     const { isLoading: dataLoading, isError: dataError, data } = useItem(itemId as string);
     const { isLoading: categoryLoading, isError: categoryError, data: categoryData } = useCategory(data?.category ? data.category : "")
-    const { data: relatedData, error: relatedError, isLoading: relatedLoading } = useItemsCoreSingle({ queryKey: categoryData ? categoryData.name : '', category: categoryData ? categoryData.id : '', exclude: data?.id, limit: 5});
+    const { data: relatedData, error: relatedError, isLoading: relatedLoading } = useRelatedItemsCores(data ? data.id : '', 2)
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -50,7 +50,7 @@ export const Product = () => {
                     </div>
                 </div>
                 <div className='product__related'>
-                    {relatedData && <ItemSection heading={"Related Products"} items={relatedData.result} />}
+                    {relatedData && <ItemSection heading={"Related Products"} items={relatedData} />}
                 </div>
             </div>
         </div>
