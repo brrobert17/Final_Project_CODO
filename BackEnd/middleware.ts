@@ -93,11 +93,11 @@ export const fetchRelated: CollectionMiddleware = (collectionRef) => {
         let itemSnap: DocumentSnapshot<Item, DocumentData> | null = null;
 
         try {
-            console.log("categories", myCache.get('menuCategories'), null, 2);
+            //console.log("categories", myCache.get('menuCategories'), null, 2);
             const docRef = doc(converterItemsCollection, productId);
             itemSnap = await getDoc(docRef);
 
-            if (!itemSnap.exists() || itemSnap === null) {
+            if (!itemSnap.exists()) {
                 res.status(404).json({ message: 'Product not found' });
             }
 
@@ -152,19 +152,27 @@ async function getRelatedItemsWithLimit(collectionRef: CollectionReference, limi
                 return docs.find(doc => doc.id === id);
             });
         const filteredDocs = docSet.filter((item): item is QueryDocumentSnapshot<DocumentData, DocumentData> => item !== undefined);
-
+        console.log('filteredDocs:  ', filteredDocs.map(d=> d.data()));
 
         if (filteredDocs.length < limit && parentCatId) {
             const remainingLimit = limit - filteredDocs.length;
             const recursiveResult = await getRelatedItemsWithLimit(collectionRef, remainingLimit, parentCatId, docs);
             if (recursiveResult) {
-                return [...filteredDocs, ...recursiveResult];
+                const all = [...filteredDocs, ...recursiveResult]
+                const docSet = Array.from(new Set(all.map(doc => doc.id)))
+                    .map(id => {
+                        return all.find(doc => doc.id === id);
+                    });
+                const filteredDocsTwo = docSet.filter((item): item is QueryDocumentSnapshot<DocumentData, DocumentData> => item !== undefined);
+                console.log('filteredDocs:  ', filteredDocsTwo.map(d=> d.data()));
+                return filteredDocsTwo;
             }
         }
         if (docs.length > limit) {
             console.log("limit", limit);
             console.log("slice", filteredDocs.slice(0, limit).length);
             const slicedDocs = filteredDocs.slice(0, limit);
+            //console.log()
             return slicedDocs;
         }
 
