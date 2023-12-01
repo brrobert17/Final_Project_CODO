@@ -115,7 +115,7 @@ export const nestCategories = (categories: Category[], parentId: string | null =
             const newCategory: MenuCategory = {
                 id: c.id,
                 name: c.name,
-                level: level,
+                level: level + 1,
             };
             const children = nestCategories(categories, c.id, level + 1)
             children.length > 0 && (newCategory.children = children);

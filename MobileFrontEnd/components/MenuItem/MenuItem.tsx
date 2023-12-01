@@ -13,13 +13,18 @@ const MenuItem = (props: MenuCategory) => {
     const nav = useNavigation<NativeStackNavigationProp<StackParams>>();
 
     const menuItemClick = () => {
-        if (props.children) {
-            nav.push('Menu', props);
-            //console.log('props:  ' +props.menu)
+        if(props.action){
+            props.action();
+        }
+        else if (props.id) {
+            console.log('...id', props.id)
+            nav.push('Menu', {categoryId: props.id});
         } else {
             if (!props.level) {
+                console.log('back')
                 nav.goBack();
             } else {
+                console.log('ney')
                 nav.navigate('Home', {});
             }
         }

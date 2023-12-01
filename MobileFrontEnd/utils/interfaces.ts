@@ -66,4 +66,5 @@ export interface MenuCategory {
     name?: string;
     level?: number;
     children?: MenuCategory[];
+    action?: ()=>void
 }
