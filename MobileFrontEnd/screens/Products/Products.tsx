@@ -26,6 +26,7 @@ const Products: React.FC<ProductsPropsWithRoute> = ({route}) => {
         limit: 10,
         category: route.params.categoryId || ''
     }
+    console.log('PRODUCST: ', route.params);
     const {isLoading, isError, data} = useItemsCoreSingle(queryParam);
     //console.log('Products: ',route.params.itemId)
 

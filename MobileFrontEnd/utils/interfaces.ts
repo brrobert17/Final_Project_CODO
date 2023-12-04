@@ -1,3 +1,6 @@
+import {NativeStackNavigationProp} from "@react-navigation/native-stack";
+import {StackParams} from "../App";
+
 export interface Item {
     id: string;
     name: string;
@@ -66,5 +69,5 @@ export interface MenuCategory {
     name?: string;
     level?: number;
     children?: MenuCategory[];
-    action?: ()=>void
+    action?: (nav?:NativeStackNavigationProp<StackParams>)=>void
 }

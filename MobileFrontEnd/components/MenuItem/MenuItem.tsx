@@ -14,12 +14,17 @@ const MenuItem = (props: MenuCategory) => {
 
     const menuItemClick = () => {
         if(props.action){
-            props.action();
+            console.log('action')
+            props.action(nav);
         }
-        else if (props.id) {
-            console.log('...id', props.id)
+        else if (props.id === 'root') {
+            console.log('root')
             nav.push('Menu', {categoryId: props.id});
-        } else {
+        }
+        else if(props.id){
+            console.log('action333')
+            nav.navigate('Products', {categoryId: props.id})
+        }else {
             if (!props.level) {
                 console.log('back')
                 nav.goBack();
@@ -42,13 +47,18 @@ const MenuItem = (props: MenuCategory) => {
         textStyle = gStyle.h1;
         arrow = ArrowDirection.RIGHT;
     }
+    if (!props.name) {
+        return null;
+    }
 
     return (
-        <TouchableOpacity style={componentStyle.menuItemContainer} onPress={() => menuItemClick()}>
-            <Text style={textStyle}>{props.name}</Text>
-            {arrow && <Arrow arrowDirection={arrow} opaque={opaque}/>}
-        </TouchableOpacity>
-    )
+                <TouchableOpacity style={componentStyle.menuItemContainer} onPress={() => menuItemClick()}>
+                    <Text style={textStyle}>
+                        {props.name.charAt(0).toUpperCase() + props.name.slice(1)}
+                    </Text>
+                    {arrow && <Arrow arrowDirection={arrow} opaque={opaque}/>}
+                </TouchableOpacity>
+            )
 }
 
 export default MenuItem;

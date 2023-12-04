@@ -21,7 +21,7 @@ const Menu: React.FC<MenuPropsWithRoute> = ({route}) => {
     const nav = useNavigation<NativeStackNavigationProp<StackParams>>();
     const {isLoading, isError,data} = useMenuCategories();
     const menuItemsRoot: MenuCategory[] = [
-        {name: 'All Products', level: 0, action: ()=> console.log('AllProducts')},
+        {name: 'All Products', level: 0, action: (nav)=> nav?.navigate('Products', {categoryId: ''})},
         {name: 'Categories', level: 0, id: 'root'},
         {name: 'Info', level: 0, action: ()=> console.log('Info')},
         {name: 'Contact', level: 0, action: ()=> console.log('Contact')},
@@ -29,17 +29,17 @@ const Menu: React.FC<MenuPropsWithRoute> = ({route}) => {
     ]
     const [menuItems, setMenuItems] = useState<MenuCategory[]>(menuItemsRoot);
     const [menuTitle, setMenuTitle] = useState('');
+    console.log('MENU ITEMS state: ', menuItems);
 
     useEffect(() => {
         if(data) {
             menuItems[1].children = data;
-            console.log('children set MENU: ', menuItems);
             if (route.params.categoryId) {
-                console.log('xes ID')
+                console.log('xes ID : ', route.params.categoryId);
                 const selectedMenu = menuItems?.find(m => m.id === route.params.categoryId);
                 selectedMenu?.children && (setMenuItems(selectedMenu.children));
                 selectedMenu?.name && (setMenuTitle(selectedMenu.name));
-                console.log('Selected:',menuItems)
+                console.log('Selected:',selectedMenu)
             }
         }
     }, [data, route.params.categoryId]);
