@@ -22,7 +22,7 @@ export const Product = () => {
     const [quantity, setQuantity] = useState(1);
     const { isLoading: dataLoading, isError: dataError, data } = useItem(itemId as string);
     const { isLoading: categoryLoading, isError: categoryError, data: categoryData } = useCategory(data?.category ? data.category : "")
-    const { data: relatedData, error: relatedError, isLoading: relatedLoading } = useRelatedItemsCores(data ? data.id : '', 2)
+    const { data: relatedData, error: relatedError, isLoading: relatedLoading } = useRelatedItemsCores(data ? data.id : '', 5)
 
     useEffect(() => {
         window.scrollTo(0, 0);
