@@ -5,7 +5,7 @@ import { isArray } from "util";
 
 export const useItems = (category?: string, limit?: number) => {
     return useQuery<Item[], Error>(
-        "items",
+        ["items", category, limit],
         () => get(limit, category),
         {
             refetchOnWindowFocus: false,
@@ -25,13 +25,13 @@ export const useItemsCoreMulti = (params?: QueryParam[], enabled?: boolean) => {
     )
 }
 
-export const useItemsCoreSingle = (params?: QueryParam) => {
+export const useItemsCoreSingle = (enabled: boolean, params?: QueryParam) => {
 
     const queryKey = ['itemsCoreSingle', params ? params.category : 'root']
     return useQuery<ItemCoreQueryResult, Error>(
         queryKey,
         () => getCoreSingle(params),
-        { enabled: params ? params.queryKey != "" : false, refetchOnWindowFocus: false }
+        { enabled: enabled, refetchOnWindowFocus: false }
     )
 }
 
@@ -44,13 +44,13 @@ export const useItem = (id: string) => {
 export const useRelatedItems = (id: string, limit: number) => {
     return useQuery<Item[], Error>(
         ["related items", id, limit], () => getRelatedItems(id, limit),
-        {enabled: !!id, refetchOnWindowFocus: false}
+        { enabled: !!id, refetchOnWindowFocus: false }
     );
 }
 
 export const useRelatedItemsCores = (id: string, limit: number) => {
     return useQuery<ItemCore[], Error>(
         ["related items cores", id, limit], () => getRelatedCores(id, limit),
-        {enabled: id ? id != '' : false, refetchOnWindowFocus: false}
+        { enabled: id ? id != '' : false, refetchOnWindowFocus: false }
     );
 }

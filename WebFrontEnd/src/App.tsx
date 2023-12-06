@@ -15,10 +15,11 @@ function App() {
         <QueryClientProvider client={queryClient}>
             <Router>
                 <Routes>
-                    <Route path='/' element={<Home/>}/>
-                    <Route path='/home' element={<Home/>}/>
-                    <Route path='/product/*' element={<Product/>}/>
-                    <Route path='/products/:id' element={<Products/>}/>
+                    <Route path='/' element={<Home />} />
+                    <Route path='/home' element={<Home />} />
+                    <Route path='/product/*' element={<Product />} />
+                    <Route path='/products/:id' element={<Products />} />
+                    <Route path='/products' element={<Products />} />
                 </Routes>
             </Router>
         </QueryClientProvider>

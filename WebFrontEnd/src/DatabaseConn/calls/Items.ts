@@ -26,7 +26,7 @@ export const getCoreSingle = async (param?: QueryParam): Promise<ItemCoreQueryRe
     const queryString = `?params=${encodeURIComponent(JSON.stringify(fakeParams))}`;
     let url = "/items/cores";
     if (fakeParams) url += queryString;
-
+    
     return api.get(url).then(res => res.data[0]).catch(err => {
         throw err
     });

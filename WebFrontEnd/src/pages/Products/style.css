@@ -1,7 +1,12 @@
 .products-page {
-    margin-top: calc(var(--defaultMargin) * 4);
+    margin-top: var(--defaultMargin);
+
 }
 
 .products-page .blob__children-cont {
     height: 20rem;
+}
+
+.products__breadcrumbs {
+    margin-bottom: calc(var(--defaultMargin) * 3)
 }

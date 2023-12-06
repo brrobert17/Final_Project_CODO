@@ -96,3 +96,7 @@ p {
 .page {
     overflow: hidden;
 }
+
+.page-cont {
+    margin: 0 var(--pageMargin);
+}

@@ -12,24 +12,40 @@ import { useItems, useItemsCoreSingle } from '@dbConn/hooks/UseItems';
 export const Products = () => {
 
     const { id: categoryId } = useParams();
+    const isRoot = categoryId ? false : true;
     const { data: cat } = useCategory(categoryId ? categoryId : '');
     const { data: subCats } = useSubcategories(categoryId ? categoryId : '');
-    const { data: products } = useItemsCoreSingle({ queryKey: cat ? cat.name : '', category: cat ? cat.id : '' });
-    console.log("products", products)
+    const { data: products } = useItemsCoreSingle(
+        categoryId ? cat ? true : false : true,
+        isRoot ?
+            {
+                queryKey: cat ? cat.name : '',
+                category: cat ? cat.id : ''
+            }
+            :
+            undefined
+    );
+
+
+
 
     return (
         <>
             <NavBar pages={navigationPages} loginUrl={'/login'} shoppingCartUrl={'/cart'} />
             <div className='products-page'>
-                {categoryId && <Breadcrumbs categoryId={categoryId} />}
-                <Blob>
-                    {subCats ?
-                        <ItemSection heading='Categories' items={subCats} />
-                        :
-                        <></>
-                    }
-                </Blob>
-                {cat && products?.result && <ItemSection heading={cat.name} items={products.result} />}
+                <div className='page-cont products__breadcrumbs'>
+                    {categoryId && <Breadcrumbs categoryId={categoryId} />}
+                </div>
+                {cat && subCats && subCats.length > 0 ?
+                    <Blob>
+                        <ItemSection heading={isRoot ? 'Categories' : cat.name + ' Sub Categories'} items={subCats} />
+                    </Blob>
+                    :
+                    <></>
+                }
+                <div className='page-cont'>
+                    {products && products.result && <ItemSection heading={cat ? cat.name : 'Products'} items={products.result} sorting />}
+                </div>
             </div>
         </>
     )
