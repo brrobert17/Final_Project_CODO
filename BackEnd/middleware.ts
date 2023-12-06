@@ -66,7 +66,6 @@ export const fetchCollection: CollectionMiddleware = (collectionRef) => {
     return async (req, res) => {
         try {
             const params = JSON.parse(req.query.params as string) as QueryParam[];
-            //console.log("fetching: ", req.query);
 
             // Shortcut in case of no params
             if (!params || !Array.isArray(params)) {
