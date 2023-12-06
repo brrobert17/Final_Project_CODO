@@ -108,14 +108,14 @@ const Home = () => {
                     <ItemSection heading={'All Products'}
                         sorting={true}
                         items={memoizedData.allProductsData} seeMore={{
-                            func: () => console.log('hello'),
+                            id: 'root',
                             img: { url: "https://picsum.photos/300/500", alt: "something something" }
                         }} />}
                 {memoizedData?.fishData &&
                     <ItemSection heading={'Fish'}
                         sorting={true}
                         items={memoizedData.fishData} seeMore={{
-                            func: () => console.log('hello'),
+                            id: 'Q0i1y5',
                             img: { url: "https://picsum.photos/300/500", alt: "something something" }
                         }} />}
             </div>

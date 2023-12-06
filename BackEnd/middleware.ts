@@ -74,7 +74,7 @@ export const fetchCollection: CollectionMiddleware = (collectionRef) => {
                 const allItemsRef = query(collectionRef, orderBy('added', 'asc'));
                 const collectionSnapshot = await getDocs(allItemsRef);
                 const items = collectionSnapshot.docs.map(doc => doc.data());
-                res.send([{ queryKey: 'allProducts', result: items }]);
+                res.send([{queryKey: 'allProducts', result: items}]);
             } else {
                 //console.log("fetching specific categories")
                 const queries = params.map(param => createQueryForParam(collectionRef, param));
@@ -196,7 +196,7 @@ async function createQueryForParam(collectionRef: CollectionReference, param: Qu
     let itemsRef = query(collectionRef, orderBy('added', 'asc'));
 
     // Apply category filter if specified
-    if (param?.category) {
+    if (param?.category && param.category != 'root') {
         // console.log('categpry', param)
         // let categorySnap = await getDocs(query(categoriesCollection, where('name', '==', param.category)));
         // categorySnap && console.log('cc',categorySnap.docs);

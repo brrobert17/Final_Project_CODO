@@ -6,13 +6,16 @@ import gStyle from '@gStyle';
 import Dropdown from '@components/DropDown'
 import CategoryCard, { CategoryProps } from '@components/CategoryCard';
 import ProductCard, { ProductProps } from '@components/ProductCard';
+import {useNavigation} from "@react-navigation/native";
+import {NativeStackNavigationProp} from "@react-navigation/native-stack";
+import {StackParams} from "../../App";
 
 interface Props {
     heading: string,
     items: CategoryProps[] | ProductProps[],
     sorting?: boolean,
     seeMore?: {
-        func: () => void, 
+        func: ()=> void,
         img: IImage
     }
     
@@ -45,7 +48,7 @@ const ItemSection = (props: Props) => {
                     }
                     
                 })}
-                {isProduct && props.seeMore ? <CategoryCard bigVariant id={''} name='See More' img={{url: props.seeMore.img.url, alt: props.seeMore.img.alt}}></CategoryCard> : <></>}
+                {isProduct && props.seeMore ? <CategoryCard seeMoreVariant name={props.heading} func={props.seeMore.func} img={{url: props.seeMore.img.url, alt: props.seeMore.img.alt}}/> : <></>}
             </View>
         </View>
     );
