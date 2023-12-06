@@ -3,6 +3,7 @@ import "./style.css";
 
 export interface Props {
     name: string,
+    id?: string,
     img: IImage,
     bigVariant?: boolean
 }
@@ -19,6 +20,7 @@ const CategoryCard = (props: Props) => {
     //     <Text style={style.text}>{props.name}</Text>
     //   </TouchableOpacity>
     // )
+    console.log(props.id);
     return (
         <div className="category-card">
             <div className={`category-card__inner ${props.bigVariant && 'square'}`}>
