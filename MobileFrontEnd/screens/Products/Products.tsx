@@ -24,17 +24,17 @@ const Products: React.FC<ProductsPropsWithRoute> = ({route}) => {
     const queryParam: QueryParam = {
         queryKey: 'myProducts',
         limit: 10,
-        category: route.params.categoryId || ''
+        category: route.params.categoryId || 'root'
     }
     console.log('PRODUCST: ', route.params);
     const {isLoading, isError, data} = useItemsCoreSingle(queryParam);
     //console.log('Products: ',route.params.itemId)
 
-    // useEffect(() => {
-    //     if (data) {
-    //         console.log('Item: ', data);
-    //     }
-    // }, [data]);
+    useEffect(() => {
+        if (data) {
+            console.log('Item: ', data);
+        }
+    }, [data]);
     const [scrollOffset, setScrollOffset] = useState<number>(0);
     return (
         <>

@@ -66,6 +66,7 @@ export const fetchCollection: CollectionMiddleware = (collectionRef) => {
     return async (req, res) => {
         try {
             const params = JSON.parse(req.query.params as string) as QueryParam[];
+            console.log(params);
 
             // Shortcut in case of no params
             if (!params || !Array.isArray(params)) {
@@ -195,7 +196,7 @@ async function createQueryForParam(collectionRef: CollectionReference, param: Qu
     let itemsRef = query(collectionRef, orderBy('added', 'asc'));
 
     // Apply category filter if specified
-    if (param.category) {
+    if (param.category && param.category != 'root') {
         // console.log('categpry', param)
         // let categorySnap = await getDocs(query(categoriesCollection, where('name', '==', param.category)));
         // categorySnap && console.log('cc',categorySnap.docs);

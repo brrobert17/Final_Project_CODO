@@ -5,8 +5,12 @@ import ItemSection from "@components/ItemSection";
 import {useItemsCoreMulti} from "@dbConn/hooks/UseItems";
 import {QueryParam} from "@utils/interfaces";
 import {useMemo, useState} from "react";
+import {useNavigation} from "@react-navigation/native";
+import {NativeStackNavigationProp} from "@react-navigation/native-stack";
+import {StackParams} from "../../App";
 
 const Home = () => {
+    const nav = useNavigation<NativeStackNavigationProp<StackParams>>();
 
     const params: QueryParam[] = [
         {queryKey: 'allProducts', limit:3},
@@ -62,28 +66,28 @@ const Home = () => {
                 <ItemSection
                     heading="All products"
                     seeMore={{
-                        func: () => console.log('hello'),
+                        func: () => nav.push('Products', {categoryId: 'root'}),
                         img: {url: "https://picsum.photos/210", alt: "something something"}
                     }}
                     items={memoizedData.allProductsData}/>
                 <ItemSection
                     heading="Fish"
                     seeMore={{
-                        func: () => console.log('hello'),
+                        func: () => nav.push('Products', {categoryId: 'Q0i1y5'}),
                         img: {url: "https://picsum.photos/203", alt: "something something"}
                     }}
                     items={memoizedData.fishData}/>
                 <ItemSection
                     heading="Corals"
                     seeMore={{
-                        func: () => console.log('hello'),
+                        func: () => nav.push('Products', {categoryId: 'rUm6nc'}),
                         img: {url: "https://picsum.photos/203", alt: "something something"}
                     }}
                     items={memoizedData.coralData}/>
                 <ItemSection
                     heading="Invertebrates"
                     seeMore={{
-                        func: () => console.log('hello'),
+                        func: () => nav.push('Products', {categoryId: 'aRu8ro'}),
                         img: {url: "https://picsum.photos/203", alt: "something something"}
                     }}
                     items={memoizedData.invertebrateData}/>
