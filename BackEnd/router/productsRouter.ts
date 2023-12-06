@@ -1,30 +1,30 @@
 import express from "express";
 import { fetchCollection, fetchRelated } from "../middleware";
 import {
-    converterItemsCollection,
-    converterItemsCoreCollection, converterTagsCollection, db,
-    itemsCollection,
+    converterProductsCollection,
+    converterProductsCoreCollection, converterTagsCollection, db,
+    productsCollection,
     tagsCollection
 } from "../firebaseConfig";
 import { doc, getDoc, getDocs, query, setDoc, updateDoc, where, deleteDoc, orderBy, limit } from "firebase/firestore";
 import { collection } from "@firebase/firestore";
 import { createUniqueDocument } from "../utils";
 
-export const itemsRouter = express.Router();
+export const productsRouter = express.Router();
 
-itemsRouter.get('/items', fetchCollection(converterItemsCollection));
+productsRouter.get('/products', fetchCollection(converterProductsCollection));
 
-itemsRouter.get('/items/cores', fetchCollection(converterItemsCoreCollection));
+productsRouter.get('/products/cores', fetchCollection(converterProductsCoreCollection));
 
-itemsRouter.get('/items/:id/related', fetchRelated(converterItemsCollection));
+productsRouter.get('/products/:id/related', fetchRelated(converterProductsCollection));
 
-itemsRouter.get('/items/:id/related/cores', fetchRelated(converterItemsCoreCollection));
+productsRouter.get('/products/:id/related/cores', fetchRelated(converterProductsCoreCollection));
 
-itemsRouter.get('/items/:id', async (req, res) => {
+productsRouter.get('/products/:id', async (req, res) => {
     const productId = req.params.id;
 
     try {
-        const docRef = doc(converterItemsCollection, productId);
+        const docRef = doc(converterProductsCollection, productId);
         const docSnap = await getDoc(docRef);
 
         if (!docSnap.exists()) {
@@ -38,51 +38,51 @@ itemsRouter.get('/items/:id', async (req, res) => {
 
 })
 
-itemsRouter.post('/items', async (req, res) => {
+productsRouter.post('/products', async (req, res) => {
     try {
-        let items = [];
-        if (Array.isArray(req.body.items)) {
-            items = req.body.items;
+        let products = [];
+        if (Array.isArray(req.body.products)) {
+            products = req.body.products;
         } else {
-            items.push(req.body.items);
-            items = items.flat();
+            products.push(req.body.products);
+            products = products.flat();
         }
 
         const responseMessages: string[] = [];
         const updatedTagsRefs = [];
 
-        for (const item of items) {
+        for (const product of products) {
             //creating document
-            const uniqueId = await createUniqueDocument('items');
-            const itemRef = doc(converterItemsCollection, uniqueId);
-            const newDoc = await setDoc(itemRef, { ...item, added: new Date() });
+            const uniqueId = await createUniqueDocument('products');
+            const productRef = doc(converterProductsCollection, uniqueId);
+            const newDoc = await setDoc(productRef, { ...product, added: new Date() });
             //tag-indexing
-            for (const tagName of item.tags) {
+            for (const tagName of product.tags) {
                 const tagRef = doc(converterTagsCollection, tagName);
                 const querySnapshot = await getDoc(tagRef);
                 if (!querySnapshot.exists()) {
                     console.log("creating new tag")
                     const newTagDocRef = doc(tagsCollection, tagName);
-                    await setDoc(newTagDocRef, { items: [uniqueId] });
+                    await setDoc(newTagDocRef, { products: [uniqueId] });
                     responseMessages.push(`new tag: ${tagName}`);
                 } else {
                     console.log("existing tag")
-                    const originalItemsArray = querySnapshot.data().items;
-                    originalItemsArray.push(uniqueId);
+                    const originalProductsArray = querySnapshot.data().products;
+                    originalProductsArray.push(uniqueId);
                     updatedTagsRefs.push(tagRef);
                     await updateDoc(tagRef, {
-                        items: originalItemsArray,
+                        products: originalProductsArray,
                     });
                 }
             }
-            responseMessages.push(`new item: ${itemRef.id}`);
+            responseMessages.push(`new product: ${productRef.id}`);
         }
         for (const tagRef of updatedTagsRefs) {
             const tagDoc = await getDoc(tagRef);
             if (tagDoc.exists()) {
-                let itemsArray = tagDoc.data().items;
-                itemsArray = Array.from(new Set(itemsArray));
-                await updateDoc(tagRef, { items: itemsArray });
+                let productsArray = tagDoc.data().products;
+                productsArray = Array.from(new Set(productsArray));
+                await updateDoc(tagRef, { products: productsArray });
             }
         }
         res.send({ messages: responseMessages });
@@ -92,9 +92,9 @@ itemsRouter.post('/items', async (req, res) => {
     }
 });
 
-itemsRouter.delete('/items', async (req, res) => {
+productsRouter.delete('/products', async (req, res) => {
     try {
-        const collectionsToReset = ['items', 'tags'];
+        const collectionsToReset = ['products', 'tags'];
 
         for (const collName of collectionsToReset) {
             const collectionRef = collection(db, collName);

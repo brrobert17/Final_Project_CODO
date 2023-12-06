@@ -1,11 +1,11 @@
 import {collection} from "@firebase/firestore";
-import {categoriesCollection, db, itemsCollection, tagsCollection} from "../firebaseConfig";
+import {categoriesCollection, db, productsCollection, tagsCollection} from "../firebaseConfig";
 import {getDocs, addDoc, setDoc, doc, getDoc, query, where, writeBatch} from "firebase/firestore";
 import express from "express";
 import {getAllSubcategoriesCache, getAllSupraCategoriesCache} from "../utils";
 
 export const utilsRouter = express.Router();
-//getting an item's path
+//getting an product's path
 //getting a category's path is basically the same
 utilsRouter.get("/catsids", async (req, res) => {
     const snap = await getDocs(categoriesCollection);
@@ -19,8 +19,8 @@ utilsRouter.get("/catsids", async (req, res) => {
 });
 utilsRouter.get("/path2", async (req, res) => {
 
-    const itemS = await getDoc(doc(itemsCollection, '3i8Zb2'));
-    const category = itemS.data()?.category;
+    const productS = await getDoc(doc(productsCollection, '3i8Zb2'));
+    const category = productS.data()?.category;
 
     const catRef = collection(db, 'cat');
     const docRef = doc(catRef, category);
@@ -59,34 +59,34 @@ utilsRouter.get("/path/cat", async (req, res) => {
     console.log(subCats);
     res.send(subCats);
 })
-//getting all items in a specific category
+//getting all products in a specific category
 //Q0i1y5 fishes
-// 1. get all subcategories 2. query all items where category in gathered subcategory array
+// 1. get all subcategories 2. query all products where category in gathered subcategory array
 
 utilsRouter.get("/allincat", async (req, res) => {
     const subCatsIds = getAllSubCategories('Q0i1y5');
-    const qSItems = await getDocs(query(itemsCollection, where('category', 'in', subCatsIds)));
-    const items = qSItems.docs.map(doc => doc.data());
-    res.send(items);
+    const qSProducts = await getDocs(query(productsCollection, where('category', 'in', subCatsIds)));
+    const products = qSProducts.docs.map(doc => doc.data());
+    res.send(products);
 })
 
 utilsRouter.get("/tags", async (req, res) => {
     const qs = await getDoc(doc(tagsCollection, 'fish'));
-    const itemIds = qs.data()?.items;
-    const items = [];
+    const productIds = qs.data()?.products;
+    const products = [];
     const batchSize = 10; // Adjust based on your needs
 
-    for (let i = 0; i < itemIds.length; i += batchSize) {
-        const batch = itemIds.slice(i, i + batchSize);
-        const promises = batch.map((id: string) => getDoc(doc(itemsCollection, id)));
+    for (let i = 0; i < productIds.length; i += batchSize) {
+        const batch = productIds.slice(i, i + batchSize);
+        const promises = batch.map((id: string) => getDoc(doc(productsCollection, id)));
         const snapshots = await Promise.all(promises);
         for (const snap of snapshots) {
             if (snap.exists()) {
-                items.push(snap.data());
+                products.push(snap.data());
             }
         }
     }
-    res.send(items);
+    res.send(products);
 })
 //duplicate categories collection
 utilsRouter.get('/dup', async (req, res) => {

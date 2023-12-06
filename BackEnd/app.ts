@@ -4,7 +4,7 @@ import cors from "cors";
 import "dotenv/config"
 import * as http from "http";
 import 'firebase/firestore';
-import {itemsRouter} from "./router/itemsRouter";
+import {productsRouter} from "./router/productsRouter";
 import {imagesRouter} from "./router/imagesRouter";
 import {getAllSubCategories, utilsRouter} from "./router/utilsRouter";
 import {getDocs} from "firebase/firestore";
@@ -24,7 +24,7 @@ app.use(cors({
     origin: true
 }));
 
-app.use(itemsRouter);
+app.use(productsRouter);
 app.use(imagesRouter);
 app.use(utilsRouter);
 app.use(categoriesRouter);

@@ -1,7 +1,7 @@
 import {NativeStackNavigationProp} from "@react-navigation/native-stack";
 import {StackParams} from "../App";
 
-export interface Item {
+export interface Product {
     id: string;
     name: string;
     added: Date;
@@ -14,22 +14,22 @@ export interface Item {
     category?: string;
 }
 
-export interface ItemCore {
+export interface ProductCore {
     id: string;
     name: string;
     img: Image;
     price: string;
 }
 
-export interface ItemCoreQueryResult {
+export interface ProductCoreQueryResult {
     queryKey: string,
-    result: ItemCore[]
+    result: ProductCore[]
 }
 
 
-export interface ItemQueryResult {
+export interface ProductQueryResult {
     queryKey: string,
-    result: Item[]
+    result: Product[]
 }
 
 
@@ -40,7 +40,7 @@ export interface Image {
 
 export interface Tag {
     id: string,
-    items: string[]
+    products: string[]
 }
 
 export interface QueryParam {

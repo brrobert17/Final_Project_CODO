@@ -2,8 +2,7 @@ import { initializeApp } from "firebase/app";
 import {collection, getFirestore, FirestoreDataConverter, QueryDocumentSnapshot, SnapshotOptions, DocumentData} from "@firebase/firestore";
 import {getStorage} from "firebase/storage";
 import {getAuth} from "firebase/auth"
-import {Category, Item, ItemCore, Tag} from "../MobileFrontEnd/utils/interfaces";
-import {it} from "node:test";
+import {Category, Product, ProductCore, Tag} from "../MobileFrontEnd/utils/interfaces";
 
 const firebaseConfig = {
     apiKey: process.env.FIREBASE_API_KEY,
@@ -14,8 +13,8 @@ const firebaseConfig = {
     appId: process.env.FIREBASE_APP_ID
 };
 
-const itemsConverter: FirestoreDataConverter<Item> = {
-    fromFirestore(snapshot: QueryDocumentSnapshot, options?: SnapshotOptions): Item {
+const productsConverter: FirestoreDataConverter<Product> = {
+    fromFirestore(snapshot: QueryDocumentSnapshot, options?: SnapshotOptions): Product {
         const data = snapshot.data(options);
         return {
             id: snapshot.id,
@@ -29,22 +28,22 @@ const itemsConverter: FirestoreDataConverter<Item> = {
             category: data.category
         };
     },
-    toFirestore(item: Item): DocumentData {
+    toFirestore(product: Product): DocumentData {
         return {
-            name: item.name,
-            added: item.added,
-            img: item.img,
-            price: item.price,
-            description: item.description,
-            wysiwyg: item.wysiwyg,
-            stock: item.stock,
-            category: item.category
+            name: product.name,
+            added: product.added,
+            img: product.img,
+            price: product.price,
+            description: product.description,
+            wysiwyg: product.wysiwyg,
+            stock: product.stock,
+            category: product.category
         };
     }
 };
 
-const itemsCoreConverter: FirestoreDataConverter<ItemCore> = {
-    fromFirestore(snapshot: QueryDocumentSnapshot, options?: SnapshotOptions): ItemCore {
+const productsCoreConverter: FirestoreDataConverter<ProductCore> = {
+    fromFirestore(snapshot: QueryDocumentSnapshot, options?: SnapshotOptions): ProductCore {
         const data = snapshot.data(options);
         return {
             id: snapshot.id,
@@ -53,10 +52,10 @@ const itemsCoreConverter: FirestoreDataConverter<ItemCore> = {
             img: data.img[0]
         };
     },
-    toFirestore(item: ItemCore): DocumentData {
+    toFirestore(product: ProductCore): DocumentData {
         return {
-            name: item.name,
-            img: item.img
+            name: product.name,
+            img: product.img
         };
     }
 };
@@ -66,12 +65,12 @@ const tagsConverter: FirestoreDataConverter<Tag> = {
         const data = snapshot.data(options);
         return {
             id: snapshot.id,
-            items: data.items
+            products: data.products
         };
     },
     toFirestore(tagging: Tag): DocumentData {
         return {
-            items: tagging.items
+            products: tagging.products
         };
     }
 };
@@ -98,9 +97,9 @@ const categoriesConverter: FirestoreDataConverter<Category> = {
 
 export const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);
-export const converterItemsCollection = collection(db, 'items').withConverter(itemsConverter);
-export const converterItemsCoreCollection = collection(db, 'items').withConverter(itemsCoreConverter);
-export const itemsCollection = collection(db, 'items');
+export const converterProductsCollection = collection(db, 'products').withConverter(productsConverter);
+export const converterProductsCoreCollection = collection(db, 'products').withConverter(productsCoreConverter);
+export const productsCollection = collection(db, 'products');
 export const converterTagsCollection = collection(db, 'tags').withConverter(tagsConverter);
 export const tagsCollection = collection(db, 'tags');
 export const categoriesCollection = collection(db, 'categories');
