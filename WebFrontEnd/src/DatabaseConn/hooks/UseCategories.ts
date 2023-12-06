@@ -9,7 +9,7 @@ export const useBreadcrumbs = (id: string) => {
 }
 
 export const useSubcategories = (id: string) => {
-    return useQuery<CategoryCore[], Error>(
+    return useQuery<Category[], Error>(
         ['subcategories', id], () => getSubcategories(id),
         {enabled: !!id, refetchOnWindowFocus: false})
 }

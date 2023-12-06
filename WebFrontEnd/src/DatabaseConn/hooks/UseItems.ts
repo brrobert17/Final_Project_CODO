@@ -3,7 +3,7 @@ import { get, getCoreMulti, getCoreSingle, getItem, getRelatedCores, getRelatedI
 import { Item, ItemCore, QueryParam, ItemCoreQueryResult, ItemQueryResult } from "@interfaces";
 import { isArray } from "util";
 
-export const useItems = (limit?: number, category?: string) => {
+export const useItems = (category?: string, limit?: number) => {
     return useQuery<Item[], Error>(
         "items",
         () => get(limit, category),

@@ -14,7 +14,7 @@
 .blob__background {
     width: 100%;
     position: absolute;
-    top: 0;
+    top: 1px;
     left: 50%;
     transform: translate(-50%, -100%);
     z-index: 10;

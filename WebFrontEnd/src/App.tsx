@@ -18,7 +18,7 @@ function App() {
                     <Route path='/' element={<Home/>}/>
                     <Route path='/home' element={<Home/>}/>
                     <Route path='/product/*' element={<Product/>}/>
-                    <Route path='/products/*' element={<Products/>}/>
+                    <Route path='/products/:id' element={<Products/>}/>
                 </Routes>
             </Router>
         </QueryClientProvider>

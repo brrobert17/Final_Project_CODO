@@ -21,6 +21,8 @@ interface Props {
 
 export const ItemSection = (props: Props) => {
 
+
+
     const isProduct = props.items[0] ? 'price' in props.items[0] : false;
 
     return (
@@ -37,7 +39,7 @@ export const ItemSection = (props: Props) => {
                     if (!('price' in item)) {
                         return <CategoryCard key={index} name={item.name} img={item.img} />
                     } else {
-                        return <ProductCard key={index} name={item.name} price={item.price} img={item.img} id={item.id}/>
+                        return <ProductCard key={index} name={item.name} price={item.price} img={item.img} id={item.id} />
                     }
                 })}
                 {isProduct && props.seeMore ? <CategoryCard bigVariant name='See More' img={{

@@ -9,7 +9,7 @@ export const getBreadcrumbs = async (id: string): Promise<CategoryCore[]> => {
     })
 }
 
-export const getSubcategories = async (id: string): Promise<CategoryCore[]> => {
+export const getSubcategories = async (id: string): Promise<Category[]> => {
     const url = `categories/${id}/subcategories`;
 
     return api.get(url).then(res => res.data).catch(err => {
