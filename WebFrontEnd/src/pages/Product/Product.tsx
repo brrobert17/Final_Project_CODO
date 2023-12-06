@@ -7,7 +7,7 @@ import Button from '@components/Button';
 import { useEffect, useState } from "react";
 import QuantitySelector from "@components/QuantitySelector";
 import { useLocation } from "react-router-dom";
-import { useItem, useItemsCoreSingle, useRelatedItems, useRelatedItemsCores } from "@dbConn/hooks/UseItems";
+import { useProduct, useProductsCoreSingle, useRelatedProducts, useRelatedProductsCores } from "@dbConn/hooks/UseProducts";
 import Breadcrumbs from "@components/Breadcrumbs";
 import blob from "@assets/Blob.svg";
 import LargeHeading from '@components/LargeHeading';
@@ -18,11 +18,11 @@ import { useCategory } from '@dbConn/hooks/UseCategories';
 export const Product = () => {
 
     const location = useLocation();
-    const itemId = location.pathname.split('/').pop();
+    const productId = location.pathname.split('/').pop();
     const [quantity, setQuantity] = useState(1);
-    const { isLoading: dataLoading, isError: dataError, data } = useItem(itemId as string);
+    const { isLoading: dataLoading, isError: dataError, data } = useProduct(productId as string);
     const { isLoading: categoryLoading, isError: categoryError, data: categoryData } = useCategory(data?.category ? data.category : "")
-    const { data: relatedData, error: relatedError, isLoading: relatedLoading } = useRelatedItemsCores(data ? data.id : '', 5)
+    const { data: relatedData, error: relatedError, isLoading: relatedLoading } = useRelatedProductsCores(data ? data.id : '', 5)
 
     useEffect(() => {
         window.scrollTo(0, 0);

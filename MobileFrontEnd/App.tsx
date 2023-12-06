@@ -1,14 +1,14 @@
-import {NavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {useFonts} from "expo-font";
-import {Inter_400Regular, Inter_600SemiBold, Inter_700Bold} from "@expo-google-fonts/inter";
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { useFonts } from "expo-font";
+import { Inter_400Regular, Inter_600SemiBold, Inter_700Bold } from "@expo-google-fonts/inter";
 import Home from './screens/Home';
 import Menu from "./screens/Menu";
-import {StatusBar, View} from "react-native";
-import {QueryClient, QueryClientProvider} from "react-query";
-import ProductDetail, {DetailProps} from '@screens/ProductDetail/ProductDetail';
-import Products, {ProductsProps} from "@screens/Products/Products";
-import {MenuCategory} from "@interfaces";
+import { StatusBar, View } from "react-native";
+import { QueryClient, QueryClientProvider } from "react-query";
+import ProductDetail, { DetailProps } from '@screens/ProductDetail/ProductDetail';
+import Products, { ProductsProps } from "@screens/Products/Products";
+import { MenuCategory } from "@interfaces";
 
 export type StackParams = {
     Home: {},
@@ -35,7 +35,7 @@ export default function App() {
 
     return (
         <QueryClientProvider client={queryClient}>
-            <StatusBar barStyle={"light-content"} backgroundColor={"#152331"}/>
+            <StatusBar barStyle={"light-content"} backgroundColor={"#152331"} />
             <NavigationContainer>
                 <Stack.Navigator
                     screenOptions={{
@@ -57,12 +57,12 @@ export default function App() {
                     <Stack.Screen
                         name='Detail'
                         component={ProductDetail}
-                        initialParams={{itemId: ''}}
+                        initialParams={{ productId: '' }}
                     />
                     <Stack.Screen
                         name='Products'
                         component={Products}
-                        initialParams={{categoryId: 'root'}}
+                        initialParams={{ categoryId: 'root' }}
                     />
                 </Stack.Navigator>
             </NavigationContainer>

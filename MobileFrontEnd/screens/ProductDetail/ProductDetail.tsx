@@ -5,7 +5,7 @@ import QuantitySelector from '@components/QuantitySelector';
 import { SafeAreaView, ScrollView, View, Text, Image, KeyboardAvoidingView, Platform } from 'react-native';
 import Breadcrumbs from "@components/Breadcrumbs";
 import React, { useEffect, useState } from "react";
-import { useItem } from "@dbConn/hooks/UseItems";
+import { useProduct } from "@dbConn/hooks/UseProducts";
 import { RouteProp } from "@react-navigation/native";
 import { StackParams } from "../../App";
 import gStyle from "@gStyle";
@@ -44,7 +44,7 @@ const sliderImages = [
     }
 ]
 export interface DetailProps {
-    itemId?: string
+    productId?: string
 }
 type DetailScreenRouteProp = RouteProp<StackParams, 'Detail'>;
 
@@ -53,34 +53,34 @@ type DetailPropsWithRoute = {
 };
 
 const ProductDetail: React.FC<DetailPropsWithRoute> = ({ route }) => {
-    const { isLoading, isError, data } = useItem(route.params.itemId as string);
+    const { isLoading, isError, data } = useProduct(route.params.productId as string);
     const props = route.params
 
     return (
         <SafeAreaView style={[gStyle.container, style.page]}>
             <HeaderSmall small />
             <KeyboardAvoidingView
-            style={style.avoidKeyboard}
-            behavior={Platform.OS === "ios" ? "padding" : "height"}
-            keyboardVerticalOffset={Platform.OS == "ios" ? 0 : 40}
+                style={style.avoidKeyboard}
+                behavior={Platform.OS === "ios" ? "padding" : "height"}
+                keyboardVerticalOffset={Platform.OS == "ios" ? 0 : 40}
             >
-            {data &&
-                <ScrollView
-                    showsVerticalScrollIndicator={false}
-                    contentContainerStyle={style.scroll}>
-                    {data?.category && <Breadcrumbs categoryId={data.category} />}
-                    <Text style={style.wysiwyg}><Text style={gStyle.h1Xl}>{data.name}</Text>{data.wysiwyg ? '( WYSIWYG )' : ''}</Text>
-                    <PriceTag price={data.price ? Number(data.price) : 0} />
-                    <View style={style.sliderCont}>
-                        <BlobIcon style={style.blob} width={591} height={485} />
-                        <ImageSlider images={data.img} />
-                    </View>
-                    <View style={style.quantityCont}>
-                        <QuantitySelector wysiwyg={data.wysiwyg} onChange={(text) => console.log("count: ", text)} />
-                    </View>
-                    <Text style={gStyle.basic}>{data.description}</Text>
-                </ScrollView>
-            }
+                {data &&
+                    <ScrollView
+                        showsVerticalScrollIndicator={false}
+                        contentContainerStyle={style.scroll}>
+                        {data?.category && <Breadcrumbs categoryId={data.category} />}
+                        <Text style={style.wysiwyg}><Text style={gStyle.h1Xl}>{data.name}</Text>{data.wysiwyg ? '( WYSIWYG )' : ''}</Text>
+                        <PriceTag price={data.price ? Number(data.price) : 0} />
+                        <View style={style.sliderCont}>
+                            <BlobIcon style={style.blob} width={591} height={485} />
+                            <ImageSlider images={data.img} />
+                        </View>
+                        <View style={style.quantityCont}>
+                            <QuantitySelector wysiwyg={data.wysiwyg} onChange={(text) => console.log("count: ", text)} />
+                        </View>
+                        <Text style={gStyle.basic}>{data.description}</Text>
+                    </ScrollView>
+                }
             </KeyboardAvoidingView>
             <BtnIsland price={data?.price ? Number(data.price) : 0} />
         </SafeAreaView>

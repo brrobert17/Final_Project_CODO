@@ -1,13 +1,13 @@
-import  gStyle, { borderRadiusBig, borderRadiusSmall, pageMargin } from "@gStyle";
+import gStyle, { borderRadiusBig, borderRadiusSmall, pageMargin } from "@gStyle";
 import { Dimensions, StyleSheet } from "react-native";
 
-const maxItemsPerRow = 2;
-const itemWidth = (Dimensions.get('window').width / maxItemsPerRow) - (pageMargin * (1 + (1 / maxItemsPerRow)));
+const maxProductsPerRow = 2;
+const productWidth = (Dimensions.get('window').width / maxProductsPerRow) - (pageMargin * (1 + (1 / maxProductsPerRow)));
 
 
 export default StyleSheet.create({
     card: {
-        width: itemWidth,
+        width: productWidth,
         marginBottom: pageMargin
     },
     imgCont: {
@@ -16,7 +16,7 @@ export default StyleSheet.create({
     },
     img: {
         width: '100%',
-        aspectRatio: 1/1
+        aspectRatio: 1 / 1
     },
     textCont: {
 

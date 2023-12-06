@@ -8,16 +8,16 @@ import { StackParams } from "../../App";
 import ItemSection from "@components/ItemSection";
 import BigLogo from '@assets/logo-schulz.svg';
 import { borderRadiusBig, pageMargin } from "@gStyle";
-import {useSubcategories} from "@dbConn/hooks/UseCategories";
+import { useSubcategories } from "@dbConn/hooks/UseCategories";
 
 
 export const LARGE_LOGO_ASPECT_RATIO = 8; // 8 to 1 ratio
 export const SMALL_LOGO_ASPECT_RATIO = 4.36; // 4.36 to 1 ratio
 export const HEADER_SCROLL_THRESHOLD = 10;
- interface Props {
-     scrollY?: number,
-     small?: boolean
- }
+interface Props {
+    scrollY?: number,
+    small?: boolean
+}
 
 export const HeaderSmall = (props: Props) => {
 
@@ -60,15 +60,15 @@ export interface HeaderAddOnProps {
     heading: string,
     categoryId: string
 }
-export const HeaderAddOn = (props:HeaderAddOnProps) => {
-     const {isLoading, isError, data} = useSubcategories(props.categoryId);
+export const HeaderAddOn = (props: HeaderAddOnProps) => {
+    const { isLoading, isError, data } = useSubcategories(props.categoryId);
     return (
-        <View style={ style.addOnHeaderCont} >
-                <View style={{ ...style.safeAreaCont, overflow: "visible" }}>
-                    <SearchBar />
-                    {data && data.length>0 &&
-                        <ItemSection heading={props.heading} items={data}/>}
-                </View>
+        <View style={style.addOnHeaderCont} >
+            <View style={{ ...style.safeAreaCont, overflow: "visible" }}>
+                <SearchBar />
+                {data && data.length > 0 &&
+                    <ItemSection heading={props.heading} items={data} />}
+            </View>
         </View>
     )
 }

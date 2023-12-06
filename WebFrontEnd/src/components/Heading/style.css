@@ -1,7 +1,8 @@
-.itemSectionTitle h2 {
+.itemSectiontionTitle h2 {
     margin-bottom: 0.2em;
 }
-.itemSectionTitle img{
+
+.itemSectiontionTitle img {
     height: 1em;
     margin-left: calc(var(--defaultMargin)/-2);
 }

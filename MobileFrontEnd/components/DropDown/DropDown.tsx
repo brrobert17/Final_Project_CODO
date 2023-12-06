@@ -16,11 +16,11 @@ interface Props {
 
 const DropDown = (props: Props) => {
 
-    const data: {label: string, value: [string, SortOptions]}[] = [
-        { label: 'price ascending', value: ['price', SortOptions.ascending] }, 
-        { label: 'price descending', value: ['price', SortOptions.descending] }, 
-        { label: 'alphabeticaly ascending', value: ['name', SortOptions.ascending] }, 
-        { label: 'alphabeticaly descending', value: ['name', SortOptions.descending] }, 
+    const data: { label: string, value: [string, SortOptions] }[] = [
+        { label: 'price ascending', value: ['price', SortOptions.ascending] },
+        { label: 'price descending', value: ['price', SortOptions.descending] },
+        { label: 'alphabeticaly ascending', value: ['name', SortOptions.ascending] },
+        { label: 'alphabeticaly descending', value: ['name', SortOptions.descending] },
     ]
 
     return (
@@ -33,7 +33,7 @@ const DropDown = (props: Props) => {
             placeholderStyle={{ color: colorPlaceholder }}
             selectedTextStyle={{ color: 'white', backgroundColor: backGroundColorTwo }}
             containerStyle={{ backgroundColor: backGroundColorTwo, borderColor: backGroundColorTwo, borderRadius: borderRadiusSmall }}
-            itemTextStyle={{ color: 'white' }}
+            productTextStyle={{ color: 'white' }}
             renderItem={({ label }, active) => {
                 return (
                     <Text

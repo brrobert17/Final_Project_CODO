@@ -6,7 +6,7 @@ import { useCategory, useSubcategories } from '@dbConn/hooks/UseCategories';
 import { useParams } from 'react-router-dom';
 import Blob from '@components/Blob';
 import Breadcrumbs from '@components/Breadcrumbs';
-import { useItems, useItemsCoreSingle } from '@dbConn/hooks/UseItems';
+import { useProducts, useProductsCoreSingle } from '@dbConn/hooks/UseProducts';
 
 
 export const Products = () => {
@@ -15,7 +15,7 @@ export const Products = () => {
     const isRoot = categoryId ? false : true;
     const { data: cat } = useCategory(categoryId ? categoryId : '');
     const { data: subCats } = useSubcategories(categoryId ? categoryId : '');
-    const { data: products } = useItemsCoreSingle(
+    const { data: products } = useProductsCoreSingle(
         categoryId ? cat ? true : false : true,
         isRoot ?
             {

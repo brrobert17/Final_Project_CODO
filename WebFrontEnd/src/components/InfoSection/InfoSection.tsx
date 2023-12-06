@@ -3,10 +3,10 @@ import Search from "components/Search";
 import Heading from "components/Heading";
 import ItemSection from "@components/ItemSection";
 import "./style.css";
-import {useSubcategories} from "@dbConn/hooks/UseCategories";
+import { useSubcategories } from "@dbConn/hooks/UseCategories";
 
 const InfoSection = () => {
-  const {isLoading, isError, data} = useSubcategories('root');
+  const { isLoading, isError, data } = useSubcategories('root');
   return (
     <Blob>
       <div className="info__grid">
@@ -20,7 +20,7 @@ const InfoSection = () => {
         </div>
         <div className="info__categories-cont">
           {data &&
-              <ItemSection small heading="Categories" items={data} />
+            <ItemSection small heading="Categories" items={data} />
           }
         </div>
       </div>

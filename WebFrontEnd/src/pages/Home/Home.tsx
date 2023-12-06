@@ -2,7 +2,7 @@ import NavBar from "../../components/NavBar/NavBar"
 import './style.css'
 import ItemSection from "../../components/ItemSection";
 import { QueryParam } from "@interfaces";
-import { useItemsCoreMulti } from "@dbConn/hooks/UseItems";
+import { useProductsCoreMulti } from "@dbConn/hooks/UseProducts";
 import { useMemo, useState } from "react";
 import SlideShow from "../../components/SlideShow"
 import InfoSection from "@components/InfoSection";
@@ -78,7 +78,7 @@ const params: QueryParam[] = [
 
 const Home = () => {
 
-    const { data, error, isLoading } = useItemsCoreMulti(params);
+    const { data, error, isLoading } = useProductsCoreMulti(params);
 
     const memoizedData = useMemo(() => {
         if (!data) return;

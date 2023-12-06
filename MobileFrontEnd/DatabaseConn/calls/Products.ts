@@ -1,8 +1,8 @@
-import { Item, ItemCore, QueryParam, ItemCoreQueryResult } from "@utils/interfaces";
+import { Product, ProductCore, QueryParam, ProductCoreQueryResult } from "@utils/interfaces";
 import { api } from "@dbConn/axios";
 
-export const get = async (limit?: number, category?: string): Promise<Item[]> => {
-    return api.get("/items", {
+export const get = async (limit?: number, category?: string): Promise<Product[]> => {
+    return api.get("/products", {
         params: {
             limit: limit,
             category: category
@@ -11,9 +11,9 @@ export const get = async (limit?: number, category?: string): Promise<Item[]> =>
         throw err
     })
 }
-export const getCore = async (params?: QueryParam[]): Promise<ItemCoreQueryResult[]> => {
+export const getCore = async (params?: QueryParam[]): Promise<ProductCoreQueryResult[]> => {
     const queryString = `?params=${encodeURIComponent(JSON.stringify(params))}`;
-    let url = "/items/cores";
+    let url = "/products/cores";
     if (params) url += queryString;
 
     return api.get(url).then(res => res.data).catch(err => {
@@ -21,8 +21,8 @@ export const getCore = async (params?: QueryParam[]): Promise<ItemCoreQueryResul
     })
 }
 
-export const getItem = async (id: string): Promise<Item> => {
-    const url = `/items/${id}`;
+export const getProduct = async (id: string): Promise<Product> => {
+    const url = `/products/${id}`;
 
     return api.get(url).then(res => res.data).catch(err => {
         throw err

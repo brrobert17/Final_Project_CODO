@@ -1,8 +1,8 @@
-import { Item, ItemCore, QueryParam, ItemCoreQueryResult } from "@interfaces";
+import { Product, ProductCore, QueryParam, ProductCoreQueryResult } from "@interfaces";
 import { api } from "@dbConn/axios";
 
-export const get = async (limit?: number, category?: string): Promise<Item[]> => {
-    return api.get("/items", {
+export const get = async (limit?: number, category?: string): Promise<Product[]> => {
+    return api.get("/products", {
         params: {
             limit: limit,
             category: category
@@ -11,9 +11,9 @@ export const get = async (limit?: number, category?: string): Promise<Item[]> =>
         throw err
     })
 }
-export const getCoreMulti = async (params?: QueryParam[]): Promise<ItemCoreQueryResult[]> => {
+export const getCoreMulti = async (params?: QueryParam[]): Promise<ProductCoreQueryResult[]> => {
     const queryString = `?params=${encodeURIComponent(JSON.stringify(params))}`;
-    let url = "/items/cores";
+    let url = "/products/cores";
     if (params) url += queryString;
 
     return api.get(url).then(res => res.data).catch(err => {
@@ -21,34 +21,34 @@ export const getCoreMulti = async (params?: QueryParam[]): Promise<ItemCoreQuery
     })
 }
 
-export const getCoreSingle = async (param?: QueryParam): Promise<ItemCoreQueryResult> => {
+export const getCoreSingle = async (param?: QueryParam): Promise<ProductCoreQueryResult> => {
     const fakeParams = [param];
     const queryString = `?params=${encodeURIComponent(JSON.stringify(fakeParams))}`;
-    let url = "/items/cores";
+    let url = "/products/cores";
     if (fakeParams) url += queryString;
-    
+
     return api.get(url).then(res => res.data[0]).catch(err => {
         throw err
     });
 }
 
-export const getItem = async (id: string): Promise<Item> => {
-    const url = `/items/${id}`;
+export const getProduct = async (id: string): Promise<Product> => {
+    const url = `/products/${id}`;
 
     return api.get(url).then(res => res.data).catch(err => {
         throw err;
     })
 }
 
-export const getRelatedItems = async (id: string, limit: number): Promise<Item[]> => {
-    const url = `/items/${id}/related?limit=${limit}`;
+export const getRelatedProducts = async (id: string, limit: number): Promise<Product[]> => {
+    const url = `/products/${id}/related?limit=${limit}`;
 
     return api.get(url).then(res => res.data).catch(err => {
         throw err;
     })
 }
-export const getRelatedCores = async (id: string, limit: number): Promise<ItemCore[]> => {
-    const url = `/items/${id}/related/cores?limit=${limit}`;
+export const getRelatedCores = async (id: string, limit: number): Promise<ProductCore[]> => {
+    const url = `/products/${id}/related/cores?limit=${limit}`;
 
     return api.get(url).then(res => res.data).catch(err => {
         throw err;

@@ -1,9 +1,9 @@
 import { Image as IImage } from '@utils/interfaces'
 import { View, TouchableOpacity, Image, Text } from 'react-native'
 import style from './style'
-import {useNavigation} from "@react-navigation/native";
-import {NativeStackNavigationProp} from "@react-navigation/native-stack";
-import {StackParams} from "../../App";
+import { useNavigation } from "@react-navigation/native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { StackParams } from "../../App";
 
 
 export interface Props {
@@ -16,8 +16,8 @@ export interface Props {
 
 const ProductCard = (props: Props) => {
     const nav = useNavigation<NativeStackNavigationProp<StackParams>>();
-    const handlePress = ()=>{
-        nav.push('Detail', {itemId: props.id});
+    const handlePress = () => {
+        nav.push('Detail', { productId: props.id });
     }
     return (
         <View style={style.card}>

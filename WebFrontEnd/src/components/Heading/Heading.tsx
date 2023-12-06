@@ -7,7 +7,7 @@ interface Props {
 
 const Heading = (props: Props) => {
     return (
-        <div className={'itemSectionTitle'}>
+        <div className={'itemSectiontionTitle'}>
             <h2>{props.text}</h2>
             <img src={waves} alt={'waves decoration'}></img>
         </div>

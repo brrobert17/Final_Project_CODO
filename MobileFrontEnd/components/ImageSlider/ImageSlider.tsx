@@ -18,15 +18,15 @@ const ImageSlider = (props: Props) => {
     return (
         <View>
             <View>
-                <Image style={style.bigImg} source={{uri: selectedImage.url}} />
+                <Image style={style.bigImg} source={{ uri: selectedImage.url }} />
             </View>
             <FlatList
                 data={props.images}
                 showsHorizontalScrollIndicator={false}
                 horizontal
                 renderItem={(img) =>
-                    <TouchableOpacity onPress={() => clickHandler(img.item)}>
-                        <Image style={style.img} source={{ uri: img.item.url }} />
+                    <TouchableOpacity onPress={() => clickHandler(img.product)}>
+                        <Image style={style.img} source={{ uri: img.product.url }} />
                     </TouchableOpacity>
                 }
             />
