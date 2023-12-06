@@ -12,7 +12,7 @@ import {MenuCategory} from "@interfaces";
 
 export type StackParams = {
     Home: {},
-    Menu: MenuCategory,
+    Menu: { categoryId?: string },
     Detail: DetailProps,
     Products: ProductsProps
 }
@@ -31,25 +31,6 @@ export default function App() {
 
     if (!fontsLoaded && !fontError) {
         return null;
-    }
-
-    const menuProps: MenuCategory = {
-        children: [
-            {name: 'All Products', level: 0},
-            {
-                name: 'Categories',
-                level: 0,
-                children: [
-                    {name: 'Fishes', level: 1},
-                    {name: 'Corals', level: 1},
-                    {name: 'Invertebrates', level: 1},
-                    {name: 'Accessories', level: 1}
-                ]
-            },
-            {name: 'Info', level: 0},
-            {name: 'Contact', level: 0},
-            {name: 'Login', level: 0}
-        ]
     }
 
     return (
@@ -71,7 +52,7 @@ export default function App() {
                     <Stack.Screen
                         name='Menu'
                         component={Menu}
-                        initialParams={menuProps}
+                        initialParams={{}}
                     />
                     <Stack.Screen
                         name='Detail'

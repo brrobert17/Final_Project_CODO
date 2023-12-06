@@ -175,7 +175,7 @@ utilsRouter.get('/cat22', async (req, res)=> {
     //const dd = await getAllSubCategories('Q0i1y5');
     getAllSubcategoriesCache('Q0i1y5');
     getAllSupraCategoriesCache('xfUmfF');
-    res.send();
+    res.send(getAllSubcategoriesCache('Q0i1y5'));
 })
 
 export const getAllSubCategories = async (categoryId: string) => {

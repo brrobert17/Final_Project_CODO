@@ -6,7 +6,6 @@ import {
     getDirectSubcategoriesCache, nestCategories
 } from "../utils";
 import {myCache} from "../app";
-import {Category, MenuCategory} from "../../MobileFrontEnd/utils/interfaces";
 
 export const categoriesRouter = express.Router();
 
@@ -20,7 +19,6 @@ categoriesRouter.get("/categories/:id/breadcrumbs", (req, res) => {
         res.status(404).send(e);
     }
 });
-
 categoriesRouter.get("/categories/:id/subcategories", (req, res) => {
     const categoryId = req.params.id;
     try {
@@ -31,7 +29,6 @@ categoriesRouter.get("/categories/:id/subcategories", (req, res) => {
         res.status(404).send(e);
     }
 });
-
 categoriesRouter.get("/categories/:id", (req, res) => {
     const categoryId = req.params.id;
     try {
