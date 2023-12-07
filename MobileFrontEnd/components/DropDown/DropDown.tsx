@@ -50,9 +50,7 @@ const DropDown = (props: Props) => {
             }}
             iconColor='white'
             onChange={(i) => props.onChange(i.value)}
-
-        >
-        </Dropdown>
+        />
     )
 }
 

@@ -22,8 +22,8 @@ const NavBar = (props: Props) => {
         <img className="nav__logo" src={logo} alt={"logo - Schulz morské akvária"}></img>
       </a>
       <ul className="nav__menu">
-        {props.pages.map((page) =>
-          <li>
+        {props.pages.map((page, key) =>
+          <li key={key}>
             <a href={page.path}>{page.name}</a>
             {/* Sub Menu functionality*/}
             {/* {page.subMenu && 

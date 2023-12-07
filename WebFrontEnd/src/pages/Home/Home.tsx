@@ -1,11 +1,12 @@
 import NavBar from "../../components/NavBar/NavBar"
 import './style.css'
 import ItemSection from "../../components/ItemSection";
-import { QueryParam } from "@interfaces";
-import { useProductsCoreMulti } from "@dbConn/hooks/UseProducts";
-import { useMemo, useState } from "react";
+import {QueryParam} from "@interfaces";
+import {useProductsCoreMulti} from "@dbConn/hooks/UseProducts";
+import {useMemo, useState} from "react";
 import SlideShow from "../../components/SlideShow"
 import InfoSection from "@components/InfoSection";
+import {useNavigate} from "react-router-dom";
 
 export const navigationPages = [
     {
@@ -70,15 +71,15 @@ interface Props {
 }
 
 const params: QueryParam[] = [
-    { queryKey: 'allProducts', limit: 7 },
-    { queryKey: 'fishes', category: 'Q0i1y5', limit: 5 },
-    { queryKey: 'corals', category: 'rUm6nc', limit: 5 },
-    { queryKey: 'invertebrates', category: 'aRu8ro', limit: 5 },
+    {queryKey: 'allProducts', limit: 7},
+    {queryKey: 'fishes', category: 'Q0i1y5', limit: 5},
+    {queryKey: 'corals', category: 'rUm6nc', limit: 5},
+    {queryKey: 'invertebrates', category: 'aRu8ro', limit: 5},
 ];
 
 const Home = () => {
 
-    const { data, error, isLoading } = useProductsCoreMulti(params);
+    const {data, error, isLoading} = useProductsCoreMulti(params);
 
     const memoizedData = useMemo(() => {
         if (!data) return;
@@ -87,7 +88,7 @@ const Home = () => {
         // const coralData = data.find(d => d.queryKey === 'coral')?.result;
         // const invertebrateData = data.find(d => d.queryKey === 'invertebrate')?.result;
 
-        return { allProductsData, fishData };
+        return {allProductsData, fishData};
     }, [data]);
 
     if (isLoading) {
@@ -98,26 +99,26 @@ const Home = () => {
         console.log('success', memoizedData?.fishData);
     }
 
+    const navigate = useNavigate();
+
     return (
         <>
-            <NavBar pages={navigationPages} loginUrl={"/login"} shoppingCartUrl={"/cart"} />
-            <SlideShow images={slideShowImages} />
-            <InfoSection />
+            <NavBar pages={navigationPages} loginUrl={"/login"} shoppingCartUrl={"/cart"}/>
+            <SlideShow images={slideShowImages}/>
+            <InfoSection/>
             <div className={'pageContainer'}>
                 {memoizedData?.allProductsData &&
                     <ItemSection heading={'All Products'}
-                        sorting={true}
-                        items={memoizedData.allProductsData} seeMore={{
-                            id: 'root',
-                            img: { url: "https://picsum.photos/300/500", alt: "something something" }
-                        }} />}
+                                 items={memoizedData.allProductsData} seeMore={{
+                        func: () => navigate(`/products`),
+                        img: {url: "https://picsum.photos/300/500", alt: "something something"}
+                    }}/>}
                 {memoizedData?.fishData &&
                     <ItemSection heading={'Fish'}
-                        sorting={true}
-                        items={memoizedData.fishData} seeMore={{
-                            id: 'Q0i1y5',
-                            img: { url: "https://picsum.photos/300/500", alt: "something something" }
-                        }} />}
+                                 items={memoizedData.fishData} seeMore={{
+                        func: () => navigate(`/products/${'Q0i1y5'}`),
+                        img: {url: "https://picsum.photos/300/500", alt: "something something"}
+                    }}/>}
             </div>
         </>
     )

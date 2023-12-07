@@ -7,28 +7,26 @@ import { useParams } from 'react-router-dom';
 import Blob from '@components/Blob';
 import Breadcrumbs from '@components/Breadcrumbs';
 import { useProducts, useProductsCoreSingle } from '@dbConn/hooks/UseProducts';
+import {useEffect} from "react";
 
 
 export const Products = () => {
 
     const { id: categoryId } = useParams();
-    const isRoot = categoryId ? false : true;
+    const isRoot = !categoryId;
     const { data: cat } = useCategory(categoryId ? categoryId : '');
-    const { data: subCats } = useSubcategories(categoryId ? categoryId : '');
+    const { data: subCats } = useSubcategories(categoryId ? categoryId : 'root');
     const { data: products } = useProductsCoreSingle(
-        categoryId ? cat ? true : false : true,
+        categoryId ? !!cat : true,
         isRoot ?
+            undefined
+            :
             {
                 queryKey: cat ? cat.name : '',
                 category: cat ? cat.id : ''
             }
-            :
-            undefined
     );
-
-
-
-
+    //useEffect(()=> console.log(`CAT: ${JSON.stringify(cat)}, SUBCATS: ${JSON.stringify(subCats)}, PRODUCTS: ${JSON.stringify(products)}`),[cat, subCats, products])
     return (
         <>
             <NavBar pages={navigationPages} loginUrl={'/login'} shoppingCartUrl={'/cart'} />
@@ -36,9 +34,9 @@ export const Products = () => {
                 <div className='page-cont products__breadcrumbs'>
                     {categoryId && <Breadcrumbs categoryId={categoryId} />}
                 </div>
-                {cat && subCats && subCats.length > 0 ?
+                {subCats && subCats.length > 0 ?
                     <Blob>
-                        <ItemSection heading={isRoot ? 'Categories' : cat.name + ' Sub Categories'} items={subCats} />
+                        <ItemSection heading={isRoot ? 'Categories' : cat?.name + ' Sub Categories'} items={subCats} />
                     </Blob>
                     :
                     <></>

@@ -4,9 +4,11 @@ import Heading from "components/Heading";
 import ItemSection from "@components/ItemSection";
 import "./style.css";
 import { useSubcategories } from "@dbConn/hooks/UseCategories";
+import {useEffect} from "react";
 
 const InfoSection = () => {
   const { isLoading, isError, data } = useSubcategories('root');
+  //useEffect(()=> console.log('InfoDATA:',data), [data])
   return (
     <Blob>
       <div className="info__grid">
