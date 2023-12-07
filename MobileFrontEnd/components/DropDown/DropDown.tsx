@@ -33,7 +33,7 @@ const DropDown = (props: Props) => {
             placeholderStyle={{ color: colorPlaceholder }}
             selectedTextStyle={{ color: 'white', backgroundColor: backGroundColorTwo }}
             containerStyle={{ backgroundColor: backGroundColorTwo, borderColor: backGroundColorTwo, borderRadius: borderRadiusSmall }}
-            productTextStyle={{ color: 'white' }}
+            itemTextStyle={{ color: 'white' }}
             renderItem={({ label }, active) => {
                 return (
                     <Text

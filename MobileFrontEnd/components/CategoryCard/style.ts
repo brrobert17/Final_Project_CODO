@@ -18,7 +18,6 @@ export default StyleSheet.create({
         ...gStyle.basicLarge,
         zIndex: 10,
         fontFamily: 'Inter_600SemiBold',
-        textTransform: 'capitalize'
     },
     img: {
         width: '100%',

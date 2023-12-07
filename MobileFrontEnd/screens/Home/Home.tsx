@@ -25,12 +25,6 @@ const Home = () => {
         isLoading
     } = useProductsCoreMulti(params);
 
-    // const {
-    //     data:cData,
-    //     error:cError,
-    //     isLoading:cIsLoading
-    // } = useSubcategories('root');
-
     const memoizedData = useMemo(() => {
         if (!data) return;
 
@@ -66,28 +60,28 @@ const Home = () => {
                         <ItemSection
                             heading="All products"
                             seeMore={{
-                                func: () => nav.push('Products', { categoryId: 'root' }),
+                                func: () => nav.push('Products', { categoryId: 'root', categoryName: 'All products' }),
                                 img: { url: "https://picsum.photos/210", alt: "something something" }
                             }}
                             items={memoizedData.allProductsData} />
                         <ItemSection
                             heading="Fish"
                             seeMore={{
-                                func: () => nav.push('Products', { categoryId: 'Q0i1y5' }),
+                                func: () => nav.push('Products', { categoryId: 'Q0i1y5', categoryName: 'Fishes' }),
                                 img: { url: "https://picsum.photos/203", alt: "something something" }
                             }}
                             items={memoizedData.fishData} />
                         <ItemSection
                             heading="Corals"
                             seeMore={{
-                                func: () => nav.push('Products', { categoryId: 'rUm6nc' }),
+                                func: () => nav.push('Products', { categoryId: 'rUm6nc', categoryName: 'Corals' }),
                                 img: { url: "https://picsum.photos/203", alt: "something something" }
                             }}
                             items={memoizedData.coralData} />
                         <ItemSection
                             heading="Invertebrates"
                             seeMore={{
-                                func: () => nav.push('Products', { categoryId: 'aRu8ro' }),
+                                func: () => nav.push('Products', { categoryId: 'aRu8ro', categoryName: 'Invertebrates' }),
                                 img: { url: "https://picsum.photos/203", alt: "something something" }
                             }}
                             items={memoizedData.invertebrateData} />
