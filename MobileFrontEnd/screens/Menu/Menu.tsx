@@ -29,7 +29,7 @@ const Menu: React.FC<MenuPropsWithRoute> = ({route}) => {
     ]
     const [menuItems, setMenuItems] = useState<MenuCategory[]>(menuItemsRoot);
     const [menuTitle, setMenuTitle] = useState('');
-    console.log('MENU ITEMS state: ', menuItems);
+    //console.log('MENU ITEMS state: ', menuItems);
 
     useEffect(() => {
         if(data) {
@@ -44,6 +44,18 @@ const Menu: React.FC<MenuPropsWithRoute> = ({route}) => {
         }
     }, [data, route.params.categoryId]);
 
+    //! potential danger zone
+    const handleExit =()=> {
+        const routes = nav.getState().routes;
+        for (let i = routes.length - 1; i >= 0; i--) {
+            if (routes[i].name === 'Menu') {
+                nav.pop();
+            } else {
+                break; // Stop popping when a screen with a different name is encountered
+            }
+        }
+    }
+
     return (
         <SafeAreaView style={componentStyle.menuScreenContainer}>
             <View style={componentStyle.menuHeader}>
@@ -51,7 +63,7 @@ const Menu: React.FC<MenuPropsWithRoute> = ({route}) => {
                     <HeaderBtn.Fish onPress={() => nav.navigate('Home', {})}/>
                 </View>
                 <View style={componentStyle.menuHeaderBox}>
-                    <HeaderBtn.Exit onPress={() => nav.goBack()}/>
+                    <HeaderBtn.Exit onPress={handleExit}/>
                     <HeaderBtn.Cart onPress={() => console.log("CART")}/>
                 </View>
 
