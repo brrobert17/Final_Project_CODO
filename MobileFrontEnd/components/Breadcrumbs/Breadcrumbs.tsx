@@ -6,6 +6,7 @@ import {NativeStackNavigationProp} from "@react-navigation/native-stack";
 import {StackParams} from "../../App";
 import {useEffect} from "react";
 import {ProductsProps} from "@screens/Products/Products";
+import { capitalizeWords } from "@utils/utils";
 
 interface Props {
     categoryId: string
@@ -19,12 +20,12 @@ export const Breadcrumbs = (props: Props) => {
     }
     return (
         <View style={style.breadcrumbs}>
-            {data?.map((c, i) => {
+            {data ? [{name: 'all products', id: 'root'}, ...data].map((c, i) => {
                 return (
                     <TouchableOpacity key={i} onPress={()=>handlePress({categoryId:c.id, categoryName:c.name})}>
-                        <Text style={style.breadcrumbsText}>/ {c.name} </Text>
+                        <Text style={style.breadcrumbsText}>/ {capitalizeWords(c.name)} </Text>
                     </TouchableOpacity>)
-            })}
+            }) : <></>}
         </View>
     )
 }

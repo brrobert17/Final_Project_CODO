@@ -4,7 +4,7 @@ import styles from "@gStyle";
 
 export default StyleSheet.create({
     breadcrumbs: {
-        backgroundColor: backGroundColor,
+        backgroundColor: 'transparent',
         display: "flex",
         flexDirection: "row"
     },
