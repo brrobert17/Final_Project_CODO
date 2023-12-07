@@ -27,7 +27,6 @@ const Products: React.FC<ProductsPropsWithRoute> = ({ route }) => {
         limit: 10,
         category: route.params.categoryId || 'root'
     }
-    console.log('PRODUCST: ', route.params);
     const { isLoading, isError, data } = useProductsCoreSingle(queryParam);
     //console.log('Products: ',route.params.productId)
 
@@ -49,6 +48,7 @@ const Products: React.FC<ProductsPropsWithRoute> = ({ route }) => {
                     
                     {data && data[0].result.length > 0 ?
                         <ItemSection
+                            sorting
                             heading={route.params.categoryName || "All products"}
                             items={data[0].result} />
                     :
