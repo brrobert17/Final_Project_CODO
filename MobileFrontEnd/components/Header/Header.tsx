@@ -9,6 +9,8 @@ import ItemSection from "@components/ItemSection";
 import BigLogo from '@assets/logo-schulz.svg';
 import { borderRadiusBig, pageMargin } from "@gStyle";
 import { useSubcategories } from "@dbConn/hooks/UseCategories";
+import { ReactNode } from "react";
+import Breadcrumbs from "@components/Breadcrumbs";
 
 
 export const LARGE_LOGO_ASPECT_RATIO = 8; // 8 to 1 ratio
@@ -58,7 +60,8 @@ export const HeaderSmall = (props: Props) => {
 }
 export interface HeaderAddOnProps {
     heading: string,
-    categoryId: string
+    categoryId: string,
+    breadcrumbs?: ReactNode
 }
 export const HeaderAddOn = (props: HeaderAddOnProps) => {
     const { isLoading, isError, data } = useSubcategories(props.categoryId);
@@ -66,6 +69,7 @@ export const HeaderAddOn = (props: HeaderAddOnProps) => {
         <View style={style.addOnHeaderCont} >
             <View style={{ ...style.safeAreaCont, overflow: "visible" }}>
                 <SearchBar />
+                {props.breadcrumbs}
                 {data && data.length > 0 &&
                     <ItemSection heading={props.heading} items={data} />}
             </View>

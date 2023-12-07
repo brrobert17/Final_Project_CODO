@@ -3,8 +3,9 @@ import { StackParams } from "../../App";
 import React, { useEffect, useState } from "react";
 import { useProductsCoreSingle } from "@dbConn/hooks/UseProducts";
 import { QueryParam } from "@interfaces";
-import { ScrollView, View } from "react-native";
+import { ScrollView, View, Text } from "react-native";
 import gStyle from "@gStyle";
+import style from './style';
 import { HeaderAddOn, HeaderSmall } from "@components/Header";
 import ItemSection from "@components/ItemSection";
 import Breadcrumbs from "@components/Breadcrumbs";
@@ -40,19 +41,20 @@ const Products: React.FC<ProductsPropsWithRoute> = ({ route }) => {
         <>
             <View style={gStyle.container}>
                 <HeaderSmall scrollY={scrollOffset} />
-                <ScrollView bounces={false}
+                <ScrollView 
+                    bounces={false}
                     onScroll={(e) => setScrollOffset(e.nativeEvent.contentOffset.y)}
                     scrollEventThrottle={5}>
-                    <HeaderAddOn heading={"Categories"} categoryId={route.params.categoryId || 'root'} />
-                    {route.params.categoryId && <Breadcrumbs categoryId={route.params.categoryId} />}
-                    {data && data[0].result.length > 0 &&
+                    <HeaderAddOn breadcrumbs={route.params.categoryId && <Breadcrumbs categoryId={route.params.categoryId} />} heading={"Categories"} categoryId={route.params.categoryId || 'root'} />
+                    
+                    {data && data[0].result.length > 0 ?
                         <ItemSection
                             heading={route.params.categoryName || "All products"}
-                            seeMore={{
-                                func: () => console.log('hello'),
-                                img: { url: "https://picsum.photos/210", alt: "something something" }
-                            }}
                             items={data[0].result} />
+                    :
+                        <View style={style.noDataCont}>
+                            <Text style={[gStyle.basicLarge, {textAlign: 'center'}]} >There are no Products in this category yet!</Text>
+                        </View>
                     }
                 </ScrollView>
             </View>

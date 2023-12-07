@@ -9,6 +9,7 @@ import ProductCard, {ProductProps} from '@components/ProductCard';
 import {useNavigation} from "@react-navigation/native";
 import {NativeStackNavigationProp} from "@react-navigation/native-stack";
 import {StackParams} from "../../App";
+import { capitalizeWords } from '@utils/utils';
 
 interface Props {
     heading: string,
@@ -32,7 +33,7 @@ const ItemSection = (props: Props) => {
                 {props.seeMore
                     ?
                     <TouchableOpacity onPress={props.seeMore.func}>
-                        <Text style={style.heading}>{props.heading}</Text>
+                        <Text style={style.heading}>{capitalizeWords(props.heading)}</Text>
                     </TouchableOpacity>
                     :
                     <Text style={style.heading}>{props.heading}</Text>
