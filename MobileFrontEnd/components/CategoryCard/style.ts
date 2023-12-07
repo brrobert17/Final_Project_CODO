@@ -11,14 +11,16 @@ export default StyleSheet.create({
         overflow: 'hidden',
         display: 'flex',
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+
 
     },
     text: {
         ...gStyle.basicLarge,
         zIndex: 10,
         fontFamily: 'Inter_600SemiBold',
-        textTransform: 'capitalize'
+        textTransform: 'capitalize',
+        marginHorizontal: 12
     },
     img: {
         width: '100%',
