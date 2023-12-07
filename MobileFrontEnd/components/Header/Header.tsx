@@ -29,26 +29,12 @@ export const HeaderSmall = (props: Props) => {
 
     const logoWidth = Dimensions.get('window').width - (pageMargin * 2);
 
-    /* const logoOffset = useSharedValue(0);
-
-    useEffect(() => {
-        logoOffset.value = small ? 46.1 : 0;
-    }, [small]);
-
-    const logoAnimatedStyle = useAnimatedStyle(() => {
-        return {
-            marginLeft: withTiming(logoOffset.value, { duration: 200 }),
-
-        }
-    }) */
-
-
-
     return (
         <View style={small ? style.smallHeaderCont : style.headerCont}>
             <SafeAreaView style={small ? style.safeAreaContSmall : style.safeAreaCont}>
-
-                <BigLogo style={small ? style.logoSmall : /* logoAnimatedStyle */ smallBtnContStyle} width={logoWidth} height={logoWidth / LARGE_LOGO_ASPECT_RATIO} />
+                <TouchableOpacity onPress={() => nav.navigate("Home", {})}>
+                    <BigLogo style={small ? style.logoSmall : /* logoAnimatedStyle */ smallBtnContStyle} width={logoWidth} height={logoWidth / LARGE_LOGO_ASPECT_RATIO} />
+                </TouchableOpacity>
                 <View style={small ? smallBtnContStyle : style.btnCont}>
                     <HeaderBtn.Cart onPress={() => console.log("action: go to cart")} />
                     <HeaderBtn.Burger onPress={() => nav.navigate('Menu', {})} />
