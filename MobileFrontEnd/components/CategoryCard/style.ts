@@ -18,6 +18,7 @@ export default StyleSheet.create({
         ...gStyle.basicLarge,
         zIndex: 10,
         fontFamily: 'Inter_600SemiBold',
+        marginHorizontal: 12
     },
     img: {
         width: '100%',

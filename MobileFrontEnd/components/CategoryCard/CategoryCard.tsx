@@ -1,7 +1,7 @@
 import { View, Text, TouchableOpacity, Image, Dimensions } from "react-native";
 import { Image as IImage } from '@utils/interfaces';
 import style from "./style";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { pageMargin } from "@gStyle";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
