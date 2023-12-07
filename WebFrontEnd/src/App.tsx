@@ -6,6 +6,7 @@ import Product from "./pages/Product";
 import Products from "./pages/Products";
 import ImageSlider from 'components/ImageSlider';
 import ScrollTopBtn from 'components/ScrollTopBtn';
+import {ReactQueryDevtools} from "react-query/devtools";
 
 const queryClient = new QueryClient();
 
@@ -22,6 +23,7 @@ function App() {
                     <Route path='/products' element={<Products />} />
                 </Routes>
             </Router>
+            <ReactQueryDevtools initialIsOpen={false} />
         </QueryClientProvider>
     );
 }

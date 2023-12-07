@@ -5,12 +5,12 @@ interface Props {
 }
 export const Breadcrumbs = (props: Props) => {
     const {isLoading, isError, data } = useBreadcrumbs(props.categoryId as string);
-    console.log(data)
+    //console.log(data)
   return(
       <div className="breadcrumbs">
-        {data?.map(c=> {
-          return (<a href={`/products/${c.id}`}>/ {c.name} </a>)
-        })}
+        {data ? [{name: 'all products', id: ''}, ...data].map((c, key)=> {
+          return (<a key={key} href={`/products/${c.id}`}>/ {c.name} </a>)
+        }): <></>}
       </div>
   )
 }

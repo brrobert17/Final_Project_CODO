@@ -7,13 +7,15 @@ import type { ProductProps } from '@components/ProductCard'
 import type { CategoryProps } from '@components/CategoryCard'
 import CategoryCard from "@components/CategoryCard";
 import DropDown from "@components/DropDown";
+import {capitalizeWords} from "@utils/utils";
 
 interface Props {
     heading: string,
     items: CategoryProps[] | ProductProps[],
     sorting?: boolean,
+    sortingFunc?: ()=>void,
     seeMore?: {
-        id: string,
+        func: ()=>void,
         img: IImage
     },
     small?: boolean
@@ -28,8 +30,8 @@ export const ItemSection = (props: Props) => {
     return (
         <>
             <div className={'itemSectionHeader'}>
-                <div className={'itemSectionTitle'}>
-                    <h2 className={'title--hover'}>{props.heading}</h2>
+                <div className={'itemSectionTitle'} onClick={props.seeMore?.func}>
+                    <h2 className={props.seeMore?.func ? 'title--hover': ''}>{capitalizeWords(props.heading)}</h2>
                     <img src={waves} alt={'waves decoration'}></img>
                 </div>
                 {props.sorting ? <DropDown onChange={(foo) => console.log(foo)} /> : <></>}
@@ -42,10 +44,10 @@ export const ItemSection = (props: Props) => {
                         return <ProductCard key={index} name={item.name} price={item.price} img={item.img} id={item.id} />
                     }
                 })}
-                {isProduct && props.seeMore ? <CategoryCard id={props.seeMore.id} bigVariant name='See More' img={{
+                {isProduct && props.seeMore ? <CategoryCard func={props.seeMore.func} bigVariant name='See More' img={{
                     url: props.seeMore.img.url,
                     alt: props.seeMore.img.alt
-                }}></CategoryCard> : <></>}
+                }}/> : <></>}
             </div>
         </>
 
