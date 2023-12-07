@@ -13,10 +13,12 @@ enum SortOptions {
 
 export const DropDown: React.FC<DropDownProps> = ({ onChange }) => {
     const data = [
-        { label: 'price ascending', value: ['price', SortOptions.ascending] },
-        { label: 'price descending', value: ['price', SortOptions.descending] },
-        { label: 'alphabetically ascending', value: ['name', SortOptions.ascending] },
-        { label: 'alphabetically descending', value: ['name', SortOptions.descending] },
+        { label: '$', value: ['price', SortOptions.ascending] },
+        { label: '$$$', value: ['price', SortOptions.descending] },
+        { label: 'A to Z', value: ['name', SortOptions.ascending] },
+        { label: 'Z to A', value: ['name', SortOptions.descending] },
+        { label: 'newest', value: ['added', SortOptions.ascending] },
+        { label: 'oldest', value: ['added', SortOptions.descending] },
     ];
 
     const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
