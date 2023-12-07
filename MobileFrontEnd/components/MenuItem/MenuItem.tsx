@@ -7,6 +7,7 @@ import {useNavigation} from "@react-navigation/native";
 import {NativeStackNavigationProp} from "@react-navigation/native-stack";
 import {StackParams} from "../../App";
 import {MenuCategory} from "@interfaces";
+import {capitalizeWords} from "@utils/utils";
 
 const MenuItem = (props: MenuCategory) => {
 
@@ -54,7 +55,7 @@ const MenuItem = (props: MenuCategory) => {
     return (
                 <TouchableOpacity style={componentStyle.menuItemContainer} onPress={() => menuItemClick()}>
                     <Text style={textStyle}>
-                        {props.name.charAt(0).toUpperCase() + props.name.slice(1)}
+                        {capitalizeWords(props.name)}
                     </Text>
                     {arrow && <Arrow arrowDirection={arrow} opaque={opaque}/>}
                 </TouchableOpacity>

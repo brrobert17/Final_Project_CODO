@@ -6,6 +6,7 @@ import { pageMargin } from "@gStyle";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { StackParams } from "../../App";
+import {capitalizeWords} from "@utils/utils";
 
 export interface Props {
     name: string,
@@ -31,7 +32,7 @@ const CategoryCard = (props: Props) => {
             onPress={handlePress}>
             <Image style={style.img} source={{ uri: props.img.url }}></Image>
             <View style={style.overlay}></View>
-            <Text style={style.text}>{props.seeMoreVariant ? 'See More' : props.name}</Text>
+            <Text style={style.text}>{props.seeMoreVariant ? 'See More' : capitalizeWords(props.name)}</Text>
         </TouchableOpacity>
     )
 }

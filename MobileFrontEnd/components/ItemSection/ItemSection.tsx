@@ -36,7 +36,7 @@ const ItemSection = (props: Props) => {
                         <Text style={style.heading}>{capitalizeWords(props.heading)}</Text>
                     </TouchableOpacity>
                     :
-                    <Text style={style.heading}>{props.heading}</Text>
+                    <Text style={style.heading}>{capitalizeWords(props.heading)}</Text>
                 }
 
                 {props.sorting ? <Dropdown onChange={(foo) => console.log(foo)}/> : <></>}
