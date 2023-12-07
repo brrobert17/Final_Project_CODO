@@ -28,3 +28,18 @@ export const getProduct = async (id: string): Promise<Product> => {
         throw err
     })
 }
+
+export const getRelatedProducts = async (id: string, limit: number): Promise<Product[]> => {
+    const url = `/products/${id}/related?limit=${limit}`;
+
+    return api.get(url).then(res => res.data).catch(err => {
+        throw err;
+    })
+}
+export const getRelatedCores = async (id: string, limit: number): Promise<ProductCore[]> => {
+    const url = `/products/${id}/related/cores?limit=${limit}`;
+
+    return api.get(url).then(res => res.data).catch(err => {
+        throw err;
+    })
+}

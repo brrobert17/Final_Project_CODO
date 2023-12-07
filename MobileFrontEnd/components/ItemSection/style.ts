@@ -10,6 +10,9 @@ export default StyleSheet.create({
         marginHorizontal: pageMargin,
         marginVertical: pageMargin
     },
+    nestedCont: {
+        marginVertical: pageMargin
+    },
     list: {
         display: "flex",
         flexDirection: "row",

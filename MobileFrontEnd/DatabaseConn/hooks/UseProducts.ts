@@ -1,5 +1,5 @@
 import { useQuery } from "react-query";
-import { get, getCore, getProduct } from '@dbConn/calls/Products'
+import { get, getCore, getProduct, getRelatedCores, getRelatedProducts } from '@dbConn/calls/Products'
 import { Product, ProductCore, QueryParam, ProductCoreQueryResult } from "@utils/interfaces";
 
 export const useProducts = (limit?: number, category?: string) => {
@@ -37,4 +37,18 @@ export const useProduct = (id: string) => {
     return useQuery<Product, Error>(
         ['product', id], () => getProduct(id),
         { enabled: !!id, refetchOnWindowFocus: false })
+}
+
+export const useRelatedProducts = (id: string, limit: number) => {
+    return useQuery<Product[], Error>(
+        ["related products", id, limit], () => getRelatedProducts(id, limit),
+        { enabled: !!id, refetchOnWindowFocus: false }
+    );
+}
+
+export const useRelatedProductsCores = (id: string, limit: number) => {
+    return useQuery<ProductCore[], Error>(
+        ["related products cores", id, limit], () => getRelatedCores(id, limit),
+        { enabled: id ? id != '' : false, refetchOnWindowFocus: false }
+    );
 }

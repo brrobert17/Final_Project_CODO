@@ -5,13 +5,14 @@ import QuantitySelector from '@components/QuantitySelector';
 import { SafeAreaView, ScrollView, View, Text, Image, KeyboardAvoidingView, Platform } from 'react-native';
 import Breadcrumbs from "@components/Breadcrumbs";
 import React, { useEffect, useState } from "react";
-import { useProduct } from "@dbConn/hooks/UseProducts";
+import { useProduct, useRelatedProductsCores } from "@dbConn/hooks/UseProducts";
 import { RouteProp } from "@react-navigation/native";
 import { StackParams } from "../../App";
 import gStyle from "@gStyle";
 import { HeaderSmall } from '@components/Header';
 import style from "./style";
 import BlobIcon from "@assets/Blob.svg";
+import ItemSection from '@components/ItemSection';
 
 const sliderImages = [
     {
@@ -54,6 +55,7 @@ type DetailPropsWithRoute = {
 
 const ProductDetail: React.FC<DetailPropsWithRoute> = ({ route }) => {
     const { isLoading, isError, data } = useProduct(route.params.productId as string);
+    const { isLoading: isLoadingRelated, isError: isErrorRelated, data: related} = useRelatedProductsCores(data ? data.id : '', 5)
     const props = route.params
 
     return (
@@ -79,6 +81,7 @@ const ProductDetail: React.FC<DetailPropsWithRoute> = ({ route }) => {
                             <QuantitySelector wysiwyg={data.wysiwyg} onChange={(text) => console.log("count: ", text)} />
                         </View>
                         <Text style={gStyle.basic}>{data.description}</Text>
+                        { related && <ItemSection nested heading='Related' items={related} />}
                     </ScrollView>
                 }
             </KeyboardAvoidingView>

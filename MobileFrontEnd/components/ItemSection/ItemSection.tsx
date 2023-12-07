@@ -18,7 +18,8 @@ interface Props {
     seeMore?: {
         func: () => void,
         img: IImage
-    }
+    },
+    nested?: boolean
 
 }
 
@@ -27,7 +28,7 @@ const ItemSection = (props: Props) => {
     const isProduct = 'price' in props.items[0]
 
     return (
-        <View style={isProduct ? style.contMargin : style.cont} >
+        <View style={isProduct ? props.nested ? style.nestedCont : style.contMargin : style.cont} >
             <View style={style.header}>
                 {props.seeMore
                     ?

@@ -25,8 +25,8 @@ const ImageSlider = (props: Props) => {
                 showsHorizontalScrollIndicator={false}
                 horizontal
                 renderItem={(img) =>
-                    <TouchableOpacity onPress={() => clickHandler(img.product)}>
-                        <Image style={style.img} source={{ uri: img.product.url }} />
+                    <TouchableOpacity onPress={() => clickHandler(img.item)}>
+                        <Image style={style.img} source={{ uri: img.item.url }} />
                     </TouchableOpacity>
                 }
             />
