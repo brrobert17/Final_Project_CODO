@@ -21,16 +21,16 @@ export interface ProductCore {
     price: string;
 }
 
-export interface ProductCoreQueryResult {
-    queryKey: string,
-    result: ProductCore[]
-}
-
-
-export interface ProductQueryResult {
-    queryKey: string,
-    result: Product[]
-}
+// export interface ProductCoreQueryResult {
+//     queryKey: string,
+//     result: ProductCore[]
+// }
+//
+//
+// export interface ProductQueryResult {
+//     queryKey: string,
+//     result: Product[]
+// }
 
 
 export interface Image {
@@ -43,10 +43,13 @@ export interface Tag {
     products: string[]
 }
 
-export interface QueryParam {
-    queryKey: string
+export interface QueryParams {
     limit?: number,
     category?: string,
+    orderBy?: {
+        property: string,
+        direction: string,
+    }
     exclude?: string
 }
 

@@ -1,49 +1,50 @@
 import { useQuery } from "react-query";
-import { get, getCoreMulti, getCoreSingle, getProduct, getRelatedCores, getRelatedProducts } from '@dbConn/calls/Products'
-import { Product, ProductCore, QueryParam, ProductCoreQueryResult, ProductQueryResult } from "@interfaces";
-import { isArray } from "util";
+import { getAll, getCores, getRelatedCores, getRelated, get } from '@dbConn/calls/Products'
+import { Product, ProductCore, QueryParams,} from "@interfaces";
 
 export const useProducts = (category?: string, limit?: number) => {
     return useQuery<Product[], Error>(
         ["products", category, limit],
-        () => get(limit, category),
+        () => getAll(limit, category),
         {
             refetchOnWindowFocus: false,
         }
     )
 }
-export const useProductsCoreMulti = (params?: QueryParam[], enabled?: boolean) => {
+// export const useProductsCoreMulti = (params?: QueryParams[], enabled?: boolean) => {
+//
+//     let queryKey = ['productsCoreMulti', params]
+//     let options: { refetchOnWindowFocus: boolean, enabled?: boolean } = { refetchOnWindowFocus: false };
+//     if (enabled) options = { ...options, enabled: enabled };
+//
+//     return useQuery<ProductCoreQueryResult[], Error>(
+//         queryKey,
+//         () => getCoreMulti(params),
+//         options
+//     )
+// }
 
-    let queryKey = ['productsCoreMulti', params]
-    let options: { refetchOnWindowFocus: boolean, enabled?: boolean } = { refetchOnWindowFocus: false };
-    if (enabled) options = { ...options, enabled: enabled };
+export const useProductsCores = (enabled?: boolean, params?: QueryParams) => {
 
-    return useQuery<ProductCoreQueryResult[], Error>(
+    const queryKey = ['productsCores', params ? params.category : 'root']
+    const options = {refetchOnWindowFocus: false, enabled: true}
+    enabled != undefined && (options.enabled = enabled)
+    return useQuery<ProductCore[], Error>(
         queryKey,
-        () => getCoreMulti(params),
+        () => getCores(params),
         options
-    )
-}
-
-export const useProductsCoreSingle = (enabled: boolean, params?: QueryParam) => {
-
-    const queryKey = ['productsCoreSingle', params ? params.category : 'root']
-    return useQuery<ProductCoreQueryResult, Error>(
-        queryKey,
-        () => getCoreSingle(params),
-        { enabled: enabled, refetchOnWindowFocus: false }
     )
 }
 
 export const useProduct = (id: string) => {
     return useQuery<Product, Error>(
-        ['product', id], () => getProduct(id),
+        ['product', id], () => get(id),
         { enabled: !!id, refetchOnWindowFocus: false })
 }
 
 export const useRelatedProducts = (id: string, limit: number) => {
     return useQuery<Product[], Error>(
-        ["related products", id, limit], () => getRelatedProducts(id, limit),
+        ["related products", id, limit], () => getRelated(id, limit),
         { enabled: !!id, refetchOnWindowFocus: false }
     );
 }

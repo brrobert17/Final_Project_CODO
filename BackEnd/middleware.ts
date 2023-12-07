@@ -1,22 +1,20 @@
 import {
     CollectionReference,
+    doc,
+    DocumentData,
+    DocumentSnapshot,
+    getDoc,
     getDocs,
+    limit,
     orderBy,
     query,
-    limit,
-    where,
-    doc,
-    getDoc,
-    DocumentSnapshot,
-    DocumentData,
-    QueryDocumentSnapshot
+    QueryDocumentSnapshot,
+    where
 } from "firebase/firestore";
-import { Request, Response } from 'express';
-import { Product, QueryParam } from "../MobileFrontEnd/utils/interfaces";
-import { categoriesCollection, converterProductsCollection } from "./firebaseConfig";
-import { getAllSubCategories } from "./router/utilsRouter";
-import { getAllSubcategoriesCache, getCategoryCache } from "./utils";
-import { myCache } from "./app";
+import {Request, Response} from 'express';
+import {Product, QueryParams} from "../MobileFrontEnd/utils/interfaces";
+import {converterProductsCollection} from "./firebaseConfig";
+import {getAllSubcategoriesCache, getCategoryCache} from "./utils";
 
 type CollectionMiddleware = (collectionRef: CollectionReference) => (req: Request, res: Response) => Promise<void>;
 
@@ -65,7 +63,7 @@ type CollectionMiddleware = (collectionRef: CollectionReference) => (req: Reques
 export const fetchCollection: CollectionMiddleware = (collectionRef) => {
     return async (req, res) => {
         try {
-            const params = req.query.params && JSON.parse(req.query.params as string) as QueryParam[];
+            const params = req.query.params && JSON.parse(req.query.params as string) as QueryParams[];
             //console.log("fetching: ", req.query);
 
             // Shortcut in case of no params
@@ -84,8 +82,7 @@ export const fetchCollection: CollectionMiddleware = (collectionRef) => {
                     const filteredDocs = currentParam?.exclude
                         ? collectionSnapshot.docs.filter(doc => doc.id !== currentParam.exclude)
                         : collectionSnapshot.docs;
-                    const products = filteredDocs.map(doc => doc.data());
-                    return { queryKey: currentParam?.queryKey, result: products };
+                    return filteredDocs.map(doc => doc.data());
                 });
                 //console.log("results", resultsArray.map(res => { return res.docs.map((r) => r.data()) }))
                 res.send(results);
@@ -173,17 +170,15 @@ async function getRelatedProductsWithLimit(productId: string, collectionRef: Col
                     .map(id => {
                         return all.find(doc => doc.id === id);
                     });
-                const filteredDocsTwo = docSet.filter((product): product is QueryDocumentSnapshot<DocumentData, DocumentData> => product !== undefined);
                 //console.log('filteredDocs:  ', filteredDocsTwo.map(d=> d.data()));
-                return filteredDocsTwo;
+                return docSet.filter((product): product is QueryDocumentSnapshot<DocumentData, DocumentData> => product !== undefined);
             }
         }
         if (docs.length > limit) {
             //console.log("limit", limit);
             //console.log("slice", filteredDocs.slice(0, limit).length);
-            const slicedDocs = filteredDocs.slice(0, limit);
             //console.log()
-            return slicedDocs;
+            return filteredDocs.slice(0, limit);
         }
         return filteredDocs;
     } catch (err) {
@@ -192,12 +187,12 @@ async function getRelatedProductsWithLimit(productId: string, collectionRef: Col
     }
 }
 
-async function createQueryForParam(collectionRef: CollectionReference, param: QueryParam) {
+async function createQueryForParam(collectionRef: CollectionReference, param: QueryParams) {
     let productsRef = query(collectionRef, orderBy('added', 'asc'));
 
     // Apply category filter if specified
     if (param?.category && param.category != 'root') {
-        // console.log('categpry', param)
+        // console.log('category', param)
         // let categorySnap = await getDocs(query(categoriesCollection, where('name', '==', param.category)));
         // categorySnap && console.log('cc',categorySnap.docs);
         // const categoryId = categorySnap?.docs[0].id;

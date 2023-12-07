@@ -2,7 +2,7 @@ import { RouteProp } from "@react-navigation/native";
 import { StackParams } from "../../App";
 import React, { useEffect, useState } from "react";
 import { useProductsCoreSingle } from "@dbConn/hooks/UseProducts";
-import { QueryParam } from "@interfaces";
+import { QueryParams } from "@interfaces";
 import { ScrollView, View, Text } from "react-native";
 import gStyle from "@gStyle";
 import style from './style';
@@ -22,7 +22,7 @@ type ProductsPropsWithRoute = {
 };
 
 const Products: React.FC<ProductsPropsWithRoute> = ({ route }) => {
-    const queryParam: QueryParam = {
+    const queryParam: QueryParams = {
         queryKey: 'myProducts',
         limit: 10,
         category: route.params.categoryId || 'root'

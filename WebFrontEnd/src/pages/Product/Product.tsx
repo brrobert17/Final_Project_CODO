@@ -7,7 +7,7 @@ import Button from '@components/Button';
 import { useEffect, useState } from "react";
 import QuantitySelector from "@components/QuantitySelector";
 import { useLocation } from "react-router-dom";
-import { useProduct, useProductsCoreSingle, useRelatedProducts, useRelatedProductsCores } from "@dbConn/hooks/UseProducts";
+import { useProduct, useProductsCores, useRelatedProducts, useRelatedProductsCores } from "@dbConn/hooks/UseProducts";
 import Breadcrumbs from "@components/Breadcrumbs";
 import blob from "@assets/Blob.svg";
 import LargeHeading from '@components/LargeHeading';
@@ -50,7 +50,7 @@ export const Product = () => {
                     </div>
                 </div>
                 <div className='product__related'>
-                    {relatedData && <ItemSection heading={"Related Products"} items={relatedData} />}
+                    {relatedData && <ItemSection heading={"Related Products"} itemType={'Product'} queryParams={} />}
                 </div>
             </div>
         </div>

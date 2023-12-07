@@ -3,7 +3,7 @@ import gStyle from "@gStyle";
 import { HeaderAddOn, HeaderSmall } from "@components/Header";
 import ItemSection from "@components/ItemSection";
 import { useProductsCoreMulti } from "@dbConn/hooks/UseProducts";
-import { QueryParam } from "@utils/interfaces";
+import { QueryParams } from "@utils/interfaces";
 import { useMemo, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
@@ -12,7 +12,7 @@ import { StackParams } from "../../App";
 const Home = () => {
     const nav = useNavigation<NativeStackNavigationProp<StackParams>>();
 
-    const params: QueryParam[] = [
+    const params: QueryParams[] = [
         { queryKey: 'allProducts', limit: 3 },
         { queryKey: 'fishes', category: 'Q0i1y5', limit: 3 },
         { queryKey: 'corals', category: 'rUm6nc', limit: 3 },

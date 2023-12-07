@@ -1,6 +1,6 @@
 import { useQuery } from "react-query";
 import { get, getCore, getProduct, getRelatedCores, getRelatedProducts } from '@dbConn/calls/Products'
-import { Product, ProductCore, QueryParam, ProductCoreQueryResult } from "@utils/interfaces";
+import { Product, ProductCore, QueryParams, ProductCoreQueryResult } from "@utils/interfaces";
 
 export const useProducts = (limit?: number, category?: string) => {
     return useQuery<Product[], Error>(
@@ -11,7 +11,7 @@ export const useProducts = (limit?: number, category?: string) => {
         }
     )
 }
-export const useProductsCoreMulti = (params?: QueryParam[], enabled?: boolean) => {
+export const useProductsCoreMulti = (params?: QueryParams[], enabled?: boolean) => {
 
     let queryKey = ['productsCoreMulti', params]
     let options: { refetchOnWindowFocus: boolean, enabled?: boolean } = { refetchOnWindowFocus: false };
@@ -24,7 +24,7 @@ export const useProductsCoreMulti = (params?: QueryParam[], enabled?: boolean) =
     )
 }
 
-export const useProductsCoreSingle = (params?: QueryParam) => {
+export const useProductsCoreSingle = (params?: QueryParams) => {
 
     const queryKey = ['productsCoreSingle', params ? params.category : 'root']
     return useQuery<ProductCoreQueryResult[], Error>(

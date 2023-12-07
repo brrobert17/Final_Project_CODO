@@ -2,18 +2,21 @@ import Heading from "components/Heading";
 import ProductCard from "../ProductCard";
 import './style.css'
 import waves from '@assets/waves.svg'
-import { Image as IImage } from "@interfaces";
+import {Image as IImage, QueryParams} from "@interfaces";
 import type { ProductProps } from '@components/ProductCard'
 import type { CategoryProps } from '@components/CategoryCard'
 import CategoryCard from "@components/CategoryCard";
 import DropDown from "@components/DropDown";
 import {capitalizeWords} from "@utils/utils";
+import {useProductsCores} from "@dbConn/hooks/UseProducts";
+import {useCategories} from "@dbConn/hooks/UseCategories";
 
 interface Props {
     heading: string,
-    items: CategoryProps[] | ProductProps[],
+    itemType: 'Category' | 'Product',
+    queryParams?: QueryParams,
+    categoryId?: string,
     sorting?: boolean,
-    sortingFunc?: ()=>void,
     seeMore?: {
         func: ()=>void,
         img: IImage
@@ -23,9 +26,10 @@ interface Props {
 
 export const ItemSection = (props: Props) => {
 
+    const isProduct = props.itemType === 'Product'
 
-
-    const isProduct = props.items[0] ? 'price' in props.items[0] : false;
+    const {data: productData, error:productError, isLoading:isProductLoading} = useProductsCores(isProduct, props.queryParams);
+    const {data: categoryData, error:categoryError, isLoading:isCategoryLoading} = useCategories(!isProduct, props.categoryId);
 
     return (
         <>
@@ -37,12 +41,11 @@ export const ItemSection = (props: Props) => {
                 {props.sorting ? <DropDown onChange={(foo) => console.log(foo)} /> : <></>}
             </div>
             <div className={`itemSectionContainer ${props.small && 'small'}`}>
-                {props.items.map((item, index) => {
-                    if (!('price' in item)) {
-                        return <CategoryCard key={index} name={item.name} img={item.img} id={item.id}/>
-                    } else {
+                {productData && productData.map((item, index) => {
                         return <ProductCard key={index} name={item.name} price={item.price} img={item.img} id={item.id} />
-                    }
+                })}
+                {categoryData && categoryData.map((item, index)=> {
+                    return <CategoryCard key={index} name={item.name} img={item.img} id={item.id}/>
                 })}
                 {isProduct && props.seeMore ? <CategoryCard func={props.seeMore.func} bigVariant name='See More' img={{
                     url: props.seeMore.img.url,

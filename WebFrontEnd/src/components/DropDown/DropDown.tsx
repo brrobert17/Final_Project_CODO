@@ -6,19 +6,14 @@ interface DropDownProps {
     onChange: (value: [string, string]) => void;
 }
 
-enum SortOptions {
-    ascending = 'ascending',
-    descending = 'descending',
-}
-
 export const DropDown: React.FC<DropDownProps> = ({ onChange }) => {
     const data = [
-        { label: '$', value: ['price', SortOptions.ascending] },
-        { label: '$$$', value: ['price', SortOptions.descending] },
-        { label: 'A to Z', value: ['name', SortOptions.ascending] },
-        { label: 'Z to A', value: ['name', SortOptions.descending] },
-        { label: 'newest', value: ['added', SortOptions.ascending] },
-        { label: 'oldest', value: ['added', SortOptions.descending] },
+        { label: '$', value: ['price', 'asc'] },
+        { label: '$$$', value: ['price', 'desc'] },
+        { label: 'A to Z', value: ['name', 'asc'] },
+        { label: 'Z to A', value: ['name', 'desc'] },
+        { label: 'newest', value: ['added', 'asc'] },
+        { label: 'oldest', value: ['added', 'desc'] },
     ];
 
     const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {

@@ -1,4 +1,4 @@
-import { Product, ProductCore, QueryParam, ProductCoreQueryResult } from "@utils/interfaces";
+import { Product, ProductCore, QueryParams, ProductCoreQueryResult } from "@utils/interfaces";
 import { api } from "@dbConn/axios";
 
 export const get = async (limit?: number, category?: string): Promise<Product[]> => {
@@ -11,7 +11,7 @@ export const get = async (limit?: number, category?: string): Promise<Product[]>
         throw err
     })
 }
-export const getCore = async (params?: QueryParam[]): Promise<ProductCoreQueryResult[]> => {
+export const getCore = async (params?: QueryParams[]): Promise<ProductCoreQueryResult[]> => {
     const queryString = `?params=${encodeURIComponent(JSON.stringify(params))}`;
     let url = "/products/cores";
     if (params) url += queryString;
