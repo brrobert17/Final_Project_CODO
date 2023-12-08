@@ -52,6 +52,6 @@ export const useRelatedProducts = (id: string, limit: number) => {
 export const useRelatedProductsCores = (id: string, limit: number) => {
     return useQuery<ProductCore[], Error>(
         ["related products cores", id, limit], () => getRelatedCores(id, limit),
-        { enabled: id ? id != '' : false, refetchOnWindowFocus: false }
+        { enabled: !!id, refetchOnWindowFocus: false }
     );
 }
