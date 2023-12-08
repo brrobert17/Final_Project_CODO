@@ -26,7 +26,7 @@ export const useProductsCoreMulti = (params?: QueryParams[], enabled?: boolean) 
 
 export const useProductsCoreSingle = (params?: QueryParams) => {
 
-    const queryKey = ['productsCoreSingle', params ? params.category : 'root']
+    const queryKey = ['productsCoreSingle', params ? params.categoryId : 'root']
     return useQuery<ProductCoreQueryResult[], Error>(
         queryKey,
         () => getCore(params ? [params] : undefined),

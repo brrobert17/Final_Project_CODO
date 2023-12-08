@@ -1,9 +1,6 @@
 import NavBar from "../../components/NavBar/NavBar"
 import './style.css'
 import ItemSection from "../../components/ItemSection";
-import {QueryParams} from "@interfaces";
-import {useProductsCores} from "@dbConn/hooks/UseProducts";
-import {useMemo, useState} from "react";
 import SlideShow from "../../components/SlideShow"
 import InfoSection from "@components/InfoSection";
 import {useNavigate} from "react-router-dom";
@@ -113,17 +110,18 @@ const Home = () => {
             <div className={'pageContainer'}>
                     <ItemSection heading={'All Products'}
                                  itemType={'Product'}
+                                 queryParams={{limit: 7, type: 'default'}}
                                  seeMore={{
                         func: () => navigate(`/products`),
                         img: {url: "https://picsum.photos/300/500", alt: "something something"}
                     }}/>
-                    <ItemSection heading={'Fishes'}
-                                 itemType={'Product'}
-                                 queryParams={{category: 'Q0i1y5', limit: 5}}
-                                 seeMore={{
-                        func: () => navigate(`/products/${'Q0i1y5'}`),
-                        img: {url: "https://picsum.photos/300/500", alt: "something something"}
-                    }}/>
+                    {/*<ItemSection heading={'Fishes'}*/}
+                    {/*             itemType={'Product'}*/}
+                    {/*             queryParams={{categoryId: 'Q0i1y5', limit: 5, type: 'default'}}*/}
+                    {/*             seeMore={{*/}
+                    {/*    func: () => navigate(`/products/${'Q0i1y5'}`),*/}
+                    {/*    img: {url: "https://picsum.photos/300/500", alt: "something something"}*/}
+                    {/*}}/>*/}
                 {/*{dCorals &&*/}
                 {/*    <ItemSection heading={'Fish'}*/}
                 {/*                 items={dCorals.result} seeMore={{*/}

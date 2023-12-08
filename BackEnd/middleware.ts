@@ -15,6 +15,8 @@ import {Request, Response} from 'express';
 import {Product, QueryParams} from "../MobileFrontEnd/utils/interfaces";
 import {converterProductsCollection} from "./firebaseConfig";
 import {getAllSubcategoriesCache, getCategoryCache} from "./utils";
+import firebase from "firebase/compat";
+import OrderByDirection = firebase.firestore.OrderByDirection;
 
 type CollectionMiddleware = (collectionRef: CollectionReference) => (req: Request, res: Response) => Promise<void>;
 
@@ -63,27 +65,29 @@ type CollectionMiddleware = (collectionRef: CollectionReference) => (req: Reques
 export const fetchCollection: CollectionMiddleware = (collectionRef) => {
     return async (req, res) => {
         try {
-            const params = req.query.params && JSON.parse(req.query.params as string) as QueryParams[];
+            const params = req.query.params && JSON.parse(req.query.params as string) as QueryParams;
             //console.log("fetching: ", req.query);
 
             // Shortcut in case of no params
-            if (!params || !Array.isArray(params)) {
+            if (!params) {
                 //console.log("fetching all products")
                 const allProductsRef = query(collectionRef, orderBy('added', 'asc'));
                 const collectionSnapshot = await getDocs(allProductsRef);
                 const products = collectionSnapshot.docs.map(doc => doc.data());
-                res.send([{queryKey: 'allProducts', result: products}]);
+                res.send(products);
             } else {
                 //console.log("fetching specific categories")
-                const queries = params.map(param => createQueryForParam(collectionRef, param));
-                const resultsArray = await Promise.all(queries);
-                const results = resultsArray.map((collectionSnapshot, index) => {
-                    const currentParam = params[index];
-                    const filteredDocs = currentParam?.exclude
-                        ? collectionSnapshot.docs.filter(doc => doc.id !== currentParam.exclude)
-                        : collectionSnapshot.docs;
-                    return filteredDocs.map(doc => doc.data());
-                });
+                //const queries = params.map(param => createQueryForParam(collectionRef, param));
+                //const resultsArray = await Promise.all(queries);
+                const query = await createQueryForParam(collectionRef, params);
+                const results = query.docs.map(doc=> doc.data());
+                // const results = resultsArray.map((collectionSnapshot, index) => {
+                //     const currentParam = params[index];
+                //     const filteredDocs = currentParam?.exclude
+                //         ? collectionSnapshot.docs.filter(doc => doc.id !== currentParam.exclude)
+                //         : collectionSnapshot.docs;
+                //     return filteredDocs.map(doc => doc.data());
+                // });
                 //console.log("results", resultsArray.map(res => { return res.docs.map((r) => r.data()) }))
                 res.send(results);
             }
@@ -98,7 +102,7 @@ export const fetchRelated: CollectionMiddleware = (collectionRef) => {
     return async (req, res) => {
         const productId = req.params.id;
         const limit = Number(req.query.limit);
-        let productSnap: DocumentSnapshot<Product, DocumentData> | null = null;
+        let productSnap: DocumentSnapshot<Product> | null = null;
 
         try {
             const docRef = doc(converterProductsCollection, productId);
@@ -187,21 +191,26 @@ async function getRelatedProductsWithLimit(productId: string, collectionRef: Col
     }
 }
 
-async function createQueryForParam(collectionRef: CollectionReference, param: QueryParams) {
-    let productsRef = query(collectionRef, orderBy('added', 'asc'));
+async function createQueryForParam(collectionRef: CollectionReference, params: QueryParams) {
+    let productsRef = query(collectionRef);
+    if (params.orderBy){
+        productsRef = query(productsRef, orderBy(params.orderBy.property, params.orderBy.direction as OrderByDirection));
+    } else {
+        productsRef = query(productsRef, orderBy('added', 'asc'));
+    }
 
     // Apply category filter if specified
-    if (param?.category && param.category != 'root') {
+    if (params?.categoryId && params.categoryId != 'root') {
         // console.log('category', param)
         // let categorySnap = await getDocs(query(categoriesCollection, where('name', '==', param.category)));
         // categorySnap && console.log('cc',categorySnap.docs);
         // const categoryId = categorySnap?.docs[0].id;
-        const subCatsIds = getAllSubcategoriesCache(param.category)?.map(c => c.id);
-        subCatsIds && [...subCatsIds, param.category].length != 0 && (productsRef = query(productsRef, where('category', 'in', [...subCatsIds, param.category])));
+        const subCatsIds = getAllSubcategoriesCache(params.categoryId)?.map(c => c.id);
+        subCatsIds && [...subCatsIds, params.categoryId].length != 0 && (productsRef = query(productsRef, where('category', 'in', [...subCatsIds, params.categoryId])));
     }
     // Apply limit if specified
-    if (param?.limit && !isNaN(param.limit) && param.limit > 0) {
-        productsRef = query(productsRef, limit(param.limit));
+    if (params?.limit && !isNaN(params.limit) && params.limit > 0) {
+        productsRef = query(productsRef, limit(params.limit));
     }
 
     return getDocs(productsRef);

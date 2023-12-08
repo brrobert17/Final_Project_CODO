@@ -6,8 +6,6 @@ import { useCategory, useCategories } from '@dbConn/hooks/UseCategories';
 import { useParams } from 'react-router-dom';
 import Blob from '@components/Blob';
 import Breadcrumbs from '@components/Breadcrumbs';
-import { useProducts, useProductsCores } from '@dbConn/hooks/UseProducts';
-import {useEffect} from "react";
 
 
 export const Products = () => {
@@ -41,7 +39,7 @@ export const Products = () => {
                     <></>
                 }
                 <div className='page-cont'>
-                    <ItemSection heading={cat ? cat.name : 'Products'} itemType={'Product'} queryParams={isRoot? undefined : {category: categoryId}} sorting />
+                    <ItemSection heading={cat ? cat.name : 'Products'} itemType={'Product'} queryParams={isRoot? undefined : {categoryId: categoryId, type: 'default', limit: 10}} sorting />
                 </div>
             </div>
         </>

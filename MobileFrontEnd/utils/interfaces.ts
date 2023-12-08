@@ -44,13 +44,20 @@ export interface Tag {
 }
 
 export interface QueryParams {
+    type: 'default',
+    categoryId?: string,
     limit?: number,
-    category?: string,
     orderBy?: {
         property: string,
         direction: string,
     }
     exclude?: string
+}
+export interface QueryParamsRelated  {
+        type: 'related',
+        productId: string,
+        exclude: boolean,
+        limit: number
 }
 
 export interface Category {

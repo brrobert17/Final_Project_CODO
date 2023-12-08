@@ -25,7 +25,7 @@ const Products: React.FC<ProductsPropsWithRoute> = ({ route }) => {
     const queryParam: QueryParams = {
         queryKey: 'myProducts',
         limit: 10,
-        category: route.params.categoryId || 'root'
+        categoryId: route.params.categoryId || 'root'
     }
     const { isLoading, isError, data } = useProductsCoreSingle(queryParam);
     //console.log('Products: ',route.params.productId)

@@ -1,4 +1,4 @@
-import { Product, ProductCore, QueryParams } from "@interfaces";
+import {Product, ProductCore, QueryParams, QueryParamsRelated} from "@interfaces";
 import { api } from "@dbConn/axios";
 
 export const getAll = async (limit?: number, category?: string): Promise<Product[]> => {
@@ -21,13 +21,16 @@ export const getAll = async (limit?: number, category?: string): Promise<Product
 //     })
 // }
 
-export const getCores = async (param?: QueryParams): Promise<ProductCore[]> => {
-    const fakeParams = [param];
-    const queryString = `?params=${encodeURIComponent(JSON.stringify(fakeParams))}`;
+export const getCores = async (params?: QueryParams): Promise<ProductCore[]> => {
+    //const fakeParams = [param];
+    const queryString = `?params=${encodeURIComponent(JSON.stringify(params))}`;
     let url = "/products/cores";
-    if (fakeParams) url += queryString;
+    if (params) url += queryString;
 
-    return api.get(url).then(res => res.data[0]).catch(err => {
+    return api.get(url).then(res => {
+        console.log("hellof rom getCores", res.data);
+        return res.data
+    }).catch(err => {
         throw err
     });
 }
@@ -47,8 +50,8 @@ export const getRelated = async (id: string, limit: number): Promise<Product[]> 
         throw err;
     })
 }
-export const getRelatedCores = async (id: string, limit: number): Promise<ProductCore[]> => {
-    const url = `/products/${id}/related/cores?limit=${limit}`;
+export const getRelatedCores = async (params: QueryParamsRelated): Promise<ProductCore[]> => {
+    const url = `/products/${params.productId}/related/cores?limit=${params.limit}&exclude=${params.exclude}`;
 
     return api.get(url).then(res => res.data).catch(err => {
         throw err;
