@@ -1,8 +1,6 @@
 import { RouteProp } from "@react-navigation/native";
 import { StackParams } from "../../App";
 import React, { useEffect, useState } from "react";
-import { useProductsCoreSingle } from "@dbConn/hooks/UseProducts";
-import { QueryParams } from "@interfaces";
 import { ScrollView, View, Text } from "react-native";
 import gStyle from "@gStyle";
 import style from './style';
@@ -22,19 +20,19 @@ type ProductsPropsWithRoute = {
 };
 
 const Products: React.FC<ProductsPropsWithRoute> = ({ route }) => {
-    const queryParam: QueryParams = {
-        queryKey: 'myProducts',
-        limit: 10,
-        categoryId: route.params.categoryId || 'root'
-    }
-    const { isLoading, isError, data } = useProductsCoreSingle(queryParam);
-    //console.log('Products: ',route.params.productId)
-
-    useEffect(() => {
-        if (data) {
-            console.log('Product: ', data);
-        }
-    }, [data]);
+    // const queryParam: QueryParams = {
+    //     queryKey: 'myProducts',
+    //     limit: 10,
+    //     categoryId: route.params.categoryId || 'root'
+    // }
+    // const { isLoading, isError, data } = useProductsCoreSingle(queryParam);
+    // console.log('Products: ',route.params.productId)
+    //
+    // useEffect(() => {
+    //     if (data) {
+    //         console.log('Product: ', data);
+    //     }
+    // }, [data]);
     const [scrollOffset, setScrollOffset] = useState<number>(0);
     return (
         <>
@@ -45,17 +43,13 @@ const Products: React.FC<ProductsPropsWithRoute> = ({ route }) => {
                     onScroll={(e) => setScrollOffset(e.nativeEvent.contentOffset.y)}
                     scrollEventThrottle={5}>
                     <HeaderAddOn breadcrumbs={route.params.categoryId && <Breadcrumbs categoryId={route.params.categoryId} />} heading={"Categories"} categoryId={route.params.categoryId || 'root'} />
-                    
-                    {data && data[0].result.length > 0 ?
                         <ItemSection
                             sorting
                             heading={route.params.categoryName || "All products"}
-                            items={data[0].result} />
-                    :
-                        <View style={style.noDataCont}>
-                            <Text style={[gStyle.basicLarge, {textAlign: 'center'}]} >There are no Products in this category yet!</Text>
-                        </View>
-                    }
+                            itemType={'Product'} categoryId={route.params.categoryId}/>
+                        {/* <View style={style.noDataCont}>*/}
+                        {/*     <Text style={[gStyle.basicLarge, {textAlign: 'center'}]} >There are no Products in this category yet!</Text>*/}
+                        {/* </View>*/}
                 </ScrollView>
             </View>
             {/*<SafeAreaView>*/}

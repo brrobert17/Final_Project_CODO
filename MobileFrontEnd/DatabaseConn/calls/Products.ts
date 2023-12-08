@@ -1,45 +1,55 @@
-import { Product, ProductCore, QueryParams, ProductCoreQueryResult } from "@utils/interfaces";
-import { api } from "@dbConn/axios";
+import {Product, ProductCore, QueryParams, QueryParamsRelated} from "@interfaces";
+import {api} from "@dbConn/axios";
 
-export const get = async (limit?: number, category?: string): Promise<Product[]> => {
-    return api.get("/products", {
-        params: {
-            limit: limit,
-            category: category
-        }
-    }).then(res => res.data).catch(err => {
-        throw err
-    })
-}
-export const getCore = async (params?: QueryParams[]): Promise<ProductCoreQueryResult[]> => {
+// export const getAll = async (limit?: number, category?: string): Promise<Product[]> => {
+//     return api.get("/products", {
+//         params: {
+//             limit: limit,
+//             category: category
+//         }
+//     }).then(res => res.data).catch(err => {
+//         throw err
+//     })
+// }
+// export const getCoreMulti = async (params?: QueryParams[]): Promise<ProductCoreQueryResult[]> => {
+//     const queryString = `?params=${encodeURIComponent(JSON.stringify(params))}`;
+//     let url = "/products/cores";
+//     if (params) url += queryString;
+//
+//     return api.get(url).then(res => res.data).catch(err => {
+//         throw err
+//     })
+// }
+// export const getRelated = async (id: string, limit: number): Promise<Product[]> => {
+//     const url = `/products/${id}/related?limit=${limit}`;
+//
+//     return api.get(url).then(res => res.data).catch(err => {
+//         throw err;
+//     })
+// }
+export const getCores = async (params?: QueryParams): Promise<ProductCore[]> => {
     const queryString = `?params=${encodeURIComponent(JSON.stringify(params))}`;
     let url = "/products/cores";
     if (params) url += queryString;
 
-    return api.get(url).then(res => res.data).catch(err => {
+    return api.get(url).then(res => {
+        return res.data
+    }).catch(err => {
         throw err
-    })
+    });
 }
-
-export const getProduct = async (id: string): Promise<Product> => {
+export const get = async (id: string): Promise<Product> => {
     const url = `/products/${id}`;
 
     return api.get(url).then(res => res.data).catch(err => {
-        throw err
+        throw err;
     })
 }
-
-export const getRelatedProducts = async (id: string, limit: number): Promise<Product[]> => {
-    const url = `/products/${id}/related?limit=${limit}`;
+export const getRelatedCores = async (params: QueryParamsRelated): Promise<ProductCore[]> => {
+    const url = `/products/${params.productId}/related/cores?limit=${params.limit}&exclude=${params.exclude}`;
 
     return api.get(url).then(res => res.data).catch(err => {
         throw err;
     })
 }
-export const getRelatedCores = async (id: string, limit: number): Promise<ProductCore[]> => {
-    const url = `/products/${id}/related/cores?limit=${limit}`;
 
-    return api.get(url).then(res => res.data).catch(err => {
-        throw err;
-    })
-}
