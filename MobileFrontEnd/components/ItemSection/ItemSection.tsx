@@ -1,14 +1,14 @@
-import React, {useEffect} from 'react';
-import {View, Text, TouchableOpacity, Dimensions} from 'react-native';
-import {Image as IImage, QueryParams, QueryParamsRelated} from '@utils/interfaces'
+import React, { useEffect } from 'react';
+import { View, Text, TouchableOpacity, Dimensions } from 'react-native';
+import { Image as IImage, QueryParams, QueryParamsRelated } from '@utils/interfaces'
 import style from './style';
-import gStyle, {pageMargin} from '@gStyle';
+import gStyle, { pageMargin } from '@gStyle';
 import Dropdown from '@components/DropDown'
-import CategoryCard, {CategoryProps} from '@components/CategoryCard';
-import ProductCard, {ProductProps} from '@components/ProductCard';
+import CategoryCard, { CategoryProps } from '@components/CategoryCard';
+import ProductCard, { ProductProps } from '@components/ProductCard';
 import { capitalizeWords } from '@utils/utils';
-import {useProductCores} from "@dbConn/hooks/UseProducts";
-import {useCategories} from "@dbConn/hooks/UseCategories";
+import { useProductCores } from "@dbConn/hooks/UseProducts";
+import { useCategories } from "@dbConn/hooks/UseCategories";
 
 interface Props {
     heading: string,
@@ -17,7 +17,7 @@ interface Props {
     categoryId?: string,
     sorting?: boolean,
     seeMore?: {
-        func: ()=>void,
+        func: () => void,
         img: IImage
     },
     nested?: boolean
@@ -27,8 +27,8 @@ const ItemSection = (props: Props) => {
 
     const isProduct = props.itemType === 'Product';
     console.log('isProduct', isProduct, "props", props);
-    const {data: productData, error:productError, isLoading:isProductLoading} = useProductCores(isProduct, props.queryParams);
-    const {data: categoryData, error:categoryError, isLoading:isCategoryLoading} = useCategories(!isProduct, props.categoryId);
+    const { data: productData, error: productError, isLoading: isProductLoading } = useProductCores(isProduct, props.queryParams);
+    const { data: categoryData, error: categoryError, isLoading: isCategoryLoading } = useCategories(!isProduct, props.categoryId);
     useEffect(() => {
         console.log(`PRODUCT:  ${JSON.stringify(productData)}`)
     }, [productData]);
@@ -45,21 +45,28 @@ const ItemSection = (props: Props) => {
                     :
                     <Text style={style.heading}>{capitalizeWords(props.heading)}</Text>
                 }
-                
+
                 {props.sorting ? <Dropdown onChange={(foo) => console.log(foo)} /> : <></>}
             </View>
             <View style={style.list}>
-                {isProduct && productData && productData.map((item, index) => {
-                    return <ProductCard key={index} name={item.name} price={item.price} img={item.img} id={item.id} />
+                {isProduct && productData ?
+                    productData.length !== 0 ? productData.map((item, index) => {
+                        return <ProductCard key={index} name={item.name} price={item.price} img={item.img} id={item.id} />
+                    })
+                        :
+                        <View style={style.noDataCont}>
+                            <Text style={[gStyle.basicLarge, { textAlign: 'center' }]} >There are no Products in this category yet!</Text>
+                        </View>
+                    :
+                    <></>}
+                {!isProduct && categoryData && categoryData.map((item, index) => {
+                    return <CategoryCard key={index} name={item.name} img={item.img} id={item.id} />
                 })}
-                {!isProduct && categoryData && categoryData.map((item, index)=> {
-                    return <CategoryCard key={index} name={item.name} img={item.img} id={item.id}/>
-                })}
-                {isProduct && props.seeMore ? <CategoryCard  seeMoreVariant func={props.seeMore.func} name='See More' img={{
+                {isProduct && props.seeMore ? <CategoryCard seeMoreVariant func={props.seeMore.func} name='See More' img={{
                     url: props.seeMore.img.url,
                     alt: props.seeMore.img.alt
-                }}/> : <></>}
-                {!isProduct && categoryData && categoryData.length % 3 === 2 && <View style={{width: pseudoWidth}}></View>}
+                }} /> : <></>}
+                {!isProduct && categoryData && categoryData.length % 3 === 2 && <View style={{ width: pseudoWidth }}></View>}
             </View>
         </View>
     );

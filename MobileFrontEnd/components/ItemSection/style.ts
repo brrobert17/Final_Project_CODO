@@ -1,5 +1,5 @@
 import gStyle, { pageMargin } from '@gStyle';
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
     cont: {
@@ -29,5 +29,10 @@ export default StyleSheet.create({
         ...gStyle.h1,
         marginRight: '20%',
         marginBottom: pageMargin
+    },
+    noDataCont: {
+        marginTop: pageMargin * 5,
+        marginHorizontal: pageMargin,
+
     }
 })
