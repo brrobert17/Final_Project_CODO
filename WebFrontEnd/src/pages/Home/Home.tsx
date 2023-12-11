@@ -3,7 +3,7 @@ import './style.css'
 import ItemSection from "../../components/ItemSection";
 import SlideShow from "../../components/SlideShow"
 import InfoSection from "@components/InfoSection";
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export const navigationPages = [
     {
@@ -63,10 +63,6 @@ const slideShowImages = [
     }
 ]
 
-interface Props {
-
-}
-
 // const params: QueryParam[] = [
 //     {queryKey: 'allProducts', limit: 7},
 //     {queryKey: 'fishes', category: 'Q0i1y5', limit: 5},
@@ -104,24 +100,46 @@ const Home = () => {
 
     return (
         <>
-            <NavBar pages={navigationPages} loginUrl={"/login"} shoppingCartUrl={"/cart"}/>
-            <SlideShow images={slideShowImages}/>
-            <InfoSection/>
+            <NavBar pages={navigationPages} loginUrl={"/login"} shoppingCartUrl={"/cart"} />
+            <SlideShow images={slideShowImages} />
+            <InfoSection />
             <div className={'pageContainer'}>
-                    <ItemSection heading={'All Products'}
-                                 itemType={'Product'}
-                                 queryParams={{limit: 7, type: 'default'}}
-                                 seeMore={{
+                <ItemSection heading={'Corals'}
+                    itemType={'Product'}
+                    queryParams={{ limit: 3, type: 'default', categoryId: 'rUm6nc' }}
+                    seeMore={{
+                        func: () => navigate(`/products/rUm6nc`),
+                        img: { url: "https://picsum.photos/300/500", alt: "something something" }
+                    }} />
+                <ItemSection heading={'Fish'}
+                    itemType={'Product'}
+                    queryParams={{ limit: 3, type: 'default', categoryId: 'Q0i1y5' }}
+                    seeMore={{
+                        func: () => navigate(`/products/Q0i1y5`),
+                        img: { url: "https://picsum.photos/300/500", alt: "something something" }
+                    }} />
+                <ItemSection heading={'Invertibrates'}
+                    itemType={'Product'}
+                    queryParams={{ limit: 3, type: 'default', categoryId: 'aRu8ro' }}
+                    seeMore={{
+                        func: () => navigate(`/products/aRu8ro`),
+                        img: { url: "https://picsum.photos/300/500", alt: "something something" }
+                    }} />
+                <ItemSection heading={'All Products'}
+                    itemType={'Product'}
+                    queryParams={{ limit: 7, type: 'default' }}
+                    seeMore={{
                         func: () => navigate(`/products`),
-                        img: {url: "https://picsum.photos/300/500", alt: "something something"}
-                    }}/>
-                    {/*<ItemSection heading={'Fishes'}*/}
-                    {/*             itemType={'Product'}*/}
-                    {/*             queryParams={{categoryId: 'Q0i1y5', limit: 5, type: 'default'}}*/}
-                    {/*             seeMore={{*/}
-                    {/*    func: () => navigate(`/products/${'Q0i1y5'}`),*/}
-                    {/*    img: {url: "https://picsum.photos/300/500", alt: "something something"}*/}
-                    {/*}}/>*/}
+                        img: { url: "https://picsum.photos/300/500", alt: "something something" }
+                    }} />
+
+                {/*<ItemSection heading={'Fishes'}*/}
+                {/*             itemType={'Product'}*/}
+                {/*             queryParams={{categoryId: 'Q0i1y5', limit: 5, type: 'default'}}*/}
+                {/*             seeMore={{*/}
+                {/*    func: () => navigate(`/products/${'Q0i1y5'}`),*/}
+                {/*    img: {url: "https://picsum.photos/300/500", alt: "something something"}*/}
+                {/*}}/>*/}
                 {/*{dCorals &&*/}
                 {/*    <ItemSection heading={'Fish'}*/}
                 {/*                 items={dCorals.result} seeMore={{*/}

@@ -35,3 +35,7 @@
     height: 1em;
     margin-left: calc(var(--defaultMargin)/-2);
 }
+
+.itemSection__emptyText {
+    font-weight: normal;
+}
