@@ -7,6 +7,7 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { StackParams } from "../../App";
 import ItemSection from "@components/ItemSection";
 import BigLogo from '@assets/logo-schulz.svg';
+import SmallLogo from '@assets/logo-schulz-small.svg'
 import { borderRadiusBig, pageMargin } from "@gStyle";
 import { ReactNode } from "react";
 
@@ -31,7 +32,11 @@ export const HeaderSmall = (props: Props) => {
         <View style={small ? style.smallHeaderCont : style.headerCont}>
             <SafeAreaView style={small ? style.safeAreaContSmall : style.safeAreaCont}>
                 <TouchableOpacity onPress={() => nav.navigate("Home", {})}>
-                    <BigLogo style={small ? style.logoSmall : /* logoAnimatedStyle */ smallBtnContStyle} width={logoWidth} height={logoWidth / LARGE_LOGO_ASPECT_RATIO} />
+                    {small ?
+                        <SmallLogo  width={logoWidth / 2} height={logoWidth / LARGE_LOGO_ASPECT_RATIO} />
+                        :
+                        <BigLogo  width={logoWidth} height={logoWidth / LARGE_LOGO_ASPECT_RATIO} />
+                    }
                 </TouchableOpacity>
                 <View style={small ? smallBtnContStyle : style.btnCont}>
                     <HeaderBtn.Cart onPress={() => console.log("action: go to cart")} />
@@ -53,7 +58,7 @@ export const HeaderAddOn = (props: HeaderAddOnProps) => {
             <View style={{ ...style.safeAreaCont, overflow: "visible" }}>
                 <SearchBar />
                 {props.breadcrumbs}
-                    <ItemSection heading={props.heading} itemType={'Category'} categoryId={props.categoryId} />
+                <ItemSection heading={props.heading} itemType={'Category'} categoryId={props.categoryId} />
             </View>
         </View>
     )

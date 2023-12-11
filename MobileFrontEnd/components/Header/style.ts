@@ -45,9 +45,6 @@ export default StyleSheet.create({
         flexDirection: 'row',
         marginRight: -pageMargin / 2
     },
-    logoSmall: {
-        marginLeft: '-46.1%'
-    },
     addOnHeaderCont: {
         backgroundColor: backGroundColorTwo,
         width: '100%',
