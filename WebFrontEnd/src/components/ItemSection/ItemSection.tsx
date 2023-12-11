@@ -25,7 +25,6 @@ interface Props {
 export const ItemSection = (props: Props) => {
 
     const isProduct = props.itemType === 'Product';
-    console.log('isProduct', isProduct, "props", props);
     const { data: productData, error: productError, isLoading: isProductLoading } = useProductCores(isProduct, props.queryParams);
     const { data: categoryData, error: categoryError, isLoading: isCategoryLoading } = useCategories(!isProduct, props.categoryId);
 

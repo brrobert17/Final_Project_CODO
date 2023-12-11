@@ -38,18 +38,19 @@ const Products: React.FC<ProductsPropsWithRoute> = ({ route }) => {
         <>
             <View style={gStyle.container}>
                 <HeaderSmall scrollY={scrollOffset} />
-                <ScrollView 
+                <ScrollView
                     bounces={false}
                     onScroll={(e) => setScrollOffset(e.nativeEvent.contentOffset.y)}
                     scrollEventThrottle={5}>
                     <HeaderAddOn breadcrumbs={route.params.categoryId && <Breadcrumbs categoryId={route.params.categoryId} />} heading={"Categories"} categoryId={route.params.categoryId || 'root'} />
-                        <ItemSection
-                            sorting
-                            heading={route.params.categoryName || "All products"}
-                            itemType={'Product'} categoryId={route.params.categoryId}/>
-                        {/* <View style={style.noDataCont}>*/}
-                        {/*     <Text style={[gStyle.basicLarge, {textAlign: 'center'}]} >There are no Products in this category yet!</Text>*/}
-                        {/* </View>*/}
+                    <ItemSection
+                        sorting
+                        heading={route.params.categoryName || "All products"}
+                        itemType={'Product'}
+                        queryParams={{type: 'default', categoryId: route.params.categoryId}} />
+                    {/* <View style={style.noDataCont}>*/}
+                    {/*     <Text style={[gStyle.basicLarge, {textAlign: 'center'}]} >There are no Products in this category yet!</Text>*/}
+                    {/* </View>*/}
                 </ScrollView>
             </View>
             {/*<SafeAreaView>*/}

@@ -5,7 +5,7 @@ import QuantitySelector from '@components/QuantitySelector';
 import { SafeAreaView, ScrollView, View, Text, Image, KeyboardAvoidingView, Platform } from 'react-native';
 import Breadcrumbs from "@components/Breadcrumbs";
 import React, { useEffect, useState } from "react";
-import { useProduct, useRelatedProductsCores } from "@dbConn/hooks/UseProducts";
+import { useProduct } from "@dbConn/hooks/UseProducts";
 import { RouteProp } from "@react-navigation/native";
 import { StackParams } from "../../App";
 import gStyle from "@gStyle";
@@ -45,7 +45,7 @@ const sliderImages = [
     }
 ]
 export interface DetailProps {
-    productId?: string
+    productId: string
 }
 type DetailScreenRouteProp = RouteProp<StackParams, 'Detail'>;
 
@@ -55,7 +55,6 @@ type DetailPropsWithRoute = {
 
 const ProductDetail: React.FC<DetailPropsWithRoute> = ({ route }) => {
     const { isLoading, isError, data } = useProduct(route.params.productId as string);
-    const { isLoading: isLoadingRelated, isError: isErrorRelated, data: related} = useRelatedProductsCores(data ? data.id : '', 5)
     const props = route.params
 
     return (
@@ -81,7 +80,7 @@ const ProductDetail: React.FC<DetailPropsWithRoute> = ({ route }) => {
                             <QuantitySelector wysiwyg={data.wysiwyg} onChange={(text) => console.log("count: ", text)} />
                         </View>
                         <Text style={gStyle.basic}>{data.description}</Text>
-                        { related && <ItemSection nested heading='Related' items={related} />}
+                        <ItemSection nested itemType='Product' heading='Related' queryParams={{type: 'related',productId: props.productId, exclude: true, limit: 4}} />
                     </ScrollView>
                 }
             </KeyboardAvoidingView>

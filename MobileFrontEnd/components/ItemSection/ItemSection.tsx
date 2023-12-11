@@ -21,17 +21,17 @@ interface Props {
         img: IImage
     },
     nested?: boolean
-}
+} 
 
 const ItemSection = (props: Props) => {
 
     const isProduct = props.itemType === 'Product';
-    console.log('isProduct', isProduct, "props", props);
-    const { data: productData, error: productError, isLoading: isProductLoading } = useProductCores(isProduct, props.queryParams);
-    const { data: categoryData, error: categoryError, isLoading: isCategoryLoading } = useCategories(!isProduct, props.categoryId);
+    const {data: productData, error:productError, isLoading:isProductLoading} = useProductCores(isProduct, props.queryParams);
+    const {data: categoryData, error:categoryError, isLoading:isCategoryLoading} = useCategories(!isProduct, props.categoryId);
     useEffect(() => {
         console.log(`PRODUCT:  ${JSON.stringify(productData)}`)
     }, [productData]);
+
     const pseudoWidth = (Dimensions.get('window').width / 3) - (pageMargin * (1 + (1 / 3)));
 
     return (
