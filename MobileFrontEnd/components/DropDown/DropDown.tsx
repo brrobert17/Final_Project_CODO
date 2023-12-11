@@ -17,10 +17,10 @@ interface Props {
 const DropDown = (props: Props) => {
 
     const data: { label: string, value: [string, SortOptions] }[] = [
-        { label: 'price ascending', value: ['price', SortOptions.ascending] },
-        { label: 'price descending', value: ['price', SortOptions.descending] },
-        { label: 'alphabeticaly ascending', value: ['name', SortOptions.ascending] },
-        { label: 'alphabeticaly descending', value: ['name', SortOptions.descending] },
+        { label: '$', value: ['price', SortOptions.ascending] },
+        { label: '$$$', value: ['price', SortOptions.descending] },
+        { label: 'A to Z', value: ['name', SortOptions.ascending] },
+        { label: 'Z to A', value: ['name', SortOptions.descending] },
     ]
 
     return (

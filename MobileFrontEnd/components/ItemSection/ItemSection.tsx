@@ -21,13 +21,13 @@ interface Props {
         img: IImage
     },
     nested?: boolean
-} 
+}
 
 const ItemSection = (props: Props) => {
 
     const isProduct = props.itemType === 'Product';
-    const {data: productData, error:productError, isLoading:isProductLoading} = useProductCores(isProduct, props.queryParams);
-    const {data: categoryData, error:categoryError, isLoading:isCategoryLoading} = useCategories(!isProduct, props.categoryId);
+    const { data: productData, error: productError, isLoading: isProductLoading } = useProductCores(isProduct, props.queryParams);
+    const { data: categoryData, error: categoryError, isLoading: isCategoryLoading } = useCategories(!isProduct, props.categoryId);
     useEffect(() => {
         console.log(`PRODUCT:  ${JSON.stringify(productData)}`)
     }, [productData]);
@@ -37,7 +37,10 @@ const ItemSection = (props: Props) => {
     return (
         <View style={isProduct ? props.nested ? style.nestedCont : style.contMargin : style.cont} >
             <View style={style.header}>
-                {props.seeMore
+                {!isProduct && categoryData && categoryData.length === 0 ?
+                <View style={style.emptyHeadingCont}></View>
+                :
+                props.seeMore
                     ?
                     <TouchableOpacity onPress={props.seeMore.func}>
                         <Text style={style.heading}>{capitalizeWords(props.heading)}</Text>

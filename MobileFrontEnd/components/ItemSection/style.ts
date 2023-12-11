@@ -34,5 +34,8 @@ export default StyleSheet.create({
         marginTop: pageMargin * 5,
         marginHorizontal: pageMargin,
 
+    },
+    emptyHeadingCont: {
+        minHeight: pageMargin * 2
     }
 })

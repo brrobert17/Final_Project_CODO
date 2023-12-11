@@ -58,7 +58,7 @@ const ProductDetail: React.FC<DetailPropsWithRoute> = ({ route }) => {
     const props = route.params
 
     return (
-        <SafeAreaView style={[gStyle.container, style.page]}>
+        <View style={[gStyle.container, style.page]}>
             <HeaderSmall small />
             <KeyboardAvoidingView
                 style={style.avoidKeyboard}
@@ -85,7 +85,7 @@ const ProductDetail: React.FC<DetailPropsWithRoute> = ({ route }) => {
                 }
             </KeyboardAvoidingView>
             <BtnIsland price={data?.price ? Number(data.price) : 0} />
-        </SafeAreaView>
+        </View>
     )
 }
 
