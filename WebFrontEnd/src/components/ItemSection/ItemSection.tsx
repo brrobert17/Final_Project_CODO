@@ -1,13 +1,13 @@
 import ProductCard from "../ProductCard";
 import './style.css'
 import waves from '@assets/waves.svg'
-import { Image as IImage, QueryParams, QueryParamsRelated } from "@interfaces";
+import { Image as IImage, OrderByParams, QueryParams, QueryParamsRelated } from "@interfaces";
 import CategoryCard from "@components/CategoryCard";
 import DropDown from "@components/DropDown";
 import { capitalizeWords } from "@utils/utils";
 import { useProductCores } from "@dbConn/hooks/UseProducts";
 import { useCategories } from "@dbConn/hooks/UseCategories";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 interface Props {
     heading: string,
@@ -25,7 +25,9 @@ interface Props {
 export const ItemSection = (props: Props) => {
 
     const isProduct = props.itemType === 'Product';
-    const { data: productData, error: productError, isLoading: isProductLoading } = useProductCores(isProduct, props.queryParams);
+    const isDefault = props.queryParams?.type === 'default';
+    const [orderBy, setOrderBy] = useState<OrderByParams | undefined>(undefined);
+    const { data: productData, error: productError, isLoading: isProductLoading } = useProductCores(isProduct, isDefault ? { ...props.queryParams, orderBy: orderBy } as QueryParams : props.queryParams);
     const { data: categoryData, error: categoryError, isLoading: isCategoryLoading } = useCategories(!isProduct, props.categoryId);
 
     useEffect(() => {
@@ -39,7 +41,7 @@ export const ItemSection = (props: Props) => {
                     <h2 className={props.seeMore?.func ? 'title--hover' : ''}>{capitalizeWords(props.heading)}</h2>
                     <img src={waves} alt={'waves decoration'}></img>
                 </div>
-                {props.sorting ? <DropDown onChange={(foo) => console.log(foo)} /> : <></>}
+                {props.sorting ? <DropDown onChange={(orderByObj) => setOrderBy(orderByObj)} /> : <></>}
             </div>
             <div className={`itemSectionContainer ${props.small ? 'small' : ''}`}>
                 {isProduct && productData ?

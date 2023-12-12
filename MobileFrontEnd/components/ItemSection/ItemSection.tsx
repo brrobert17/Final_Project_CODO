@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, TouchableOpacity, Dimensions } from 'react-native';
-import { Image as IImage, QueryParams, QueryParamsRelated } from '@utils/interfaces'
+import { Image as IImage, OrderByParams, QueryParams, QueryParamsRelated } from '@utils/interfaces'
 import style from './style';
 import gStyle, { pageMargin } from '@gStyle';
 import Dropdown from '@components/DropDown'
@@ -26,7 +26,9 @@ interface Props {
 const ItemSection = (props: Props) => {
 
     const isProduct = props.itemType === 'Product';
-    const { data: productData, error: productError, isLoading: isProductLoading } = useProductCores(isProduct, props.queryParams);
+    const isDefault = props.queryParams?.type === 'default';
+    const [orderBy, setOrderBy] = useState<OrderByParams | undefined>(undefined);
+    const { data: productData, error: productError, isLoading: isProductLoading } = useProductCores(isProduct, isDefault ? { ...props.queryParams, orderBy: orderBy } as QueryParams : props.queryParams);
     const { data: categoryData, error: categoryError, isLoading: isCategoryLoading } = useCategories(!isProduct, props.categoryId);
     useEffect(() => {
         console.log(`PRODUCT:  ${JSON.stringify(productData)}`)
@@ -38,18 +40,18 @@ const ItemSection = (props: Props) => {
         <View style={isProduct ? props.nested ? style.nestedCont : style.contMargin : style.cont} >
             <View style={style.header}>
                 {!isProduct && categoryData && categoryData.length === 0 ?
-                <View style={style.emptyHeadingCont}></View>
-                :
-                props.seeMore
-                    ?
-                    <TouchableOpacity onPress={props.seeMore.func}>
-                        <Text style={style.heading}>{capitalizeWords(props.heading)}</Text>
-                    </TouchableOpacity>
+                    <View style={style.emptyHeadingCont}></View>
                     :
-                    <Text style={style.heading}>{capitalizeWords(props.heading)}</Text>
+                    props.seeMore
+                        ?
+                        <TouchableOpacity onPress={props.seeMore.func}>
+                            <Text style={style.heading}>{capitalizeWords(props.heading)}</Text>
+                        </TouchableOpacity>
+                        :
+                        <Text style={style.heading}>{capitalizeWords(props.heading)}</Text>
                 }
 
-                {props.sorting ? <Dropdown onChange={(foo) => console.log(foo)} /> : <></>}
+                {props.sorting ? <Dropdown onChange={(orderByObj) => setOrderBy(orderByObj)} /> : <></>}
             </View>
             <View style={style.list}>
                 {isProduct && productData ?

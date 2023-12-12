@@ -1,24 +1,28 @@
 import React from "react";
 import './style.css'
-import Select from "react-select";
+import Select, { SingleValue } from "react-select";
+import { OrderByParams } from "@interfaces";
 
 interface DropDownProps {
-    onChange: (value: [string, string]) => void;
+    onChange: (value: OrderByParams) => void;
 }
 
 export const DropDown: React.FC<DropDownProps> = ({ onChange }) => {
-    const data = [
-        { label: '$', value: ['price', 'asc'] },
-        { label: '$$$', value: ['price', 'desc'] },
-        { label: 'A to Z', value: ['name', 'asc'] },
-        { label: 'Z to A', value: ['name', 'desc'] },
-        { label: 'newest', value: ['added', 'asc'] },
-        { label: 'oldest', value: ['added', 'desc'] },
+
+
+    const data: { label: string, value: OrderByParams }[] = [
+        { label: '$', value: { property: 'price', direction: 'asc' } },
+        { label: '$$$', value: { property: 'price', direction: 'desc' } },
+        { label: 'A to Z', value: { property: 'name', direction: 'asc' } },
+        { label: 'Z to A', value: { property: 'name', direction: 'desc' } },
+        { label: 'newest', value: { property: 'added', direction: 'desc' } },
+        { label: 'oldest', value: { property: 'added', direction: 'asc' } },
+
     ];
 
-    const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-        const selectedValue = JSON.parse(event.target.value) as [string, string];
-        onChange(selectedValue);
+
+    const handleChange = (newValue: SingleValue<{ label: string, value: OrderByParams }>) => {
+        if (newValue) onChange(newValue?.value);
     };
 
     const hoverFocusStyles = {
@@ -32,6 +36,7 @@ export const DropDown: React.FC<DropDownProps> = ({ onChange }) => {
         <Select
             options={data}
             placeholder={'Sort by...'}
+            onChange={handleChange}
             classNamePrefix="dropdown"
             styles={{
                 control: (base, state) => ({
@@ -59,12 +64,12 @@ export const DropDown: React.FC<DropDownProps> = ({ onChange }) => {
                     ...base,
                     color: '#fff'
                 }),
-                menu:(base)=>({
+                menu: (base) => ({
                     ...base,
                     borderColor: 'var(--colorPrimary)',
                     backgroundColor: 'var(--backGroundColorTwo)'
                 }),
-                option:(base, state)=>({
+                option: (base, state) => ({
                     ...base,
                     color: '#fff',
                     backgroundColor: state.isFocused || state.isSelected ? 'var(--colorInput)' : 'var(--backGroundColorTwo)',

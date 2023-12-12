@@ -3,24 +3,21 @@ import { TextInput, View, Text } from 'react-native'
 import style from './style'
 import { Dropdown } from 'react-native-element-dropdown'
 import { backGroundColor, backGroundColorTwo, borderRadiusSmall, colorInput, colorPlaceholder } from '@gStyle'
-
-
-enum SortOptions {
-    ascending,
-    descending,
-}
+import { OrderByParams } from '@interfaces'
 
 interface Props {
-    onChange: (value: [string, SortOptions]) => void
+    onChange: (value: OrderByParams) => void
 }
 
 const DropDown = (props: Props) => {
 
-    const data: { label: string, value: [string, SortOptions] }[] = [
-        { label: '$', value: ['price', SortOptions.ascending] },
-        { label: '$$$', value: ['price', SortOptions.descending] },
-        { label: 'A to Z', value: ['name', SortOptions.ascending] },
-        { label: 'Z to A', value: ['name', SortOptions.descending] },
+    const data: { label: string, value: OrderByParams }[] = [
+        { label: '$', value: { property: 'price', direction: 'asc' } },
+        { label: '$$$', value: { property: 'price', direction: 'desc' } },
+        { label: 'A to Z', value: { property: 'name', direction: 'asc' } },
+        { label: 'Z to A', value: { property: 'name', direction: 'desc' } },
+        { label: 'newest', value: { property: 'added', direction: 'desc' } },
+        { label: 'oldest', value: { property: 'added', direction: 'asc' } },
     ]
 
     return (

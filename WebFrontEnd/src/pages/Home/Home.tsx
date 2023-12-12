@@ -4,6 +4,8 @@ import ItemSection from "../../components/ItemSection";
 import SlideShow from "../../components/SlideShow"
 import InfoSection from "@components/InfoSection";
 import { useNavigate } from "react-router-dom";
+import { useProductCores } from "@dbConn/hooks/UseProducts";
+import { useEffect } from "react";
 
 export const navigationPages = [
     {
@@ -71,6 +73,20 @@ const slideShowImages = [
 // ];
 
 const Home = () => {
+
+    const { data: obData } = useProductCores(true, {
+        type: 'default',
+        categoryId: "Q0i1y5",
+        orderBy: {
+            property: "name",
+            direction: "desc"
+        }
+    }
+    )
+
+    useEffect(() => {
+        console.log("obData", obData);
+    }, [obData])
 
     // const {data, error, isLoading} = useProductsCoreMulti(params);
     // const {data:dAll, error:eAll, isLoading:lAll} = useProductsCores(true, params[0]);

@@ -1,5 +1,5 @@
-import {NativeStackNavigationProp} from "@react-navigation/native-stack";
-import {StackParams} from "../App";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { StackParams } from "../App";
 
 export interface Product {
     id: string;
@@ -43,21 +43,23 @@ export interface Tag {
     products: string[]
 }
 
+export interface OrderByParams {
+    property: string,
+    direction: string,
+}
+
 export interface QueryParams {
     type: 'default',
     categoryId?: string,
     limit?: number,
-    orderBy?: {
-        property: string,
-        direction: string,
-    }
+    orderBy?: OrderByParams,
     exclude?: string
 }
-export interface QueryParamsRelated  {
-        type: 'related',
-        productId: string,
-        exclude: boolean,
-        limit: number
+export interface QueryParamsRelated {
+    type: 'related',
+    productId: string,
+    exclude: boolean,
+    limit: number
 }
 
 export interface Category {
@@ -79,5 +81,5 @@ export interface MenuCategory {
     name?: string;
     level?: number;
     children?: MenuCategory[];
-    action?: (nav?:NativeStackNavigationProp<StackParams>)=>void
+    action?: (nav?: NativeStackNavigationProp<StackParams>) => void
 }
