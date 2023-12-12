@@ -5,8 +5,14 @@ import { Dropdown } from 'react-native-element-dropdown'
 import { backGroundColor, backGroundColorTwo, borderRadiusSmall, colorInput, colorPlaceholder } from '@gStyle'
 import { OrderByParams } from '@interfaces'
 
+export interface Option {
+    label: string,
+    value: OrderByParams
+}
+
 interface Props {
-    onChange: (value: OrderByParams) => void
+    onChange: (value: Option) => void,
+    defaultOption?: Option
 }
 
 const DropDown = (props: Props) => {
@@ -24,6 +30,7 @@ const DropDown = (props: Props) => {
         <Dropdown
             style={style.dropDown}
             data={data}
+            value={props.defaultOption}
             labelField={'label'}
             valueField={'value'}
             placeholder='Sort by'
@@ -46,7 +53,7 @@ const DropDown = (props: Props) => {
                 );
             }}
             iconColor='white'
-            onChange={(i) => props.onChange(i.value)}
+            onChange={(i) => props.onChange(i)}
         />
     )
 }

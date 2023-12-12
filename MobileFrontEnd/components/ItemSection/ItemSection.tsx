@@ -9,6 +9,7 @@ import ProductCard, { ProductProps } from '@components/ProductCard';
 import { capitalizeWords } from '@utils/utils';
 import { useProductCores } from "@dbConn/hooks/UseProducts";
 import { useCategories } from "@dbConn/hooks/UseCategories";
+import {Option} from "@components/DropDown/DropDown";
 
 interface Props {
     heading: string,
@@ -27,8 +28,8 @@ const ItemSection = (props: Props) => {
 
     const isProduct = props.itemType === 'Product';
     const isDefault = props.queryParams?.type === 'default';
-    const [orderBy, setOrderBy] = useState<OrderByParams | undefined>(undefined);
-    const { data: productData, error: productError, isLoading: isProductLoading } = useProductCores(isProduct, isDefault ? { ...props.queryParams, orderBy: orderBy } as QueryParams : props.queryParams);
+    const [orderBy, setOrderBy] = useState<Option | undefined>(undefined);
+    const { data: productData, error: productError, isLoading: isProductLoading } = useProductCores(isProduct, isDefault ? { ...props.queryParams, orderBy: orderBy?.value } as QueryParams : props.queryParams);
     const { data: categoryData, error: categoryError, isLoading: isCategoryLoading } = useCategories(!isProduct, props.categoryId);
     useEffect(() => {
         console.log(`PRODUCT:  ${JSON.stringify(productData)}`)
@@ -51,7 +52,7 @@ const ItemSection = (props: Props) => {
                         <Text style={style.heading}>{capitalizeWords(props.heading)}</Text>
                 }
 
-                {props.sorting ? <Dropdown onChange={(orderByObj) => setOrderBy(orderByObj)} /> : <></>}
+                {props.sorting ? <Dropdown onChange={(orderByObj) => setOrderBy(orderByObj)} defaultOption={orderBy}/> : <></>}
             </View>
             <View style={style.list}>
                 {isProduct && productData ?
