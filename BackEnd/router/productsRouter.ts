@@ -12,15 +12,15 @@ import { createUniqueDocument } from "../utils";
 
 export const productsRouter = express.Router();
 
-productsRouter.get('/products', fetchCollection(converterProductsCollection));
+productsRouter.get('', fetchCollection(converterProductsCollection));
 
-productsRouter.get('/products/cores', fetchCollection(converterProductsCoreCollection));
+productsRouter.get('/cores', fetchCollection(converterProductsCoreCollection));
 
-productsRouter.get('/products/:id/related', fetchRelated(converterProductsCollection));
+productsRouter.get('/:id/related', fetchRelated(converterProductsCollection));
 
-productsRouter.get('/products/:id/related/cores', fetchRelated(converterProductsCoreCollection));
+productsRouter.get('/:id/related/cores', fetchRelated(converterProductsCoreCollection));
 
-productsRouter.get('/products/:id', async (req, res) => {
+productsRouter.get('/:id', async (req, res) => {
     const productId = req.params.id;
 
     try {
@@ -38,7 +38,7 @@ productsRouter.get('/products/:id', async (req, res) => {
 
 })
 
-productsRouter.post('/products', async (req, res) => {
+productsRouter.post('', async (req, res) => {
     try {
         let products = [];
         if (Array.isArray(req.body.products)) {
@@ -92,7 +92,7 @@ productsRouter.post('/products', async (req, res) => {
     }
 });
 
-productsRouter.delete('/products', async (req, res) => {
+productsRouter.delete('', async (req, res) => {
     try {
         const collectionsToReset = ['products', 'tags'];
 

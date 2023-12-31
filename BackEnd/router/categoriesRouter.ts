@@ -9,7 +9,7 @@ import {myCache} from "../app";
 
 export const categoriesRouter = express.Router();
 
-categoriesRouter.get("/categories/:id/breadcrumbs", (req, res) => {
+categoriesRouter.get("/:id/breadcrumbs", (req, res) => {
     const categoryId = req.params.id;
     try {
         const path = getAllSupraCategoriesCache(categoryId);
@@ -19,7 +19,7 @@ categoriesRouter.get("/categories/:id/breadcrumbs", (req, res) => {
         res.status(404).send(e);
     }
 });
-categoriesRouter.get("/categories/:id/subcategories", (req, res) => {
+categoriesRouter.get("/:id/subcategories", (req, res) => {
     const categoryId = req.params.id;
     try {
         const subcategories = getDirectSubcategoriesCache(categoryId as string);
@@ -29,7 +29,7 @@ categoriesRouter.get("/categories/:id/subcategories", (req, res) => {
         res.status(404).send(e);
     }
 });
-categoriesRouter.get("/categories/:id", (req, res) => {
+categoriesRouter.get("/:id", (req, res) => {
     const categoryId = req.params.id;
     try {
         const category = getCategoryCache(categoryId as string);
@@ -39,7 +39,7 @@ categoriesRouter.get("/categories/:id", (req, res) => {
         res.status(404).send(e);
     }
 });
-categoriesRouter.get("/categories", (req, res) => {
+categoriesRouter.get("", (req, res) => {
     const menuCategoriesCache = myCache.get('menuCategories');
     res.send(menuCategoriesCache);
 });
