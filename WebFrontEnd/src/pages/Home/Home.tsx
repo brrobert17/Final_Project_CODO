@@ -6,6 +6,7 @@ import InfoSection from "@components/InfoSection";
 import { useNavigate } from "react-router-dom";
 import { useProductCores } from "@dbConn/hooks/UseProducts";
 import { useEffect } from "react";
+import { useMenuCategories } from "@dbConn/hooks/UseCategories";
 
 export const navigationPages = [
     {
@@ -48,19 +49,15 @@ export const navigationPages = [
 ]
 const slideShowImages = [
     {
-        url: "https://picsum.photos/1440/420",
+        url: "https://i.pinimg.com/originals/cf/78/f5/cf78f595abe0e226c1bf52837a5cf3b4--coral-color-blue-colors.jpg",
         alt: "random image"
     },
     {
-        url: "https://picsum.photos/1441/420",
+        url: "https://i.pinimg.com/originals/40/aa/04/40aa0499adb6c4bb96f089b956f3f483--macro-nature-photography-creative-photography.jpg",
         alt: "random image"
     },
     {
-        url: "https://picsum.photos/1440/421",
-        alt: "random image"
-    },
-    {
-        url: "https://picsum.photos/1441/421",
+        url: "https://media.gettyimages.com/id/1357375506/photo/macro-photo-of-a-fan-coral-abstract.jpg?s=612x612&w=0&k=20&c=aZwH6wZm2dJdD9nNUTbUt5lcBMJ2miLPDRoaHpARQmQ=",
         alt: "random image"
     }
 ]

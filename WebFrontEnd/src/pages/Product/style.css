@@ -13,6 +13,7 @@
 
 .product__left {
     position: relative;
+    max-width: calc(50vw - var(--pageMargin));
 }
 
 .product__left__blob {
