@@ -24,10 +24,10 @@ app.use(cors({
     origin: true
 }));
 
-app.use(productsRouter);
+app.use('/products', productsRouter);
+app.use('/categories', categoriesRouter);
 app.use(imagesRouter);
 app.use(utilsRouter);
-app.use(categoriesRouter);
 
 export const myCache = new NodeCache({ stdTTL: 0, checkperiod: 0 });
 async function initializeCache() {

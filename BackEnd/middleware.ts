@@ -65,30 +65,20 @@ type CollectionMiddleware = (collectionRef: CollectionReference) => (req: Reques
 export const fetchCollection: CollectionMiddleware = (collectionRef) => {
     return async (req, res) => {
         try {
-            const params = req.query.params && JSON.parse(req.query.params as string) as QueryParams;
-            //console.log("fetching: ", req.query);
+            const params = req.query.params && JSON.parse(
+                req.query.params as string) as QueryParams;
 
             // Shortcut in case of no params
             if (!params) {
-                //console.log("fetching all products")
-                const allProductsRef = query(collectionRef, orderBy('added', 'asc'));
+                const allProductsRef = query(
+                    collectionRef, orderBy('added', 'desc'));
                 const collectionSnapshot = await getDocs(allProductsRef);
-                const products = collectionSnapshot.docs.map(doc => doc.data());
+                const products = collectionSnapshot.docs.map(
+                    doc => doc.data());
                 res.send(products);
             } else {
-                //console.log("fetching specific categories")
-                //const queries = params.map(param => createQueryForParam(collectionRef, param));
-                //const resultsArray = await Promise.all(queries);
                 const query = await createQueryForParam(collectionRef, params);
                 const results = query.docs.map(doc=> doc.data());
-                // const results = resultsArray.map((collectionSnapshot, index) => {
-                //     const currentParam = params[index];
-                //     const filteredDocs = currentParam?.exclude
-                //         ? collectionSnapshot.docs.filter(doc => doc.id !== currentParam.exclude)
-                //         : collectionSnapshot.docs;
-                //     return filteredDocs.map(doc => doc.data());
-                // });
-                //console.log("results", resultsArray.map(res => { return res.docs.map((r) => r.data()) }))
                 res.send(results);
             }
         } catch (e) {
@@ -196,7 +186,7 @@ async function createQueryForParam(collectionRef: CollectionReference, params: Q
     if (params.orderBy){
         productsRef = query(productsRef, orderBy(params.orderBy.property, params.orderBy.direction as OrderByDirection));
     } else {
-        productsRef = query(productsRef, orderBy('added', 'asc'));
+        productsRef = query(productsRef, orderBy('added', 'desc'));
     }
 
     // Apply category filter if specified
@@ -212,6 +202,9 @@ async function createQueryForParam(collectionRef: CollectionReference, params: Q
     if (params?.limit && !isNaN(params.limit) && params.limit > 0) {
         productsRef = query(productsRef, limit(params.limit));
     }
+     if (!params.limit) {
+         productsRef = query(productsRef, limit(10));
+     }
 
     return getDocs(productsRef);
 }

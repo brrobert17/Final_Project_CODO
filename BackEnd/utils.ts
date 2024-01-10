@@ -99,8 +99,6 @@ export const getAllSupraCategoriesCache = (categoryId: string) => {
             });
         });
         category?.name && category.id && supraCategories.push({id:category.id, name:category.name});
-        //console.log("gg", supraCategories);
-        // console.log(subCatsIds);
         return (supraCategories)
     }
 }

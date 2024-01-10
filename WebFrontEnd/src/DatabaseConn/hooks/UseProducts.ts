@@ -23,7 +23,6 @@ import {Product, ProductCore, QueryParams, QueryParamsRelated} from "@interfaces
 //         options
 //     )
 // }
-
 // export const useProductCores = (enabled?: boolean, params?: QueryParams) => {
 //
 //     const queryKey = ['productCores', params ? params : 'root']
@@ -41,7 +40,6 @@ import {Product, ProductCore, QueryParams, QueryParamsRelated} from "@interfaces
 //         {enabled: !!id, refetchOnWindowFocus: false}
 //     );
 // }
-
 // export const useRelatedProductCores = (enabled: boolean, params: QueryParamsRelated) => {
 //     return useQuery<ProductCore[], Error>(
 //         ["related products cores", params], () => getRelatedCores(params),
