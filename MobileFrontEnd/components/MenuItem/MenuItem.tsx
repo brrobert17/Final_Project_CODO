@@ -24,7 +24,7 @@ const MenuItem = (props: MenuCategory) => {
         }
         else if(props.id){
             console.log('action333')
-            nav.navigate('Products', {categoryId: props.id})
+            nav.navigate('Products', {categoryId: props.id, categoryName: props.name});
         }else {
             if (!props.level) {
                 console.log('back')

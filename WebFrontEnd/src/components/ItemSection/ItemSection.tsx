@@ -26,13 +26,18 @@ export const ItemSection = (props: Props) => {
 
     const isProduct = props.itemType === 'Product';
     const isDefault = props.queryParams?.type === 'default';
-    const [orderBy, setOrderBy] = useState<OrderByParams | undefined>(undefined);
-    const { data: productData, error: productError, isLoading: isProductLoading } = useProductCores(isProduct, isDefault ? { ...props.queryParams, orderBy: orderBy } as QueryParams : props.queryParams);
+    const [ orderBy,
+        setOrderBy] = useState<OrderByParams | undefined>(undefined);
+    const { data: productData,
+        error: productError,
+        isLoading: isProductLoading } = useProductCores(
+            isProduct,
+        isDefault ? { ...props.queryParams, orderBy: orderBy } as QueryParams : props.queryParams);
     const { data: categoryData, error: categoryError, isLoading: isCategoryLoading } = useCategories(!isProduct, props.categoryId);
 
-    useEffect(() => {
-        console.log(`PRODUCT:  ${JSON.stringify(productData)}`)
-    }, [productData]);
+    // useEffect(() => {
+    //     console.log(`PRODUCT:  ${JSON.stringify(productData)}`)
+    // }, [productData]);
 
     return (
         <>

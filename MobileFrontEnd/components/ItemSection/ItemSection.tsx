@@ -31,9 +31,9 @@ const ItemSection = (props: Props) => {
     const [orderBy, setOrderBy] = useState<Option | undefined>(undefined);
     const { data: productData, error: productError, isLoading: isProductLoading } = useProductCores(isProduct, isDefault ? { ...props.queryParams, orderBy: orderBy?.value } as QueryParams : props.queryParams);
     const { data: categoryData, error: categoryError, isLoading: isCategoryLoading } = useCategories(!isProduct, props.categoryId);
-    useEffect(() => {
-        console.log(`PRODUCT:  ${JSON.stringify(productData)}`)
-    }, [productData]);
+    // useEffect(() => {
+    //     console.log(`PRODUCT:  ${JSON.stringify(productData)}`)
+    // }, [productData]);
 
     const pseudoWidth = (Dimensions.get('window').width / 3) - (pageMargin * (1 + (1 / 3)));
 

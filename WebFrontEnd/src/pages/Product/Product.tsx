@@ -36,7 +36,6 @@ export const Product = () => {
         isError: categoryError,
         data: categoryData
     } = useCategory(data?.category ? data.category : "");
-    //const { data: relatedData, error: relatedError, isLoading: relatedLoading } = useRelatedProductsCores(data ? data.id : '', 5)
 
     // use Effects
     useEffect(() => {
