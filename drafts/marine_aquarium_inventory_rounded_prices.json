@@ -2,7 +2,7 @@
     "products": [
         {
             "name": "Guppy",
-            "price": 28.86,
+            "price": 29,
             "category": "5GkQhL",
             "img": [
                 {
@@ -29,7 +29,7 @@
         },
         {
             "name": "Betta",
-            "price": 103.07,
+            "price": 103,
             "category": "5GkQhL",
             "img": [
                 {
@@ -64,7 +64,7 @@
         },
         {
             "name": "Discus",
-            "price": 143.63,
+            "price": 144,
             "category": "5GkQhL",
             "img": [
                 {
@@ -91,7 +91,7 @@
         },
         {
             "name": "Goldfish",
-            "price": 76.52,
+            "price": 77,
             "category": "5GkQhL",
             "img": [
                 {
@@ -126,7 +126,7 @@
         },
         {
             "name": "Barb",
-            "price": 71.48,
+            "price": 71,
             "category": "5GkQhL",
             "img": [
                 {
@@ -157,7 +157,7 @@
         },
         {
             "name": "Cichlid",
-            "price": 42.74,
+            "price": 43,
             "category": "5GkQhL",
             "img": [
                 {
@@ -188,7 +188,7 @@
         },
         {
             "name": "Gourami",
-            "price": 71.55,
+            "price": 72,
             "category": "5GkQhL",
             "img": [
                 {
@@ -219,7 +219,7 @@
         },
         {
             "name": "Platy",
-            "price": 27.31,
+            "price": 27,
             "category": "5GkQhL",
             "img": [
                 {
@@ -246,7 +246,7 @@
         },
         {
             "name": "Swordtail",
-            "price": 127.97,
+            "price": 128,
             "category": "5GkQhL",
             "img": [
                 {
@@ -281,7 +281,7 @@
         },
         {
             "name": "Rasbora",
-            "price": 62.81,
+            "price": 63,
             "category": "5GkQhL",
             "img": [
                 {
@@ -312,7 +312,7 @@
         },
         {
             "name": "Guppy",
-            "price": 24.12,
+            "price": 24,
             "category": "WjdI8n",
             "img": [
                 {
@@ -347,7 +347,7 @@
         },
         {
             "name": "Betta",
-            "price": 145.27,
+            "price": 145,
             "category": "WjdI8n",
             "img": [
                 {
@@ -382,7 +382,7 @@
         },
         {
             "name": "Discus",
-            "price": 113.19,
+            "price": 113,
             "category": "WjdI8n",
             "img": [
                 {
@@ -417,7 +417,7 @@
         },
         {
             "name": "Goldfish",
-            "price": 21.19,
+            "price": 21,
             "category": "WjdI8n",
             "img": [
                 {
@@ -456,7 +456,7 @@
         },
         {
             "name": "Barb",
-            "price": 120.59,
+            "price": 121,
             "category": "WjdI8n",
             "img": [
                 {
@@ -495,7 +495,7 @@
         },
         {
             "name": "Cichlid",
-            "price": 73.99,
+            "price": 74,
             "category": "WjdI8n",
             "img": [
                 {
@@ -526,7 +526,7 @@
         },
         {
             "name": "Gourami",
-            "price": 99.36,
+            "price": 99,
             "category": "WjdI8n",
             "img": [
                 {
@@ -565,7 +565,7 @@
         },
         {
             "name": "Platy",
-            "price": 50.63,
+            "price": 51,
             "category": "WjdI8n",
             "img": [
                 {
@@ -604,7 +604,7 @@
         },
         {
             "name": "Swordtail",
-            "price": 74.21,
+            "price": 74,
             "category": "WjdI8n",
             "img": [
                 {
@@ -639,7 +639,7 @@
         },
         {
             "name": "Rasbora",
-            "price": 78.58,
+            "price": 79,
             "category": "WjdI8n",
             "img": [
                 {
@@ -670,7 +670,7 @@
         },
         {
             "name": "Guppy",
-            "price": 95.21,
+            "price": 95,
             "category": "blenny",
             "img": [
                 {
@@ -705,7 +705,7 @@
         },
         {
             "name": "Betta",
-            "price": 85.55,
+            "price": 86,
             "category": "blenny",
             "img": [
                 {
@@ -740,7 +740,7 @@
         },
         {
             "name": "Discus",
-            "price": 114.26,
+            "price": 114,
             "category": "blenny",
             "img": [
                 {
@@ -771,7 +771,7 @@
         },
         {
             "name": "Goldfish",
-            "price": 103.55,
+            "price": 104,
             "category": "blenny",
             "img": [
                 {
@@ -810,7 +810,7 @@
         },
         {
             "name": "Barb",
-            "price": 124.88,
+            "price": 125,
             "category": "blenny",
             "img": [
                 {
@@ -849,7 +849,7 @@
         },
         {
             "name": "Cichlid",
-            "price": 79.37,
+            "price": 79,
             "category": "blenny",
             "img": [
                 {
@@ -884,7 +884,7 @@
         },
         {
             "name": "Gourami",
-            "price": 58.36,
+            "price": 58,
             "category": "blenny",
             "img": [
                 {
@@ -923,7 +923,7 @@
         },
         {
             "name": "Platy",
-            "price": 132.67,
+            "price": 133,
             "category": "blenny",
             "img": [
                 {
@@ -950,7 +950,7 @@
         },
         {
             "name": "Swordtail",
-            "price": 142.75,
+            "price": 143,
             "category": "blenny",
             "img": [
                 {
@@ -977,7 +977,7 @@
         },
         {
             "name": "Rasbora",
-            "price": 68.82,
+            "price": 69,
             "category": "blenny",
             "img": [
                 {
@@ -1012,7 +1012,7 @@
         },
         {
             "name": "Zoanthid",
-            "price": 73.42,
+            "price": 73,
             "category": "lps",
             "img": [
                 {
@@ -1043,7 +1043,7 @@
         },
         {
             "name": "Green Star Polyp",
-            "price": 22.32,
+            "price": 22,
             "category": "lps",
             "img": [
                 {
@@ -1070,7 +1070,7 @@
         },
         {
             "name": "Duncan Coral",
-            "price": 29.98,
+            "price": 30,
             "category": "lps",
             "img": [
                 {
@@ -1101,7 +1101,7 @@
         },
         {
             "name": "Candy Cane Coral",
-            "price": 73.47,
+            "price": 73,
             "category": "lps",
             "img": [
                 {
@@ -1132,7 +1132,7 @@
         },
         {
             "name": "Sun Coral",
-            "price": 79.33,
+            "price": 79,
             "category": "lps",
             "img": [
                 {
@@ -1171,7 +1171,7 @@
         },
         {
             "name": "Gorgonian",
-            "price": 115.6,
+            "price": 116,
             "category": "lps",
             "img": [
                 {
@@ -1206,7 +1206,7 @@
         },
         {
             "name": "Frogspawn Coral",
-            "price": 118.4,
+            "price": 118,
             "category": "lps",
             "img": [
                 {
@@ -1233,7 +1233,7 @@
         },
         {
             "name": "Toadstool Coral",
-            "price": 133.31,
+            "price": 133,
             "category": "lps",
             "img": [
                 {
@@ -1260,7 +1260,7 @@
         },
         {
             "name": "Plate Coral",
-            "price": 135.52,
+            "price": 136,
             "category": "lps",
             "img": [
                 {
@@ -1291,7 +1291,7 @@
         },
         {
             "name": "Chalice Coral",
-            "price": 124.92,
+            "price": 125,
             "category": "lps",
             "img": [
                 {
@@ -1322,7 +1322,7 @@
         },
         {
             "name": "Zoanthid",
-            "price": 127.93,
+            "price": 128,
             "category": "SE4bVC",
             "img": [
                 {
@@ -1349,7 +1349,7 @@
         },
         {
             "name": "Green Star Polyp",
-            "price": 85.81,
+            "price": 86,
             "category": "SE4bVC",
             "img": [
                 {
@@ -1376,7 +1376,7 @@
         },
         {
             "name": "Duncan Coral",
-            "price": 33.26,
+            "price": 33,
             "category": "SE4bVC",
             "img": [
                 {
@@ -1407,7 +1407,7 @@
         },
         {
             "name": "Candy Cane Coral",
-            "price": 51.64,
+            "price": 52,
             "category": "SE4bVC",
             "img": [
                 {
@@ -1438,7 +1438,7 @@
         },
         {
             "name": "Sun Coral",
-            "price": 116.64,
+            "price": 117,
             "category": "SE4bVC",
             "img": [
                 {
@@ -1465,7 +1465,7 @@
         },
         {
             "name": "Gorgonian",
-            "price": 65.45,
+            "price": 65,
             "category": "SE4bVC",
             "img": [
                 {
@@ -1496,7 +1496,7 @@
         },
         {
             "name": "Frogspawn Coral",
-            "price": 27.77,
+            "price": 28,
             "category": "SE4bVC",
             "img": [
                 {
@@ -1535,7 +1535,7 @@
         },
         {
             "name": "Toadstool Coral",
-            "price": 115.69,
+            "price": 116,
             "category": "SE4bVC",
             "img": [
                 {
@@ -1570,7 +1570,7 @@
         },
         {
             "name": "Plate Coral",
-            "price": 85.5,
+            "price": 86,
             "category": "SE4bVC",
             "img": [
                 {
@@ -1609,7 +1609,7 @@
         },
         {
             "name": "Chalice Coral",
-            "price": 124.11,
+            "price": 124,
             "category": "SE4bVC",
             "img": [
                 {
@@ -1640,7 +1640,7 @@
         },
         {
             "name": "Zoanthid",
-            "price": 109.2,
+            "price": 109,
             "category": "sps",
             "img": [
                 {
@@ -1675,7 +1675,7 @@
         },
         {
             "name": "Green Star Polyp",
-            "price": 47.2,
+            "price": 47,
             "category": "sps",
             "img": [
                 {
@@ -1710,7 +1710,7 @@
         },
         {
             "name": "Duncan Coral",
-            "price": 25.4,
+            "price": 25,
             "category": "sps",
             "img": [
                 {
@@ -1745,7 +1745,7 @@
         },
         {
             "name": "Candy Cane Coral",
-            "price": 88.05,
+            "price": 88,
             "category": "sps",
             "img": [
                 {
@@ -1784,7 +1784,7 @@
         },
         {
             "name": "Sun Coral",
-            "price": 109.72,
+            "price": 110,
             "category": "sps",
             "img": [
                 {
@@ -1815,7 +1815,7 @@
         },
         {
             "name": "Gorgonian",
-            "price": 119.96,
+            "price": 120,
             "category": "sps",
             "img": [
                 {
@@ -1854,7 +1854,7 @@
         },
         {
             "name": "Frogspawn Coral",
-            "price": 85.35,
+            "price": 85,
             "category": "sps",
             "img": [
                 {
@@ -1893,7 +1893,7 @@
         },
         {
             "name": "Toadstool Coral",
-            "price": 85.58,
+            "price": 86,
             "category": "sps",
             "img": [
                 {
@@ -1928,7 +1928,7 @@
         },
         {
             "name": "Plate Coral",
-            "price": 56.24,
+            "price": 56,
             "category": "sps",
             "img": [
                 {
@@ -1959,7 +1959,7 @@
         },
         {
             "name": "Chalice Coral",
-            "price": 115.51,
+            "price": 116,
             "category": "sps",
             "img": [
                 {
@@ -1994,7 +1994,7 @@
         },
         {
             "name": "Snail",
-            "price": 105.86,
+            "price": 106,
             "category": "aRu8ro",
             "img": [
                 {
@@ -2021,7 +2021,7 @@
         },
         {
             "name": "Shrimp",
-            "price": 22.51,
+            "price": 23,
             "category": "aRu8ro",
             "img": [
                 {
@@ -2056,7 +2056,7 @@
         },
         {
             "name": "Clam",
-            "price": 27.8,
+            "price": 28,
             "category": "aRu8ro",
             "img": [
                 {
@@ -2083,7 +2083,7 @@
         },
         {
             "name": "Crab",
-            "price": 46.95,
+            "price": 47,
             "category": "aRu8ro",
             "img": [
                 {
@@ -2118,7 +2118,7 @@
         },
         {
             "name": "Lobster",
-            "price": 145.74,
+            "price": 146,
             "category": "aRu8ro",
             "img": [
                 {
@@ -2157,7 +2157,7 @@
         },
         {
             "name": "Octopus",
-            "price": 63.11,
+            "price": 63,
             "category": "aRu8ro",
             "img": [
                 {
@@ -2188,7 +2188,7 @@
         },
         {
             "name": "Squid",
-            "price": 143.4,
+            "price": 143,
             "category": "aRu8ro",
             "img": [
                 {
@@ -2215,7 +2215,7 @@
         },
         {
             "name": "Cuttlefish",
-            "price": 136.21,
+            "price": 136,
             "category": "aRu8ro",
             "img": [
                 {
@@ -2246,7 +2246,7 @@
         },
         {
             "name": "Sea Slug",
-            "price": 147.58,
+            "price": 148,
             "category": "aRu8ro",
             "img": [
                 {
@@ -2277,7 +2277,7 @@
         },
         {
             "name": "Nudibranch",
-            "price": 72.81,
+            "price": 73,
             "category": "aRu8ro",
             "img": [
                 {
@@ -2304,7 +2304,7 @@
         },
         {
             "name": "Heater",
-            "price": 109.34,
+            "price": 109,
             "category": "Al4ZGs",
             "img": [
                 {
@@ -2339,7 +2339,7 @@
         },
         {
             "name": "Filter",
-            "price": 35.71,
+            "price": 36,
             "category": "Al4ZGs",
             "img": [
                 {
@@ -2374,7 +2374,7 @@
         },
         {
             "name": "Lighting",
-            "price": 126.63,
+            "price": 127,
             "category": "Al4ZGs",
             "img": [
                 {
@@ -2405,7 +2405,7 @@
         },
         {
             "name": "Skimmer",
-            "price": 70.69,
+            "price": 71,
             "category": "Al4ZGs",
             "img": [
                 {
@@ -2436,7 +2436,7 @@
         },
         {
             "name": "UV Sterilizer",
-            "price": 84.4,
+            "price": 84,
             "category": "Al4ZGs",
             "img": [
                 {
@@ -2471,7 +2471,7 @@
         },
         {
             "name": "Wave Maker",
-            "price": 117.61,
+            "price": 118,
             "category": "Al4ZGs",
             "img": [
                 {
@@ -2498,7 +2498,7 @@
         },
         {
             "name": "Feeder",
-            "price": 91.83,
+            "price": 92,
             "category": "Al4ZGs",
             "img": [
                 {
@@ -2533,7 +2533,7 @@
         },
         {
             "name": "CO2 System",
-            "price": 131.3,
+            "price": 131,
             "category": "Al4ZGs",
             "img": [
                 {
@@ -2572,7 +2572,7 @@
         },
         {
             "name": "Aquarium Stand",
-            "price": 54.7,
+            "price": 55,
             "category": "Al4ZGs",
             "img": [
                 {
@@ -2603,7 +2603,7 @@
         },
         {
             "name": "Aquarium Kit",
-            "price": 91.09,
+            "price": 91,
             "category": "Al4ZGs",
             "img": [
                 {
@@ -2638,7 +2638,7 @@
         },
         {
             "name": "Heater",
-            "price": 44.82,
+            "price": 45,
             "category": "wcva8V",
             "img": [
                 {
@@ -2665,7 +2665,7 @@
         },
         {
             "name": "Filter",
-            "price": 108.14,
+            "price": 108,
             "category": "wcva8V",
             "img": [
                 {
@@ -2704,7 +2704,7 @@
         },
         {
             "name": "Lighting",
-            "price": 52.02,
+            "price": 52,
             "category": "wcva8V",
             "img": [
                 {
@@ -2735,7 +2735,7 @@
         },
         {
             "name": "Skimmer",
-            "price": 109.81,
+            "price": 110,
             "category": "wcva8V",
             "img": [
                 {
@@ -2766,7 +2766,7 @@
         },
         {
             "name": "UV Sterilizer",
-            "price": 22.87,
+            "price": 23,
             "category": "wcva8V",
             "img": [
                 {
@@ -2801,7 +2801,7 @@
         },
         {
             "name": "Wave Maker",
-            "price": 127.97,
+            "price": 128,
             "category": "wcva8V",
             "img": [
                 {
@@ -2832,7 +2832,7 @@
         },
         {
             "name": "Feeder",
-            "price": 90.08,
+            "price": 90,
             "category": "wcva8V",
             "img": [
                 {
@@ -2871,7 +2871,7 @@
         },
         {
             "name": "CO2 System",
-            "price": 140.85,
+            "price": 141,
             "category": "wcva8V",
             "img": [
                 {
@@ -2902,7 +2902,7 @@
         },
         {
             "name": "Aquarium Stand",
-            "price": 69.15,
+            "price": 69,
             "category": "wcva8V",
             "img": [
                 {
@@ -2937,7 +2937,7 @@
         },
         {
             "name": "Aquarium Kit",
-            "price": 102.93,
+            "price": 103,
             "category": "wcva8V",
             "img": [
                 {
