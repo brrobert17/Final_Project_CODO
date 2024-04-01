@@ -1,7 +1,7 @@
 import ProductCard from "../ProductCard";
 import './style.css'
 import waves from '@assets/waves.svg'
-import { Image as IImage, OrderByParams, QueryParams, QueryParamsRelated } from "@interfaces";
+import { Image as IImage, OrderByParams, ProductCore, QueryParams, QueryParamsRelated } from "@interfaces";
 import CategoryCard from "@components/CategoryCard";
 import DropDown from "@components/DropDown";
 import { capitalizeWords } from "@utils/utils";
@@ -11,7 +11,7 @@ import { useEffect, useState } from "react";
 
 interface Props {
     heading: string,
-    itemType: 'Category' | 'Product',
+    itemType: 'Category' | 'Product' | ProductCore[],
     queryParams?: QueryParams | QueryParamsRelated,
     categoryId?: string,
     sorting?: boolean,
@@ -24,16 +24,19 @@ interface Props {
 
 export const ItemSection = (props: Props) => {
 
+    console.log("itemType", props.itemType)
+
     const isProduct = props.itemType === 'Product';
+    const isCategory = props.itemType === 'Category';
     const isDefault = props.queryParams?.type === 'default';
-    const [ orderBy,
+    const [orderBy,
         setOrderBy] = useState<OrderByParams | undefined>(undefined);
     const { data: productData,
         error: productError,
         isLoading: isProductLoading } = useProductCores(
             isProduct,
-        isDefault ? { ...props.queryParams, orderBy: orderBy } as QueryParams : props.queryParams);
-    const { data: categoryData, error: categoryError, isLoading: isCategoryLoading } = useCategories(!isProduct, props.categoryId);
+            isDefault ? { ...props.queryParams, orderBy: orderBy } as QueryParams : props.queryParams);
+    const { data: categoryData, error: categoryError, isLoading: isCategoryLoading } = useCategories(isCategory, props.categoryId);
 
     // useEffect(() => {
     //     console.log(`PRODUCT:  ${JSON.stringify(productData)}`)
@@ -57,13 +60,17 @@ export const ItemSection = (props: Props) => {
                         <h4 className="itemSection__emptyText">There are no products in this category at the moment</h4>
                     :
                     <></>}
-                {!isProduct && categoryData && categoryData.map((item, index) => {
+                {isCategory && categoryData && categoryData.map((item, index) => {
                     return <CategoryCard key={index} name={item.name} img={item.img} id={item.id} />
                 })}
                 {isProduct && props.seeMore ? <CategoryCard func={props.seeMore.func} bigVariant name='See More' img={{
                     url: props.seeMore.img.url,
                     alt: props.seeMore.img.alt
                 }} /> : <></>}
+                {typeof props.itemType != "string" ?
+                    props.itemType.map((product) => <ProductCard name={product.name} price={product.price} img={product.img} id={product.id} />)
+                    :
+                    <></>}
             </div>
         </>
 

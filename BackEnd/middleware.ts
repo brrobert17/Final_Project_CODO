@@ -11,10 +11,10 @@ import {
     QueryDocumentSnapshot,
     where
 } from "firebase/firestore";
-import {Request, Response} from 'express';
-import {Product, QueryParams} from "../MobileFrontEnd/utils/interfaces";
-import {converterProductsCollection} from "./firebaseConfig";
-import {getAllSubcategoriesCache, getCategoryCache} from "./utils";
+import { Request, Response } from 'express';
+import { Product, QueryParams } from "../MobileFrontEnd/utils/interfaces";
+import { converterProductsCollection } from "./firebaseConfig";
+import { getAllSubcategoriesCache, getCategoryCache } from "./utils";
 import firebase from "firebase/compat";
 import OrderByDirection = firebase.firestore.OrderByDirection;
 
@@ -78,9 +78,10 @@ export const fetchCollection: CollectionMiddleware = (collectionRef) => {
                 res.send(products);
             } else {
                 const query = await createQueryForParam(collectionRef, params);
-                const results = query.docs.map(doc=> doc.data());
+                const results = query.docs.map(doc => doc.data());
                 res.send(results);
             }
+
         } catch (e) {
             console.error("Error fetching documents: ", e);
             res.status(500).send(e);
@@ -183,7 +184,7 @@ async function getRelatedProductsWithLimit(productId: string, collectionRef: Col
 
 async function createQueryForParam(collectionRef: CollectionReference, params: QueryParams) {
     let productsRef = query(collectionRef);
-    if (params.orderBy){
+    if (params.orderBy) {
         productsRef = query(productsRef, orderBy(params.orderBy.property, params.orderBy.direction as OrderByDirection));
     } else {
         productsRef = query(productsRef, orderBy('added', 'desc'));
@@ -202,9 +203,9 @@ async function createQueryForParam(collectionRef: CollectionReference, params: Q
     if (params?.limit && !isNaN(params.limit) && params.limit > 0) {
         productsRef = query(productsRef, limit(params.limit));
     }
-     if (!params.limit) {
-         productsRef = query(productsRef, limit(10));
-     }
+    if (!params.limit) {
+        productsRef = query(productsRef, limit(10));
+    }
 
     return getDocs(productsRef);
 }

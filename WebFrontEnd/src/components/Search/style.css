@@ -8,6 +8,15 @@
 
 }
 
+.search__box-cont {
+    width: 60%;
+    max-width: 40em;
+    display: grid;
+    place-items: center;
+    margin: 5em auto;
+    gap: 2em;
+}
+
 .search__box {
     position: relative;
     width: 80%;
@@ -34,7 +43,7 @@
 .search__icon {
     position: absolute;
     right: var(--defaultMargin);
-    top: 50%;
+    top: calc(50% + 2px);
     transform: translateY(-50%);
     cursor: pointer;
 }

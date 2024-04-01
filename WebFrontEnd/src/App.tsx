@@ -7,6 +7,7 @@ import Products from "./pages/Products";
 import ImageSlider from 'components/ImageSlider';
 import ScrollTopBtn from 'components/ScrollTopBtn';
 import {ReactQueryDevtools} from "react-query/devtools";
+import Search from 'pages/Search';
 
 const queryClient = new QueryClient();
 
@@ -21,6 +22,7 @@ function App() {
                     <Route path='/product/*' element={<Product />} />
                     <Route path='/products/:id' element={<Products />} />
                     <Route path='/products' element={<Products />} />
+                    <Route path='/search' element={<Search />} />
                 </Routes>
             </Router>
             <ReactQueryDevtools initialIsOpen={false} />

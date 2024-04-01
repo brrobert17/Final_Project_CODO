@@ -14,7 +14,7 @@ const InfoSection = () => {
       <div className="info__grid">
         <div>
           <Heading text="Know what you looking for?" />
-          <Search fishIcon />
+          <Search fishIcon onSearch={(keyword) => window.location.href = `/search?keyword=${keyword}`} />
         </div>
         <div>
           <Heading text="About Us" />
