@@ -8,5 +8,38 @@
     grid-area: 1 / 2 / 4 / 4;
     margin-top: calc(var(--defaultMargin) * -1);
     /*margin-bottom: calc(var(--defaultMargin) * -1);*/
+}
 
+@media only screen and (max-width: 768px) {
+    .info__grid {
+        grid-template-columns: 1fr;
+    }
+    .info__categories-cont {
+        grid-area: unset;
+    }
+    .blob__background {
+        display: none;
+    }
+    .blob {
+        margin: 0;
+        padding: 0 var(--pageMargin);
+        min-height: unset;
+        height: fit-content;
+    }
+    .blob__children-cont {
+        margin-top: 0;
+    }
+    .info__about{
+        display: none;
+    }
+    .search__box {
+        width: 100%
+    }
+    .info__grid .itemSectionContainer.small {
+        grid-template-columns: repeat(4, minmax(4em, 1fr));
+        grid-template-rows: unset;
+    }
+    .info__grid .itemSectionContainer {
+        height: 110%;
+    }
 }

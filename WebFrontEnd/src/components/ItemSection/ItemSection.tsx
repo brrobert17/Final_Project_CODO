@@ -19,12 +19,13 @@ interface Props {
         func: () => void,
         img: IImage
     },
-    small?: boolean
+    small?: boolean,
+    noDecoration?: boolean
 }
 
 export const ItemSection = (props: Props) => {
 
-    console.log("itemType", props.itemType)
+    //console.log("itemType", props.itemType)
 
     const isProduct = props.itemType === 'Product';
     const isCategory = props.itemType === 'Category';
@@ -47,7 +48,7 @@ export const ItemSection = (props: Props) => {
             <div className={'itemSectionHeader'}>
                 <div className={'itemSectionTitle'} onClick={props.seeMore?.func}>
                     <h2 className={props.seeMore?.func ? 'title--hover' : ''}>{capitalizeWords(props.heading)}</h2>
-                    <img src={waves} alt={'waves decoration'}></img>
+                    {props.noDecoration ? '' : <img src={waves} alt={'waves decoration'}></img>}
                 </div>
                 {props.sorting ? <DropDown onChange={(orderByObj) => setOrderBy(orderByObj)} /> : <></>}
             </div>

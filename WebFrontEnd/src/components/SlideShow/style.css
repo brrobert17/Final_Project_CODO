@@ -114,3 +114,9 @@
     transform: scale(1.2);
 
 }
+
+@media only screen and (max-width: 768px) {
+    .slideshow {
+        display: none;
+    }
+}

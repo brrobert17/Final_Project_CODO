@@ -64,14 +64,13 @@ export const Product = () => {
                 <div className='product__pricetag'>
                     <PriceTag text={data ? Number(data.price) : 0} />
                 </div>
-                <div className='product__quantity-select'>
-                    <QuantitySelector quantity={quantity} onChange={setQuantity} />
-                </div>
-                <div className='product__btn-cont'>
-                    <Button text='Add to cart' onClick={() => console.log("hello world")} />
-                    <Button secondary text='Buy now' onClick={() => console.log("hello world")} />
-                </div>
-
+                {/*<div className='product__quantity-select'>*/}
+                {/*    <QuantitySelector quantity={quantity} onChange={setQuantity} />*/}
+                {/*</div>*/}
+                {/*<div className='product__btn-cont'>*/}
+                {/*    <Button text='Add to cart' onClick={() => console.log("hello world")} />*/}
+                {/*    <Button secondary text='Buy now' onClick={() => console.log("hello world")} />*/}
+                {/*</div>*/}
                 <div className='product__related'>
                     <ItemSection heading={"Related Products"} itemType={'Product'} queryParams={queryParamsRelated} />
                 </div>

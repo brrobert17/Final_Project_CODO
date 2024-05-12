@@ -82,3 +82,37 @@
     display: flex;
     gap: var(--defaultMargin);
 }
+.nav__icon.burger {
+    display: none;
+}
+
+@media only screen and (max-width: 768px) {
+    .nav {
+        grid-template-columns: 1fr;
+        padding: var(--defaultMargin) var(--pageMargin);
+        height: auto;
+        grid-row-gap: var(--defaultMargin);
+        border-bottom-left-radius: calc(var(--borderRadiusSmall)*2);
+        border-bottom-right-radius: calc(var(--borderRadiusSmall)*2);
+    }
+    .nav__icon-cont {
+        width: 100%;
+        flex-direction: row-reverse;
+        justify-content: space-between;
+    }
+    .nav__menu {
+        display: none;
+    }
+    .nav__icon.burger {
+        display: unset;
+        background: transparent;
+        border: none;
+    }
+    .nav__logo {
+        width: calc(100vw - (2*var(--pageMargin)));
+        height: auto;
+    }
+    .nav__logo-cont {
+        height: auto;
+    }
+}

@@ -35,6 +35,7 @@ async function initializeCache() {
         const categoriesSnapshot = await getDocs(converterCategoriesCollection);
         const categories = categoriesSnapshot.docs.map(doc => doc.data());
         const menuCategories = nestCategories(categories);
+        //console.log(menuCategories);
         myCache.set('categories', categories);
         myCache.set('menuCategories', menuCategories);
         console.log('Categories cache set.');

@@ -17,6 +17,7 @@ const Button = (props: Props) => {
 
   return (
     <button style={sectionStyle} className={`btn ${props.secondary && 'secondary'}`}  onClick={props.onClick}>{props.text}</button>
+    // <button style={{border: "none", backgroundColor: '#353e46', color: "#686c71"}} className={`btn ${props.secondary && 'secondary'}`}  onClick={props.onClick}>{props.text}</button>
   )
 }
 
