@@ -100,3 +100,9 @@ p {
 .page-cont {
     margin: 0 var(--pageMargin);
 }
+
+@media only screen and (max-width: 768px) {
+    *, :root {
+        --pageMargin: 5vw;
+    }
+}
