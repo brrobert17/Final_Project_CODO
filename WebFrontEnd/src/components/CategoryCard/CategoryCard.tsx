@@ -1,7 +1,7 @@
 import { Image as IImage } from '@interfaces';
 import "./style.css";
 import {useNavigate} from "react-router-dom";
-import {capitalizeWords} from "@utils/utils";
+import {capitalizeWords, useIsMobile} from "@utils/utils";
 
 export interface Props {
     name: string,
@@ -14,6 +14,15 @@ export interface Props {
 
 const CategoryCard = (props: Props) => {
     const navigate = useNavigate();
+    const isMobile = useIsMobile();
+    let fontSize = "var(--fontSize-medium)";
+    if(isMobile) {
+        if(props.name.length > 5) {
+            fontSize = "var(--fontSize-regular)";
+        } else if (props.name.length > 11) {
+            fontSize = "var(--fontSize-small)";
+        }
+    }
     const handleClick = () => {
         props.id && navigate(`/products/${props.id}`)
         props.func && props.func();
@@ -25,7 +34,7 @@ const CategoryCard = (props: Props) => {
             <div className="category-card__image-cont image-cont--hover">
                 <img src={props.img.url} alt={props.img.alt}/>
             </div>
-            <h3>{capitalizeWords(props.name)}</h3>
+            <h3 style={{fontSize: fontSize}}>{capitalizeWords(props.name)}</h3>
         </div>
     </div>
     )
