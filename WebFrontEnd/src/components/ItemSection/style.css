@@ -35,6 +35,27 @@
     margin-left: calc(var(--defaultMargin)/-2);
 }
 
-.itemSection__emptyText {
+.itemSection__emptyText { 
     font-weight: normal;
 }
+
+@media only screen and (max-width: 768px) {
+    .itemSectionContainer {
+        grid-template-columns: repeat(auto-fill, minmax(7em, 1fr));
+    }
+
+    .itemSectionHeader {
+        flex-direction: column;
+        align-items: start;
+        gap: var(--defaultMargin);
+    }
+
+    .itemSectionHeader > :nth-child(2) {
+        width: 100%;
+    }
+
+    .itemSectionHeader .dropdown__control {
+        width: 100%;
+    }
+    
+} 

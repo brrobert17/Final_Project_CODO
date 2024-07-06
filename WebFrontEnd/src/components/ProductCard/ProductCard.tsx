@@ -19,7 +19,7 @@ const ProductCard = (props: Props) => {
                 <img src={props.img.url} alt={props.img.alt}/>
             </div>
             <h3 className={'product-card__title title--hover'}>{props.name}</h3>
-            <p>{props.price}</p>
+            <p>{props.price} €</p>
         </div>
     )
 }

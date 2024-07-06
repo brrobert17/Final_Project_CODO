@@ -12,3 +12,13 @@ cursor: pointer;
 .product-card p{
     color: var(--colorSecondary);
 }
+
+@media only screen and (max-width: 768px) {
+    .product-card h3 {
+        font-size: var(--fontSize-small);
+    }
+
+    .product-card p {
+        font-size: var(--fontSize-small);
+    }
+}
