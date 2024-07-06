@@ -24,8 +24,8 @@
     }
 
     .blob {
-        margin: 0;
-        padding: var(--pageMargin);
+        margin: 0 0 calc(2 * var(--defaultMargin)) 0;
+        padding: var(--defaultMargin) var(--pageMargin);
         min-height: unset;
         height: fit-content;
         padding-bottom: 0;
