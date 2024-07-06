@@ -7,39 +7,61 @@
 .info__categories-cont {
     grid-area: 1 / 2 / 4 / 4;
     margin-top: calc(var(--defaultMargin) * -1);
-    /*margin-bottom: calc(var(--defaultMargin) * -1);*/
+    margin-bottom: calc(var(--defaultMargin) * -1);
 }
 
 @media only screen and (max-width: 768px) {
     .info__grid {
         grid-template-columns: 1fr;
     }
+
     .info__categories-cont {
         grid-area: unset;
     }
+
     .blob__background {
         display: none;
     }
+
     .blob {
         margin: 0;
-        padding: 0 var(--pageMargin);
+        padding: var(--pageMargin);
         min-height: unset;
         height: fit-content;
+        padding-bottom: 0;
+        margin-top: calc(-1 * var(--pageMargin));
     }
+
     .blob__children-cont {
         margin-top: 0;
     }
-    .info__about{
+
+    .info__about {
         display: none;
     }
+
     .search__box {
         width: 100%
     }
+
     .info__grid .itemSectionContainer.small {
         grid-template-columns: repeat(4, minmax(4em, 1fr));
         grid-template-rows: unset;
     }
+
     .info__grid .itemSectionContainer {
-        height: 110%;
+        height: 110%;  
+    }
+
+    .itemSectionContainer.small {
+        gap: var(--default-gap);
+    }
+
+    .search {
+        margin: 0;
+    }
+
+    .category-card {
+        aspect-ratio: 1/1;
     }
 }

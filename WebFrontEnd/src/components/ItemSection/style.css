@@ -4,20 +4,19 @@
     flex-wrap: wrap;
     justify-content: space-between;
     row-gap: calc(var(--defaultMargin)*2); */
+    --default-gap: 1em;
     height: 85%;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(17em, 1fr));
-    gap: 1em;
+    gap: var(--default-gap);
     row-gap: 2em;
 }
 
 .itemSectionContainer.small {
     grid-template-columns: repeat(2, minmax(4em, 1fr));
     grid-template-rows: repeat(2, 1fr);
-    gap: 2em;
+    gap: calc(2*var(--default-gap));
 }
-
-
 
 .itemSectionHeader {
     margin: var(--defaultMargin) 0;

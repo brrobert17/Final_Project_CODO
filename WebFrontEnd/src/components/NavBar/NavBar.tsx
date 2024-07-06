@@ -4,9 +4,9 @@ import iconBurger from "@assets/icon-burger_menu.svg";
 import iconCart from "@assets/icon-shopping-cart.svg";
 import iconUsers from "@assets/icon-users.svg";
 import "./style.css"
-import {useState} from "react";
-import {isMobile, useWindowWidth} from "@utils/utils";
-import {useMediaQuery} from "react-responsive";
+import { useState } from "react";
+import { useIsMobile, useWindowWidth } from "@utils/utils";
+import { useMediaQuery } from "react-responsive";
 
 interface Page {
     name: string,
@@ -21,7 +21,7 @@ interface Props {
 }
 
 const NavBar = (props: Props) => {
-    const isM = isMobile();
+    const isM = useIsMobile();
 
 
     return (
