@@ -48,6 +48,8 @@
 .category-card h3 {
     position: absolute;
     pointer-events: none;
+    max-width: 90%;
+    word-wrap: break-word;
 }
 
 

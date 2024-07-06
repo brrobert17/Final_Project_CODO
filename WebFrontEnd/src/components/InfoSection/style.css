@@ -50,7 +50,8 @@
     }
 
     .info__grid .itemSectionContainer {
-        height: 110%;  
+        height: unset;
+
     }
 
     .itemSectionContainer.small {
