@@ -13,7 +13,7 @@ export const Products = () => {
     const { id: categoryId } = useParams();
     const isRoot = !categoryId;
     const { data: cat } = useCategory(categoryId ? categoryId : '');
-    const { data: subCats } = useCategories(true,categoryId);
+    const { data: subCats } = useCategories(true, categoryId);
     // const { data: products } = useProductsCores(
     //     categoryId ? !!cat : true,
     //     isRoot ?
@@ -28,18 +28,24 @@ export const Products = () => {
         <>
             <NavBar pages={navigationPages} loginUrl={'/login'} shoppingCartUrl={'/cart'} />
             <div className='products-page'>
-                <div className='page-cont products__breadcrumbs'>
-                    {categoryId && <Breadcrumbs categoryId={categoryId} />}
-                </div>
+                {subCats && subCats.length > 0 ?
+                    <div className='page-cont products__breadcrumbs'>
+                        {categoryId && <Breadcrumbs categoryId={categoryId} />}
+                    </div>
+                    :
+                    <div className='page-cont products__breadcrumbs alone'>
+                        {categoryId && <Breadcrumbs categoryId={categoryId} />}
+                    </div>
+                }
                 {subCats && subCats.length > 0 ?
                     <Blob>
-                        <ItemSection heading={isRoot ? 'Categories' : cat?.name + ' Sub Categories'} itemType={'Category'} categoryId={categoryId} />
+                        <ItemSection noDecoration heading={isRoot ? 'Categories' : cat?.name + ' Sub Categories'} itemType={'Category'} categoryId={categoryId} />
                     </Blob>
                     :
                     <></>
                 }
                 <div className='page-cont'>
-                    <ItemSection heading={cat ? cat.name : 'Products'} itemType={'Product'} queryParams={isRoot? undefined : {categoryId: categoryId, type: 'default', limit: 10}} sorting />
+                    <ItemSection heading={cat ? cat.name : 'Products'} itemType={'Product'} queryParams={isRoot ? undefined : { categoryId: categoryId, type: 'default', limit: 10 }} sorting />
                 </div>
             </div>
         </>

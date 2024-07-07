@@ -35,7 +35,7 @@
     margin-left: calc(var(--defaultMargin)/-2);
 }
 
-.itemSection__emptyText { 
+.itemSection__emptyText {
     font-weight: normal;
 }
 
@@ -50,12 +50,16 @@
         gap: var(--defaultMargin);
     }
 
-    .itemSectionHeader > :nth-child(2) {
+    .itemSectionHeader> :nth-child(2) {
         width: 100%;
     }
 
     .itemSectionHeader .dropdown__control {
         width: 100%;
     }
-    
-} 
+
+    .itemSection__emptyText {
+        grid-column: 1 / 3;
+    }
+
+}

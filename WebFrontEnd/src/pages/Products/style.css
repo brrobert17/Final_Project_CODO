@@ -13,8 +13,41 @@
 }
 
 @media only screen and (max-width: 768px) {
+
+
+    .products-page {
+        margin-top: 0;
+    }
+
     .products__breadcrumbs {
         margin-bottom: 0;
-        min-height: unset;
+        min-height: fit-content;
+        z-index: 100;
+        position: relative;
     }
+
+    .products__breadcrumbs.alone {
+        margin-top: var(--defaultMargin);
+    }
+
+    .products__breadcrumbs .breadcrumbs {
+        color: white !important;
+    }
+
+    .products-page .blob .itemSectionContainer {
+        grid-template-columns: repeat(auto-fill, minmax(4em, 1fr));
+        height: unset;
+    }
+
+    .products-page .blob__children-cont {
+        height: unset;
+        margin-bottom: calc(-2* var(--defaultMargin));
+    }
+
+    .products-page .blob {
+        padding-top: calc(2 * var(--defaultMargin));
+        margin-top: calc(-2 * var(--defaultMargin));
+        padding-bottom: var(--defaultMargin);
+    }
+
 }
