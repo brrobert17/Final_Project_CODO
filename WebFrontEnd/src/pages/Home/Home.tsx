@@ -66,7 +66,7 @@ const Home = () => {
     const navigate = useNavigate();
     return (
         <>
-            <NavBar pages={navigationPages} loginUrl={"/login"} shoppingCartUrl={"/cart"} />
+            <NavBar size="big" pages={navigationPages} loginUrl={"/login"} shoppingCartUrl={"/cart"} />
             <SlideShow images={slideShowImages} />
             <InfoSection />
             <div className={'pageContainer'}>

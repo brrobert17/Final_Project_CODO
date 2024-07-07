@@ -6,7 +6,7 @@ import SearchBox from "@components/Search"
 const Search = () => {
   return (
     <>
-    <NavBar pages={navigationPages} loginUrl={'/login'} shoppingCartUrl={'/cart'} />
+    <NavBar size="small" pages={navigationPages} loginUrl={'/login'} shoppingCartUrl={'/cart'} />
     <div className='products-page'>
         <div className='page-cont'>
             <SearchBox displayHits/>

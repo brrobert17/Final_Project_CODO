@@ -45,7 +45,7 @@ export const Product = () => {
 
     return (
         <div className='page'>
-            <NavBar pages={navigationPages} loginUrl={'/login'} shoppingCartUrl={'/cart'} />
+            <NavBar size={'small'} pages={navigationPages} loginUrl={'/login'} shoppingCartUrl={'/cart'} />
             <div className='product__main'>
                 <div className='product__breadcrumbs'>
                     {data?.category && <Breadcrumbs categoryId={data.category} />}

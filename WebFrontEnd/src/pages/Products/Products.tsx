@@ -26,7 +26,7 @@ export const Products = () => {
     //useEffect(()=> console.log(`CAT: ${JSON.stringify(cat)}, SUBCATS: ${JSON.stringify(subCats)}, PRODUCTS: ${JSON.stringify(products)}`),[cat, subCats, products])
     return (
         <>
-            <NavBar pages={navigationPages} loginUrl={'/login'} shoppingCartUrl={'/cart'} />
+            <NavBar size={subCats ?  'big' : 'small'} pages={navigationPages} loginUrl={'/login'} shoppingCartUrl={'/cart'} />
             <div className='products-page'>
                 {subCats && subCats.length > 0 ?
                     <div className='page-cont products__breadcrumbs'>
