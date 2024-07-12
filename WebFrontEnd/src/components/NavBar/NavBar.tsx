@@ -32,15 +32,22 @@ const NavBar = (props: Props) => {
         if (props.size != "small") setIsScrolling(scrollTop > 0);
     };
 
-    useEffect(() => {
-
-        window.addEventListener('scroll', handleScroll);
+    const renderHeightOfPlaceholder = () => {
 
         if (placeholderRef.current && navRef.current) {
             placeholderRef.current.style.height = `${navRef.current.offsetHeight}px`;
         }
-        // some function that looks at scrolling
+    }
+
+    useEffect(() => {
+
+        window.addEventListener('scroll', handleScroll);
+        renderHeightOfPlaceholder()
     }, [])
+
+    useEffect(() => {
+        renderHeightOfPlaceholder()
+    }, [isScrolling])
 
     return (
         <>

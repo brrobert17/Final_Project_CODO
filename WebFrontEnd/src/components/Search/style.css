@@ -17,6 +17,8 @@
     gap: 2em;
 }
 
+
+
 .search__box {
     position: relative;
     width: 80%;
@@ -63,4 +65,19 @@
 
 .search__icon:hover img {
     transform: scale(1.1);
+}
+
+.hits__box {
+    margin-top: calc(var(--defaultMargin) * 2);
+}
+
+@media only screen and (max-width: 768px) {
+    .search__box-cont {
+        width: unset;
+        margin: var(--defaultMargin) 0;
+    }
+
+    .search__box-cont>h1 {
+        font-size: var(--fontSize-large);
+    }
 }

@@ -10,6 +10,7 @@
     align-content: center;
     justify-items: center;
     padding: calc(var(--defaultMargin) / 2) var(--defaultMargin);
+    z-index: 1000;
 }
 /* placeholder only applies on mobile device */
 .nav, .nav__placeholder {
@@ -92,7 +93,6 @@
 @media only screen and (max-width: 768px) {
     .nav {
         position: fixed;
-        z-index: 100;
         top: 0;
         grid-template-columns: 1fr;
         padding: var(--defaultMargin) var(--pageMargin);

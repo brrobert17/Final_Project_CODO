@@ -49,3 +49,11 @@
     object-fit: cover;
     border-radius: var(--borderRadiusSmall);
 }
+
+
+@media only screen and (max-width: 768px) {
+    .slider-image-view {
+        height: unset;
+        aspect-ratio: 1/1;
+    }
+}

@@ -46,7 +46,6 @@ function ImageSlider(props: Props) {
     return (
         <div>
             <div className="slider-image-view">
-
                 <img src={selectedImage.url} alt={selectedImage.alt} />
             </div>
             <div className="slider">
