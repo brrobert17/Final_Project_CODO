@@ -12,8 +12,10 @@
     padding: calc(var(--defaultMargin) / 2) var(--defaultMargin);
     z-index: 1000;
 }
+
 /* placeholder only applies on mobile device */
-.nav, .nav__placeholder {
+.nav,
+.nav__placeholder {
     background-color: var(--backGroundColorTwo);
 }
 
@@ -28,52 +30,11 @@
     height: 100%;
 }
 
-.nav__menu {
-    list-style: none;
-    display: flex;
-    gap: calc(var(--defaultMargin)*2);
-    align-items: center;
-
-    font-size: var(--fontSize-regular);
-    font-weight: 600;
-}
-
-.nav__menu__sub-menu {
-    display: none;
-    position: absolute;
-    background-color: rgb(18, 18, 59);
-    top: calc(100% + (var(--defaultMargin) / 2));
-    left: 50%;
-    transform: translateX(-50%);
-    padding: calc(var(--defaultMargin)) var(--defaultMargin);
-}
-
-.nav__menu li {
-    position: relative;
-
-}
-
-.nav__menu__sub-menu a {
-    display: block;
-    margin: var(--defaultMargin);
-}
-
-.nav__menu a {
-    color: white;
-    text-decoration: none;
-}
-
-.nav__menu li:hover .nav__menu__sub-menu {
-    display: block;
-}
-
-.nav__menu li,
 .nav__icon img,
 .nav__logo-cont img {
     transition: 0.2s ease;
 }
 
-.nav__menu li:hover,
 .nav__icon:hover img,
 .nav__logo-cont:hover img {
     transform: scale(1.1);
@@ -86,6 +47,7 @@
     display: flex;
     gap: var(--defaultMargin);
 }
+
 .nav__icon.burger {
     display: none;
 }
@@ -98,10 +60,11 @@
         padding: var(--defaultMargin) var(--pageMargin);
         height: auto;
         grid-row-gap: var(--defaultMargin);
-        overflow: hidden;
+        /* overflow: hidden; */
     }
 
-    .nav, .nav__placeholder {
+    .nav,
+    .nav__placeholder {
         border-bottom-left-radius: calc(var(--borderRadiusSmall)*2);
         border-bottom-right-radius: calc(var(--borderRadiusSmall)*2);
     }
@@ -115,14 +78,19 @@
         flex-direction: row-reverse;
         justify-content: space-between;
     }
-    .nav__menu {
-        display: none;
-    }
+
     .nav__icon.burger {
+        z-index: 102;
         display: unset;
         background: transparent;
         border: none;
+        transition: transform 0.1s ease-out;
     }
+
+    .nav__icon.burger:active {
+        transform: scale(0.90);
+    }
+
     .nav__logo {
         width: calc(100vw - (2*var(--pageMargin)));
         height: auto;

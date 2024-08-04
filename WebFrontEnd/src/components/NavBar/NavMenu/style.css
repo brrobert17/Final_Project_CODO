@@ -1,0 +1,114 @@
+.nav__menu {
+    list-style: none;
+    display: flex;
+    gap: calc(var(--defaultMargin)*2);
+    align-items: center;
+
+    font-size: var(--fontSize-regular);
+    font-weight: 600;
+}
+
+.nav__menu__sub-menu {
+    display: none;
+    position: absolute;
+    background-color: rgb(18, 18, 59);
+    top: calc(100% + (var(--defaultMargin) / 2));
+    left: 50%;
+    transform: translateX(-50%);
+    padding: calc(var(--defaultMargin)) var(--defaultMargin);
+}
+
+.nav__menu li {
+    position: relative;
+
+}
+
+.nav__menu__sub-menu a {
+    display: block;
+    margin: var(--defaultMargin);
+}
+
+.nav__menu a {
+    color: white;
+    text-decoration: none;
+}
+
+.nav__menu li:hover .nav__menu__sub-menu {
+    display: block;
+}
+
+.nav__menu li {
+    transition: 0.2s ease;
+}
+
+.nav__menu li:hover {
+    transform: scale(1.1);
+
+}
+
+@media only screen and (max-width: 768px) {
+
+    .nav__menu {
+        z-index: 101;
+        display: block;
+        width: 100%;
+        height: 100vh;
+        position: absolute;
+        background-color: var(--backGroundColorTwo);
+        padding: 2em;
+
+        transform: translateX(100%);
+        transition: all 0.3s ease-out;
+    }
+
+    .nav__menu.active {
+        transform: translateX(0);
+    }
+
+    .nav__menu li {
+        margin: 2em;
+        display: grid;
+        grid-template-areas:
+            "item arrow"
+            "menu menu"
+        ;
+    }
+
+    .nav__menu li:hover {
+        transform: unset;
+    }
+
+    .nav__menu li:hover .nav__menu__sub-menu {
+        display: none;
+    }
+
+    .nav__menu li.active .nav__menu__sub-menu {
+        display: block;
+    }
+
+    .nav__menu li a {
+        grid-area: item;
+        width: fit-content;
+    }
+
+    .nav__menu__sub-menu {
+        grid-area: menu;
+        position: unset;
+        transform: unset;
+        background-color: transparent;
+    }
+
+    .nav__menu__li-arrow {
+        filter: invert(100%);
+        grid-area: arrow;
+        justify-self: end;
+        transform: rotate(90deg);
+        transition: transform 0.3s ease-out;
+    }
+
+    .nav__menu li.active .nav__menu__li-arrow {
+        transform: rotate(-90deg);
+    }
+
+
+}
