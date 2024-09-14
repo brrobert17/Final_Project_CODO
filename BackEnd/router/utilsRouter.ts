@@ -5,6 +5,14 @@ import express from "express";
 import {getAllSubcategoriesCache, getAllSupraCategoriesCache} from "../utils";
 
 export const utilsRouter = express.Router();
+
+// utilsRouter.get('/language/:id', async (req, res) => {
+//     const languageId = req.params.id;
+//     const collectionSnapshot = await getDocs(allProductsRef);
+//     const products = collectionSnapshot.docs.map(
+//         doc => doc.data());
+//
+// })
 //getting an product's path
 //getting a category's path is basically the same
 utilsRouter.get("/catsids", async (req, res) => {
@@ -93,8 +101,8 @@ utilsRouter.get('/dup', async (req, res) => {
 
     try {
         // Reference to the source and destination collections
-        const sourceCollection = collection(db, 'cat');
-        const destinationCollection = collection(db, 'categories');
+        const sourceCollection = collection(db, 'categories');
+        const destinationCollection = collection(db, 'categories2');
 
         // Get all documents from the source collection
         const querySnapshot = await getDocs(sourceCollection);

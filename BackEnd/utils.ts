@@ -123,4 +123,6 @@ export const nestCategories = (categories: Category[], parentId: string | null =
     }
     return currentLevelMenuCategories;
 }
-
+export const test22 = () => {
+    console.log("TEST")
+}

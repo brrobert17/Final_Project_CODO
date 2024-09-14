@@ -9,9 +9,8 @@ import {imagesRouter} from "./router/imagesRouter";
 import {getAllSubCategories, utilsRouter} from "./router/utilsRouter";
 import {getDocs} from "firebase/firestore";
 import {categoriesCollection, converterCategoriesCollection} from "./firebaseConfig";
-import {getAllSubcategoriesCache, getAllSupraCategoriesCache, nestCategories} from "./utils";
+import {getAllSubcategoriesCache, getAllSupraCategoriesCache, nestCategories, test22} from "./utils";
 import {categoriesRouter} from "./router/categoriesRouter";
-import {Category, MenuCategory} from "../MobileFrontEnd/utils/interfaces";
 
 
 const app = express();
@@ -28,6 +27,9 @@ app.use('/products', productsRouter);
 app.use('/categories', categoriesRouter);
 app.use(imagesRouter);
 app.use(utilsRouter);
+app.get("/test22", (req, res) => {
+    test22();
+})
 
 export const myCache = new NodeCache({ stdTTL: 0, checkperiod: 0 });
 async function initializeCache() {

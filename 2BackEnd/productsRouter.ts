@@ -1,11 +1,13 @@
-import express, { NextFunction, Request, Response } from 'express';
+import express, {NextFunction, Request, Response} from 'express';
+import {converterProductsCollection, productsCollection} from "./firebaseConfig";
 
-export const productsRouter = express.Router();
+export const productsRouter = express.Router({mergeParams: true});
 
-productsRouter.get('/:id', (req: Request, res: Response, next: NextFunction) => {
+productsRouter.get('/:id', async (req: Request, res: Response, next: NextFunction) => {
     console.log(req.params.id);
     console.log(req.params.lang);
-    res.locals.content = 'success';
+    const doc = await converterProductsCollection.doc(req.params.id).get();
+    res.locals.content = doc.data();
     res.locals.type = 'product';
     next();
 });

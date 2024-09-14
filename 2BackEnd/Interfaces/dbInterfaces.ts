@@ -1,6 +1,3 @@
-import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { StackParams } from "../App";
-
 export interface Product {
     id: string;
     name: string;
@@ -71,32 +68,4 @@ export interface Category {
     }
 }
 
-export interface CategoryCore {
-    id: string,
-    name: string,
-}
 
-export interface MenuCategory {
-    id?: string;
-    name?: string;
-    level?: number;
-    children?: MenuCategory[];
-    action?: (nav?: NativeStackNavigationProp<StackParams>) => void
-}
-export interface Meta {
-
-}
-
-export interface CategoryTranslation extends Pick<Category, "id" | "name">{
-    img: Pick<Image, "alt">;
-}
-
-export interface ProductTranslation extends Pick<Product, "id" | "name" | "description">{
-    img: Pick<Image, "alt">[];
-}
-export interface Language {
-    abbr: string;
-    meta: Meta;
-    categories: CategoryTranslation[];
-    products: ProductTranslation[];
-}

@@ -1,7 +1,9 @@
+import "dotenv/config";
 import express from 'express';
 import cors from 'cors';
 import { Translator } from './translator';
 import { productsRouter } from './productsRouter';
+import {categoriesRouter} from "./categoriesRouter";
 
 const app = express();
 
@@ -13,9 +15,12 @@ app.use(cors({
 
 
 app.use('/api/v1/:lang/products', productsRouter);
-app.use(Translator);
+app.use('/api/v1/:lang/categories', categoriesRouter);
+
+
+app.use('/api/v1/:lang', Translator);
 
 app.listen(5000, () => {
-    console.log('2backend is running on port 5000')
+    console.log(`2backend is running on port ${process.env.PORT}`);
 });
 
