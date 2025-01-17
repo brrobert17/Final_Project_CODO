@@ -3,14 +3,14 @@ import waves from '@assets/waves.svg'
 
 interface Props {
     text: string
-    noDecoration?: boolean
+    decor?: boolean
 }
 
 const Heading = (props: Props) => {
     return (
         <div className={'itemSectionTitle'}>
             <h2>{props.text}</h2>
-            {props.noDecoration && <img src={waves} alt={'waves decoration'}></img>}
+            {props.decor && <img src={waves} alt={'waves decoration'}></img>}
         </div>
     )
 }

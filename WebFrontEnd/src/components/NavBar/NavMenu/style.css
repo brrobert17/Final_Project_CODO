@@ -33,9 +33,9 @@
     text-decoration: none;
 }
 
-.nav__menu li:hover .nav__menu__sub-menu {
+/* .nav__menu li:hover .nav__menu__sub-menu {
     display: block;
-}
+} */
 
 .nav__menu li {
     transition: 0.2s ease;
@@ -44,6 +44,10 @@
 .nav__menu li:hover {
     transform: scale(1.1);
 
+}
+
+.nav__menu__li-arrow {
+    display: none;
 }
 
 @media only screen and (max-width: 768px) {
@@ -99,6 +103,7 @@
     }
 
     .nav__menu__li-arrow {
+        display: block;
         filter: invert(100%);
         grid-area: arrow;
         justify-self: end;
