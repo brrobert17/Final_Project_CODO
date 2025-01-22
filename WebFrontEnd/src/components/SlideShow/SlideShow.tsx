@@ -26,30 +26,60 @@ function reducer(state: CircularBuffer<IImage>, action: UpdateAction) {
     }
 }
 
-
 interface Props {
     images: IImage[]
 }
 
 const SlideShow = (props: Props) => {
+    const AUTO_SLIDE_INTERVAL = 8000;
+    const PAUSE_DURATION = 12000; // Duration to pause after manual interaction
 
     const [images, dispatch] = useReducer(reducer, new CircularBuffer(props.images.length, props.images));
-    const [animationDirection, setAnimationDirection] = useState<Direction | null>(null)
+    const [animationDirection, setAnimationDirection] = useState<Direction | null>(null);
+    const [isPaused, setIsPaused] = useState(false);
 
     useEffect(() => {
-        setTimeout(() => setAnimationDirection("forwards"), 8000);
-    }, [images])
+        let slideTimer: NodeJS.Timeout;
+        let pauseTimer: NodeJS.Timeout;
+
+        const startSlideshow = () => {
+            slideTimer = setTimeout(() => {
+                if (!isPaused) {
+                    setAnimationDirection("forwards");
+                }
+            }, AUTO_SLIDE_INTERVAL);
+        };
+
+        // Only start the slideshow if not paused
+        if (!isPaused) {
+            startSlideshow();
+        }
+
+        // Cleanup timers
+        return () => {
+            clearTimeout(slideTimer);
+            // @ts-ignore
+            clearTimeout(pauseTimer);
+        };
+    }, [images, isPaused]);
 
     const clickHandler = (direction: Direction) => {
-        setAnimationDirection(direction)
-    }
+        // Clear any existing timers and pause the slideshow
+        setIsPaused(true);
+        setAnimationDirection(direction);
 
-    /* const navigationHandler = (indexInProps: number) => {
-        const image = images.indexOf(props.images[indexInProps])
-        if (image != -1)
-            dispatch({ type: 'custom', payload: image - 1 })
-    } */
+        // Resume automatic slideshow after pause duration
+        setTimeout(() => {
+            setIsPaused(false);
+        }, PAUSE_DURATION);
+    };
 
+    const handleTransitionEnd = (positionClass: string) => {
+        if (animationDirection != null && positionClass === 'active') {
+            dispatch({ type: animationDirection });
+            setAnimationDirection(null);
+        }
+    };
 
     return (
         <div className="slideshow">
@@ -57,13 +87,19 @@ const SlideShow = (props: Props) => {
                 <div className="slideshow__track">
                     {(images.toArray() as IImage[]).filter((_, index) => index < 3).map((img, index) => {
                         const positionClass = index === 0 ? 'prev' : index === 1 ? 'active' : index === 2 ? 'next' : '';
-                        const animateClass = animationDirection === 'forwards' && [1, 2].includes(index) ? 'animate-left' : animationDirection === 'backwards' && [0, 1].includes(index) ? 'animate-right' : ''
+                        const animateClass = animationDirection === 'forwards' && [1, 2].includes(index) ? 'animate-left' : 
+                                          animationDirection === 'backwards' && [0, 1].includes(index) ? 'animate-right' : '';
 
-                        return (<div onTransitionEnd={() => { if (animationDirection != null && positionClass == 'active') { dispatch({ type: animationDirection }); setAnimationDirection(null) } }} className={`slideshow__slide ${positionClass} ${animateClass}`} key={index}>
-                            <img src={img.url} alt={img.alt} />
-                        </div>)
-                    }
-                    )}
+                        return (
+                            <div 
+                                onTransitionEnd={() => handleTransitionEnd(positionClass)} 
+                                className={`slideshow__slide ${positionClass} ${animateClass}`} 
+                                key={index}
+                            >
+                                <img src={img.url} alt={img.alt} />
+                            </div>
+                        );
+                    })}
                 </div>
             </div>
             <div className="slide__arrows">
