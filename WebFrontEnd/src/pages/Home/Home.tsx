@@ -37,11 +37,6 @@ export const navigationPages = [
         ]
     },
     {
-        name: "Info",
-        path: "/",
-
-    },
-    {
         name: "Contact",
         path: "/",
 
