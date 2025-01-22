@@ -20,6 +20,7 @@
 
 .nav__menu li {
     position: relative;
+    cursor: pointer;
 
 }
 
@@ -48,6 +49,37 @@
 
 .nav__menu__li-arrow {
     display: none;
+}
+
+.nav__menu__item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    width: 100%;
+    padding-right: var(--defaultPadding); /* Match the left padding of the menu */
+}
+
+.nav__menu__li-arrow {
+    margin-left: 0.5rem;
+    transition: transform 0.3s ease;
+    padding: 1rem; /* Increase hit box */
+    margin: -1rem; /* Offset the padding to maintain visual spacing */
+    cursor: pointer;
+}
+
+li.active .nav__menu__li-arrow {
+    transform: rotate(90deg);
+}
+
+.nav__menu__sub-menu {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+}
+
+.nav__menu__sub-menu.expanded {
+    max-height: 500px; /* Adjust based on your content */
 }
 
 @media only screen and (max-width: 768px) {
@@ -114,6 +146,4 @@
     .nav__menu li.active .nav__menu__li-arrow {
         transform: rotate(-90deg);
     }
-
-
 }

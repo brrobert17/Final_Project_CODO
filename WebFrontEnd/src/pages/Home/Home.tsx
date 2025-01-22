@@ -15,7 +15,7 @@ export const navigationPages = [
 
     },
     {
-        name: "All Products",
+        name: "Products",
         path: "/products",
         subMenu: [
             {
