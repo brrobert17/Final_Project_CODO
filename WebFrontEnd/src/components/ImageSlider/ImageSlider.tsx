@@ -9,32 +9,55 @@ interface Props {
     images: IImage[],
 }
 
-const arrowStep = 300;
-
-function ImageSlider(props: Props) {
-
+const ImageSlider = (props: Props) => {
     const [width, setWidth] = useState(0);
-    const [offset, setOffset] = useState<{ x: number }>({ x: 0 })
-    const [isDragging, setIsDragging] = useState<boolean>(false)
+    const [offset, setOffset] = useState<{ x: number }>({ x: 0 });
+    const [isDragging, setIsDragging] = useState<boolean>(false);
     const carousel = useRef<HTMLDivElement>(null);
-    const upperLimitReached = !((-offset.x) < width);
-    const lowerLimitReached = !(offset.x < 0);
+    const [itemWidth, setItemWidth] = useState(0);
     const [selectedImage, setSelectedImage] = useState<IImage>(props.images[0]);
-
-
+    
     useEffect(() => {
-        if (carousel.current)
+        if (carousel.current) {
             setWidth(carousel.current.scrollWidth - carousel.current.offsetWidth);
+            // Get the first slider item and calculate its total width including padding
+            const sliderItem = carousel.current.querySelector('.slider__item');
+            if (sliderItem) {
+                const computedStyle = window.getComputedStyle(sliderItem);
+                const totalWidth = sliderItem.getBoundingClientRect().width +
+                    parseFloat(computedStyle.marginLeft || '0') +
+                    parseFloat(computedStyle.marginRight || '0');
+                setItemWidth(totalWidth);
+            }
+        }
     }, []);
 
+    const upperLimitReached = !((-offset.x) < width);
+    const lowerLimitReached = !(offset.x < 0);
+
     const arrowClickHandler = (direction: "forwards" | "backwards") => {
-        if (direction === "forwards" && !upperLimitReached) {
-            setOffset({ x: offset.x - arrowStep });
+        if (carousel.current && itemWidth) {
+            const currentPosition = offset.x;
+            const newPosition = direction === "forwards" 
+                ? Math.max(-width, currentPosition - itemWidth)
+                : Math.min(0, currentPosition + itemWidth);
+            
+            setOffset({ x: newPosition });
         }
-        if (direction === "backwards" && !lowerLimitReached) {
-            setOffset({ x: offset.x + arrowStep });
+    };
+
+    const handleDragEnd = (event: any, info: PanInfo) => {
+        setIsDragging(false);
+        
+        if (itemWidth) {
+            // Calculate the nearest snap point
+            const currentOffset = offset.x + info.offset.x;
+            const nearestMultiple = Math.round(currentOffset / itemWidth) * itemWidth;
+            const newPosition = Math.min(0, Math.max(-width, nearestMultiple));
+            
+            setOffset({ x: newPosition });
         }
-    }
+    };
 
     const clickHandler = (image: IImage) => {
         if (isDragging) return;
@@ -59,12 +82,11 @@ function ImageSlider(props: Props) {
                     ref={carousel}
                     className="slider__carousel"
                     whileTap={{ cursor: "grabbing" }}
-
                 >
                     <motion.div
                         drag="x"
                         onDragStart={(e) => setIsDragging(true)}
-                        onDragEnd={(e) => setIsDragging(false)}
+                        onDragEnd={handleDragEnd}
                         animate={offset}
                         transition={{
                             type: "spring",
