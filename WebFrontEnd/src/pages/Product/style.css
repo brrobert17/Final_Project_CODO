@@ -4,7 +4,6 @@
     grid-template-areas:
         "breadcrumbs breadcrumbs"
         "show heading"
-        "show description"
         "show pricetag"
         "show quantity"
         "show buttons"
@@ -13,7 +12,18 @@
     row-gap: calc(var(--defaultMargin) * 2);
     column-gap: calc(var(--defaultMargin) * 2);
     margin: var(--defaultMargin) var(--pageMargin);
+}
 
+.product__main.has-description {
+    grid-template-areas:
+        "breadcrumbs breadcrumbs"
+        "show heading"
+        "show description"
+        "show pricetag"
+        "show quantity"
+        "show buttons"
+        "show empty"
+        "related related";
 }
 
 .product__breadcrumbs {
@@ -38,6 +48,39 @@
 
 .product__heading {
     grid-area: heading;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.product__heading-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.product__id {
+    background-color: #1F2B37;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 0.375rem;
+    cursor: pointer;
+    width: fit-content;
+    color: var(--textColor);
+    transition: opacity 0.2s ease-in-out;
+    user-select: none;
+    font-size: 1rem;
+}
+
+.product__id:hover {
+    opacity: 0.8;
+}
+
+.product__id-icon {
+    width: 1.25rem;
+    height: 1.25rem;
 }
 
 .product__description {
@@ -45,7 +88,10 @@
 }
 
 .product__pricetag {
-    grid-area: pricetag
+    grid-area: pricetag;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
 }
 
 .product__quantity-select {

@@ -15,12 +15,16 @@ const InfoSection = () => {
     <Blob>
       <div className="info__grid">
         <div>
-          {isM ? '' : <Heading text="Know what you looking for?" decor />}
+          {isM ? '' : <Heading text="Viete čo hľadáte?" decor />}
           <Search fishIcon={!isM} onSearch={(keyword) => window.location.href = `/search?keyword=${keyword}`} />
         </div>
         <div className="info__about">
-          <Heading text="About Us" decor />
-          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. </p>
+          <Heading text="O Nás" decor />
+          <p>Vitajte na našej stránke! Táto verzia nášho webu aktuálne slúži ako inventár našich produktov. Každý produkt obsahuje jedinečné ID, ktoré môžete skopírovať a poslať nám pri kontakte, ak máte záujem o daný produkt.
+
+V budúcnosti plánujeme premeniť túto stránku na plnohodnotný e-shop, aby sme vám mohli poskytnúť ešte pohodlnejší nákupný zážitok. Zatiaľ nás však neváhajte kontaktovať prostredníctvom uvedených produktových kódov.
+
+Ďakujeme za návštevu a tešíme sa na spoluprácu! </p>
         </div>
         <div className="info__categories-cont">
           <ItemSection small heading="Categories" itemType={'Category'} noDecoration={isM} />

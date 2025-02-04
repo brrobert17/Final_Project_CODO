@@ -13,10 +13,10 @@ export const DropDown: React.FC<DropDownProps> = ({ onChange }) => {
     const data: { label: string, value: OrderByParams }[] = [
         { label: '$', value: { property: 'price', direction: 'asc' } },
         { label: '$$$', value: { property: 'price', direction: 'desc' } },
-        { label: 'A to Z', value: { property: 'name', direction: 'asc' } },
-        { label: 'Z to A', value: { property: 'name', direction: 'desc' } },
-        { label: 'newest', value: { property: 'added', direction: 'desc' } },
-        { label: 'oldest', value: { property: 'added', direction: 'asc' } },
+        { label: 'od A po Z', value: { property: 'name', direction: 'asc' } },
+        { label: 'od Z po A', value: { property: 'name', direction: 'desc' } },
+        { label: 'najnovšie', value: { property: 'added', direction: 'desc' } },
+        { label: 'najnovšie', value: { property: 'added', direction: 'asc' } },
 
     ];
 
@@ -35,7 +35,7 @@ export const DropDown: React.FC<DropDownProps> = ({ onChange }) => {
     return (
         <Select
             options={data}
-            placeholder={'Sort by...'}
+            placeholder={'Zoradiť podľa...'}
             onChange={handleChange}
             classNamePrefix="dropdown"
             styles={{

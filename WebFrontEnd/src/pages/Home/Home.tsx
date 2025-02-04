@@ -10,34 +10,34 @@ import { useMenuCategories } from "@dbConn/hooks/UseCategories";
 
 export const navigationPages = [
     {
-        name: "Home",
+        name: "Domov",
         path: "/",
 
     },
     {
-        name: "Products",
+        name: "Produkty",
         path: "/products",
         subMenu: [
             {
-                name: "Corals",
-                path: "/corals",
+                name: "Koraly",
+                path: "/products/rUm6nc",
             },
             {
-                name: "Fish",
-                path: "/fish",
+                name: "Ryby",
+                path: "/products/Q0i1y5",
             },
             {
-                name: "Invertibrates",
-                path: "/invertibrates",
+                name: "Bezstavovce",
+                path: "/products/aRu8ro",
             },
             {
-                name: "Other",
-                path: "/other",
+                name: "Iné",
+                path: "/products",
             }
         ]
     },
     {
-        name: "Contact",
+        name: "Kontakt",
         path: "/",
 
     }
@@ -65,28 +65,28 @@ const Home = () => {
             <SlideShow images={slideShowImages} />
             <InfoSection />
             <div className={'pageContainer'}>
-                <ItemSection heading={'Corals'}
+                <ItemSection heading={'Koraly'}
                     itemType={'Product'}
                     queryParams={{ limit: 3, type: 'default', categoryId: 'rUm6nc' }}
                     seeMore={{
                         func: () => navigate(`/products/rUm6nc`),
                         img: { url: "https://picsum.photos/300/500", alt: "something something" }
                     }} />
-                <ItemSection heading={'Fish'}
+                <ItemSection heading={'Ryby'}
                     itemType={'Product'}
                     queryParams={{ limit: 3, type: 'default', categoryId: 'Q0i1y5' }}
                     seeMore={{
                         func: () => navigate(`/products/Q0i1y5`),
                         img: { url: "https://picsum.photos/300/500", alt: "something something" }
                     }} />
-                <ItemSection heading={'Invertibrates'}
+                <ItemSection heading={'Bezstavovce'}
                     itemType={'Product'}
                     queryParams={{ limit: 3, type: 'default', categoryId: 'aRu8ro' }}
                     seeMore={{
                         func: () => navigate(`/products/aRu8ro`),
                         img: { url: "https://picsum.photos/300/500", alt: "something something" }
                     }} />
-                <ItemSection heading={'All Products'}
+                <ItemSection heading={'Všetky produkty'}
                     itemType={'Product'}
                     queryParams={{ limit: 7, type: 'default' }}
                     seeMore={{

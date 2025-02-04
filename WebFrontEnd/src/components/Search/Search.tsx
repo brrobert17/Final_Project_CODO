@@ -85,9 +85,9 @@ const Search = (props: Props) => {
     <div className='search'>
       {props.label ? <label className=''>{props.label}</label> : <></>}
       <div className={props.displayHits ? "search__box-cont" : ""}>
-        {props.displayHits ? <h1>Search for Products</h1> : <></>}
+        {props.displayHits ? <h1>Hľadať produkty</h1> : <></>}
         <div className='search__box'>
-          <input defaultValue={inputValue} type='text' placeholder={props.placeholder || 'Search'} onChange={handleChange} onKeyDown={(e) => e.code == "Enter" && props.onSearch && props.onSearch(e.currentTarget.value)} />
+          <input defaultValue={inputValue} type='text' placeholder={props.placeholder || 'Hľadať'} onChange={handleChange} onKeyDown={(e) => e.code == "Enter" && props.onSearch && props.onSearch(e.currentTarget.value)} />
           <div className={`search__icon ${props.fishIcon && "fish"}`} onClick={handleSearch}>
             <img src={props.fishIcon ? fishIcon : searchIcon} alt='Search Icon' />
           </div>

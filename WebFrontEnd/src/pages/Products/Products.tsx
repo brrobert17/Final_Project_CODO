@@ -39,13 +39,13 @@ export const Products = () => {
                 }
                 {subCats && subCats.length > 0 ?
                     <Blob>
-                        <ItemSection noDecoration heading={isRoot ? 'Categories' : cat?.name + ' Sub Categories'} itemType={'Category'} categoryId={categoryId} />
+                        <ItemSection noDecoration heading={isRoot ? 'Kategórie' : cat?.name + ' Sub Categories'} itemType={'Category'} categoryId={categoryId} />
                     </Blob>
                     :
                     <></>
                 }
                 <div className='page-cont'>
-                    <ItemSection heading={cat ? cat.name : 'Products'} itemType={'Product'} queryParams={isRoot ? undefined : { categoryId: categoryId, type: 'default', limit: 10 }} sorting />
+                    <ItemSection heading={cat ? cat.name : 'Produkty'} itemType={'Product'} queryParams={isRoot ? undefined : { categoryId: categoryId, type: 'default', limit: 10 }} sorting />
                 </div>
             </div>
         </>

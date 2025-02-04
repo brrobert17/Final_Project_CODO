@@ -16,6 +16,16 @@
     color: black;
 }
 
-.price-tag__text::after {
-    content: "€";
+.price-tag__secondary-text {
+    font-size: var(--fontSize-regular);
+    position: absolute;
+    margin-left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-weight: 600;
+    width: 4ch;
 }
+
+/* .price-tag__text::after {
+    content: "€";
+} */

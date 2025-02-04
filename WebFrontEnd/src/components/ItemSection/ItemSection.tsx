@@ -58,13 +58,13 @@ export const ItemSection = (props: Props) => {
                         return <ProductCard key={index} name={item.name} price={item.price} img={item.img} id={item.id} />
                     })
                         :
-                        <h4 className="itemSection__emptyText">There are no products in this category at the moment</h4>
+                        <h3 className="itemSection__emptyText">V tejto kategórii momentálne nie sú žiadne produkty.</h3>
                     :
                     <></>}
                 {isCategory && categoryData && categoryData.map((item, index) => {
                     return <CategoryCard key={index} name={item.name} img={item.img} id={item.id} />
                 })}
-                {isProduct && props.seeMore ? <CategoryCard func={props.seeMore.func} bigVariant name='See More' img={{
+                {isProduct && props.seeMore ? <CategoryCard func={props.seeMore.func} bigVariant name='Viac' img={{
                     url: props.seeMore.img.url,
                     alt: props.seeMore.img.alt
                 }} /> : <></>}

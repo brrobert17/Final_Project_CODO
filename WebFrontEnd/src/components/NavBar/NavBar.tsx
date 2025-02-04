@@ -47,7 +47,6 @@ const NavBar = (props: Props) => {
             const off = navRef.current.offsetHeight;
             setPlaceholderOffset(off)
             placeholderRef.current.style.height = `${off}px`;
-            console.log("here is the offset of placeholder  ", placeholderOffset)
         }
     }
 

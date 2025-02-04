@@ -1,0 +1,17 @@
+.stock-indicator {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.25rem 0.5rem;
+}
+
+.stock-indicator__text {
+    color: var(--textColor);
+    font-size: 1rem;
+    opacity: 0.8;
+}
+
+.stock-indicator__text span {
+    color: white;
+    opacity: 1;
+}
